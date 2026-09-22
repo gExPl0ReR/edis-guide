@@ -1,36 +1,35 @@
 ---
 title: "E-Mail-Passwort bei EDIS ändern"
 sidebarTitle: "E-Mail-Passwort ändern"
+description: "Postfachkennwort im vHost-Bereich ändern und anschließend Webmail und Mailprogramme prüfen."
 ---
 
 <a id="krzc4" />
 
 ## So definieren Sie ein neues Email Passwort
 
-Wenn Sie das Passwort für Ihre Email-Adresse bei EDIS ändern müssen, können Sie dies schnell und einfach über das Management-Portal tun. Befolgen Sie die untenstehenden Schritte, um das Passwort für Ihre Email-Adresse erfolgreich zurückzusetzen:
+Das **Postfachkennwort** gilt für Ihre E-Mail-Adresse. Es ist vom **Kundenkennwort** getrennt: Ein Reset des Kundenkennworts ändert das Postfachkennwort nicht.
 
 <a id="vwN8t" />
 
 ### Schritt-für-Schritt Anleitung:
 
-1. **Zugriff auf das Management-Portal**:
-   - Öffnen Sie Ihren Browser und navigieren Sie zu [https://manage.edis.at/vhost/](https://manage.edis.at/vhost/).
-2. **Zur Email-Verwaltung navigieren**:
-   - Sobald Sie im Portal angemeldet sind, klicken Sie im Menü auf "Email Adressen" und anschließend auf "Verwaltung".
-3. **Email-Liste anzeigen**:
-   - Suchen Sie nach der Option "Anzeige Einstellung". Wählen Sie hier "Zeige Alle" aus dem Dropdown-Menü.
-   - Klicken Sie auf "anwenden", um sicherzustellen, dass alle Email-Adressen in Ihrer Liste angezeigt werden.
-4. **Passwort zurücksetzen**:
-   - Suchen Sie in der angezeigten Liste die Email-Adresse, für die Sie das Passwort ändern möchten.
-   - Rechts neben der Email-Adresse finden Sie ein Symbol, das ein Blatt Papier mit einem gelben Stift darstellt. Dies ist das "Bearbeiten"-Symbol.
-   - Klicken Sie auf dieses Symbol.
-   - Sie werden nun zu einer Seite weitergeleitet, auf der Sie das neue Passwort für Ihre Email-Adresse eingeben können.
-   - Geben Sie das gewünschte neue Passwort ein und bestätigen Sie es. Befolgen Sie eventuelle Anweisungen zur Passwortstärke.
-   - Klicken Sie auf "Speichern" oder "Ändern", um das neue Passwort zu übernehmen.
+<Steps>
+<Step title="E-Mail-Verwaltung öffnen">
+Melden Sie sich im [vHost-Bereich](/login-vhost-bereich) an und öffnen Sie **Email Adressen → Verwaltung**.
 
-Das war's! Sie haben das Passwort für Ihre Email-Adresse bei EDIS erfolgreich geändert. Denken Sie daran, das neue Passwort sicher aufzubewahren und es in Ihrem Email-Client oder anderen Diensten, die dieses Email-Konto verwenden, zu aktualisieren.
-
-<a className="edis-button" href="/login-vhost-bereich" target="_blank" rel="noopener noreferrer">Login in den vHost Bereich</a>
+<a className="edis-button" href="https://manage.edis.at/vhost/">vHost-Bereich öffnen</a>
+</Step>
+<Step title="Gewünschtes Postfach bearbeiten">
+Wählen Sie unter **Anzeige Einstellung** die Option **Zeige Alle** und klicken Sie auf **anwenden**. Öffnen Sie an der richtigen E-Mail-Adresse das Bearbeiten-Symbol (Blatt mit gelbem Stift).
+</Step>
+<Step title="Neues Passwort setzen">
+Geben Sie das neue Passwort ein, bestätigen Sie es und beachten Sie die angezeigten Kennwortvorgaben. Übernehmen Sie die Änderung mit **Speichern** beziehungsweise **Ändern**.
+</Step>
+<Step title="Geräte aktualisieren und Anmeldung testen">
+Bewahren Sie das Passwort sicher auf und aktualisieren Sie es in allen Mailprogrammen und Diensten, die dieses Postfach verwenden. Prüfen Sie anschließend Anmeldung, Versand und Empfang.
+</Step>
+</Steps>
 
 <a id="tnpP7" />
 
@@ -42,7 +41,9 @@ Das Kundenkonto und jedes E-Mail-Postfach haben getrennte Zugänge. Wenn Sie das
 
 ## Anmeldung prüfen
 
-Testen Sie den Zugang im EDIS-Webmail. Funktioniert Webmail, aber ein Mailprogramm nicht, prüfen Sie dort Benutzername, gespeichertes Kennwort und Servereinstellungen. Als Benutzername wird die vollständige E-Mail-Adresse verwendet. [https://webmail.edis.at/](https://webmail.edis.at/)
+Testen Sie den Zugang im **EDIS-Webmail** mit der **vollständigen E-Mail-Adresse** als Benutzername. Funktioniert Webmail, aber ein Mailprogramm nicht, prüfen Sie dort das gespeicherte Kennwort und die [Servereinstellungen](/edis-mailserver-imap-pop3-und-smtp-einstellungen).
+
+<a className="edis-button" href="https://webmail.edis.at/">Webmail öffnen</a>
 
 <a id="eHkA6" />
 
@@ -52,9 +53,19 @@ Bei nachgewiesenem Missbrauch kann EDIS das Postfachkennwort zum Schutz ändern.
 
 Melden Sie unbekannte Zugriffe oder fehlende Nachrichten dem Support. Eine Kennwortänderung allein beweist nicht, dass die Ursache bereits beseitigt wurde.
 
-<a id="J_iSC" />
+<a id="A7FGD" />
 
-## Unbekannte Mailboxen und sichere Wiederherstellung des Zugangs
+## Keine Zugangsdaten per Nachricht senden
+
+Teilen Sie Passwörter und Einmalcodes nicht im Supportticket. Wenn Sie keinen berechtigten Verwaltungszugang mehr haben, lassen Sie den Zugang über den vorgesehenen Supportprozess prüfen.
+
+## Verdächtige Zugriffe und Phishing
+
+<AccordionGroup>
+
+<a id="unbekannte-mailboxen-und-sichere-wiederherstellung-des-zugangs" />
+
+<Accordion title="Unbekannte Mailboxen und sichere Wiederherstellung des Zugangs" id="J_iSC">
 
 Melden Sie es sofort, wenn eine neue Mailbox angelegt wurde, die Sie oder Ihre berechtigte Verwaltung nicht beauftragt haben. Neben der Mailbox müssen auch Kundenkonto, vHost-Zugang und mögliche weitere Änderungen geprüft werden. Das Zurücksetzen eines Verwaltungspassworts ändert bestehende Postfachkennwörter nicht automatisch.
 
@@ -62,15 +73,11 @@ Wenn Sie befürchten, dass Ihre hinterlegte Kontaktmailbox nicht mehr unter Ihre
 
 Dass eine bekannte verdächtige IP-Adresse zuletzt nicht auf das Kontaktpostfach zugegriffen hat, beweist noch nicht dessen Sicherheit. Lassen Sie sich mitteilen, welche Schutzmaßnahmen tatsächlich ausgeführt wurden und welche Prüfungen noch fehlen. Wiederanmeldung, betroffene Mailboxen, Weiterleitungen und verbleibende Sicherheitsfragen sind gesondert zu kontrollieren.
 
-<a id="A7FGD" />
+</Accordion>
 
-## Keine Zugangsdaten per Nachricht senden
+<a id="nach-phishing-reicht-ein-schneller-passwortwechsel" />
 
-Teilen Sie Passwörter und Einmalcodes nicht im Supportticket. Wenn Sie keinen berechtigten Verwaltungszugang mehr haben, lassen Sie den Zugang über den vorgesehenen Supportprozess prüfen.
-
-<a id="jnfAP" />
-
-## Nach Phishing: Reicht ein schneller Passwortwechsel?
+<Accordion title="Nach Phishing: Reicht ein schneller Passwortwechsel?" id="jnfAP">
 
 Wenn Sie auf eine verdächtige Nachricht reagiert haben, teilen Sie dem Support mit, ob Sie nur den Link geöffnet oder auch Zugangsdaten beziehungsweise einen Einmalcode eingegeben haben. Nennen Sie den Zeitpunkt und die betroffenen Zugänge. Übermitteln Sie die eingegebenen Geheimnisse selbst nicht.
 
@@ -84,12 +91,18 @@ Eine abschließende Aussage über mögliche fremde Zugriffe braucht konkrete Bef
 
 Prüfen Sie außerdem, bei welchem Anbieter das betroffene Postfach tatsächlich betrieben wird und welchen Weg die verdächtige Nachricht genommen hat. Eine bei EDIS registrierte Domain bedeutet nicht automatisch, dass auch EDIS den Maildienst betreibt. Bei externen Maildiensten müssen deren Filter, Anmeldeprotokolle und Schutzmaßnahmen einbezogen werden. Änderungen am EDIS-Filter helfen nur für Nachrichten, die diesen Filter tatsächlich durchlaufen.
 
-<a id="3scQH" />
+</Accordion>
 
-## Beweist eine gefälschte EDIS-Mail ein Datenleck?
+<a id="beweist-eine-gefälschte-edis-mail-ein-datenleck" />
+
+<Accordion title="Beweist eine gefälschte EDIS-Mail ein Datenleck?" id="3scQH">
 
 Eine Phishingmail im Namen von EDIS belegt für sich kein Datenleck bei EDIS. Sie schließt es aber auch nicht aus. Ob eine Nachricht gefälscht ist, welcher Anbieter das betroffene Postfach betreibt und woher die Empfängeradresse stammt, sind unterschiedliche Fragen. Auch mehrere gleiche Nachrichten oder eine Domain ohne Website erlauben keine sichere Aussage über die Datenherkunft.
 
 Wenn Sie diese Sorge haben, nennen Sie sie ausdrücklich. Für die Prüfung helfen die Originalnachricht, der tatsächliche Empfänger und der Empfangszeitpunkt; notwendige Header sollten über den vorgesehenen Supportweg geprüft werden. Öffnen Sie verdächtige Links dafür nicht und geben Sie keine Zugangsdaten weiter.
 
 Teilen Sie außerdem mit, ob Sie die Nachricht nur erhalten, einen Link geöffnet oder Daten eingegeben haben. Der Support muss die Frage zur Datenherkunft und den konkreten Sicherungsbedarf getrennt behandeln und Ihnen sagen, welche Befunde vorliegen und was ungeklärt bleibt. Eine allgemeine Kampagnenwarnung allein beantwortet die Datenleckfrage nicht.
+
+</Accordion>
+
+</AccordionGroup>

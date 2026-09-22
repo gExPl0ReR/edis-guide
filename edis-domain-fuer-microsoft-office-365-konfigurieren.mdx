@@ -1,6 +1,7 @@
 ---
 title: "Domain für Microsoft 365 konfigurieren"
 sidebarTitle: "Microsoft 365"
+description: "Domain verifizieren, die Mailumstellung vorbereiten und die DNS-Werte Ihres Microsoft-Mandanten übernehmen."
 ---
 
 Richten Sie eine Domain für Microsoft 365 anhand der Werte Ihres eigenen Microsoft-Mandanten ein. Werte aus fremden Beispielen und ältere Screenshots sind keine gültigen Konfigurationsvorgaben.
@@ -9,7 +10,11 @@ Richten Sie eine Domain für Microsoft 365 anhand der Werte Ihres eigenen Micros
 
 ## Domain hinzufügen und verifizieren
 
-Öffnen Sie [https://admin.microsoft.com](https://admin.microsoft.com) mit einem berechtigten Administratorkonto. Unter Einstellungen → Domains fügen Sie die Domain hinzu beziehungsweise wählen die vorhandene Domain aus. Folgen Sie der aktuellen Prüfung der Domaininhaberschaft.
+Öffnen Sie das Microsoft-365-Admin-Center mit einem berechtigten Administratorkonto.
+
+<a className="edis-button" href="https://admin.microsoft.com">Microsoft-365-Admin-Center öffnen</a>
+
+ Unter Einstellungen → Domains fügen Sie die Domain hinzu beziehungsweise wählen die vorhandene Domain aus. Folgen Sie der aktuellen Prüfung der Domaininhaberschaft.
 
 Kopieren Sie den angezeigten TXT-Verifikationswert exakt in die autoritative DNS-Zone. Die Darstellung des Namens für die Hauptdomain hängt vom DNS-Editor ab; prüfen Sie den resultierenden vollständigen DNS-Namen. Beispielwerte wie MS=msXXXXXXXX dürfen nicht unverändert übernommen werden.
 
@@ -31,4 +36,4 @@ Ergänzen Sie einen vorhandenen SPF-Eintrag um alle tatsächlich verwendeten Ver
 
 Lassen Sie Microsoft die DNS-Einträge prüfen. Testen Sie anschließend Versand, Empfang und gegebenenfalls Autodiscover sowie die unverändert benötigte Website. Bei noch alten DNS-Antworten prüfen Sie TTL und autoritative Zone; eine feste Wartezeit ersetzt diese Kontrolle nicht.
 
-Microsoft-Anleitung: [https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider?view=o365-worldwide](https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider?view=o365-worldwide)
+[Microsoft: DNS-Einträge beim DNS-Anbieter erstellen](https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider?view=o365-worldwide)

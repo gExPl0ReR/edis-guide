@@ -1,9 +1,10 @@
 ---
 title: "Gmail lehnt E-Mails ab: Authentifizierung und SPF prüfen"
 sidebarTitle: "Gmail lehnt E-Mails ab"
+description: "Bei einer Gmail-Ablehnung SPF, DKIM und den tatsächlichen Versanddienst anhand des Rückläufers prüfen."
 ---
 
-Sie versenden eine Email von Ihrem Konto an eine Google Email Adresse und bekommen folgende Fehlermeldung zurück:
+Gmail kann eine Nachricht wegen fehlender oder fehlgeschlagener Authentifizierung zurückweisen. Ein möglicher Rückläufer lautet:
 
 <Info>
 
@@ -14,8 +15,10 @@ Please visit 550-5.7.1 https\://support.google.com/mail/answer/81126#authenticat
 
 </Info>
 
+## Authentifizierung prüfen
+
 Die Meldung weist auf fehlende oder fehlgeschlagene E-Mail-Authentifizierung hin. Prüfen Sie den [SPF Eintrag](/spf-eintrag-fur-den-e-mail-versand-uber-edis) bei Ihrer Domain sowie DKIM und die tatsächlich verwendeten Versanddienste.
 
 Bearbeiten Sie den SPF-Eintrag in der autoritativen DNS-Verwaltung Ihrer Domain. Bei EDIS verwenden Sie die für Ihre Domain eingerichtete DNS-Verwaltung beziehungsweise PowerDNS-Admin. Ändern Sie einen vorhandenen SPF-TXT-Eintrag, statt einen zweiten für denselben Namen anzulegen.
 
-Aktuelle Anforderungen von Gmail an Absender: [https://support.google.com/mail/answer/81126](https://support.google.com/mail/answer/81126) . Prüfen Sie die Authentifizierung anhand des vollständigen Rückläufers und eines neuen Tests über den tatsächlich verwendeten Versanddienst.
+[Aktuelle Gmail-Anforderungen an Absender](https://support.google.com/mail/answer/81126). Prüfen Sie die Authentifizierung anhand des vollständigen Rückläufers und eines neuen Tests über den tatsächlich verwendeten Versanddienst.

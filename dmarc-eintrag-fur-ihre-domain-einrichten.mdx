@@ -1,21 +1,22 @@
 ---
 title: "DMARC-Eintrag für Ihre Domain einrichten"
 sidebarTitle: "DMARC einrichten"
+description: "Versanddienste prüfen, einen DMARC-TXT-Eintrag anlegen und die Berichte sinnvoll auswerten."
 ---
 
-Sie benötigen Zugriff zur [DNS Verwaltung](/dns-verwaltung-edis) Ihrer Domain um einen DMARC Eintrag setzen zu können.
+Für DMARC benötigen Sie Zugriff auf die [autoritative DNS-Zone](/dns-verwaltung-edis) Ihrer Domain.
+
+## Versandwege vorbereiten
 
 Prüfen Sie vor der Einrichtung alle legitimen Versanddienste und deren SPF- beziehungsweise DKIM-Ausrichtung zur sichtbaren Absenderdomain. Ein Generator kann einen syntaktischen Vorschlag liefern, bestätigt aber weder Ihre Versandwege noch eine funktionierende Signierung. Beginnen Sie mit einer passenden Beobachtung und werten Sie Berichte aus, bevor Sie eine restriktivere DMARC-Richtlinie aktivieren.
 
-**Host/Name:**
+## TXT-Eintrag anlegen
 
-&#x20;\_DMARC
-
-**Type:**
-
-&#x20;TXT
-
-**Data:**
+| Feld | Wert |
+| --- | --- |
+| Name | `_dmarc` |
+| Typ | `TXT` |
+| Daten – Beispiel | `v=DMARC1; p=none; rua=mailto:dmarc@example.com;` |
 
 Beispiel für einen TXT-Eintrag am Namen \_dmarc: v=DMARC1; p=none; rua=mailto:dmarc\@example.com; — Ersetzen Sie [dmarc@example.com](mailto:dmarc@example.com) durch Ihr tatsächlich eingerichtetes Berichtspostfach. Übernehmen Sie die Beispieladresse nicht unverändert. Bei einer Berichtsadresse in einer fremden Domain kann eine zusätzliche DNS-Freigabe nötig sein.
 
@@ -23,9 +24,7 @@ Beispiel für einen TXT-Eintrag am Namen \_dmarc: v=DMARC1; p=none; rua=mailto:d
 
 Die DMARC-Richtlinie p=none dient der Beobachtung und fordert keine besondere Behandlung allein wegen eines DMARC-Fehlers an. Die normalen Spam- und Sicherheitsfilter des Empfängers bleiben aktiv. Nutzen Sie Berichte, um legitime Versandwege zu prüfen, bevor Sie eine restriktivere Richtlinie einführen.
 
-Hier finden Sie weitere Infos zum DMARC:
-
-[https://powerdmarc.com/de/what-is-dmarc-policy/](https://powerdmarc.com/de/what-is-dmarc-policy/)
+[DMARC-Richtlinien erklärt](https://powerdmarc.com/de/what-is-dmarc-policy/)
 
 <a id="Cybl7" />
 
@@ -55,4 +54,4 @@ DMARC ist erfolgreich, wenn SPF oder DKIM erfolgreich ist und die dabei geprüft
 
 Die Richtlinie p=none fordert keine Quarantäne oder Ablehnung allein wegen eines DMARC-Fehlers an. Andere Spam- und Sicherheitsprüfungen des Empfängers bleiben davon unabhängig. Eine restriktivere Richtlinie erst nach Prüfung aller legitimen Versandwege einführen.
 
-Google-Anleitung: [https://knowledge.workspace.google.com/admin/security/set-up-dmarc?hl=en](https://knowledge.workspace.google.com/admin/security/set-up-dmarc?hl=en)
+[Google: DMARC einrichten](https://knowledge.workspace.google.com/admin/security/set-up-dmarc?hl=en)

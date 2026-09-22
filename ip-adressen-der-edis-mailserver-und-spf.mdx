@@ -1,14 +1,19 @@
 ---
 title: "IP-Adressen der EDIS-Mailserver und SPF"
 sidebarTitle: "Mailserver-IP-Adressen"
+description: "Wo Sie die gepflegte Liste der EDIS-Versandadressen finden und wie Sie sie für SPF verwenden."
 ---
 
-Wenn Sie eMails über EDIS Infrastruktur versenden, können je nach Art und Ursprung der Versendung eine größere Anzahl unterschiedlicher Server und IP-Adressen zur Übertragung von eMails an externe Mailserver involviert sein.
+Beim Versand über EDIS können je nach Versandweg unterschiedliche Server und IP-Adressen beteiligt sein.
 
-Eine aktuelle Liste aller zur externen eMail-Kommunikation verwendeten IP-Adressen haben wir im DNS-Eintrag **spf.edis.at** hinterlegt. Diesen Eintrag können Sie beispielsweise bei [MX-Toolbox](https://mxtoolbox.com/SuperTool.aspx?action=a%3aspf.edis.at\&run=toolpage) einsehen
+## Aktuelle Versandadressen finden
 
-Jede zum Versenden von eMail verwendete Domain soll eine Liste mit zur Versendung autorisierten IP-Adressen konfiguriert haben. Dies geschieht mittels eines sog. SPF-Records (sender policy framework, bzw. domain authentication via SPF)
+EDIS pflegt die für die externe E-Mail-Kommunikation verwendeten IP-Adressen im DNS-Namen **`spf.edis.at`**. Sie können die Auflösung beispielsweise mit [MXToolbox prüfen](https://mxtoolbox.com/SuperTool.aspx?action=a%3aspf.edis.at&run=toolpage).
 
-EDIS konfiguriert seit einigen Jahren bei jeder neu angelegten Domain SPF-Records, die zum Versand von eMails über EDIS Infrastruktur optimiert sind. Falls Deine Domain noch keinen SPF-Record konfiguriert hat, empfehlen wir, einen SPF-Record zu konfigurieren.
+## Die eigene Domain für SPF konfigurieren
 
-<a className="edis-button" href="/spf-eintrag-fur-den-e-mail-versand-uber-edis" target="_blank" rel="noopener noreferrer">EDIS Standard SPF Eintrag</a>
+Ein **SPF-Eintrag** legt fest, welche Server für Ihre Domain versenden dürfen. EDIS richtet bei neu angelegten Domains seit einigen Jahren passende SPF-Einträge für die eigene Mailinfrastruktur ein.
+
+Prüfen Sie bei einer älteren Domain, ob ein SPF-Eintrag vorhanden ist und ob er alle tatsächlich verwendeten Versanddienste berücksichtigt. Die Anleitung zeigt, wie Sie die gepflegte EDIS-Referenz einbinden.
+
+<a className="edis-button" href="/spf-eintrag-fur-den-e-mail-versand-uber-edis">SPF-Eintrag einrichten</a>

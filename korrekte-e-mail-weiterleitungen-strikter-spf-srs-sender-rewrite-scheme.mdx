@@ -1,6 +1,7 @@
 ---
 title: "E-Mail-Weiterleitungen: SPF und SRS bei EDIS"
 sidebarTitle: "Weiterleitungen: SPF & SRS"
+description: "Warum Weiterleitungen die SPF-Prüfung beeinflussen und wie SRS dabei hilft."
 ---
 
 SPF prüft, ob der sendende Server für die Domain des technischen Envelope-Absenders autorisiert ist. Die sichtbare From-Adresse ist davon zu unterscheiden. SPF allein bestätigt weder die Identität einer Person noch garantiert es die Zustellung einer Nachricht.
@@ -27,6 +28,6 @@ Eine Meldung wie „550 rejecting for sender policy framework“ weist auf eine 
 
 Ändern Sie nicht pauschal den SPF-Eintrag des Empfängers oder fügen Sie fremde Weiterleitungsserver als erlaubte Absender hinzu. Prüfen Sie den tatsächlich betroffenen Versandweg und wiederholen Sie danach den zuvor fehlgeschlagenen Test.
 
-EDIS-SPF-Anleitung: [https://www.edis.guide/spf-eintrag-fur-den-e-mail-versand-uber-edis](/spf-eintrag-fur-den-e-mail-versand-uber-edis)
+[SPF für den Versand über EDIS einrichten](/spf-eintrag-fur-den-e-mail-versand-uber-edis)
 
-Hinweise zu weitergeleiteten Nachrichten: [https://support.google.com/mail/answer/175365?hl=en](https://support.google.com/mail/answer/175365?hl=en)
+[Google: Hinweise zu weitergeleiteten Nachrichten](https://support.google.com/mail/answer/175365?hl=en)

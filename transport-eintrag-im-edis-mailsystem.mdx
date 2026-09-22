@@ -1,13 +1,14 @@
 ---
 title: "Mailtransport bei EDIS: Transport-Eintrag und MX-Record"
 sidebarTitle: "Mailtransport & MX"
+description: "MX-Einträge und lokalen Mailtransport aufeinander abstimmen – auch bei externen Maildiensten oder vorgeschalteten Filtern."
 ---
 
 <a id="aLa6A" />
 
 ## Was ist ein Transport-Eintrag
 
-Der Transport-Eintrag ist ein Schalter, der EDIS Mailservern mitteilt, ob Sie für eine Domain Emails annehmen dürfen oder nicht.
+Der **Transport-Eintrag** legt fest, ob EDIS-Mailserver Nachrichten für eine Domain annehmen. Der **MX-Eintrag im DNS** bestimmt dagegen das öffentliche Zustellziel. Beide Einstellungen müssen zum gewünschten Mailweg passen.
 
 <a id="mT7Bk" />
 
@@ -29,20 +30,23 @@ Immer dann, wenn für eine Domain eMails NICHT über EDIS abgewickelt werden sol
 
 ## Wo ist der Transport-Eintrag zu setzen
 
-Der Transport-Eintrag kann im Kundenbereich oder im vHost-Bereich eingesehen bzw. konfiguriert werden.
+Sie finden die Einstellung unter:
 
-- [Kundenbereich ](https://manage.edis.at/)-> Domain -> Mail Transport
-- [vHost-Bereich ](https://manage.edis.at/)-> Email Adressen -> Transport
+- **Kundenbereich → Domain → Mail Transport**
+- **vHost-Bereich → Email Adressen → Transport**
+
+<a className="edis-button" href="https://manage.edis.at/client/">Kundenbereich öffnen</a>
 
 <a id="Um9cm" />
 
 ## Kombinationsmöglichkeiten Transport-Eintrag \:: MX
 
-| E-Mail bei EDIS         | MX bei EDIS | Transport-Eintrag gesetzt       | Ampel **grün** |
-| ----------------------- | ----------- | ------------------------------- | ------------------------------------------- |
-| E-Mails extern          | MX extern   | Transport-Eintrag nicht gesetzt | Ampel **grün** |
-| Fehlkonfiguration       | MX bei EDIS | Transport-Eintrag nicht gesetzt | Ampel **rot**  |
-| **Fehlkonfiguration\*** | MX extern   | Transport bei EDIS gesetzt      | Ampel **rot**  |
+| Geplanter Mailweg | Passende Konfiguration |
+| --- | --- |
+| Postfächer bei EDIS, direkte Zustellung | MX auf EDIS · Transport gesetzt · grüne Ampel |
+| E-Mail vollständig extern | MX extern · Transport nicht gesetzt · grüne Ampel |
+| MX auf EDIS, aber Transport fehlt | Fehlkonfiguration · rote Ampel |
+| MX extern, aber Transport bei EDIS gesetzt | Meist Fehlkonfiguration · rotes Signal; den Filter-Sonderfall unten prüfen |
 
 <a id="zntRs" />
 
@@ -58,31 +62,41 @@ Ein möglicher Sonderfall ist ein vorgeschalteter externer Mailfilter: Er nimmt 
 
 </Note>
 
-<a id="nI-l8" />
+## Zustellprobleme und Sonderfälle
 
-## Empfänger und tatsächliche Zustellwege vergleichen
+<AccordionGroup>
+
+<a id="empfänger-und-tatsächliche-zustellwege-vergleichen" />
+
+<Accordion title="Empfänger und tatsächliche Zustellwege vergleichen" id="nI-l8">
 
 Wenn E-Mails trotz externer Mailversorgung in einem falschen oder alten Postfach ankommen, nennen Sie Absender, Empfänger und Zeitpunkt eines konkreten Beispiels. Die sichtbare An-Adresse kann sich vom technisch zugestellten Empfänger unterscheiden. Der Support kann dafür Transportdaten, Aliasse, Weiterleitungen, Catchall und öffentliche MX-Ziele gemeinsam prüfen.
 
 Ein vorgeschaltetes Sicherheitsgateway kann Nachrichten weiterhin an EDIS-Postfächer zustellen. Deshalb darf der lokale Transport nicht pauschal abgeschaltet werden. Entscheidend ist die beabsichtigte Mailversorgung der konkreten Empfängerdomain.
 
-<a id="Yw9m_" />
+</Accordion>
 
-## Rückläufer „too many hops“ nach dem Umzug
+<a id="rückläufer-too-many-hops-nach-dem-umzug" />
+
+<Accordion title="Rückläufer „too many hops“ nach dem Umzug" id="Yw9m_">
 
 Dieser Fehler weist auf zu viele Transportstationen hin und kann durch eine Zustellschleife entstehen. Übermitteln Sie den vollständigen Rückläufer und den genauen Zeitpunkt. Hilfreich sind außerdem die Queue-ID und die Transportstationen in den Received-Zeilen der Originalnachricht. Entfernen Sie nicht benötigte Nachrichteninhalte aus Diagnoseunterlagen.
 
 Nach einem Providerwechsel können alte Domain-, Gateway-, Transport- oder Weiterleitungsregeln verblieben sein. Lassen Sie diese mit der aktuellen Zielkonfiguration abgleichen. Nach einer gezielten Korrektur sollten Nachrichten von EDIS-Absendern und von externen Absendern getestet werden. Eine Änderungsbestätigung allein belegt noch keinen erfolgreichen Empfang.
 
-<a id="Y4gf_" />
+</Accordion>
 
-## Fremddomains nach einem Umzug bereinigen
+<a id="fremddomains-nach-einem-umzug-bereinigen" />
+
+<Accordion title="Fremddomains nach einem Umzug bereinigen" id="Y4gf_">
 
 Klären Sie vor dem Entfernen einer Fremddomain aus der Hostingliste, ob unter dieser Domain weiterhin E-Mail oder andere Dienste bei EDIS benötigt werden. Die Hostingzuordnung, der lokale Mailtransport und der registrierte Domainvertrag sind unterschiedliche Dinge. Eine Listenbereinigung ist weder eine Domainlöschung bei der Registry noch automatisch eine Kündigung des Hostingvertrags.
 
-<a id="sk42A" />
+</Accordion>
 
-## Zertifikats-Namensfehler beim eingehenden Mailtransport
+<a id="zertifikats-namensfehler-beim-eingehenden-mailtransport" />
+
+<Accordion title="Zertifikats-Namensfehler beim eingehenden Mailtransport" id="sk42A">
 
 Meldet ein fremder Mailserver beim Zustellen einen „certificate name mismatch“, vergleichen Sie den tatsächlich verwendeten MX-Zielnamen mit dem Zertifikat der Gegenstelle. Der Mailabruf per IMAP und die SMTP-Einstellung auf Ihrem Computer betreffen andere Verbindungen. Ein funktionierender Webmail-Zugang widerlegt daher keinen Fehler beim eingehenden Transport.
 
@@ -93,3 +107,7 @@ Nach einer abgestimmten Korrektur müssen DNS-Wirkung und Zustellung aus dem zuv
 Technischer Hintergrund: RFC 8461 – SMTP MTA Strict Transport Security.
 
 [https://www.rfc-editor.org/rfc/rfc8461.html](https://www.rfc-editor.org/rfc/rfc8461.html)
+
+</Accordion>
+
+</AccordionGroup>

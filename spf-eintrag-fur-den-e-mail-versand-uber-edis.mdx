@@ -1,19 +1,26 @@
 ---
 title: "SPF-Eintrag für den E-Mail-Versand über EDIS"
 sidebarTitle: "SPF einrichten"
+description: "Erlaubte Versanddienste in einem SPF-Eintrag zusammenführen und die EDIS-Referenz richtig verwenden."
 ---
 
-Mithilfe eines sog. SPF-Eintrages bestimmen Sie, welche IP Adressen eMails mit Ihrer Domain versenden dürfen und wie Empfänger-Mailserver eMails bewerten können, die von unerlaubten IP Adressen versendet wurden.
+Ein **SPF-Eintrag** beschreibt die erlaubten Versandserver einer Domain. Erfassen Sie zuerst alle verwendeten Dienste, etwa EDIS, Ihre Website, Microsoft 365 oder einen Newsletteranbieter.
+
+## EDIS-Standard als Ausgangspunkt
 
 Ein von EDIS gesetzter (strikter) **Standard SPF Record** sieht wie folgt aus:
 
-`@`` TXT "v=spf1 a:spf.edis.at -all"`
+| Feld im DNS-Editor | Wert |
+| --- | --- |
+| Name | `@` |
+| Typ | `TXT` |
+| Daten | `v=spf1 a:spf.edis.at -all` |
 
 Das @ Zeichen am Anfang ist wichtig - es gehört in die ganz linke Spalte im DNS-Editor und es repräsentiert die Domain selbst.
 
 <Note>
 
-Für eine weniger restriktive (Softfail-) Variante verwenden Sie **\~all&#x20;**&#x73;tatt -**all**
+**Softfail und Fail unterscheiden:**
 
 **\~all&#x20;**&#x6B;ennzeichnet nicht autorisierte Absender als Softfail. Der empfangende Mailserver entscheidet über die weitere Behandlung; eine Zustellung wird dadurch nicht garantiert.
 **-all&#x20;**&#x6B;ennzeichnet nicht autorisierte Absender als Fail. Die Entscheidung über Annahme oder Ablehnung trifft der empfangende Mailserver.
@@ -26,7 +33,7 @@ Verwenden Sie dieses Beispiel als Basis für Ihre eigene Konfiguration und erwei
 
 Alle über EDIS Webhosting und mailrelay.edis.at (authenticated) versendeten eMails sind über den Standard EDIS SPF-Record bereits abgedeckt.
 
-Ergänzende Hinweise zur korrekten Verwendung der SPF-Syntax finden Sie unter [https://de.wikipedia.org/wiki/Sender\_Policy\_Framework](https://de.wikipedia.org/wiki/Sender_Policy_Framework)
+[Hintergrund zur SPF-Syntax](https://de.wikipedia.org/wiki/Sender_Policy_Framework)
 
 <Warning>
 
@@ -56,9 +63,13 @@ Ein SPF-Eintrag behebt keine Probleme mit Mailabruf, Kennwörtern oder TLS.
 
 Prüfen Sie, wo die autoritativen DNS-Einträge verwaltet werden. Bei einem Resellervertrag kann Ihr Vertragspartner zuständig sein. Für die EDIS-Verwaltung helfen die Anleitungen zur DNS-Benutzeranlage und DNS-Verwaltung.
 
-<a id="0csBR" />
+## Fragen zur SPF-Prüfung
 
-## SPF-Fail trotz bekannter Versand-IP
+<AccordionGroup>
+
+<a id="spf-fail-trotz-bekannter-versand-ip" />
+
+<Accordion title="SPF-Fail trotz bekannter Versand-IP" id="0csBR">
 
 Die Zugehörigkeit einer IP-Adresse zu einem Versanddienst beweist noch keinen erfolgreichen SPF-Test. Entscheidend sind die vom empfangenden Server geprüfte Absenderidentität und die dazu veröffentlichten Regeln. Der sichtbare Absender im Mailprogramm genügt für diese Prüfung nicht.
 
@@ -66,12 +77,18 @@ Die Zugehörigkeit einer IP-Adresse zu einem Versanddienst beweist noch keinen e
 
 Wurden die Einträge inzwischen geändert, kann eine heutige DNS-Abfrage den Zustand beim damaligen Versand nicht belegen. Ändern Sie nicht wahllos Mailprogramme oder veröffentlichen Sie einen zweiten SPF-Eintrag. Nach einer gezielten Korrektur muss ein neuer Test den tatsächlichen Versandweg prüfen.
 
-<a id="DCzlx" />
+</Accordion>
 
-## SPF für Google und weitere Versanddienste
+<a id="spf-für-google-und-weitere-versanddienste" />
+
+<Accordion title="SPF für Google und weitere Versanddienste" id="DCzlx">
 
 Google empfiehlt in seiner SPF-Anleitung \~all. Ein solcher Eintrag wird von Google nicht grundsätzlich abgelehnt. Entscheidend ist, dass alle tatsächlich verwendeten Versanddienste korrekt autorisiert sind. Ersetzen Sie einen vorhandenen Eintrag daher nicht pauschal durch eine Konfiguration, die nur EDIS erlaubt.
 
 Die Wahl zwischen \~all und -all richtet sich nach der vollständigen Versandkonfiguration und den Vorgaben der beteiligten Dienste. Beide Varianten geben keine Zustellgarantie. Bei einem konkreten Fehler werden der Rückläufer und die technischen Kopfzeilen benötigt.
 
 Google-Anleitung: [https://knowledge.workspace.google.com/admin/security/set-up-spf?hl=en](https://knowledge.workspace.google.com/admin/security/set-up-spf?hl=en)
+
+</Accordion>
+
+</AccordionGroup>
