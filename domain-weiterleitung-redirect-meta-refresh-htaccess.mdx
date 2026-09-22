@@ -1,15 +1,85 @@
 ---
 title: "Domain weiterleiten: Redirects und .htaccess"
 sidebarTitle: "Domain weiterleiten"
+description: "Wählen Sie den passenden Weg: Weiterleitungsdienst im Kundenbereich, .htaccess auf Ihrem Webhost oder Meta Refresh in HTML."
 ---
 
-Es gibt verschiedene Wege, um eine Webseiten-Weiterleitung zu konfigurieren.
+Mit einer Weiterleitung führen Sie Besucher einer Domain oder Webseite zu einer anderen Adresse.
+
+## Welcher Weg passt?
+
+| Ihre Ausgangslage | Passender Abschnitt |
+| --- | --- |
+| Sie möchten die Domain ohne eigenen Webhost weiterleiten. | [Weiterleitungsdienst im Kundenbereich](#weiterleitungsdienst-im-kundenbereich) |
+| Sie haben einen Webhost und können die `.htaccess` bearbeiten. | [Weiterleitung mit .htaccess](#weiterleitung-mit-htaccess) |
+| Sie möchten eine Weiterleitung in einer HTML-Seite einbauen. | [Meta Refresh in HTML](#meta-refresh-in-html) |
+
+<a id="Pz2wg" />
+<a id="3-redirect-als-service" />
+
+## Weiterleitungsdienst im Kundenbereich
+
+Ohne eigenen Webhost können Sie einen passenden Weiterleitungsdienst im Kundenbereich einrichten.
+
+<a className="edis-button" href="https://manage.edis.at" target="_blank" rel="noopener noreferrer">Kundenbereich öffnen</a>
+
+<Note>
+  Je nach Domain-Tarif benötigen Sie dafür das Zusatzprodukt [„Aktive Nutzung“](/aktive-domain-nutzung).
+</Note>
+
+Verwenden Sie das **aktuell bestätigte DNS-Ziel des Dienstes**. Übernehmen Sie keine historische IP-Adresse pauschal für eine andere Domain oder Hostingzuordnung.
+
+Prüfen Sie nach der Einrichtung:
+
+- die Hauptdomain und die Adresse mit `www`;
+- die Weiterleitung beim Aufruf über HTTPS;
+- den Erhalt der benötigten DNS-Einträge für E-Mail.
+
+<a id="lJCW6" />
+<a id="2-weiterleitung-mittels-htaccess" />
+
+## Weiterleitung mit .htaccess
+
+<Steps>
+  <Step title="Website-Verzeichnis prüfen">
+    Bearbeiten Sie die `.htaccess` im tatsächlichen **Document-Root**, also im Stammverzeichnis der betroffenen Website.
+
+    Beispiele sind `/www/home/` oder `/www/home/unterverzeichnis/`, wenn die Domain auf dieses Unterverzeichnis zeigt.
+  </Step>
+
+  <Step title="Bestehende Regeln sichern">
+    Sichern Sie die vorhandene `.htaccess` und stimmen Sie die gewünschte Weiterleitung mit Ihrer Websitebetreuung ab.
+  </Step>
+
+  <Step title="Weiterleitung eintragen">
+    Für eine **dauerhafte Weiterleitung** verwenden Sie HTTP **301**. Ersetzen Sie die Beispieladresse durch Ihr tatsächliches Weiterleitungsziel.
+
+    ```apache .htaccess
+    Redirect 301 / https://www.weiterleitungsziel.domain
+    ```
+
+    Für eine **vorübergehende Weiterleitung** verwenden Sie stattdessen **302**.
+  </Step>
+
+  <Step title="Ergebnis kontrollieren">
+    Testen Sie die Startseite, Unterseiten und benötigte URL-Parameter. Das gezeigte Redirect-Beispiel kann den angehängten Pfad an die Zieladresse weitergeben.
+  </Step>
+</Steps>
+
+<Note>
+  HTTP 301 kennzeichnet eine dauerhafte Weiterleitung und ist ein Signal für Suchmaschinen, die Zieladresse zu bevorzugen. Die alte Adresse verschwindet dadurch nicht zwingend sofort aus dem Suchindex.
+</Note>
+
+Technische Details: [Redirect-Direktive von Apache](https://httpd.apache.org/docs/2.4/mod/mod_alias.html#redirect).
 
 <a id="GyUGA" />
+<a id="1-meta-refresh" />
 
-### 1. Meta refresh
+## Meta Refresh in HTML
 
-Erstellen Sie auf Ihrem Webhost eine Datei index.html mit zB: folgendem Inhalt:
+Eine HTML-Seite kann den Browser nach einer Wartezeit zu einer anderen Adresse weiterleiten.
+
+Erstellen Sie auf Ihrem Webhost eine Datei `index.html` mit folgendem Inhalt und ersetzen Sie die Beispieladresse durch Ihr Ziel:
 
 ```html
 <html>
@@ -22,40 +92,6 @@ Erstellen Sie auf Ihrem Webhost eine Datei index.html mit zB: folgendem Inhalt:
 </html>
 ```
 
-<a id="lJCW6" />
+Die Zahl **5** steht für die Wartezeit in Sekunden. Die Weiterleitung wird vom Browser über die HTML-Seite ausgelöst.
 
-### 2. Weiterleitung mittels .htaccess
-
-Erstellen beziehungsweise bearbeiten Sie die .htaccess-Datei im tatsächlichen Document-Root der betroffenen Website. Sichern Sie vorhandene Regeln und stimmen Sie die gewünschte Weiterleitung mit der Websitebetreuung ab.
-
-<Warning>
-
-(im DocRoot zB: **/www/home/** - oder wenn die Domain in ein Unterverzeichnis zeigt **/www/home/unterverzeichnis/** )
-
-</Warning>
-
-.htaccess
-
-```none
-Redirect 301 / https://www.weiterleitungsziel.domain
-```
-
-HTTP 301 kennzeichnet eine dauerhafte Weiterleitung und ist ein Signal für Suchmaschinen, die Zieladresse zu bevorzugen. Eine sofortige Entfernung der alten Adresse aus dem Suchindex ist damit nicht garantiert. Das gezeigte Redirect-Beispiel kann den angehängten Pfad weitergeben; testen Sie daher auch Unterseiten und benötigte Parameter.
-
-<Warning>
-
-Wenn es sich um eine temporäre Weiterleitung handeln soll, verwenden Sie den Code 302. Damit wissen Suchmaschinen Bescheid, dass es sich nur um eine zeitlich begrenzte Weiterleitung handelt.
-
-</Warning>
-
-<a id="Pz2wg" />
-
-### 3. Redirect als Service
-
-Ohne eigenen Webhost können Sie einen passenden Weiterleitungsdienst im Kundenbereich unter [https://manage.edis.at](https://manage.edis.at) einrichten. Verwenden Sie dafür das aktuell bestätigte DNS-Ziel des Dienstes. Prüfen Sie Hauptdomain, www und HTTPS sowie den Erhalt benötigter Mail-Einträge. Die bisher genannte IP-Adresse ist keine allgemeine Vorgabe für jede Domain und jede Hostingzuordnung.
-
-<Warning>
-
-Je nach Domain-Tarif ist dafür u.U. das Zusatzprodukt ("Aktive Nutzung") nötig.
-
-</Warning>
+Technische Details: [Meta Refresh bei MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/http-equiv#refresh).
