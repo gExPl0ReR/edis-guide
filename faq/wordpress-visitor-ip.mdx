@@ -1,7 +1,7 @@
 ---
 title: 'Get the Real Visitor IP in WordPress Behind a Proxy'
 sidebarTitle: 'WordPress Visitor IP'
-description: 'Configure WordPress security plugins to read the correct visitor IP from the X-Forwarded-For header when your site runs behind an EDIS proxy or load balancer.'
+description: 'Configure WordPress security plugins to read the real visitor IP from the X-Forwarded-For header when your site runs behind the EDIS proxy.'
 ---
 
 On EDIS shared hosting, incoming requests pass through a proxy layer before reaching your WordPress installation. This means that server-side code — including WordPress security plugins — sees the **proxy's IP address** in the standard `REMOTE_ADDR` variable instead of the actual visitor's IP address. If your security plugin logs or rate-limits based on IP, it may block the proxy rather than the real visitor, or it may fail to block a genuine bad actor at all.
