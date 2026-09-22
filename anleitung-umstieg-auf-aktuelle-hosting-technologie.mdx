@@ -1,47 +1,65 @@
 ---
 title: "Auf ein neues EDIS-Webhosting-Produkt umsteigen"
 sidebarTitle: "Hostingprodukt wechseln"
+description: "Den Systemwechsel vorbereiten, Dateien und Datenbanken übertragen und Website sowie E-Mail vor der Abschaltung testen."
 ---
 
-Bitte beachten Sie, dass der Wechsel zu unseren neuen Hosting-Produkten mehr als ein einfaches Upgrade ist. Es handelt sich um einen grundlegenden Produkt- bzw. Systemwechsel.
+Der Wechsel auf ein aktuelles Hostingprodukt ist ein **Produkt- und Systemwechsel**. Planen Sie die Migration Ihrer Website und der benötigten Maildienste gemeinsam.
 
-**Wichtige Schritte für den Umstieg:**
+<Steps>
+<Step title="Bestand und Zielprodukt prüfen">
+Erfassen Sie Domains, Dateien, Datenbanken, Postfächer, Weiterleitungen und Zertifikate. Prüfen Sie PHP-Anforderungen, Speicher- und Dateilimits des gewünschten **„Kaffee“-Hostingprodukts**. Sichern Sie die benötigten Daten vor dem Wechsel.
+</Step>
+<Step title="Neues Hosting bestellen und Bereitstellung prüfen">
+Wählen Sie ein passendes Produkt und warten Sie auf die bestätigte Aktivierung. Eine Bestellung allein bestätigt noch keinen fertigen Webhost oder Mailumzug.
 
-1. **Bestellung des gewünschten 'Kaffee' Hosting Produkts:**&#x20;
-   Wählen Sie das für Sie passende Produkt aus.
+<a className="edis-button" href="https://www.edis.at/de/hosting">Hostingprodukte ansehen</a>
+</Step>
+<Step title="Dateien und Datenbanken übertragen">
+Migrieren Sie Ihre Dateien und Datenbanken manuell. Legen Sie für eine Datenbankkopie zuerst einen neuen Datenbankbenutzer unter **vHost → Datenbank → Expertenmodus** an.
 
-2. **Datenmigration:** Migrieren Sie alle Ihre Daten und Datenbanken manuell.
+Aktualisieren Sie danach die Datenbankzugangsdaten Ihrer Anwendung, etwa in `wp-config.php` bei WordPress oder `configuration.php` bei Joomla.
+</Step>
+<Step title="Konfiguration und E-Mail vorbereiten">
+Prüfen Sie Dateien wie `.user.ini` auf Pfade zum alten Webhost. Sichern Sie die Dateien und passen Sie nur betroffene Angaben an; löschen Sie keine weiterhin benötigte Konfiguration auf Verdacht.
 
-3. **Verknüpfung der Domain:** Sobald Sie alle Daten erfolgreich migriert haben und sicher sind, dass alles ordnungsgemäß funktioniert, senden Sie uns eine E-Mail an [hosting@edis.at](mailto:hosting@edis.at), damit wir Ihre Domain(s) mit dem neuen Webhosting-Produkt verknüpfen können (Anruf geht natürlich auch).
+Klären Sie, welche Postfächer, Nachrichten, Weiterleitungen und Mailzuordnungen übernommen werden. Sichern Sie benötigte E-Mails und prüfen Sie die Kapazität am Ziel.
+</Step>
+<Step title="Domainzuordnung und Umschaltung abstimmen">
+Wenn die Migration vorbereitet und am Ziel geprüft ist, kontaktieren Sie [hosting@edis.at](mailto:hosting@edis.at) oder den [Telefon-Support](/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege), damit die Domains dem neuen Webhost zugeordnet werden können. Stimmen Sie Termin, DNS und weiterlaufende Maildienste ab.
+</Step>
+<Step title="Alle benötigten Dienste testen">
+Prüfen Sie Websitefunktionen, HTTPS sowie E-Mail-Anmeldung, Versand und Empfang. Beenden Sie das bisherige Hosting erst nach erfolgreicher Migration zum vereinbarten Termin.
+</Step>
+</Steps>
 
-4. Prüfen Sie Konfigurationsdateien wie .user.ini auf Pfade zum alten Webhost. Sichern Sie die Dateien und passen Sie nur tatsächlich betroffene Pfadangaben an. Löschen Sie keine ganze Konfigurationsdatei oder weiterhin benötigte Einstellung auf Verdacht.
-5. **Beachten Sie technische Limits:** Jedes Hosting-Produkt hat sein eigenes technisches Limit bezüglich der Dateianzahl. Die Details finden Sie in den jeweiligen Produktinformationen.
+## Fragen zu Bestellung, Umzug und Abrechnung
 
-6. **Datenbank-Kopie:** Wenn Sie Ihre Datenbank kopieren möchten, müssen Sie zunächst einen neuen Datenbankbenutzer anlegen. Dafür navigieren Sie zu: [https://manage.edis.at/vhost/](https://manage.edis.at/vhost/) -> Datenbank -> Expertenmodus. Nach der Datenbankmigration sollten Sie die Zugangsdaten in Ihrer Website-Konfigurationsdatei (z.B. bei WordPress in der wp-config.php oder bei Joomla in der configuration.php) mit den neuen Datenbankdaten aktualisieren.
+<AccordionGroup>
 
-7. E-Mail-Adressen: Prüfen Sie vor dem Wechsel, welche Postfächer, Weiterleitungen, Mailzuordnungen und Nachrichten übernommen werden. Eine Hostingbestellung allein bestätigt keine abgeschlossene Mailmigration. Sichern Sie benötigte Nachrichten und testen Sie Anmeldung, Versand und Empfang am bestätigten Ziel.
+<a id="bestellung-und-migration-getrennt-prüfen" />
 
-Wenn Sie während des Umstiegs Fragen oder Schwierigkeiten haben, steht Ihnen unser Support-Team jederzeit zur Verfügung.
-
-<a id="kaB_E" />
-
-## Bestellung und Migration getrennt prüfen
+<Accordion title="Bestellung und Migration getrennt prüfen" id="kaB_E">
 
 Ein Kundenkonto, eine Bestellung und eine aktivierte Leistung sind unterschiedliche Zustände. Wenn die Hostingliste leer ist, prüfen Sie zunächst Bestellbestätigung und Bereitstellungsstatus. Bestellen Sie nicht vorschnell ein zweites Paket.
 
 Bei einem Hostingumzug gehören Dateien, Datenbank und Benutzer, PHP-Umgebung, Zielverzeichnis, FTP-/SSH-Zugang, Domainzuordnung, Mailtransport und Zertifikate zur Bestandsaufnahme. Testen Sie die benötigten Funktionen am neuen Ziel, bevor die Quelle abgeschaltet wird.
 
-<a id="6XtPo" />
+</Accordion>
 
-## Keine Einrichtungsnachricht nach der Bestellung
+<a id="keine-einrichtungsnachricht-nach-der-bestellung" />
+
+<Accordion title="Keine Einrichtungsnachricht nach der Bestellung" id="6XtPo">
 
 Prüfen Sie zuerst die vorhandene Bestellung und deren Status. Ein neues Kundenkonto ist noch kein aktiviertes Hosting. Teilen Sie dem Support mit, ob es die erste Bestellung unter dieser Kundennummer ist. Je nach aktuellem Ablauf kann noch eine Freigabe ausstehen; eine gelegentliche Bearbeitung am Wochenende ist keine zugesagte Bereitstellungsfrist.
 
 Eine fehlende Einrichtungsnachricht bedeutet nicht automatisch, dass Sie Ihr Passwort zurücksetzen müssen. Lassen Sie klären, ob die Nachricht nicht zugestellt wurde oder die Leistung noch nicht bereitsteht. Bestellen Sie das Paket nicht erneut, solange die ursprüngliche Bestellung ungeklärt ist. Nach der Freigabe sollten Domain, Hosting und die benötigten Zugänge einzeln geprüft werden.
 
-<a id="r39N7" />
+</Accordion>
 
-## Migration bei bereits verlängerter Laufzeit
+<a id="migration-bei-bereits-verlängerter-laufzeit" />
+
+<Accordion title="Migration bei bereits verlängerter Laufzeit" id="r39N7">
 
 Wenn Ihre bisherige Hostinglaufzeit bereits verlängert oder bezahlt wurde, klären Sie die Abrechnung parallel zur technischen Migration. Halten Sie Vertragsende, Rechnungsdatum, Zahlung und gewünschten Umzugstermin auseinander. Eine mögliche Gutschrift oder Erstattung muss individuell bestätigt werden.
 
@@ -49,34 +67,46 @@ Planen Sie ausreichend Zeit für Datenübertragung, Datenbankkonfiguration und T
 
 Beenden Sie das bisherige Hosting erst zum abgestimmten Termin nach erfolgreicher Migration. Eine zu knappe Frist sollte zu einer konkreten Ablauf- und Abrechnungsprüfung führen; verschieben Sie ein notwendiges Sicherheitsupdate nicht allein wegen einer ungeklärten Rechnung.
 
-<a id="Mdhf1" />
+</Accordion>
 
-## Domainlisten vor der Bestellung prüfen
+<a id="domainlisten-vor-der-bestellung-prüfen" />
+
+<Accordion title="Domainlisten vor der Bestellung prüfen" id="Mdhf1">
 
 Prüfen Sie jede gewünschte Domain einschließlich Punkten, Bindestrichen und Endung. Eine unklare Schreibweise muss vor der kostenpflichtigen Registrierung geklärt werden. Geben Sie zusätzlich an, welche der Domains mit welchem Hostingprodukt verbunden werden sollen. Mehrere registrierte Domains erhalten dadurch nicht automatisch dieselbe Website- oder Mailzuordnung.
 
-<a id="GOfnh" />
+</Accordion>
 
-## Kapazität vor einem Wechsel prüfen
+<a id="kapazität-vor-einem-wechsel-prüfen" />
+
+<Accordion title="Kapazität vor einem Wechsel prüfen" id="GOfnh">
 
 Vergleichen Sie vor der Bestellung und Umschaltung die tatsächliche Belegung jedes Postfachs mit den Grenzen des gewünschten Produkts. Ein gemeinsames Speicherbudget und ein Limit je Postfach sind unterschiedliche Angaben. Berücksichtigen Sie auch Inhalte in Papierkorb und Spamordner; löschen Sie diese nur bewusst und nach Prüfung benötigter Sicherungen.
 
 Teilen Sie mit, welche Dienste unverändert bleiben sollen, etwa eine externe Website oder bestehende Mailzugänge. Wenn Sie den Wechsel vorerst anhalten möchten, benennen Sie dies ausdrücklich. Die nächsten Schritte werden dann auf Basis des aktualisierten Auftrags abgestimmt.
 
-<a id="G_pDt" />
+</Accordion>
 
-## Bereitstellung und funktionsfähige Website getrennt prüfen
+<a id="bereitstellung-und-funktionsfähige-website-getrennt-prüfen" />
+
+<Accordion title="Bereitstellung und funktionsfähige Website getrennt prüfen" id="G_pDt">
 
 Ein abgeschlossener Hintergrundauftrag oder die Meldung „erledigt“ bestätigt zunächst nur den genannten Arbeitsschritt. Prüfen Sie nach einer Zuordnung die aufgerufenen Hostnamen, A- und AAAA-Ziele, Webverzeichnis und Zertifikatsabdeckung. Testen Sie anschließend die tatsächlich benötigten Websitefunktionen.
 
 Bei extern verwalteten DNS-Einträgen muss die zuständige Stelle die richtigen Zielwerte erhalten. Eine vorbereitete Zielumgebung ist noch keine Freigabe zur endgültigen Umschaltung. Stimmen Sie den Termin und die weiterlaufenden Maildienste ausdrücklich ab.
 
-<a id="AbLmF" />
+</Accordion>
 
-## Domainplätze nach Kündigung oder Upgrade
+<a id="domainplätze-nach-kündigung-oder-upgrade" />
+
+<Accordion title="Domainplätze nach Kündigung oder Upgrade" id="AbLmF">
 
 Eine Kündigung zum Laufzeitende entfernt die Domain nicht zwingend sofort aus der Webhost-Zuordnung. Prüfen Sie daher die noch belegten Plätze und die Grenze Ihres aktuellen Pakets, bevor Sie weitere Domains hinzufügen.
 
 Soll eine Domain schon vorher vom Webhost getrennt werden, stimmen Sie den genauen Umfang mit dem Support ab. Bestehende Weiterleitungen, Website und E-Mail können davon betroffen sein. Lassen Sie die Entfernung und die anschließend verfügbaren Plätze bestätigen.
 
 Eine bereits registrierte Domain muss für die spätere Zuordnung zu einem Webhost nicht erneut registriert oder als Providertransfer bestellt werden. Nennen Sie dem Support die Domain und den gewünschten Webhost; prüfen Sie danach die benötigten Web-, Mail- und HTTPS-Funktionen.
+
+</Accordion>
+
+</AccordionGroup>

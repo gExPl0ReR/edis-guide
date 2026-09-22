@@ -1,6 +1,7 @@
 ---
 title: "Git im Webhosting: Repositories über HTTPS klonen"
 sidebarTitle: "Git-Repositories"
+description: "Per SSH am Webhost anmelden und für den Repository-Abruf die HTTPS-Clone-Adresse verwenden."
 ---
 
 Sie melden sich per SSH an Ihrem Webhost an. Wenn Git anschließend ein externes Repository abruft, baut es eine eigene Verbindung zum Repository-Anbieter auf. Für diesen Git-Transport verwenden Sie die HTTPS-Clone-Adresse; Git-Transport über SSH ist laut EDIS-Anleitung nicht freigegeben.
@@ -11,7 +12,9 @@ Sie melden sich per SSH an Ihrem Webhost an. Wenn Git anschließend ein externes
 
 Prüfen Sie, ob Ihr Hostingprodukt SSH unterstützt. Melden Sie sich mit den Zugangsdaten des betroffenen Webhosts an und wechseln Sie in das vorgesehene Projektverzeichnis. Verwenden Sie dann die HTTPS-Adresse Ihres Repository-Anbieters.
 
-Allgemeines Beispiel: git clone [https://gitlab.com/ORGANISATION/PROJEKT.git](https://gitlab.com/ORGANISATION/PROJEKT.git)
+```bash
+git clone https://gitlab.com/ORGANISATION/PROJEKT.git
+```
 
 Ersetzen Sie Organisation und Projekt durch die tatsächlichen Angaben Ihres Repositorys. Das Beispiel legt kein Repository an und erteilt keine Zugriffsberechtigung.
 

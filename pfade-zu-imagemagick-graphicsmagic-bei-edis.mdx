@@ -1,40 +1,46 @@
 ---
 title: "ImageMagick und GraphicsMagick: Pfade und PHP-Erweiterungen"
 sidebarTitle: "ImageMagick & GraphicsMagick"
+description: "Werkzeugpfade und PHP-Erweiterungen passend zur Hostinggeneration und Anwendung auswählen."
 ---
 
 <a id="wZ75w" />
 
 ### ImageMagick bei “Kaffee” Hosting Produkten (ab Juni 2019)&#xA;
 
-1. **Standardpfade**:
+Prüfen Sie, welche Variante Ihre Anwendung benötigt: ein **Kommandozeilenwerkzeug** oder eine **PHP-Erweiterung**.
 
-   - ***imagemagic:*******
-     **imagick-modul oder  /usr/bin/im\_6.9**
-     **Neu Version /usr/bin/im\_7.1**
-   - ***graphicsmagick:*******
-     **graphicsmagick modul oder  /usr/bin/**
+| Werkzeug | Bisher dokumentierte Auswahl |
+| --- | --- |
+| ImageMagick | PHP-Modul `imagick` oder Werkzeugpfad `/usr/bin/im_6.9` beziehungsweise `/usr/bin/im_7.1` |
+| GraphicsMagick | Passendes PHP-Modul oder Werkzeuge unter `/usr/bin/` |
 
+Verwenden Sie den tatsächlich auf Ihrem Webhost verfügbaren Pfad.
+
+<Accordion title="Screenshots: Werkzeuge und Einstellungen">
 ![Einstellungen für ImageMagick im EDIS-Webhosting](/images/cd4d78a96b84b4.png)
-
 ![Konfiguration der ImageMagick-Werkzeuge im Hosting-Account](/images/fbcb3732b0d7e9.png)
+</Accordion>
 
-2. **Für WordPress-Nutzer**:
+### WordPress und PHP-Erweiterungen
 
-Prüfen Sie zuerst, ob WordPress bereits einen geeigneten Bildeditor verwenden kann. Ein zusätzliches Plugin wie „ImageMagick Engine“ ist nicht pauschal erforderlich; stimmen Sie eine Installation und ihre Einstellungen mit der Websitebetreuung ab.
+Prüfen Sie zuerst, ob WordPress bereits einen geeigneten Bildeditor verwenden kann. Ein zusätzliches Plugin wie **ImageMagick Engine** ist nicht pauschal erforderlich; stimmen Sie die Installation mit Ihrer Websitebetreuung ab.
 
-1. PHP-Erweiterungen müssen zur tatsächlich gewählten PHP-Version und zum konkreten Webhost passen. Alte Angaben zu PHP 8.0 oder 8.1 sind keine aktuelle Versionsempfehlung. Prüfen Sie vor Änderungen die Anwendungskompatibilität und eine noch unterstützte PHP-Version.
-   - Verwenden Sie dazu bitte das PHP.INI Template&#x20;
-     im vHost Bereich -> Apache -> PHP.INI Templates und PHP.INI Zuweisung.
-     - **-extension imagick**
+PHP-Erweiterungen müssen zur ausgewählten PHP-Version und zum Webhost passen. Historische Angaben zu PHP 8.0 oder 8.1 sind keine aktuelle Empfehlung. Prüfen Sie Anwendungskompatibilität und eine noch unterstützte PHP-Version.
 
-gRPC ist eine eigenständige Erweiterung und keine allgemeine Voraussetzung für ImageMagick. Aktivieren Sie sie nur bei einer konkreten Anwendungsanforderung und bestätigter Verfügbarkeit.
+Verwenden Sie bei Bedarf **vHost → Apache → PHP.INI Templates** und **PHP.INI Zuweisung**. Die bisherige Anleitung nennt dafür **`-extension imagick`**. Prüfen Sie die angebotene Einstellung in Ihrem konkreten Template.
 
-Auch Protobuf ist keine allgemeine Voraussetzung für die Bildverarbeitung. Seine Verfügbarkeit muss für die verwendete PHP-Umgebung geprüft werden.
+**gRPC und Protobuf** sind keine allgemeinen Voraussetzungen für Bildverarbeitung. Aktivieren Sie zusätzliche Erweiterungen nur bei einer konkreten Anwendungsanforderung und bestätigter Verfügbarkeit.
 
-<a id="jhHo5" />
+<a className="edis-button" href="/phpini-templates-erstellen-und-einer-domain-zuweisen">PHP.INI-Template einrichten</a>
 
-### Legacy Hosting Produkte bis 2019
+## Ältere Hostinggenerationen
+
+<AccordionGroup>
+
+<a id="legacy-hosting-produkte-bis-2019" />
+
+<Accordion title="Legacy Hosting Produkte bis 2019" id="jhHo5">
 
 Die folgenden Versionsnummern und Pfade stammen aus der bisherigen Anleitung für ältere Hostingprodukte. Sie sind historische Beispiele und keine aktuelle Empfehlung. Prüfen Sie den tatsächlich verfügbaren Pfad und die unterstützte Version Ihres konkreten Webhosts, bevor Sie eine Anwendung darauf konfigurieren.
 
@@ -58,4 +64,8 @@ Die folgenden Versionsnummern und Pfade stammen aus der bisherigen Anleitung fü
 
 </Warning>
 
-Folgen Sie den oben genannten Pfaden und Anweisungen, um ImageMagick oder GraphicsMagick je nach Ihrem Hosting-Produkt korrekt zu konfigurieren.
+Verwenden Sie diese historischen Angaben nur zur Einordnung einer vorhandenen Konfiguration.
+
+</Accordion>
+
+</AccordionGroup>

@@ -1,13 +1,14 @@
 ---
 title: "Große MySQL-Datenbanken exportieren und wiederherstellen"
 sidebarTitle: "MySQL exportieren"
+description: "Datenbanken über die Verwaltung oder SSH exportieren und das Ziel einer Rücksicherung sorgfältig prüfen."
 ---
 
-Wenn Ihre Datenbank zu groß ist, um über den phpMyAdmin einen MySQL Dump zu laden, gibt es zwei alternative Möglichkeiten, um Ihre Datenbank herunterzuladen:
+Wenn der Export über **phpMyAdmin** nicht möglich ist, können Sie einen Download im vHost-Bereich anfordern oder bei vorhandenem SSH-Zugang einen **Datenbank-Dump** erstellen.
 
 <a id="bea97" />
 
-### 1. Über den vHost Bereich:
+## 1. Über den vHost Bereich:
 
 1. Navigieren Sie zum **vHost Bereich**.
 2. Wählen Sie **Datenbank** aus und gehen Sie zu **Rücksicherung**.
@@ -15,7 +16,7 @@ Wenn Ihre Datenbank zu groß ist, um über den phpMyAdmin einen MySQL Dump zu la
 
 <a id="4C-so" />
 
-### 2. Über die Kommandozeile mit SSH:
+## 2. Über die Kommandozeile mit SSH:
 
 1. Erstellen Sie ein eigenes Verzeichnis, idealerweise außerhalb des **www/home&#x20;**&#x56;erzeichnisses, z.B. **www/backup/**
 
@@ -25,15 +26,17 @@ Verwenden Sie den tatsächlichen Datenbankserver und Datenbankbenutzer Ihres Web
 mysqldump -u Datenbankname -p -h dbXX.at.edis.global -B Datenbankname --no-tablespaces > Datenbankname.sql
 ```
 
-**Hinweis**
-
+<Note>
 Die Größe der heruntergeladenen Datenbank im Dump kann von der Größe, die im phpMyAdmin angezeigt wird, abweichen. Der Grund dafür ist, dass der Dump ein reines Textfile ist und nicht die gleiche Struktur wie die ursprüngliche Datenbank aufweist.
+</Note>
 
 <a id="L6fs7" />
 
-### Rücksicherung einer Datenbank
+## Rücksicherung einer Datenbank
 
+<Warning>
 Sichern Sie die aktuelle Zieldatenbank vor der Rücksicherung und prüfen Sie Host, Benutzer sowie das Ziel. Achtung: Ein mit -B erstellter Dump enthält CREATE DATABASE- und USE-Anweisungen. Diese können die Datenbankauswahl im Import verändern; der Datenbankname im folgenden mysql-Aufruf allein begrenzt den Import deshalb nicht zuverlässig. Für einen Import in eine andere Datenbank benötigen Sie einen dafür geprüften Dump ohne unpassende Datenbankauswahl oder einen geeigneten Export ohne -B. Ein Import kann vorhandene Daten überschreiben.
+</Warning>
 
 ```shell
 mysql -u Username -p -h dbXX.at.edis.global  Datenbankname < Datenbankname.sql

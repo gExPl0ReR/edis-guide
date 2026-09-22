@@ -1,23 +1,33 @@
 ---
 title: "SFTP-Verbindung zum EDIS-Webhost einrichten"
 sidebarTitle: "SFTP einrichten"
+description: "Mit den SSH-Daten Ihres Webhosts eine verschlüsselte Dateiverbindung einrichten und den Hostschlüssel prüfen."
 ---
 
 SFTP steht für SSH File Transfer Protocol und überträgt Dateien über eine SSH-Verbindung. Dafür benötigt Ihr konkretes Webhostingprodukt einen freigeschalteten SSH-Zugang. Prüfen Sie den gebuchten Leistungsumfang und die im vHost-Bereich angezeigten Verbindungsdaten; ältere oder abweichende Produkte können andere Voraussetzungen haben.
 
-Melden Sie sich bitte im vHost Bereich an und navigieren zu SSH Zugang:
+<Steps>
+<Step title="SSH-Zugangsdaten abrufen">
+Öffnen Sie im [vHost-Bereich](https://manage.edis.at/vhost/) den **SSH Zugang**. Übernehmen Sie die angezeigten Verbindungsdaten.
 
 ![SSH-Zugangsdaten im vHost-Bereich von EDIS](/images/62fa1686e421b9.png)
 
-Verbindungseinstellung mit zB: [FileZilla](https://filezilla-project.org/):
-
-Servermanager öffnen und einen neuen Server anlegen:
+</Step>
+<Step title="SFTP-Verbindung anlegen">
+Öffnen Sie beispielsweise in [FileZilla](https://filezilla-project.org/) den **Servermanager** und legen Sie einen neuen Eintrag mit dem Protokoll **SFTP** an.
 
 ![SFTP-Verbindung im FileZilla-Servermanager einrichten](/images/59896f6907f0c8.png)
 
+</Step>
+<Step title="Hostschlüssel kontrollieren">
 Vergleichen Sie bei der Meldung „Unbekannter Serverschlüssel“ den angezeigten Fingerabdruck mit den Angaben des Hosting-Supports. Bestätigen Sie den Schlüssel erst, wenn er übereinstimmt.
 
 ![FileZilla zeigt den SSH-Hostschlüssel zur Prüfung an](/images/8e80843e81b3b9.png)
 
-Wenn die Verbindung erfolgreich aufgebaut wurde, sind Sie nun im /home/vHostIDVerzeichnis/ und sehen darunter das Verzeichnis /www/ - einen Doppelklick darauf und Sie sehen das /home/ Verzeichnis und möglicherweise auch die /cgi/ und /log/ Verzeichnisse und je nach Anwendung auch andere Dateien, doppelklicken Sie auf /home/ und Sie sind im DocRoot Verzeichnis, wo auch die Domain in der Regel aufgelöst wird (ausser diese wird in ein Unterverzeichnis umgeleitet).
-Navigieren Sie in das gewünschte Verzeichnis wo Sie Ihre Daten ablegen möchten und starten Sie den Transfer.
+</Step>
+<Step title="Websiteverzeichnis öffnen">
+Nach erfolgreicher Verbindung befinden Sie sich im Home-Verzeichnis des Webhosts. Öffnen Sie **www → home**, um das übliche Websiteverzeichnis zu erreichen. Je nach Anwendung sehen Sie auch Verzeichnisse wie `cgi` oder `log`.
+
+Ist für die Domain eine andere Document-Root festgelegt, verwenden Sie dieses Zielverzeichnis. Wechseln Sie vor dem Transfer in den gewünschten Ordner.
+</Step>
+</Steps>

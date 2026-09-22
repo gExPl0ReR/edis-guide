@@ -1,6 +1,7 @@
 ---
 title: "Composer mit der passenden PHP-Version über SSH nutzen"
 sidebarTitle: "Composer über SSH"
+description: "Composer mit einem ausdrücklich gewählten PHP-Interpreter aufrufen und Web- sowie CLI-Konfiguration unterscheiden."
 ---
 
 <a id="66B7X" />
@@ -9,13 +10,19 @@ sidebarTitle: "Composer über SSH"
 
 Sie haben die Möglichkeit, Composer direkt in Ihren Webhosting-Account zu laden und dort zu nutzen.
 
-Beim Aufruf von Composer ist es entscheidend, stets den vollständigen Pfad inklusive der gewählten PHP-Version anzugeben. Zum Beispiel:
+Verwenden Sie den vollständigen Pfad des passenden PHP-Interpreters und der Composer-Installation.
+
+<Note>
+Die PHP-8.1-/8.2-Aufrufe unten sind **historische Beispiele**. Wählen Sie einen auf Ihrem Webhost verfügbaren, für das Projekt geeigneten Interpreter. Die PHP-Version der Website legt die CLI-Version nicht automatisch fest.
+</Note>
+
+Beispiel eines vollständigen Aufrufs:
 
 ```shell
 /usr/local/bin/edis-php-cli-81 /usr/bin/composer
 ```
 
-Je nachdem, welche PHP-Version Sie nutzen, kann der Aufruf **edis-php-cli-81** oder **edis-php-cli-82** lauten.
+Die Interpreterbezeichnung enthält die Version, im historischen Beispiel **edis-php-cli-81** beziehungsweise **edis-php-cli-82**.
 
 Wenn Sie die **/usr/bin/composer** Instanz verwenden, führen Sie den vorhandenen Systemaufruf aus. Eine eigene Composer-Version installieren Sie in einem Verzeichnis Ihres Hosting-Accounts; /usr/bin/composer ist dafür kein Installationsziel.
 

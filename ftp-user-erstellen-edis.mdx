@@ -1,38 +1,36 @@
 ---
 title: "FTP-Benutzer erstellen, befristen und deaktivieren"
 sidebarTitle: "FTP-Benutzer verwalten"
+description: "FTP-Zugänge anlegen, ihre Gültigkeit begrenzen und Anmeldefehler gezielt unterscheiden."
 ---
 
 <a id="kkkcJ" />
 
 ### FTP-Nutzer: Erstellen eines FTP Benutzers
 
-FTP (File Transfer Protocol) ermöglicht das Übertragen von Dateien zwischen Ihrem Computer und Ihrem Webhost.&#x20;
+Über einen FTP-Zugang übertragen Sie Dateien zwischen Ihrem Computer und dem Webhost. Verwenden Sie die passende [verschlüsselte Verbindungsart](/ftp-einstellungen-firewall-ports-activepassive-mode-pasv-verschlusselung-eol).
 
-1. Besuchen Sie den EDIS [Verwaltungsbereich](https://manage.edis.at/vhost/)
-2. Navigieren Sie im Menü zu **FTP**
-3. Wählen Sie **Verwaltung** aus
-4. Klicken Sie auf **FTP User erstellen**.
+1. Melden Sie sich im **vHost-Bereich** an.
+2. Öffnen Sie **FTP → Verwaltung**.
+3. Wählen Sie **FTP User erstellen** und geben Sie die benötigten Benutzerdaten ein.
 
-Nun können Sie die notwendigen Informationen eingeben, um einen neuen FTP-User zu erstellen.
+<a className="edis-button" href="https://manage.edis.at/vhost/">vHost-Bereich öffnen</a>
 
 <a id="dl8nE" />
 
 ### FTP-Nutzer: Sicherheitsüberlegungen und zeitliche Einschränkung
 
-Es ist wichtig, sicherzustellen, dass Ihre FTP-Zugänge geschützt und sicher sind.
+- **Befristen:** Legen Sie bei zeitlich begrenzten Aufgaben eine Gültigkeitsdauer fest. Danach wird der Benutzer suspendiert, aber nicht gelöscht. Bei Bedarf können Sie ihn erneut aktivieren.
+- **Deaktivieren:** Sperren Sie nicht mehr benötigte FTP-Zugänge.
+- **Weitere Zugänge prüfen:** Bei einem Sicherheitsvorfall müssen auch andere Konten und Anwendungen untersucht werden. Ein deaktivierter FTP-Benutzer schließt andere Zugriffswege nicht aus.
 
-1. **Zeitliche Einschränkung für FTP-Nutzer:** Um potenzielle Sicherheitsrisiken zu minimieren, sollten Sie in Erwägung ziehen, eine zeitliche Einschränkung für die Gültigkeit Ihres FTP-Nutzers zu setzen.&#x20;
+## Hilfe bei Passwort und Anmeldung
 
-   Nach Ablauf dieser Gültigkeitsdauer wird der Benutzer automatisch suspendiert, das heißt, der Zugriff wird vorübergehend unterbrochen, aber der Nutzer wird nicht gelöscht. Dieses Feature kann besonders nützlich sein, wenn Sie wissen, dass Sie den FTP-Zugang nur für einen bestimmten Zeitraum benötigen. Sollten Sie den Zugang zu einem späteren Zeitpunkt wieder benötigen, können Sie den Benutzer einfach erneut aktivieren.
+<AccordionGroup>
 
-2. Deaktivieren Sie nicht mehr benötigte FTP-Zugänge oder begrenzen Sie ihre Gültigkeit. Das verringert die Angriffsfläche, garantiert aber nicht, dass über andere Konten, Anwendungen oder bereits kompromittierte Zugänge kein Zugriff mehr möglich ist. Prüfen Sie bei einem Sicherheitsvorfall alle betroffenen Zugangswege.
+<a id="passwortänderung-und-anmeldung-getrennt-prüfen" />
 
-Die Sicherheit Ihrer Website und Ihrer Daten sollte immer an erster Stelle stehen. Durch die Befolgung dieser Empfehlungen können Sie dazu beitragen, Ihr Webhosting sicher und geschützt zu halten.
-
-<a id="2c5pI" />
-
-## Passwortänderung und Anmeldung getrennt prüfen
+<Accordion title="Passwortänderung und Anmeldung getrennt prüfen" id="2c5pI">
 
 Achten Sie nach einer Passwortänderung auf die Erfolgsmeldung. Wird das neue Kennwort bei der Eingabe abgelehnt, wurde es möglicherweise noch nicht gespeichert. Verwenden Sie ein langes, einzigartiges Kennwort und beachten Sie die aktuell angezeigten Vorgaben für den konkreten Zugang. Senden Sie Ihr Kennwort nicht per E-Mail oder Chat.
 
@@ -42,10 +40,16 @@ Verwenden Sie einen passenden FTP-Client und den FTP-Benutzer des richtigen Webh
 
 Zeigt FileZilla zunächst „TLS-Verbindung hergestellt“ und danach „530 Login incorrect“, ist die Anmeldung fehlgeschlagen. Prüfen Sie Benutzerkennung und gespeicherte Zugangsdaten. Geben Sie dem Support den bereinigten Fehlertext mit Zeitpunkt, Server und verwendetem Protokoll weiter. Eine erfolgreiche Passwortänderung allein bestätigt noch keinen erfolgreichen Datei-Upload.
 
-<a id="DOM_V" />
+</Accordion>
 
-## Nach einer Korrektur kann ein anderer Fehler sichtbar werden
+<a id="nach-einer-korrektur-kann-ein-anderer-fehler-sichtbar-werden" />
+
+<Accordion title="Nach einer Korrektur kann ein anderer Fehler sichtbar werden" id="DOM_V">
 
 Vergleichen Sie den vollständigen Ablauf vor und nach einer Änderung. Eine zunächst abgelehnte Verbindung kann nach Korrektur von Protokoll, TLS-Modus oder Port bis zur Anmeldung gelangen und dort mit 530 scheitern. Das sind unterschiedliche Fehlerphasen. Ein erreichbarer Steuerport oder erfolgreiches TLS bestätigt noch keinen Login und keinen Datentransfer.
 
 Lassen Sie bei widersprüchlichen Meldungen den konkreten Benutzerstatus und die passenden Serverprotokolle mit Zeitpunkt prüfen. Ein einzelner Fehlertext beweist keine bestimmte Passwortursache. Verwenden Sie ein starkes Kennwort nach den aktuellen Vorgaben; entfernen Sie nicht pauschal alle Sonderzeichen und wechseln Sie nicht als allgemeine Reparatur auf unverschlüsseltes FTP.
+
+</Accordion>
+
+</AccordionGroup>

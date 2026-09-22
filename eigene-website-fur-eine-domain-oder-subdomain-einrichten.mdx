@@ -1,34 +1,31 @@
 ---
 title: "Eigene Website für eine Domain oder Subdomain einrichten"
 sidebarTitle: "Websites & Subdomains"
+description: "Domain oder Subdomain einem eigenen Websiteverzeichnis zuordnen und DNS, HTTPS und Anwendung getrennt prüfen."
 ---
 
 <a id="aK_nh" />
 
 ### Document-Root für Domain oder Subdomain bei EDIS einrichten
 
-Wenn Sie bei EDIS eine eigene Webseite, wie z.B. ein separates WordPress, auf einer Subdomain oder einer anderen dem Webhost zugeordneten Domain betreiben möchten, können Sie dies tun, indem Sie der Domain oder Subdomain eine eigene Document-Root zuweisen. Folgen Sie diesen Schritten:
+Eine eigene **Document-Root** ist das Verzeichnis, aus dem die Website einer Domain oder Subdomain ausgeliefert wird. Damit können Sie beispielsweise eine separate WordPress-Installation betreiben.
 
-1. **Anmelden**: Melden Sie sich zuerst im EDIS [Verwaltungsbereich](https://manage.edis.at/vhost/) an
+<Steps>
+<Step title="Verzeichnis vorbereiten">
+Erstellen Sie das gewünschte Unterverzeichnis per FTP und laden Sie die Website-Dateien hinein. Beispiel: `/home/userid/www/home/mein-mit-FTP-angelegtes-Verzeichnis/`. Ersetzen Sie den Beispielpfad durch den tatsächlichen Pfad Ihres Webhosts.
+</Step>
+<Step title="Domain oder Subdomain auswählen">
+Melden Sie sich im vHost-Bereich an. Öffnen Sie **Apache → SubDomains** und wählen Sie den gewünschten Hostnamen.
 
-2. **Apache-Konfiguration**:
-   - Navigieren Sie im Menü zu **Apache**
-   - Wählen Sie dann den Punkt **SubDomains&#x20;**&#x61;us
-
-3. **Domain oder Subdomain zuweisen**:
-   - Wählen Sie die gewünschte Domain oder Subdomain aus, der Sie ein eigenes Document-root zuweisen möchten.
-   - Lassen Sie die Domain oder Subdomain auf ein Unterverzeichnis zeigen.
-
-4. **Verzeichnis erstellen**:
-   - Geben Sie den Pfad des gewünschten Unterverzeichnisses ein. Zum Beispiel:&#x20;
-   - **/home/userid/www/home/mein-mit-FTP-angelegtes-Verzeichnis/**
-   - Stellen Sie sicher, dass Sie zuvor dieses Verzeichnis mittels FTP erstellt haben.
-
-5. **Änderungen speichern**: Speichern Sie Ihre Änderungen, um die neue Document-root für die ausgewählte Domain oder Subdomain zu aktivieren.
-
-Nachdem Sie diese Schritte abgeschlossen haben, können Sie eine separate Software oder Webseite auf Ihrer Domain oder Subdomain betreiben, da diese nun über ein eigenes Document-Root verfügt.&#x20;
-
-Laden Sie die Dateien für Ihre Webseite in das angegebene Verzeichnis hoch. Beachten Sie, dass das Aktivieren von Domain- oder Subdomain-Zuweisungen bis zu 10 Minuten dauern kann.
+<a className="edis-button" href="https://manage.edis.at/vhost/">vHost-Bereich öffnen</a>
+</Step>
+<Step title="Document-Root zuweisen">
+Tragen Sie das vorbereitete Unterverzeichnis als Ziel ein und speichern Sie die Änderung. Die Aktivierung kann bis zu zehn Minuten dauern.
+</Step>
+<Step title="Website prüfen">
+Rufen Sie den vorgesehenen Hostnamen auf und kontrollieren Sie Zielverzeichnis, Websitefunktionen und HTTPS. Weitere Hinweise zu DNS und Domainzuordnung finden Sie unten.
+</Step>
+</Steps>
 
 <a id="a_M-t" />
 
@@ -36,9 +33,13 @@ Laden Sie die Dateien für Ihre Webseite in das angegebene Verzeichnis hoch. Bea
 
 Ein Registrarwechsel verbindet die Domain nicht automatisch mit dem gewünschten Webhost. Prüfen Sie vor einer weiteren Bestellung, ob bereits passendes Hosting vorhanden ist und welche Domainzuordnung beziehungsweise Nutzung eingerichtet werden muss. DNS, Webverzeichnis, Mailbetrieb und Zertifikat bleiben getrennte Prüfpunkte. Verwenden alte und neue Domain dasselbe Verzeichnis, muss eine gewünschte Weiterleitung auf den richtigen Hostnamen begrenzt sein. Testen Sie beide Namen einschließlich HTTPS.
 
-<a id="6gQsz" />
+## Weitere Adressen und Sonderfälle
 
-## Dieselben Dateien sind unter mehreren Adressen erreichbar
+<AccordionGroup>
+
+<a id="dieselben-dateien-sind-unter-mehreren-adressen-erreichbar" />
+
+<Accordion title="Dieselben Dateien sind unter mehreren Adressen erreichbar" id="6gQsz">
 
 Ein eigenes Zielverzeichnis für eine zusätzliche Domain verhindert nicht automatisch den Zugriff auf denselben physischen Unterordner über die Hauptdomain. Prüfen Sie die Zuordnung jeder Domain und die tatsächlich erreichbaren Pfade. Ein Domain-Zielverzeichnis ist keine vollständige Zugriffssperre.
 
@@ -48,17 +49,21 @@ Ein Canonical-Hinweis hilft Suchmaschinen, eine bevorzugte Adresse zuzuordnen. E
 
 Technische Grundlagen: [https://httpd.apache.org/docs/2.4/urlmapping.html](https://httpd.apache.org/docs/2.4/urlmapping.html) und [https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
 
-<a id="E1Dig" />
+</Accordion>
 
-## DNS-Werte und bedingte Änderungen
+<a id="dns-werte-und-bedingte-änderungen" />
+
+<Accordion title="DNS-Werte und bedingte Änderungen" id="E1Dig">
 
 Übernehmen Sie Serveradressen nur aus der tatsächlichen Hostingzuordnung oder den verbindlichen Vorgaben des Zielanbieters. Wenn eine Anleitung zu einer falschen Änderung geführt hat, prüfen Sie zuerst die Änderungshistorie. Ändern Sie keine weiteren Werte auf Verdacht. Nach einer Korrektur müssen DNS-Auflösung und Websitezugriff für die betroffenen Namen geprüft werden.
 
 Wenn Sie eine alte Domain nur dann entfernen lassen möchten, falls andernfalls kein freier Platz für eine neue Domain vorhanden ist, nennen Sie diese Bedingung ausdrücklich. Bleibt die Bedingung unerfüllt, besteht daraus kein Auftrag zur Entfernung.
 
-<a id="FOWu3" />
+</Accordion>
 
-## App-Installation scheitert nach einer DNS-Änderung
+<a id="app-installation-scheitert-nach-einer-dns-änderung" />
+
+<Accordion title="App-Installation scheitert nach einer DNS-Änderung" id="FOWu3">
 
 Vergleichen Sie zuerst den exakt bestellten Domainnamen mit der im Installationsassistenten verwendeten Adresse. Ein Tippfehler, ein abweichendes www oder ein falsches Zielverzeichnis kann zu einem anderen Webhost führen. Prüfen Sie das zuständige DNS-Ziel und die Zuordnung des Hostnamens im Hosting.
 
@@ -66,10 +71,16 @@ Eine HTTP-Antwort mit Status 200 beweist nicht, dass der Assistent seine Prüfda
 
 Löschen Sie eine fehlgeschlagene Installation erst, wenn geklärt ist, welche Dateien und Datenbanken betroffen sind und ob dort bereits benötigte Inhalte liegen. Sichern Sie den erforderlichen Stand und prüfen Sie den Löschumfang. Ein früher genannter Expertenmodus ist keine Garantie für dieselben Bedienelemente oder eine risikolose Deinstallation im aktuellen Produkt.
 
-<a id="QCN0x" />
+</Accordion>
 
-## Website vorübergehend für Wartung abschalten
+<a id="website-vorübergehend-für-wartung-abschalten" />
+
+<Accordion title="Website vorübergehend für Wartung abschalten" id="QCN0x">
 
 Klären Sie zuerst das Ziel: Soll eine Wartungsseite erscheinen oder sollen sämtliche Websiteinhalte für Besucher unzugänglich sein? Ein Wartungsmodus im CMS oder eine andere Document-Root kann die Startseite ersetzen, verhindert aber nicht automatisch jeden direkten Aufruf über andere Pfade oder Hostnamen.
 
 Stimmen Sie die betroffenen Domains, Subdomains, benötigten Verwaltungszugänge und den Erhalt von E-Mail ab. Prüfen Sie einen erforderlichen Zugriffsschutz und testen Sie ihn mit direkten Inhaltsaufrufen. Halten Sie fest, wie der ursprüngliche Zustand wiederhergestellt wird. Eine vorübergehende Wartung ist kein Kündigungsauftrag.
+
+</Accordion>
+
+</AccordionGroup>

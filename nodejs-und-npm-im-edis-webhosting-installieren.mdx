@@ -1,62 +1,73 @@
 ---
 title: "Node.js und npm im EDIS-Webhosting installieren"
 sidebarTitle: "Node.js & npm"
+description: "Node.js als Werkzeug im Hosting-Account installieren und den gewünschten Betriebsmodus vorher klären."
 ---
 
-&#x20;Sie benötigen ein [Ristretto Hosting](https://www.edis.at/de/hosting/produkte/ristretto) oder höher.
+Sie benötigen ein [Ristretto-Hosting](https://www.edis.at/de/hosting/produkte/ristretto) oder höher mit passendem **SSH-Zugang**. Prüfen Sie die Voraussetzungen Ihres konkreten Webhosts.
+
+<Note>
+Die Installation von Node.js und npm ist keine Zusage für einen dauerhaft laufenden Node.js-Webserver. Klären Sie Prozessverwaltung, Ports und gegebenenfalls einen Reverse Proxy vorab, wenn Sie mehr als Build-Werkzeuge benötigen.
+</Note>
+
+## Installation vorbereiten
 
 Verbinden Sie sich via SSH auf Ihren Webhost:
 
-```javascript
+```bash
 ssh ssh.at.edis.global -l VHOSTKEY -p 22
 ```
 
 Wechseln Sie zB: ins Verzeichnis www/
 
-```javascript
+```bash
 cd www/
 ```
 
 und legen ein neues Verzeichnis an, zB: nodejs
 
-```javascript
+```bash
 mkdir nodejs
 ```
 
-Wechseln Sie nach dem Anlegen mit cd nodejs in das neue Verzeichnis, bevor Sie Dateien herunterladen. Wählen Sie unter [https://nodejs.org/en/download](https://nodejs.org/en/download) eine unterstützte Version für die bestätigte Serverarchitektur und prüfen Sie die veröffentlichten Prüfsummen. Ersetzen Sie vxx.x.x und den Dateinamen in den folgenden Befehlen durch die tatsächlich gewählte Veröffentlichung.
+## Passende Version herunterladen
 
-```javascript
+Wechseln Sie nach dem Anlegen mit `cd nodejs` in das neue Verzeichnis, bevor Sie Dateien herunterladen. Wählen Sie unter [https://nodejs.org/en/download](https://nodejs.org/en/download) eine unterstützte Version für die bestätigte Serverarchitektur und prüfen Sie die veröffentlichten Prüfsummen. Ersetzen Sie vxx.x.x und den Dateinamen in den folgenden Befehlen durch die tatsächlich gewählte Veröffentlichung.
+
+```bash
 wget https://nodejs.org/dist/vxx.x.x/node-vxx.x.x-linux-x64.tar.gz
 tar -xzf node-vxx.x.x-linux-x64.tar.gz
 ```
 
-Wechseln Sie ins Verzeichnis der Applikation:
+## Suchpfad und Version prüfen
 
-```javascript
+Wechseln Sie ins Verzeichnis der Installation:
+
+```bash
 cd node-vxx.x.x-linux-x64/bin
 ```
 
 Prüfen Sie den kompletten Pfad mit pwd:
 
-```javascript
+```bash
 pwd
 ```
 
-Wenn Sie im bin-Verzeichnis der gewählten Installation stehen, können Sie den Suchpfad für die aktuelle Sitzung so erweitern: export PATH="$(pwd):$PATH". Prüfen Sie anschließend mit command -v node und command -v npm, welche Programme aufgerufen werden. Eine dauerhafte Anpassung Ihrer Shell-Konfiguration muss gesondert eingerichtet werden.
+Wenn Sie im bin-Verzeichnis der gewählten Installation stehen, können Sie den Suchpfad für die aktuelle Sitzung so erweitern: `export PATH="$(pwd):$PATH"`. Prüfen Sie anschließend mit `command -v node` und `command -v npm`, welche Programme aufgerufen werden. Eine dauerhafte Anpassung Ihrer Shell-Konfiguration muss gesondert eingerichtet werden.
 
 Prüfen Sie die Version mit:
 
-```javascript
+```bash
 node -v
 ```
 
-Ergebnis zB: v20.9.0
+Historische Beispielausgabe: `v20.9.0`. Maßgeblich ist Ihre gewählte, unterstützte Version.
 
-```javascript
+```bash
 npm -v
 ```
 
-Ergebnis zB: 10.1.0
+Historische Beispielausgabe: `10.1.0`.
 
 <a id="BMUfT" />
 

@@ -1,9 +1,18 @@
 ---
 title: "FTP und SFTP: Verbindung, Ports und Verschlüsselung"
 sidebarTitle: "FTP-Ports & Verschlüsselung"
+description: "FTPS und SFTP unterscheiden, passende Ports verwenden und Verbindungsfehler richtig zuordnen."
 ---
 
 Verwenden Sie die Server- und Zugangsdaten des betroffenen Webhosts aus dem Verwaltungsportal. FTP, FTPS und SFTP sind unterschiedliche Verbindungsarten; Protokoll und Verschlüsselungsmodus müssen zum gewählten Dienst passen.
+
+| Verbindung | Verschlüsselung und üblicher Steuerport |
+| --- | --- |
+| FTP | Unverschlüsselt · TCP 21 |
+| FTPS | FTP mit TLS · meist TCP 21; den unterstützten Modus prüfen |
+| SFTP | SSH-Verbindung · meist TCP 22; benötigt passenden SSH-Zugang |
+
+Die im vHost-Bereich angegebenen Werte sind maßgeblich.
 
 <a id="rKTKA" />
 

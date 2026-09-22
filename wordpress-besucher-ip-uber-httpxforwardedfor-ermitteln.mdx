@@ -1,15 +1,18 @@
 ---
 title: "WordPress: Besucher-IP über HTTP_X_FORWARDED_FOR ermitteln"
 sidebarTitle: "WordPress: Besucher-IP"
+description: "Besucheradressen hinter einem Proxy korrekt auswerten und die Einstellung am konkreten Webhost prüfen."
 ---
 
 Wenn ein Sicherheitsplugin eine interne Proxyadresse statt der tatsächlichen Besucheradresse protokolliert, klären Sie zuerst die vertrauenswürdigen Proxyadressen und den von EDIS bestätigten Header für Ihren Webhost. X-Forwarded-For kann IPv4- und IPv6-Adressen enthalten. Die folgenden Abbildungen zeigen eine bisherige Konfiguration von „Limit Login Attempts“ und sind keine allgemeine Vorgabe für andere Plugins oder Hostingumgebungen.
+
+## Einstellung im Plugin prüfen
 
 Nur wenn Hostingkonfiguration und Plugin-Auswertung dafür bestätigt sind, verwenden Sie die passende Einstellung für HTTP\_X\_FORWARDED\_FOR und speichern sie. Übernehmen Sie keine beliebigen vom Besucher gesetzten Header als vertrauenswürdige Adresse. Testen Sie die protokollierte IP anschließend mit einem kontrollierten Zugriff.
 
 ![HTTP\_X\_FORWARDED\_FOR in den Einstellungen des WordPress-Plugins](/images/4efa7690b83f07.png)
 
-Es wird **REMOTE\_ADDR** automatisch hinzugefügt, dann sieht das wie folgt aus:
+In der gezeigten Konfiguration ergänzt das Plugin **REMOTE_ADDR** automatisch:
 
 ![HTTP\_X\_FORWARDED\_FOR und REMOTE\_ADDR als Quellen der Besucher-IP](/images/353646e83d04fa.png)
 
@@ -25,10 +28,18 @@ Die oben gezeigte Einstellung bezieht sich auf das beschriebene Plugin und die d
 
 Lassen Sie eine vermutete Schutzsperre anhand der konkreten Anfrage prüfen. Nach einer Korrektur muss derselbe Zugriff aus dem ursprünglich betroffenen Netz erneut funktionieren. Schalten Sie den gesamten Schutz nicht pauschal ab.
 
-<a id="uXaAC" />
+## Bei hoher Last
 
-## Hohe Last hinter einem vorgeschalteten Proxy
+<AccordionGroup>
+
+<a id="hohe-last-hinter-einem-vorgeschalteten-proxy" />
+
+<Accordion title="Hohe Last hinter einem vorgeschalteten Proxy" id="uXaAC">
 
 Wenn im Hosting-Zugriffslog nur Adressen von Cloudflare oder eines anderen Proxys erscheinen, lassen sich Besucher daraus nicht unmittelbar zuordnen. Prüfen Sie gemeinsam mit den zuständigen Administratoren die Proxyprotokolle und die tatsächlich konfigurierte Weitergabe der Client-IP.
 
 Sperren Sie gemeinsam genutzte Proxyadressen nicht pauschal. Eine HEAD-Anfrage oder eine curl-Kennung allein beweist ebenfalls keinen Angriff. Stimmen Sie gezielte Filter im zuständigen Proxykonto mit der Hostingdiagnose ab und prüfen Sie danach die tatsächliche Serverlast sowie normale Websitefunktionen.
+
+</Accordion>
+
+</AccordionGroup>
