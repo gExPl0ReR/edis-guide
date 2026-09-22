@@ -1,79 +1,109 @@
 ---
 title: "WordPress mit dem App-Installer importieren"
 sidebarTitle: "WordPress importieren"
+description: "Übernehmen Sie eine bestehende WordPress-Website in den App-Installer – von einem anderen Webhost oder aus demselben Konto."
 ---
 
-[https://manage.edis.at/vhost/](https://manage.edis.at/vhost/) -> App-Installer -> Expertenmodus
+Der App-Installer kann eine bestehende WordPress-Installation übernehmen, damit Sie sie dort verwalten und beispielsweise Updates und Backups durchführen können.
 
-Unter dem Reiter "Anwendungs Browser" auf das entsprechende CMS Icon klicken, in diesem Fall WordPress
+## Vor dem Import
 
-![WordPress im Anwendungsbrowser des App-Installers auswählen](/images/3a59853398c1a0.png)
+- **PHP-Version vergleichen:** Prüfen Sie, mit welcher PHP-Version die Website bisher läuft und welche Version auf dem Ziel-Webhost eingestellt ist. Die Zielversion muss zu Ihrer Anwendung passen.
+- **Verfügbare Versionen prüfen:** Im vHost-Bereich finden Sie die Auswahl unter **Apache → PHP Version**. Verfügbare Versionen und deren Unterstützung hängen vom gebuchten Produkt ab. Die [Anleitung zur PHP-Umstellung](/php-version-domain-subdomain-bei-edis-einstellen) beschreibt den Weg.
+- **Quelle und Ziel festlegen:** Klären Sie, welche Installation übernommen werden soll und unter welcher Domain beziehungsweise in welchem Verzeichnis sie am Ziel liegen soll.
 
-Rechts neben "Diese Applikation installieren", auf die 3 waagrechten Striche klicken:
+<a className="edis-button" href="https://manage.edis.at/vhost/" target="_blank" rel="noopener noreferrer">vHost-Bereich öffnen</a>
 
-![Menü zum Import einer bestehenden WordPress-Installation](/images/134af9212591ac.png)
+## WordPress importieren
 
-"Eine bestehende Installation importieren" klicken
+<Steps>
+  <Step title="WordPress im App-Installer auswählen">
+    Öffnen Sie im vHost-Bereich **App-Installer → Expertenmodus**. Wechseln Sie zum Reiter **Anwendungs Browser** und wählen Sie **WordPress**.
 
-"Von einem anderen Konto" -> "Fortsetzen"
+    <Accordion id="import-wordpress-auswahl" title="Screenshot: WordPress auswählen">
+      ![WordPress im Anwendungsbrowser des App-Installers auswählen](/images/3a59853398c1a0.png)
+    </Accordion>
+  </Step>
 
-![Installation von einem anderen Hosting-Konto importieren](/images/e680fc52f32746.png)
+  <Step title="Import-Assistenten starten">
+    Klicken Sie rechts neben **Diese Applikation installieren** auf das Menü mit den **drei waagrechten Strichen**. Wählen Sie **Eine bestehende Installation importieren**.
 
-<Warning>
+    <Accordion id="import-menue" title="Screenshot: Import-Menü öffnen">
+      ![Menü zum Import einer bestehenden WordPress-Installation](/images/134af9212591ac.png)
+    </Accordion>
+  </Step>
 
-"Von diesem Konto" -> "Fortsetzen" - Damit können Sie ein manuell installiertes CMS in den App-Installer importieren, damit dies dort verwaltet werden kann (Updates, Backups usw.)
+  <Step title="Passende Importart wählen">
+    Wählen Sie die Option, die zum Speicherort Ihrer bestehenden Website passt, und klicken Sie auf **Fortsetzen**.
 
-</Warning>
+    | Die bestehende Website liegt … | Wählen Sie … |
+    | --- | --- |
+    | auf einem anderen Webhost oder Server | **Von einem anderen Konto** |
+    | bereits in diesem Hosting-Konto, wurde aber manuell installiert | **Von diesem Konto** |
 
-![Bestehende Installation aus demselben Hosting-Konto übernehmen](/images/896d3d3f6484a2.png)
+    Mit **Von diesem Konto** nehmen Sie eine vorhandene Installation in die Verwaltung des App-Installers auf.
 
-Bei "Quelle" geben Sie den (Ihren) Domainnamen ein und wählen das Protokoll, zB: FTP (oder ein anderes Transferprotokoll)
+    <Accordion id="import-konto-auswahl" title="Screenshot: Importart auswählen">
+      ![Installation von einem anderen Hosting-Konto importieren](/images/e680fc52f32746.png)
+    </Accordion>
+  </Step>
 
-<Warning>
+  <Step title="Quelle und Ziel angeben">
+    **Beim Import von einem anderen Konto:**
 
-Zu beachten ist, wenn Sie zB: FTP auswählen, dass der Pfad angegeben wird, sollte der FTP Benutzer nicht im jeweiligen DocRoot am "alten Webhost/Server" landen.
+    - Geben Sie unter **Quelle** die Adresse Ihrer bisherigen Website und die passenden Zugangsdaten an.
+    - Wählen Sie ein vom bisherigen Hosting unterstütztes Transferprotokoll. Verwenden Sie ein verschlüsseltes Verfahren wie **FTP mit TLS/SSL** oder **SFTP**, wenn es für diesen Zugang unterstützt wird.
+    - Prüfen Sie den **Quellpfad**: Wenn der verwendete Dateizugang nicht direkt im Website-Verzeichnis des alten Webhosts startet, müssen Sie den passenden Pfad angeben.
+    - Wählen Sie unter **Ziel** die gewünschte Domain. Sie können auch die temporäre Domain verwenden. Berücksichtigen Sie ein gegebenenfalls vorgesehenes Unterverzeichnis, beispielsweise `/www/home/webseite1/`.
 
-</Warning>
+    **Beim Import aus demselben Konto:** Geben Sie den Speicherort der bereits vorhandenen Installation an.
 
-Beim Ziel können die temp. Domain verwenden (eventuell mit Pfad wenn es im /www/home/ ein Verzeichnis für die Webseite gibt zB: /www/home/webseite1/
+    <Accordion id="import-quelldaten" title="Screenshot: Quelldaten und Pfad">
+      ![Quelldaten, Transferprotokoll und Pfad der bestehenden WordPress-Installation](/images/896d3d3f6484a2.png)
+    </Accordion>
+  </Step>
 
-Damit der Import durchgeführt werden kann, auf "Importieren" klicken ....
+  <Step title="Import durchführen">
+    Klicken Sie auf **Importieren**. Nach erfolgreichem Import finden Sie die WordPress-Installation unter **Meine Applikationen**.
+  </Step>
+</Steps>
 
-Nach erfolgten Import, finden Sie unter "Meine Applikationen" Ihre CMS Installation.
+## Nach dem Import
 
-<Warning>
+1. Prüfen Sie, ob sich die importierte Website korrekt aufrufen lässt.
+2. Erstellen Sie ein **Backup**.
+3. Führen Sie die benötigten Updates durch und prüfen Sie die Website erneut.
+4. Erstellen Sie anschließend ein **neues Backup**.
 
-Es empfiehlt sich gleich ein Backup zu erstellen, die Updates durchführen und erneut ein Backup erstellen ...
+Weitere Hinweise finden Sie beim [Installatron-Support](https://installatron.com/support).
 
-</Warning>
+## Besondere Situationen
 
-<Warning>
+<a id="nach-einem-manuellen-domainwechsel-prüfen" />
 
-Prüfen Sie vor dem Import die aktuell eingestellte PHP-Version des Ziel-Webhosts und die Anforderungen Ihrer Anwendung. Die Version können Sie im vHost-Bereich unter Apache → PHP Version auswählen; verfügbare Versionen und Unterstützung richten sich nach dem konkreten Produkt.
+<Accordion id="dozER" title="Die Website-Adresse wurde manuell geändert">
+  Eine geänderte Website-Adresse wird nicht automatisch in jeder Verwaltungszuordnung übernommen. Prüfen Sie diese Punkte getrennt:
 
-Sie sollten prüfen, mit welcher PHP Version Ihr CMS am aktuellen (alten) Webhost läuft, sonst könnte die importierte Webseite möglicherweise Fehler ausliefern.
+  - DNS und einen gegebenenfalls vorgeschalteten Proxy
+  - TLS am eigentlichen Webserver
+  - die vHost-Zuordnung
+  - die im App-Installer registrierte Adresse
 
-</Warning>
+  Ein Fehler beim HTTPS-Aufbau kann die weitere Prüfung verhindern. Korrigieren Sie die App-Zuordnung erst, wenn die Zieladresse funktioniert. Testen Sie danach die Anwendung und ein neues Backup. Entfernen Sie die Testdomain erst, wenn diese Schritte erfolgreich sind.
 
-<Note>
+  Ein einzelner Origin-Zertifikatsfehler belegt keine allgemeine Unverträglichkeit mit einem Proxyanbieter. Private Schlüssel gehören ausschließlich in den vorgesehenen sicheren Einrichtungsweg.
+</Accordion>
 
-Ein paar nützliche Informationen finden Sie auf der Herstellerseite unter:
-[https://installatron.com/support#](https://installatron.com/support)
+<a id="manuelle-installation-vor-löschen-oder-neuaufsetzen-prüfen" />
 
-<a id="dozER" />
+<Accordion id="0TqNO" title="Eine vorhandene Installation fehlt unter „Meine Applikationen“">
+  Auch ohne Eintrag im App-Installer können Dateien und Datenbanktabellen der Website weiterhin vorhanden sein. Prüfen Sie zuerst, ob sich die Installation über **Von diesem Konto** übernehmen lässt. Eine fehlende Zuordnung bedeutet nicht, dass die Installation entfernt wurde.
 
-## Nach einem manuellen Domainwechsel prüfen
+  Soll die Website tatsächlich ersetzt werden, ordnen Sie vorher **Domain, Document-Root, Konfigurationsdatei, Datenbank und Tabellenpräfix** eindeutig zu. Sichern Sie die benötigten Inhalte und legen Sie fest, was gelöscht werden soll.
 
-Eine geänderte Website-Adresse wird nicht automatisch in jeder Verwaltungszuordnung übernommen. Prüfen Sie DNS und vorgeschalteten Proxy, TLS am eigentlichen Webserver, die vHost-Zuordnung und die im App-Installer registrierte Adresse getrennt. Ein Fehler beim HTTPS-Aufbau kann die weitere Prüfung verhindern.
+  <Warning>
+    Löschen Sie keine ganze Datenbank, wenn andere Anwendungen darin Tabellen verwenden.
+  </Warning>
 
-Korrigieren Sie die App-Zuordnung erst mit einer funktionsfähigen Zieladresse und testen Sie anschließend die Anwendung sowie ein neues Backup. Entfernen Sie die Testdomain erst, wenn diese Schritte erfolgreich sind. Aus einem einzelnen Origin-Zertifikatsfehler folgt keine allgemeine Unverträglichkeit mit einem Proxyanbieter. Private Schlüssel gehören ausschließlich in den vorgesehenen sicheren Einrichtungsweg.
-
-</Note>
-
-<a id="0TqNO" />
-
-## Manuelle Installation vor Löschen oder Neuaufsetzen prüfen
-
-Eine Website kann weiter Dateien und Datenbanktabellen besitzen, obwohl sie unter „Meine Applikationen“ nicht erscheint. Prüfen Sie zunächst, ob die vorhandene Installation über „Von diesem Konto“ in den App-Installer übernommen werden kann. Eine fehlende Installer-Zuordnung ist kein Beleg dafür, dass die Installation entfernt wurde.
-
-Soll die Website tatsächlich ersetzt werden, ordnen Sie vorher Domain, Document-Root, Konfigurationsdatei, Datenbank und Tabellenpräfix eindeutig zu. Sichern Sie die benötigten Inhalte und legen Sie den Löschumfang fest. Löschen Sie keine ganze Datenbank, wenn andere Anwendungen darin Tabellen verwenden. Eine hohe Dateizahl allein erklärt noch keinen Fehler in der Medienverwaltung.
+  Eine hohe Dateizahl allein erklärt noch keinen Fehler in der Medienverwaltung.
+</Accordion>

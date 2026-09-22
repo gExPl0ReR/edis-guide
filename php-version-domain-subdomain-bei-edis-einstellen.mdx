@@ -1,16 +1,37 @@
 ---
 title: "PHP-Version für eine Domain oder Subdomain ändern"
 sidebarTitle: "PHP-Version ändern"
+description: "Wählen Sie im vHost-Bereich die passende PHP-Version für Ihre Domain oder Subdomain."
 ---
 
-Prüfen Sie vor einer PHP-Umstellung eine aktuelle Sicherung und die Kompatibilität von Anwendung, Themes und Erweiterungen. Wählen Sie eine für Ihr Projekt geeignete, unterstützte Version, die im konkreten Webhost angeboten wird. So ändern Sie die PHP-Version für eine Domain oder Subdomain bei EDIS:
+## Vor der Umstellung
 
-1. **Anmelden**: Besuchen Sie den EDIS [Verwaltungsbereich](https://manage.edis.at/vhost)
-2. **Apache-Konfiguration**:
-   - Navigieren Sie im Menü zu **Apache**
-   - Wählen Sie dann den Punkt **PHP Version&#x20;**&#x61;us.
-3. **PHP-Version ändern**:
-   - Klicken Sie auf das Bearbeitungszeichen (meist ein Stift-Symbol) neben der Domain oder SubDomain, für die Sie die PHP-Version ändern möchten.
-   - Wählen Sie die gewünschte PHP-Version aus der Liste der verfügbaren Versionen aus und bestätigen Sie Ihre Auswahl.
+Prüfen Sie eine **aktuelle Sicherung** und die **Kompatibilität Ihrer Anwendung, Themes und Erweiterungen** mit der gewünschten PHP-Version.
 
-Die ausgewählte PHP-Version gilt anschließend für die bearbeitete Domain oder Subdomain. Prüfen Sie danach, ob Ihre Website weiterhin korrekt funktioniert. Beachten Sie, dass Sie für jede Domain oder SubDomain, die in einem eigenen Unterverzeichnis liegt, eine individuelle PHP-Version festlegen können.
+Wählen Sie eine für Ihr Projekt geeignete, unterstützte Version, die auf Ihrem konkreten Webhost angeboten wird.
+
+<a className="edis-button" href="https://manage.edis.at/vhost" target="_blank" rel="noopener noreferrer">vHost-Bereich öffnen</a>
+
+## PHP-Version auswählen
+
+<Steps>
+  <Step title="PHP-Verwaltung öffnen">
+    Melden Sie sich im vHost-Bereich an. Wählen Sie im Menü **Apache → PHP Version**.
+  </Step>
+
+  <Step title="Domain oder Subdomain bearbeiten">
+    Klicken Sie auf das **Bearbeitungszeichen**, meist ein Stift-Symbol, neben der gewünschten Domain oder Subdomain.
+  </Step>
+
+  <Step title="Version auswählen und bestätigen">
+    Wählen Sie die passende PHP-Version aus der Liste der verfügbaren Versionen und bestätigen Sie Ihre Auswahl.
+  </Step>
+</Steps>
+
+## Website anschließend prüfen
+
+Die ausgewählte PHP-Version gilt für die bearbeitete Domain oder Subdomain. Prüfen Sie danach, ob Ihre Website weiterhin korrekt funktioniert.
+
+<Note>
+  Für jede Domain oder Subdomain, die in einem eigenen Unterverzeichnis liegt, können Sie eine individuelle PHP-Version festlegen.
+</Note>

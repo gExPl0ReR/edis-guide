@@ -1,46 +1,71 @@
 ---
 title: "WordPress manuell installieren"
 sidebarTitle: "WordPress manuell installieren"
+description: "Bereiten Sie Webspace und Datenbank vor und führen Sie die WordPress-Installation in sechs Schritten durch."
 ---
 
-**Anleitung zur manuellen Installation von WordPress**
-****
+Diese Anleitung beschreibt die manuelle Installation von WordPress. Für eine verwaltete Installation mit Sicherungsfunktionen können Sie auch den EDIS-App-Installer verwenden.
 
-<Note>
+## Vorbereitung
 
-Diese Anleitung beschreibt die manuelle Installation. Prüfen Sie vorher eine aktuelle Sicherung, die Anforderungen der gewählten WordPress-Version sowie die Zuordnung von Domain, Document-Root und Datenbank. Überschreiben Sie keine vorhandene Website ungeprüft. Für die verwaltete Installation und Sicherungsfunktionen kann der EDIS-App-Installer verwendet werden.
+Bevor Sie beginnen, benötigen Sie:
 
-</Note>
+- **Webhosting und Domain:** Prüfen Sie, welches Verzeichnis Ihrer Domain zugeordnet ist. Dieses Website-Stammverzeichnis wird auch **Document-Root** genannt.
+- **Passende Umgebung:** Prüfen Sie die Anforderungen der gewählten WordPress-Version und die [eingestellte PHP-Version](/php-version-domain-subdomain-bei-edis-einstellen).
+- **MySQL-Datenbank:** Erstellen Sie die Datenbank über die Hostingverwaltung und halten Sie Datenbankname, Benutzername, Passwort und Datenbankhost bereit.
 
-Vorbereitung:
+<Warning>
+  Prüfen Sie eine aktuelle Sicherung und die Zuordnung von Domain, Website-Verzeichnis und Datenbank. Überschreiben Sie keine vorhandene Website ungeprüft.
+</Warning>
 
-1. **Webhosting & Domain:** Stellen Sie sicher, dass Sie über Webhosting und eine Domain verfügen.
-2. **Datenbank:** Erstellen Sie eine MySQL-Datenbank über das Control Panel Ihres Hostings.
+## Installation in sechs Schritten
 
-**Schritt-für-Schritt Anleitung:**
+<Steps>
+  <Step title="WordPress herunterladen">
+    Öffnen Sie [de.wordpress.org](https://de.wordpress.org/), klicken Sie auf **Herunterladen** und laden Sie die aktuelle WordPress-Version herunter. Entpacken Sie anschließend die ZIP-Datei.
+  </Step>
 
-1. **Download:**
-   - Gehen Sie zu [`https://de.wordpress.org/`](https://de.wordpress.org/) und klicken Sie auf „Herunterladen“. Laden Sie die neueste WordPress-Version herunter und entpacken Sie die ZIP-Datei.
-2. **Dateien hochladen:**
+  <Step title="Dateien hochladen">
+    Laden Sie die entpackten WordPress-Dateien in das Hauptverzeichnis Ihrer Website oder in das gewünschte Unterverzeichnis hoch.
 
-Verwenden Sie für den Datei-Upload eine verschlüsselte Verbindung: FTPS oder, wenn Ihr Produkt SSH bietet, SFTP. Übernehmen Sie Server, Port und Benutzer aus den bestätigten Einstellungen Ihres Webhosts; ein FTP-Benutzer ist nicht automatisch ein SSH-/SFTP-Zugang.
+    Verwenden Sie eine **verschlüsselte Verbindung**:
 
-Laden Sie die entpackten Dateien in das Hauptverzeichnis Ihrer Website oder in ein Unterverzeichnis, wenn Sie WordPress in einem Unterordner installieren möchten.
+    - **FTPS** für einen entsprechend eingerichteten Dateizugang
+    - **SFTP**, wenn Ihr Hostingprodukt SSH bietet
 
-1. **Installationsprozess starten:**
-   - Rufen Sie Ihre Website in einem Webbrowser auf. Wenn Sie die Dateien im Hauptverzeichnis abgelegt haben, gehen Sie zu `IhreDomain.at`
-   - Sie werden aufgefordert, eine Sprache auszuwählen. Wählen Sie "Deutsch" und klicken Sie auf "Weiter".
-2. **Konfigurationsinformationen:**
-   - Das System wird Sie informieren, welche Informationen benötigt werden, um fortzufahren. Klicken Sie auf „Los geht‘s“.
-3. **Datenbankdetails:**
-   - Geben Sie die Datenbankinformationen ein: Datenbankname, Benutzername, Passwort, Datenbankhost und Tabellenpräfix.
-   - Klicken Sie auf „Absenden“.
-4. **Installation starten:**
-   - Wenn die Datenbank erfolgreich verbunden wurde, klicken Sie auf „Installation starten“.
-5. **Website-Details:**
-   - Geben Sie den Titel Ihrer Website, einen Benutzernamen, ein Passwort und eine E-Mail-Adresse ein. Diese werden verwendet, um sich in das WordPress-Dashboard einzuloggen.
-   - Klicken Sie auf „WordPress installieren“.
-6. **Anmeldung:**
-   - Nach erfolgreicher Installation klicken Sie auf „Anmelden“ und melden Sie sich mit dem zuvor erstellten Benutzernamen und Passwort an.
+    Übernehmen Sie Server, Port und Benutzer aus den bestätigten Einstellungen Ihres Webhosts. Ein FTP-Benutzer ist nicht automatisch ein SSH- oder SFTP-Zugang.
+  </Step>
 
-Gratulation! Sie haben WordPress erfolgreich installiert. Sie können nun mit dem Designen Ihrer Website beginnen, Plugins hinzufügen und Inhalte veröffentlichen.
+  <Step title="Installationsassistenten aufrufen">
+    Öffnen Sie Ihre Website im Browser. Liegen die Dateien in einem Unterverzeichnis, rufen Sie die entsprechende Adresse einschließlich dieses Unterverzeichnisses auf.
+
+    Wählen Sie **Deutsch** und klicken Sie auf **Weiter**. Bestätigen Sie die Übersicht der benötigten Angaben mit **Los geht’s**.
+  </Step>
+
+  <Step title="Datenbank verbinden">
+    Geben Sie die folgenden Daten ein:
+
+    - Datenbankname
+    - Datenbankbenutzer und Passwort
+    - Datenbankhost
+    - Tabellenpräfix
+
+    Klicken Sie auf **Absenden**. Sobald die Datenbankverbindung erfolgreich hergestellt wurde, wählen Sie **Installation starten**.
+  </Step>
+
+  <Step title="Website und Administratorkonto einrichten">
+    Tragen Sie den **Titel Ihrer Website**, einen **Benutzernamen**, ein **Passwort** und Ihre **E-Mail-Adresse** ein.
+
+    Mit dem hier festgelegten Benutzernamen und Passwort melden Sie sich später in WordPress an. Klicken Sie auf **WordPress installieren**.
+  </Step>
+
+  <Step title="In WordPress anmelden">
+    Klicken Sie nach erfolgreicher Installation auf **Anmelden**. Verwenden Sie den gerade angelegten Benutzernamen und das zugehörige Passwort.
+  </Step>
+</Steps>
+
+## Nach der Installation
+
+Sie können Ihre Website nun gestalten, Erweiterungen hinzufügen und Inhalte veröffentlichen.
+
+Weitere Details finden Sie in der [offiziellen Installationsanleitung von WordPress](https://developer.wordpress.org/advanced-administration/before-install/howto-install/).
