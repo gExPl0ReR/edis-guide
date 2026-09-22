@@ -75,8 +75,24 @@ a.edis-button.edis-home-secondary:hover { background: #e1eef9; }
   padding-left: 0;
   list-style: none;
 }
-.edis-home-topic li { margin: 0.4rem 0; padding-left: 0; }
-.edis-home-topic li a { font-weight: 500; }
+.edis-home-topic .prose ul > li {
+  margin: 0.35rem 0;
+  padding-left: 0 !important;
+}
+.edis-home-topic .prose ul > li::before { display: none !important; }
+.edis-home-topic .prose ul > li a {
+  display: block;
+  padding: 0.15rem 0;
+  color: #00529c !important;
+  font-weight: 500;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+.edis-home-topic .prose ul > li a:hover { text-decoration: underline !important; }
+.edis-home-topic [data-component-part="card-content"] > [data-as="p"] {
+  display: block;
+  min-height: 3rem;
+}
 .edis-home-support {
   margin: 2rem 0 1rem;
   padding: 1.75rem;
