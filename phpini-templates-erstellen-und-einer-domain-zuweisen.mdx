@@ -1,0 +1,30 @@
+---
+title: "PHP.INI-Templates erstellen und einer Domain zuweisen"
+---
+
+Sie können diverse PHP Werte über unser PHP.ini Template definieren.
+Einige Werte wie zB: **Max Execution Time** werden vom Webhost Produkt voreingestellt und können nur durch ein Produktupgrade geändert werden.&#x20;
+
+Die PHP-Direktive memory\_limit begrenzt den Speicher, den ein einzelnes Skript belegen darf. Davon zu unterscheiden ist das gesamte Ressourcenbudget Ihres Hostingprodukts. Eine Änderung per Template oder .user.ini gilt nur, soweit die Serverkonfiguration sie zulässt, und erhöht keine produktseitige Gesamtgrenze. Prüfen Sie den wirksamen Wert in der betroffenen PHP-Umgebung und die aktuellen Tarifgrenzen getrennt.
+
+![PHP-Einstellungen in einem PHP.INI-Template konfigurieren](/images/d7a5cfc3cbf969.png)
+
+Für Kontaktformulare muss die verwendete Anwendung einen gültigen, für den tatsächlichen Versanddienst erlaubten Absender setzen. Die PHP-Direktive sendmail\_from gilt laut PHP-Handbuch für Windows und ist keine allgemeine Lösung für den Mailversand im Linux-Webhosting. Prüfen Sie den tatsächlich verwendeten Weg – etwa mail() oder authentifiziertes SMTP – und dessen bestätigte Einstellungen. Die Besucheradresse gehört üblicherweise in Reply-To, nicht ungeprüft in den technischen Absender.
+
+Der SPF-Eintrag der Absenderdomain muss zu den tatsächlich verwendeten Versanddiensten passen – unabhängig davon, wo die Domain verwaltet wird. Wenn Ihre Anwendung über EDIS versendet, berücksichtigen Sie die EDIS-Versandserver gemäß der folgenden SPF-Anleitung. Bei einem externen SMTP-Dienst gelten dessen Vorgaben. Ergänzen Sie einen vorhandenen SPF-Eintrag; legen Sie keinen zweiten SPF-Eintrag für dieselbe Domain an.
+
+[EDIS Standard SPF Eintrag](/spf-eintrag-fur-den-e-mail-versand-uber-edis)
+
+Wenn Sie Ihre Werte definiert und gesetzt haben, müssen Sie noch das angelegte PHP.ini Template der gewünschten Domain zuweisen:
+
+![PHP.INI-Template der gewünschten Domain zuweisen](/images/9cd38991933ebf.png)
+
+Sie können auch mehrere Templates anlegen und unterschiedlichen (Sub)Domains zuweisen.
+
+<a id="8VMsc" />
+
+## Anwendungsanforderung vor einem Upgrade klären
+
+Ein Systembericht zeigt zunächst die aktuelle Konfiguration einer Installation. Werte aus einer anderen funktionierenden Website sind nicht automatisch Mindestanforderungen für Ihr Theme oder Plugin. Prüfen Sie die konkrete Herstelleranforderung und die betroffene Installation.
+
+Vergleichen Sie anschließend den benötigten Wert mit der tatsächlich wirksamen PHP-Konfiguration und den Grenzen Ihres Hostingprodukts. Ein PHP.INI-Template muss der richtigen Domain zugewiesen sein; es hebt harte Produktgrenzen nicht auf. Stimmen Sie einen eventuell nötigen Produktwechsel gesondert ab und testen Sie danach die zuvor betroffene Funktion.

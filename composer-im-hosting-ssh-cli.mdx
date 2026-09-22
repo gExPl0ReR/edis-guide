@@ -1,0 +1,49 @@
+---
+title: "Composer mit der passenden PHP-Version über SSH nutzen"
+---
+
+<a id="66B7X" />
+
+### Verwendung von Composer über SSH/CLI
+
+Sie haben die Möglichkeit, Composer direkt in Ihren Webhosting-Account zu laden und dort zu nutzen.
+
+Beim Aufruf von Composer ist es entscheidend, stets den vollständigen Pfad inklusive der gewählten PHP-Version anzugeben. Zum Beispiel:
+
+```shell
+/usr/local/bin/edis-php-cli-81 /usr/bin/composer
+```
+
+Je nachdem, welche PHP-Version Sie nutzen, kann der Aufruf **edis-php-cli-81** oder **edis-php-cli-82** lauten.
+
+Wenn Sie die **/usr/bin/composer** Instanz verwenden, führen Sie den vorhandenen Systemaufruf aus. Eine eigene Composer-Version installieren Sie in einem Verzeichnis Ihres Hosting-Accounts; /usr/bin/composer ist dafür kein Installationsziel.
+
+Für detaillierte Informationen zu Composer, besuchen Sie die [offizielle Dokumentation](https://getcomposer.org/doc/00-intro.md#locally).
+
+<Warning>
+
+Für eine eigene Composer-Version verwenden Sie ein Verzeichnis innerhalb Ihres Hosting-Accounts, beispielsweise /home/IhrevHostID/bin/. Erstellen Sie dort bei Bedarf das Unterverzeichnis bin; gemeint ist nicht das Systemverzeichnis /bin/. Rufen Sie die eigene Installation mit dem passenden PHP-Interpreter und ihrem vollständigen Pfad auf, etwa /home/IhrevHostID/bin/composer. Ersetzen Sie IhrevHostID durch Ihre tatsächliche Hostingkennung.
+
+</Warning>
+
+<a id="lIqjp" />
+
+## Web-PHP, SSH und andere Aufrufkontexte unterscheiden
+
+Die für eine Domain ausgewählte PHP-Version legt nicht automatisch den PHP-Interpreter für Composer, SSH oder einen anderen gestarteten Prozess fest. Prüfen Sie den vollständigen PHP-Aufruf, die tatsächlich geladene Konfiguration und die Erweiterungen genau in dem Kontext, in dem der Fehler auftritt. Ein funktionierender Websiteaufruf ist kein Nachweis für die passende CLI-Umgebung.
+
+Die oben genannten PHP-8.1-/8.2-Aufrufe sind Beispiele aus der bisherigen Anleitung. Verwenden Sie den auf Ihrem Webhost tatsächlich verfügbaren, für Ihr Projekt geeigneten Interpreter und Composer-Pfad. Prüfen Sie vor Änderungen SSH-Verfügbarkeit, Anforderungen der Abhängigkeiten und eine Sicherung des Projektstands.
+
+<a id="nsnxH" />
+
+## Fehlende Erweiterungen und Konfiguration prüfen
+
+Übernehmen Sie den exakten Namen der fehlenden Erweiterung aus der Fehlermeldung. SQLite3 und PDO\_SQLite sind beispielsweise unterschiedliche Erweiterungen. Prüfen Sie deren Verfügbarkeit im betroffenen Interpreter, statt vom Ergebnis eines anderen PHP-Kontexts auszugehen.
+
+Die PHP-Version der Website wird im vHost-Bereich unter Apache → PHP Version ausgewählt. Ein PHP.INI-Template muss der betroffenen Domain zugeordnet sein. Änderungen für die Website bestätigen keine Änderung der CLI-Konfiguration und heben produktabhängige Ressourcen- oder Laufzeitgrenzen nicht auf.
+
+<a id="lBV04" />
+
+## Eigene Frameworks und dauerhafte Prozesse
+
+Eine eigene Composer- oder Framework-Installation bedeutet nicht, dass EDIS das Framework vorinstalliert, seine Wartung übernimmt oder jeden Betriebsmodus unterstützt. Klären Sie Anforderungen an Warteschlangen, dauerhafte Prozesse, geplante Aufgaben und Ressourcen vorab. Prüfen Sie nach Änderungen sowohl den Composer-Aufruf als auch die betroffene Anwendung.

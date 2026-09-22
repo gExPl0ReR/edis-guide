@@ -1,0 +1,21 @@
+---
+title: "Anycast DNS: Funktionsweise, DNSSEC und frühere Umstellung"
+---
+
+Anycast DNS verteilt die Beantwortung von DNS-Anfragen auf mehrere Standorte. Redundanz kann die Verfügbarkeit verbessern; daraus folgt keine Garantie gegen sämtliche Ausfälle oder Angriffe. Prüfen Sie den aktuellen Leistungsumfang für Ihre Domain im konkreten Vertrag.
+
+<a id="zcUYL" />
+
+## DNSSEC und Anbieterwechsel
+
+Nach einem Anbieterwechsel kann ein alter DS-Eintrag in der übergeordneten Zone nicht mehr zur neuen Signierung passen. Validierende Resolver können dann SERVFAIL liefern. Die DNSSEC-Fehlersuche von Cloudflare erläutert diesen Zusammenhang. Die richtige Maßnahme ist ein abgestimmter DNSSEC-Wechsel; DNSSEC muss nicht grundsätzlich abgeschaltet werden.
+
+DNSSEC muss zur tatsächlich verwendeten Zone und zur Delegation passen. Eine Domainregistrierung bei EDIS bedeutet nicht automatisch, dass eine extern verwaltete Zone korrekt signiert und verknüpft ist. Prüfen Sie nach einer Änderung die veröffentlichten Daten und die validierende Auflösung.
+
+<a id="rwTFW" />
+
+## Frühere Umstellung von Unicast auf Anycast
+
+Die frühere Anleitung dokumentierte die Umstellung des EDIS-Unicast-Nameserver-Sets im Oktober 2022 sowie das Ende des Lesezugriffs im März 2023 und die Abschaltung im April 2023. Diese Termine sind historische Hinweise und keine heute noch bevorstehenden Fristen.
+
+Das alte Set enthielt ns1.edis.at, ns2.edis.at, ns5.edis.at und ns6.edis.at. Falls Ihre Domain noch alte oder unklare Delegationsdaten zeigt, lassen Sie die aktuell vorgesehenen Nameserver und den vollständigen Zonenbestand prüfen, bevor Sie Änderungen durchführen.

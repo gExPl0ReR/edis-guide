@@ -1,0 +1,39 @@
+---
+title: "Große MySQL-Datenbanken exportieren und wiederherstellen"
+---
+
+Wenn Ihre Datenbank zu groß ist, um über den phpMyAdmin einen MySQL Dump zu laden, gibt es zwei alternative Möglichkeiten, um Ihre Datenbank herunterzuladen:
+
+<a id="bea97" />
+
+### 1. Über den vHost Bereich:
+
+1. Navigieren Sie zum **vHost Bereich**.
+2. Wählen Sie **Datenbank** aus und gehen Sie zu **Rücksicherung**.
+3. Klicken Sie auf **Datenbank download anfordern**.
+
+<a id="4C-so" />
+
+### 2. Über die Kommandozeile mit SSH:
+
+1. Erstellen Sie ein eigenes Verzeichnis, idealerweise außerhalb des **www/home&#x20;**&#x56;erzeichnisses, z.B. **www/backup/**
+
+Verwenden Sie den tatsächlichen Datenbankserver und Datenbankbenutzer Ihres Webhosts. Der Wert nach -u ist der Benutzername und muss nicht mit dem Datenbanknamen übereinstimmen. Ersetzen Sie alle Platzhalter im folgenden Beispiel. Die Option -B schreibt zusätzlich Datenbankauswahl-Anweisungen in den Dump; beachten Sie dies vor einer Rücksicherung.
+
+```shell
+mysqldump -u Datenbankname -p -h dbXX.at.edis.global -B Datenbankname --no-tablespaces > Datenbankname.sql
+```
+
+**Hinweis**
+
+Die Größe der heruntergeladenen Datenbank im Dump kann von der Größe, die im phpMyAdmin angezeigt wird, abweichen. Der Grund dafür ist, dass der Dump ein reines Textfile ist und nicht die gleiche Struktur wie die ursprüngliche Datenbank aufweist.
+
+<a id="L6fs7" />
+
+### Rücksicherung einer Datenbank
+
+Sichern Sie die aktuelle Zieldatenbank vor der Rücksicherung und prüfen Sie Host, Benutzer sowie das Ziel. Achtung: Ein mit -B erstellter Dump enthält CREATE DATABASE- und USE-Anweisungen. Diese können die Datenbankauswahl im Import verändern; der Datenbankname im folgenden mysql-Aufruf allein begrenzt den Import deshalb nicht zuverlässig. Für einen Import in eine andere Datenbank benötigen Sie einen dafür geprüften Dump ohne unpassende Datenbankauswahl oder einen geeigneten Export ohne -B. Ein Import kann vorhandene Daten überschreiben.
+
+```shell
+mysql -u Username -p -h dbXX.at.edis.global  Datenbankname < Datenbankname.sql
+```

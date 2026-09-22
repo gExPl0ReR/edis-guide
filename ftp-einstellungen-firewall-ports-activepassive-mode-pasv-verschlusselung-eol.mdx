@@ -1,0 +1,25 @@
+---
+title: "FTP und SFTP: Verbindung, Ports und Verschlüsselung"
+---
+
+Verwenden Sie die Server- und Zugangsdaten des betroffenen Webhosts aus dem Verwaltungsportal. FTP, FTPS und SFTP sind unterschiedliche Verbindungsarten; Protokoll und Verschlüsselungsmodus müssen zum gewählten Dienst passen.
+
+<a id="rKTKA" />
+
+## FTP und FTPS
+
+Die FTP-Steuerverbindung verwendet üblicherweise TCP-Port 21. Reines FTP verschlüsselt Zugangsdaten und Inhalte nicht. Wählen Sie für die Dateiübertragung den von EDIS unterstützten FTPS-Modus mit TLS und prüfen Sie das Serverzertifikat. Das aktuelle Ristretto-Angebot nennt FTP und FTPS als unterstützte Dienste.
+
+Im passiven Modus baut der Client auch die Datenverbindung zum vom Server mitgeteilten Port auf. Klären Sie einen nötigen passiven Portbereich mit dem Hosting-Support und Ihrer IT-Betreuung. Ein erreichbarer Port 21 bestätigt noch keinen erfolgreichen Datentransfer.
+
+Im aktiven Modus stellt der Server die Datenverbindung zum Client her. Port 20 ist dabei häufig der Quellport des Servers, nicht pauschal der freizugebende Zielport am Client. Für übliche Verbindungen hinter Router oder Firewall ist der passive Modus meist einfacher.
+
+<a id="pWmlm" />
+
+## SFTP über SSH
+
+SFTP ist das SSH File Transfer Protocol. Es verwendet eine verschlüsselte SSH-Verbindung, üblicherweise auf TCP-Port 22; maßgeblich sind die im vHost-Bereich angegebenen Werte. Ihr Hostingprodukt muss SSH beziehungsweise SFTP unterstützen. Ein zusätzlicher FTP-Benutzer ist nicht automatisch ein SSH-Benutzer.
+
+Vergleichen Sie beim ersten Verbindungsaufbau den Hostschlüssel-Fingerabdruck mit einer bestätigten Angabe des Supports. Deaktivieren Sie die Prüfung nicht, um eine Warnung zu umgehen. SFTP benötigt keine separaten FTP-Datenports.
+
+Bei Fehlern nennen Sie Hostname, Protokoll, Port, Zeitpunkt und den bereinigten Verbindungsablauf. Unterscheiden Sie Netzwerkverbindung, TLS-/SSH-Prüfung, Anmeldung und Dateiübertragung. Senden Sie keine Kennwörter.

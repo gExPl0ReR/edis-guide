@@ -1,0 +1,94 @@
+---
+title: "Mailtransport bei EDIS: Transport-Eintrag und MX-Record"
+---
+
+<a id="aLa6A" />
+
+## Was ist ein Transport-Eintrag
+
+Der Transport-Eintrag ist ein Schalter, der EDIS Mailservern mitteilt, ob Sie für eine Domain Emails annehmen dürfen oder nicht.
+
+<a id="mT7Bk" />
+
+## Wann muss der Transport-Eintrag gesetzt sein
+
+Wenn EDIS die Postfächer für eine Domain betreibt, muss der passende Transport-Eintrag gesetzt sein. Bei direkter Zustellung zeigen die öffentlichen MX-Einträge auf das EDIS-Mailsystem. Ein vorgeschalteter externer Filter kann einen anderen öffentlichen MX erfordern und danach an EDIS zustellen; prüfen Sie diesen Sonderfall anhand des tatsächlichen Mailwegs.
+
+**Die Ampel zeigt grün**, wenn beide Voraussetzungen (Transport gesetzt , MX zeigt auf EDIS) erfüllt sind.
+
+<a id="AG8x6" />
+
+## Wann darf der Transport-Eintrag nicht gesetzt sein
+
+Immer dann, wenn für eine Domain eMails NICHT über EDIS abgewickelt werden sollen, ist der Transport-Eintrag zu entfernen. Ein fehlender Transport-Eintrag teilt den EDIS Mailservern mit, dass sie für eine Domain keine eMails annehmen dürfen. Zusätzlich darf der MX-Record nicht mehr auf das EDIS Mailsystem zeigen.
+
+**Die Ampel zeigt grün**, wenn beide Voraussetzungen (Transport fehlt , MX zeigt auf extern) erfüllt sind.
+
+<a id="vZrvb" />
+
+## Wo ist der Transport-Eintrag zu setzen
+
+Der Transport-Eintrag kann im Kundenbereich oder im vHost-Bereich eingesehen bzw. konfiguriert werden.
+
+- [Kundenbereich ](https://manage.edis.at/)-> Domain -> Mail Transport
+- [vHost-Bereich ](https://manage.edis.at/)-> Email Adressen -> Transport
+
+<a id="Um9cm" />
+
+## Kombinationsmöglichkeiten Transport-Eintrag \:: MX
+
+| E-Mail bei EDIS         | MX bei EDIS | Transport-Eintrag gesetzt       | Ampel **grün** |
+| ----------------------- | ----------- | ------------------------------- | ------------------------------------------- |
+| E-Mails extern          | MX extern   | Transport-Eintrag nicht gesetzt | Ampel **grün** |
+| Fehlkonfiguration       | MX bei EDIS | Transport-Eintrag nicht gesetzt | Ampel **rot**  |
+| **Fehlkonfiguration\*** | MX extern   | Transport bei EDIS gesetzt      | Ampel **rot**  |
+
+<a id="zntRs" />
+
+## Sonderfall externe Mailscanner, Mailbox bei EDIS
+
+<Note>
+
+\***Fehlkonfiguration oder gewünschtes Verhalten**
+
+Ein möglicher Sonderfall ist ein vorgeschalteter externer Mailfilter: Er nimmt Nachrichten über die öffentlichen MX-Einträge an und stellt sie anschließend an EDIS-Postfächer zu. Dann können ein externer MX und ein gesetzter EDIS-Transport-Eintrag absichtlich zusammengehören. Lassen Sie den konkreten Zustellweg und die Anzeige prüfen; die Ampelfarbe allein ersetzt diese Prüfung nicht.
+
+**Anwendungsfall:&#x20;**&#x53;PAM- und Virenprüfung extern (McAfee, Ikarus Cloud security "mymailwall") und anschließende Zustellung in ein Postfach bei EDIS.
+
+</Note>
+
+<a id="nI-l8" />
+
+## Empfänger und tatsächliche Zustellwege vergleichen
+
+Wenn E-Mails trotz externer Mailversorgung in einem falschen oder alten Postfach ankommen, nennen Sie Absender, Empfänger und Zeitpunkt eines konkreten Beispiels. Die sichtbare An-Adresse kann sich vom technisch zugestellten Empfänger unterscheiden. Der Support kann dafür Transportdaten, Aliasse, Weiterleitungen, Catchall und öffentliche MX-Ziele gemeinsam prüfen.
+
+Ein vorgeschaltetes Sicherheitsgateway kann Nachrichten weiterhin an EDIS-Postfächer zustellen. Deshalb darf der lokale Transport nicht pauschal abgeschaltet werden. Entscheidend ist die beabsichtigte Mailversorgung der konkreten Empfängerdomain.
+
+<a id="Yw9m_" />
+
+## Rückläufer „too many hops“ nach dem Umzug
+
+Dieser Fehler weist auf zu viele Transportstationen hin und kann durch eine Zustellschleife entstehen. Übermitteln Sie den vollständigen Rückläufer und den genauen Zeitpunkt. Hilfreich sind außerdem die Queue-ID und die Transportstationen in den Received-Zeilen der Originalnachricht. Entfernen Sie nicht benötigte Nachrichteninhalte aus Diagnoseunterlagen.
+
+Nach einem Providerwechsel können alte Domain-, Gateway-, Transport- oder Weiterleitungsregeln verblieben sein. Lassen Sie diese mit der aktuellen Zielkonfiguration abgleichen. Nach einer gezielten Korrektur sollten Nachrichten von EDIS-Absendern und von externen Absendern getestet werden. Eine Änderungsbestätigung allein belegt noch keinen erfolgreichen Empfang.
+
+<a id="Y4gf_" />
+
+## Fremddomains nach einem Umzug bereinigen
+
+Klären Sie vor dem Entfernen einer Fremddomain aus der Hostingliste, ob unter dieser Domain weiterhin E-Mail oder andere Dienste bei EDIS benötigt werden. Die Hostingzuordnung, der lokale Mailtransport und der registrierte Domainvertrag sind unterschiedliche Dinge. Eine Listenbereinigung ist weder eine Domainlöschung bei der Registry noch automatisch eine Kündigung des Hostingvertrags.
+
+<a id="sk42A" />
+
+## Zertifikats-Namensfehler beim eingehenden Mailtransport
+
+Meldet ein fremder Mailserver beim Zustellen einen „certificate name mismatch“, vergleichen Sie den tatsächlich verwendeten MX-Zielnamen mit dem Zertifikat der Gegenstelle. Der Mailabruf per IMAP und die SMTP-Einstellung auf Ihrem Computer betreffen andere Verbindungen. Ein funktionierender Webmail-Zugang widerlegt daher keinen Fehler beim eingehenden Transport.
+
+Lassen Sie das für Ihre Domain aktuell vorgesehene EDIS-MX-Ziel bestätigen und prüfen Sie vorhandene Transport-Sicherheitsrichtlinien. Bei MTA-STS werden zulässige MX-Hosts und deren Zertifikate geprüft. Schalten Sie die Hostnamen- oder Zertifikatsprüfung nicht als pauschale Fehlerbehebung ab. Ein Namenskonflikt beweist auch keine Verwendung einer veralteten TLS-Version.
+
+Nach einer abgestimmten Korrektur müssen DNS-Wirkung und Zustellung aus dem zuvor betroffenen Absendersystem erneut geprüft werden. Dokumentieren Sie Zeitpunkt, Zielserver, Fehler und Testergebnis. Eine Änderung für eine Domain bedeutet nicht, dass alle bestehenden Domains bereits umgestellt wurden.
+
+Technischer Hintergrund: RFC 8461 – SMTP MTA Strict Transport Security.
+
+[https://www.rfc-editor.org/rfc/rfc8461.html](https://www.rfc-editor.org/rfc/rfc8461.html)

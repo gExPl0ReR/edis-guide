@@ -1,0 +1,20 @@
+---
+title: "Gmail lehnt E-Mails ab: Authentifizierung und SPF prüfen"
+---
+
+Sie versenden eine Email von Ihrem Konto an eine Google Email Adresse und bekommen folgende Fehlermeldung zurück:
+
+<Info>
+
+550-5.7.1 This message does not have authentication information&#x20;
+or fails to pass 550-5.7.1 authentication checks.&#x20;
+To best protect our users from spam, the 550-5.7.1 message has been blocked.&#x20;
+Please visit 550-5.7.1 https\://support.google.com/mail/answer/81126#authentication
+
+</Info>
+
+Die Meldung weist auf fehlende oder fehlgeschlagene E-Mail-Authentifizierung hin. Prüfen Sie den [SPF Eintrag](/spf-eintrag-fur-den-e-mail-versand-uber-edis) bei Ihrer Domain sowie DKIM und die tatsächlich verwendeten Versanddienste.
+
+Bearbeiten Sie den SPF-Eintrag in der autoritativen DNS-Verwaltung Ihrer Domain. Bei EDIS verwenden Sie die für Ihre Domain eingerichtete DNS-Verwaltung beziehungsweise PowerDNS-Admin. Ändern Sie einen vorhandenen SPF-TXT-Eintrag, statt einen zweiten für denselben Namen anzulegen.
+
+Aktuelle Anforderungen von Gmail an Absender: [https://support.google.com/mail/answer/81126](https://support.google.com/mail/answer/81126) . Prüfen Sie die Authentifizierung anhand des vollständigen Rückläufers und eines neuen Tests über den tatsächlich verwendeten Versanddienst.

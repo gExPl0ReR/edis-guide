@@ -1,55 +1,19 @@
-# Mintlify Starter Kit
+# EDIS GmbH Knowledge Base
 
-Use the starter kit to get your docs deployed and ready to customize.
+Die vollständige, geprüfte öffentliche Dokumentation der EDIS GmbH für Webhosting, Domains und E-Mail.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+- 65 deutschsprachige Artikel einschließlich Startseite
+- Originale Screenshots und lokal gespeicherte Bilder
+- Historische Artikeladressen und die bisherigen Mintlify-Pfade als Weiterleitungen in `docs.json`
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+## Veröffentlichung
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+Die Mintlify-Installation unter https://edis-gmb-h.mintlify.app/ ist mit dem Branch `main` dieses Repositories verbunden. Änderungen an `main` werden von Mintlify bereitgestellt.
 
-## AI-assisted writing
+Die produktive Domain ist `www.edis.guide`. Die Domainumschaltung wird separat verwaltet.
 
-Set up your AI coding tool to work with Mintlify:
+## Bearbeitung
 
-```bash
-npx skills add https://mintlify.com/docs
-```
+Artikel stehen als MDX-Dateien im Hauptverzeichnis, die Navigation und Weiterleitungen in `docs.json`. Interne Links verwenden die bestehenden öffentlichen Pfade. Screenshots liegen unter `images/`, Logo und Favicon unter `logo/`.
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
-
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+Dieses öffentliche Repository enthält ausschließlich veröffentlichte Artikel. Unveröffentlichte Entwürfe, interne Prüfberichte und Support-Konversationen gehören nicht in das Repository.

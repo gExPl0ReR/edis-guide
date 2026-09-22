@@ -1,0 +1,78 @@
+---
+title: "WordPress mit dem App-Installer importieren"
+---
+
+[https://manage.edis.at/vhost/](https://manage.edis.at/vhost/) -> App-Installer -> Expertenmodus
+
+Unter dem Reiter "Anwendungs Browser" auf das entsprechende CMS Icon klicken, in diesem Fall WordPress
+
+![WordPress im Anwendungsbrowser des App-Installers auswählen](/images/3a59853398c1a0.png)
+
+Rechts neben "Diese Applikation installieren", auf die 3 waagrechten Striche klicken:
+
+![Menü zum Import einer bestehenden WordPress-Installation](/images/134af9212591ac.png)
+
+"Eine bestehende Installation importieren" klicken
+
+"Von einem anderen Konto" -> "Fortsetzen"
+
+![Installation von einem anderen Hosting-Konto importieren](/images/e680fc52f32746.png)
+
+<Warning>
+
+"Von diesem Konto" -> "Fortsetzen" - Damit können Sie ein manuell installiertes CMS in den App-Installer importieren, damit dies dort verwaltet werden kann (Updates, Backups usw.)
+
+</Warning>
+
+![Bestehende Installation aus demselben Hosting-Konto übernehmen](/images/896d3d3f6484a2.png)
+
+Bei "Quelle" geben Sie den (Ihren) Domainnamen ein und wählen das Protokoll, zB: FTP (oder ein anderes Transferprotokoll)
+
+<Warning>
+
+Zu beachten ist, wenn Sie zB: FTP auswählen, dass der Pfad angegeben wird, sollte der FTP Benutzer nicht im jeweiligen DocRoot am "alten Webhost/Server" landen.
+
+</Warning>
+
+Beim Ziel können die temp. Domain verwenden (eventuell mit Pfad wenn es im /www/home/ ein Verzeichnis für die Webseite gibt zB: /www/home/webseite1/
+
+Damit der Import durchgeführt werden kann, auf "Importieren" klicken ....
+
+Nach erfolgten Import, finden Sie unter "Meine Applikationen" Ihre CMS Installation.
+
+<Warning>
+
+Es empfiehlt sich gleich ein Backup zu erstellen, die Updates durchführen und erneut ein Backup erstellen ...
+
+</Warning>
+
+<Warning>
+
+Prüfen Sie vor dem Import die aktuell eingestellte PHP-Version des Ziel-Webhosts und die Anforderungen Ihrer Anwendung. Die Version können Sie im vHost-Bereich unter Apache → PHP Version auswählen; verfügbare Versionen und Unterstützung richten sich nach dem konkreten Produkt.
+
+Sie sollten prüfen, mit welcher PHP Version Ihr CMS am aktuellen (alten) Webhost läuft, sonst könnte die importierte Webseite möglicherweise Fehler ausliefern.
+
+</Warning>
+
+<Note>
+
+Ein paar nützliche Informationen finden Sie auf der Herstellerseite unter:
+[https://installatron.com/support#](https://installatron.com/support)
+
+<a id="dozER" />
+
+## Nach einem manuellen Domainwechsel prüfen
+
+Eine geänderte Website-Adresse wird nicht automatisch in jeder Verwaltungszuordnung übernommen. Prüfen Sie DNS und vorgeschalteten Proxy, TLS am eigentlichen Webserver, die vHost-Zuordnung und die im App-Installer registrierte Adresse getrennt. Ein Fehler beim HTTPS-Aufbau kann die weitere Prüfung verhindern.
+
+Korrigieren Sie die App-Zuordnung erst mit einer funktionsfähigen Zieladresse und testen Sie anschließend die Anwendung sowie ein neues Backup. Entfernen Sie die Testdomain erst, wenn diese Schritte erfolgreich sind. Aus einem einzelnen Origin-Zertifikatsfehler folgt keine allgemeine Unverträglichkeit mit einem Proxyanbieter. Private Schlüssel gehören ausschließlich in den vorgesehenen sicheren Einrichtungsweg.
+
+</Note>
+
+<a id="0TqNO" />
+
+## Manuelle Installation vor Löschen oder Neuaufsetzen prüfen
+
+Eine Website kann weiter Dateien und Datenbanktabellen besitzen, obwohl sie unter „Meine Applikationen“ nicht erscheint. Prüfen Sie zunächst, ob die vorhandene Installation über „Von diesem Konto“ in den App-Installer übernommen werden kann. Eine fehlende Installer-Zuordnung ist kein Beleg dafür, dass die Installation entfernt wurde.
+
+Soll die Website tatsächlich ersetzt werden, ordnen Sie vorher Domain, Document-Root, Konfigurationsdatei, Datenbank und Tabellenpräfix eindeutig zu. Sichern Sie die benötigten Inhalte und legen Sie den Löschumfang fest. Löschen Sie keine ganze Datenbank, wenn andere Anwendungen darin Tabellen verwenden. Eine hohe Dateizahl allein erklärt noch keinen Fehler in der Medienverwaltung.

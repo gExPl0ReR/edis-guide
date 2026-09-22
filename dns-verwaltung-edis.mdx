@@ -1,0 +1,240 @@
+---
+title: "DNS-Einträge im PowerDNS-Admin verwalten"
+---
+
+<a id="q7GKh" />
+
+## Erstes Einloggen im PDNS-Admin
+
+Nachdem Sie erfolgreich einen [Benutzer](/anycast-dns-benutzer-erstellen) für das DNS Administrationsportal PDNS-Admin erstellt und ein Passwort gesetzt haben, möchten wir Ihnen hier zeigen, wie Sie DNS-Einstellungen vornehmen können.
+
+Loggen Sie sich im [PDNS-Admin Portal](https://pdns.edis.global/login) ein. Sie können alle Domains, die in Ihrem Kundenaccount verwaltet werden (und für die es DNS-Einträge bei EDIS gibt), administrieren. Für den Fall, dass nicht alle Domains angezeigt werden, wenden Sie sich bitte an unser Team.
+
+<Warning>
+
+Wenn Sie die NameServer für Ihre Domain ändern möchten, verwenden Sie bitte die Anleitung [Nameserver einer Domain bei EDIS ändern](/nameserver-einer-domain-bei-edis-andern)
+
+**BITTE NICHT** die Einträge @ IN NS **ns1.edis.global** und **ns2.edis.global** ändern!
+
+</Warning>
+
+**PDNS-Admin mit einem Standard EDIS DNS-Eintrag**
+
+Das folgende Beispiel zeigt einen DNS-Eintrag zum Hosting von Domains und E-Mails bei EDIS. Wir verwenden diesen Eintrag zur Beschreibung der Funktionen und Felder von PDNS-Admin.
+
+![DNS-Zone mit Standard-Einträgen für EDIS-Webhosting und E-Mail](/images/16adef711f18ed.png)
+
+<a id="X4Wpp" />
+
+## Die Spalte "Name"
+
+Die Spalte **Name** beinhaltet Informationen, worauf sich ein DNS-Eintrag bezieht. Auf die Domain selbst oder auf Subdomains innerhalb der Domain.
+
+<Warning>
+
+Es darf in der DNS Verwaltung unter "Name" nur die gewünschte SubDomain stehen, also zB:
+
+**s1.\_domainkey**
+**s2.\_domainkey**
+
+Es passiert leider immer wieder, dass hier der DomainName mit eingetragen wird und das ist leider falsch (da ja die Zone der Domain bearbeitet wird, also die Domain vom System hinzugefügt wird):
+**s1.\_domainkey.meinedomain.at**
+**s2.\_domainkey.meinedomain.at**
+
+Was folgendes Ergebnis ausliefern würd&#x65;**:**
+**s1.\_domainkey.meinedomain.at.meinedomain.at**
+**s2.\_domainkey.meinedomain.at.meinedomain.at**
+
+und eben nicht: 
+
+**s2.\_domainkey.meinedomain.at**
+
+</Warning>
+
+<a id="_zQVS" />
+
+### \* Stern-Eintrag
+
+Ein Stern-Eintrag wie \*.example.at ist eine DNS-Wildcard. Er kann Antworten für ansonsten nicht vorhandene Namen liefern; ausdrücklich vorhandene Namen und Delegationen begrenzen seine Wirkung. Er überschreibt keine vorhandenen Einträge und ersetzt nicht die Prüfung der tatsächlich benötigten Subdomains. Ob die Website oder ihr Zertifikat diese Namen unterstützt, muss zusätzlich geprüft werden.
+
+<a id="ahtH4" />
+
+### @ Klammeraffe-Eintrag
+
+Einträge mit einem **Klammeraffen @** beziehen sich auf die Domain selbst. Das @ Symbol ist ein Platzhalter und steht für die Domain selbst, ohne diese jedes mal explizit zu nennen.
+
+<a id="Sh2FG" />
+
+### Hostnamen
+
+Hostnamen, wie im obigen Beispiel **mail**, beschreiben Subdomains innerhalb der verwalteten Domain. **mail** steht im obigen Beispiel für den Hostnamen bzw. die Subdomain **mail.test-edis.at.**
+
+<a id="rte-u" />
+
+## Die Spalte "Type"
+
+<a id="u9p8w" />
+
+### A Records
+
+Über den Typ **A Record** findet aktuell noch der größte Teil der Auflösung vom Domainnamen auf IP-Adressen im Internet statt. In seinem Datenfeld (Data) befindet sich eine **IPv4-Adresse**. Über diese Einträge ist es möglich, dass Internetnutzer in ihrem Webbrowser eine Domain eingeben können (anstatt einer IP-Adresse) und danach Inhalte von einem Server unter der jeweiligen IP Adresse heruntergeladen werden können. Im Hintergrund wird dabei, über das Domain-Name-Service (DNS), die eingegebene Domain in eine IPv4 Adresse aufgelöst (so wie beim Nachschlagen eines Namens in einem Telefonbuch).
+
+<Note>
+
+Im Feld Data dürfen bei A-Records nur eine IPv4 Adresse und kein Hostname wie z.B. meineSeite.beiEdis.at oder URL eingetragen werden.
+
+</Note>
+
+<a id="8_71l" />
+
+### AAAA Records
+
+Ein **AAAA Record** - auch gerne als „Quad-A“ bezeichnet, funktioniert wie der A-Record. Es wird statt einer IPv4-Adresse eine IPv6 Adresse eingetragen, welche zur Auflösung des Domainnames zu einer IP Adresse über das IPv6 Protokoll verwendet wird. Die vier A (AAAA) kommen daher, dass eine IPv6 Adresse die vierfache Länge einer IPv4 Adresse (A Record) hat.
+
+<Note>
+
+Im Feld Data dürfen bei AAAA-Records nur eine IPv6 Adresse und kein Hostname wie z.B. meineSeite.beiEdis.at oder URL eingetragen werden.
+
+</Note>
+
+<Warning>
+
+A- und AAAA-Einträge eines Webnamens müssen beide zum beabsichtigten Dienst führen. Die IPv4- und IPv6-Adressen dürfen zu unterschiedlichen Servern gehören, sofern beide den richtigen Inhalt und ein passendes Zertifikat bereitstellen. Prüfen Sie bei einem Anbieterwechsel beide Record-Typen. Übernehmen Sie IPv6-Werte aus der aktuellen Vorgabe des Zielanbieters; entfernen Sie einen veralteten AAAA-Eintrag nur nach Prüfung der benötigten Dienste. Historische Beispieladressen sind keine allgemeine Konfigurationsvorgabe.
+
+</Warning>
+
+<a id="PSBOa" />
+
+### CNAME Records
+
+Unter einem **CNAME Record** (CNAME steht für Canonical Name) versteht man einen **Alias**, also einen zusätzlichen Namen, zu einem bereits an anderer Stelle definierten Hostnamen (der seinerseits auf eine IPv4 und/oder IPv6 Adresse verweist). Ein Hostname der mit einem CNAME versehen wird, übernimmt die Einstellungen (IP Adressen) des Ziels. Ändert sich die IP-Adresse vom Ziel, wird diese Änderung ohne weitere Updates, automatisch auf den Hostnamen der über einen CNAME auf das Ziel gesetzt hat, vererbt.
+
+Ein CNAME hat im Feld Data einen Hostnamen wie z.B. meineSeite.beiwix.de, aber keine URL, also **kein** **http\://**&#x6D;eineSeite.beiEdis.at
+
+<Note>
+
+Im Gegensatz zum A oder AAAA Records, dürfen im Feld Data weder IPv4 noch IPv6 Adressen eingetragen werden. **Ein CNAME darf niemals für die Domain selbst gesetzt werden&#x20;**(z.B. @ test-edis.at), sondern nur für eine Subdomain (z.B. www\.test-edis.at). Ein CNAME darf lt. Spezifikation niemals "on top of the zone" stehen.
+
+</Note>
+
+<a id="ccAjN" />
+
+### TXT Records
+
+Ein TXT Record enthält Text. TXT Einträge enthalten entweder für menschliche Nutzer lesbare "unstrukturierte" Notizen, können aber auch maschinenverwertbare Informationen enthalten.
+
+Wenn Sie einen TXT Eintrag (z.B. einen SPF-Record) erfassen, öffnet sich ein weiteres kleines Eingabefenster.
+
+<Note>
+
+Geben Sie den gewünschten Eintrag, **ohne Anführungszeichen und ohne Hochkommas,&#x20;**&#x65;in.
+
+korrekt: `v=spf1 a:spf.edis.at -all`
+
+falsch:   `"v=spf1 a:spf.edis.at -all"`
+
+</Note>
+
+<Warning>
+
+Wichtig ist, es darf nur eine Zeile für den SPF vorhanden sein, wenn mehrere Server Emails versenden dürfen, immer den bestehenden SPF Eintrag erweitern und keinen neuen anlegen!
+
+</Warning>
+
+Am Ende des Tages muss der TXT Eintrag links und rechts je 1x ein Anführungszeichen haben, siehe Beispiel.
+
+![TXT-Eintrag in der DNS-Verwaltung von PowerDNS-Admin](/images/241f90f92ba154.png)
+
+<a id="KlxGQ" />
+
+### Das Feld "Status"
+
+Der **Status** Eintrag in jeder Zeile legt fes&#x74;**,** ob ein Eintrag aktiv "Active" oder inaktiv "Disabled" ist. Aktive Einträge werden bei der Beantwortung von Anfragen berücksichtigt. Inaktive Einträge ("Disabled") werden bei der Beantwortung von Anfragen nicht berücksichtigt.
+
+<a id="UX5Ay" />
+
+### Das Feld "TTL"
+
+**TTL** steht für „Time to live“ und beschreibt die Zeit (in Sekunden), die ein DNS-Eintrag im Cache zwischengespeichert werden darf. Nach Ablauf der über TTL definierten Zeit kann nicht sichergestellt werden, dass der im Cache befindliche Eintrag noch aktuell ist und es muß eine neuerliche Anfrage an den Nameserver geschickt werden, statt den Wert aus dem Cache auszulesen.
+
+Die TTL ist eine Cache-Dauer, keine feste weltweite Umschaltfrist. Eine veröffentlichte Änderung kann bei einer neuen Abfrage bereits sichtbar sein, während andere Resolver noch den alten Wert bis zum Ablauf seiner verbleibenden TTL verwenden. Senken Sie die TTL vor einem geplanten Wechsel rechtzeitig: Bereits zwischengespeicherte Antworten behalten zunächst die vorherige TTL. Prüfen Sie nach der Änderung autoritative Antworten und die betroffenen Resolver.
+
+Im Falle eines DNS Ausfalls sind höhere Werte besser. Im Rahmen einer Umstellung sollten jedenfalls bequemere Werte in Betracht gezogen werden.
+
+![TTL-Einstellung eines DNS-Eintrags bei EDIS](/images/b96414206ab8b4.png)
+
+Im Feld **Comment&#x20;**(Notiz) können beliebige Kommentare bzw. Notizen zu einem Eintrag erfasst werden.
+
+<Note>
+
+Änderungen an DNS-Einträgen sind pro Zeile explizit mit **"Save"&#x20;**&#x7A;u speichern.
+
+**Cancel&#x20;**&#x62;richt eine Änderung ohne zu speichern ab.
+
+</Note>
+
+![DNS-Eintrag mit Kommentar sowie den Optionen Save und Cancel](/images/e9e50680d18838.png)
+
+<Note>
+
+Wenn Sie alle Änderungen an einer Domain abgeschlossen haben, wenden Sie Ihre Änderungen mit **"Apply Changes"&#x20;**&#x61;n.
+
+**Erst nach erfolgtem Anwenden von Änderungen mittels "Apply Changes" werden die Änderungen ins Internet repliziert!**
+
+</Note>
+
+![Zonenänderungen mit Apply Changes übernehmen](/images/92c17ea4c223ba.png)
+
+![Übersicht der DNS-Einträge einer Domain bei EDIS](/images/ddf19c99a154db.png)
+
+<a id="ViHVK" />
+
+### *DNSSEC*
+
+Das Schloss-Symbol im PDNS-Dashboard betrifft die Signierung der DNS-Zone. Für eine durchgehend validierbare DNSSEC-Kette muss auch der passende DS-Eintrag bei der übergeordneten Zone beziehungsweise beim Registrar vorhanden sein. Lassen Sie prüfen, ob EDIS diesen Schritt für Ihre Domain automatisch erledigt oder weitere Angaben benötigt werden. Prüfen Sie anschließend die Validierung. Bei einem Nameserverwechsel müssen Signierung und DS-Einträge koordiniert werden; ein veralteter DS-Eintrag kann die Auflösung verhindern.
+
+![DNSSEC-Aktivierung über das Schloss-Symbol im PowerDNS-Admin](/images/83128d07113610.png)
+
+<a id="dQvtY" />
+
+## Zuständige DNS-Zone prüfen
+
+Ändern Sie Einträge dort, wo die autoritativen Nameserver Ihrer Domain verwaltet werden. Eine Änderung in einer ungenutzten Zone hat keine Wirkung auf die öffentliche Auflösung.
+
+<a id="pnbQu" />
+
+## Speichern und veröffentlichen
+
+Bereits zwischengespeicherte Antworten können bis zum Ablauf ihrer TTL weiterhin sichtbar sein. Eine pauschale Wartezeit ersetzt die Prüfung eines falschen Eintrags nicht.
+
+<a id="QG3Mz" />
+
+## Webagentur benötigt DNS-Änderungen
+
+Lassen Sie sich von Ihrer Agentur die genauen Hostnamen, Record-Typen und Zielwerte geben. Für eine Websiteaufschaltung ist nicht automatisch die Weitergabe Ihres vollständigen Providerlogins erforderlich. Prüfen Sie den berechtigten Vertragspartner und den vorgesehenen Weg für begrenzte Verwaltungsrechte.
+
+Bei einem Resellervertrag stimmen Sie die Änderung mit Ihrem direkten Vertragspartner ab. Nennen Sie ausdrücklich, welche Maildienste und sonstigen Einträge erhalten bleiben sollen. Ein Agenturschreiben oder eine fertig vorbereitete Website bestätigt für sich allein noch keine Änderungsberechtigung.
+
+<a id="TZHrQ" />
+
+## Eine Domain für einen externen Dienst verifizieren
+
+Lassen Sie sich die vollständige DNS-Vorgabe des Dienstes anzeigen: Record-Typ, Name beziehungsweise Host und einzutragender Wert oder Zielhostname. Eine einzelne Verifizierungs-ID mit dem Hinweis „TXT oder CNAME“ reicht nicht aus. Diese Record-Typen sind nicht beliebig austauschbar.
+
+Prüfen Sie zunächst, wer die aktiven Nameserver verwaltet, und verwenden Sie den dazugehörigen DNS-Zugang. Kundenzugang und DNS-Kennwort können getrennt sein. Nach dem Speichern und Anwenden prüfen Sie den veröffentlichten Eintrag und anschließend die Verifizierung beim externen Dienst. Eine Anleitung zum Passwortreset oder eine gespeicherte DNS-Zeile allein bestätigt den Abschluss nicht.
+
+<a id="qR6Jk" />
+
+## Eine Domain fehlt im DNS-Portal
+
+Wenn eine Domain nicht angezeigt wird, lassen Sie Kundenzuordnung, aktive Nameserver und die im Vertrag enthaltene DNS-Nutzung prüfen. Eine registrierte Domain und eine im Portal verwaltbare DNS-Zone sind nicht dasselbe. Das Fehlen in einer Liste beweist nicht, dass die Domain oder ihre öffentliche Zone gelöscht wurde.
+
+Wenn Sie die DNS-Daten für einen Mailumzug benötigen, nennen Sie dieses Anliegen ausdrücklich. Der benötigte Zonenbestand und die Mailabhängigkeiten müssen unabhängig vom Transfercode erfasst werden. Entfernen Sie vorhandene Zuordnungen oder Maildienste erst nach geklärtem Umstellungsplan und bestätigtem Umfang.
+
+<a id="c-WUs" />
+
+## DNS-Zonenstand vor Änderungen sichern
+
+Dokumentieren Sie vor umfangreichen Änderungen die vorhandenen Namen, Record-Typen, Werte, Prioritäten und TTLs. Nutzen Sie eine Exportfunktion nur, wenn sie in Ihrem aktuellen Verwaltungszugang tatsächlich angeboten wird. Halten Sie fest, welche Einträge erhalten bleiben müssen.
+
+Gehen Sie nicht davon aus, dass historische DNS-Zonen automatisch als Kundenbackup abrufbar sind. Klären Sie die Verfügbarkeit eines gewünschten früheren Standes ausdrücklich mit dem Support. Sicherungen von Webdateien, Datenbanken oder E-Mails bestätigen keinen entsprechenden DNS-Sicherungsumfang.

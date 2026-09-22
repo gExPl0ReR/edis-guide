@@ -1,0 +1,109 @@
+---
+title: "Let's-Encrypt-Zertifikat bei EDIS bestellen und aktivieren"
+---
+
+Bei jeder Domain, die bei EDIS gehostet wird, ist es möglich, ein Let's Encrypt SSL Zertifikat zu bestellen oder diese zu aktivieren, damit Sie Ihre Webseite mit **https\://&#x20;**&#x76;erwenden können.
+
+<Steps>
+
+<Step title="Schritt 1">
+
+Gehen Sie in den [vHost-Bereich](https://manage.edis.at/vhost) zu HTTPS (SSL/TLS)
+
+</Step>
+
+<Step title="Schritt 2">
+
+Drücken Sie das grüne **"+" Symbol&#x20;**&#x6C;inks neben der Domain. Prüfen Sie die angezeigten Leistungen und etwaigen Kosten, bevor Sie die Bestellung bestätigen.
+
+</Step>
+
+<Step title="Schritt 3">
+
+Die Bereitstellung kann einige Zeit benötigen. Prüfen Sie den Status im vHost-Bereich und rufen Sie anschließend den gewünschten Hostnamen über HTTPS auf. Erst das tatsächlich ausgelieferte gültige Zertifikat bestätigt die erfolgreiche Aktivierung; 15 Minuten sind keine verbindliche Höchstfrist.
+
+</Step>
+
+</Steps>
+
+<Warning>
+
+Ein Schlosssymbol oder eine gesperrte Auswahl allein belegt keine bestimmte DNS-Ursache. Prüfen Sie die konkrete Meldung und den Zertifikatsstatus sowie die aktuellen A- und gegebenenfalls AAAA-Ziele der betroffenen Hostnamen. Nennen Sie dem Support Domain, Fehlermeldung und Zeitpunkt, wenn Bestellung oder Aktivierung nicht möglich sind.
+
+</Warning>
+
+![Let's-Encrypt-Zertifikat im Bereich HTTPS (SSL/TLS) bestellen](/images/aa82fc5aaf836a.png)
+
+Wann benötigen Sie ein Zertifikat?
+
+Ein SSL-/TLS-Zertifikat ermöglicht den verschlüsselten Aufruf Ihrer Website über HTTPS. Auch eine Domain, die lediglich auf eine andere Website weiterleitet, benötigt für ihren eigenen HTTPS-Aufruf ein passendes Zertifikat. Das Zertifikat der Zielwebsite genügt dafür nicht.
+
+<a id="dxsHa" />
+
+## Kosten und Vertragsumfang
+
+Aus dem Namen „Let's Encrypt“ lässt sich kein kostenloser EDIS-Service ableiten. Maßgeblich sind die aktuelle Bestellanzeige und Ihr Vertrag. Ein Webhost-Umzug beendet eine Zertifikatsleistung nicht automatisch.
+
+<a id="Bi7sh" />
+
+## HTTPS für Haupt- und Alias-Domains prüfen
+
+Prüfen Sie jede Adresse, die Besucher direkt aufrufen können: Hauptdomain, www und weitere Alias-Domains. Halten Sie Domainzuordnung, Weiterleitungsregel und Zertifikatsabdeckung getrennt fest. Auch eine Alias-Domain braucht für ihren eigenen HTTPS-Aufruf ein gültiges Zertifikat, bevor die Weiterleitung zur Hauptdomain greifen kann.
+
+<a id="AoFGe" />
+
+## Verwaltungsfehler trotz funktionierendem HTTPS
+
+Eine Fehlermeldung in der Zertifikatsverwaltung muss nicht bedeuten, dass die Website ein ungültiges Zertifikat ausliefert. Nennen Sie dem Support die genaue Verwaltungsaktion, die Fehlermeldung und den betroffenen Hostnamen. Ein Fehler zum Vertrags- oder Kündigungsdatum wird getrennt vom tatsächlich aufgerufenen HTTPS-Ziel geprüft.
+
+Wenn HTTPS funktioniert, aber statt der Website nur ein Verzeichnis oder eine Testdatei erscheint, sind zusätzlich Domainzuordnung, Zielverzeichnis und Startdatei zu prüfen. Eine weitere kostenpflichtige Zertifikatsbestellung ist keine allgemeine Fehlerbehebung.
+
+<a id="Vo8sr" />
+
+## SSL-Kündigungsmitteilung und Zertifikatsgültigkeit unterscheiden
+
+Eine Kündigungsmitteilung kann eine Abrechnungsposition oder die künftige Verlängerung betreffen. Daraus lässt sich allein nicht ablesen, ob das aktuell eingesetzte Zertifikat sofort ungültig wird. Lassen Sie die betroffene Domain, das Zertifikatsablaufdatum, das Vertragsende und den weiteren Verlängerungsauftrag getrennt prüfen.
+
+Wenn Sie das Zertifikat weiter benötigen, klären Sie das aktuelle Angebot und den nächsten Ausstellungsschritt rechtzeitig mit dem Support. Eine frühere individuelle Lösung mit manueller Rechnung ist keine allgemeine Zusage. Bestellen Sie nicht allein wegen einer unklaren Mitteilung ein zweites Zertifikat.
+
+<a id="O6-gg" />
+
+## Hauptwebsite umgezogen, Subdomain bleibt
+
+Listen Sie vor einer SSL-Kündigung alle weiter genutzten Hostnamen auf. Wenn die Hauptwebsite zu einem anderen Anbieter zieht, kann eine Subdomain weiterhin auf dem EDIS-Webhost laufen und dort ein gültiges Zertifikat benötigen. Prüfen Sie DNS-Ziel, Hostingzuordnung und Zertifikatsabdeckung für jeden dieser Namen.
+
+Lassen Sie bestätigen, welche SSL-Leistung zu welchem Termin endet und welche Domain-, Hosting- oder Mailkosten weiterlaufen. Eine Aussage, die SSL-Kündigung koste nichts zusätzlich, bedeutet nicht, dass alle übrigen Leistungen kostenlos werden oder bereits vorausbezahlte Beträge erstattet werden.
+
+<a id="cp5N7" />
+
+## HTTP/2, Zertifikat und Nameserver getrennt prüfen
+
+HTTP/2 setzt grundsätzlich weder ein Wildcard-Zertifikat noch einen bestimmten Nameserveranbieter voraus. Für HTTPS muss das Zertifikat zu den aufgerufenen Hostnamen passen. Welche Einstellungen und Zusatzleistungen Ihr konkretes EDIS-Hosting für HTTP/2 benötigt, muss anhand der aktuellen Plattform geprüft werden.
+
+Lassen Sie vor einer zusätzlichen Zertifikatsbestellung oder einem Nameserverwechsel zunächst prüfen, welches Protokoll die Website tatsächlich verwendet und welche aktuelle Produktvoraussetzung fehlt. Bei einem Nameserverwechsel müssen bestehende DNS-Einträge und Mailabhängigkeiten erhalten bleiben. Aus einer früheren Supportauskunft lässt sich keine allgemeine oder heutige Bestellpflicht ableiten.
+
+<a id="zFKTu" />
+
+## Bestellung, Installation und richtigen Hostnamen prüfen
+
+Bei HTTPS-Problemen nach einer Zertifikatsbestellung ist zu prüfen, ob das Zertifikat bereits ausgestellt, installiert und dem aufgerufenen Hostnamen zugeordnet ist. Vergleichen Sie auch das tatsächliche DNS-Ziel. Eine erneute Bestellung oder eine zusätzliche Weiterleitung ersetzt diese Prüfung nicht.
+
+<a id="lqqVp" />
+
+## Manuelle Zertifikate und automatisierte Leistungen unterscheiden
+
+Wenn Sie eine Mitteilung zur künftigen Verlängerung erhalten, klären Sie zuerst die genaue Produktart und die betroffenen Hostnamen. Änderungen einer manuell betreuten Zertifikatsleistung gelten nicht automatisch für automatisierte Let’s-Encrypt-Leistungen oder für das gesamte Webhosting.
+
+Lassen Sie den nächsten Ausstellungsschritt und die weitere Verlängerung für Ihren Vertrag bestätigen. Eine bereitgestellte Zertifikatsdatei ist noch kein Nachweis ihrer Installation. Prüfen Sie anschließend das tatsächlich ausgelieferte Zertifikat und dessen Ablaufdatum.
+
+<a id="fdlq7" />
+
+## Externe Domains und Wildcard-Bedarf klären
+
+Eine extern registrierte oder extern verwaltete Domain schließt ein Wildcard-Zertifikat technisch nicht grundsätzlich aus. Bei Let’s Encrypt erfolgt die Prüfung für Wildcards über DNS-01. Ob und wie dieser Ablauf für Ihr EDIS-Produkt unterstützt wird, muss gesondert bestätigt werden.
+
+Nennen Sie alle benötigten Hostnamen und klären Sie DNS-Zugriff, Validierung sowie automatische Erneuerung. Ein Zertifikat nur für die Hauptdomain und www deckt weitere Hostnamen nicht automatisch ab. Ändern Sie Nameserver oder Hostingzuordnung nicht allein aufgrund einer unbestätigten Annahme.
+
+Bei einem Zertifikat für einen externen Server, etwa IIS, müssen außerdem Bereitstellung, Installation und künftige Erneuerung eindeutig zugeordnet sein. Eine alte PFX-Datei oder eine frühere manuelle Ausstellung bestätigt keine aktuelle Verlängerungsleistung.
+
+Technischer Hintergrund: [https://letsencrypt.org/docs/challenge-types/](https://letsencrypt.org/docs/challenge-types/)

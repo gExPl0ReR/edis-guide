@@ -1,0 +1,60 @@
+---
+title: "Domain weiterleiten: Redirects und .htaccess"
+---
+
+Es gibt verschiedene Wege, um eine Webseiten-Weiterleitung zu konfigurieren.
+
+<a id="GyUGA" />
+
+### 1. Meta refresh
+
+Erstellen Sie auf Ihrem Webhost eine Datei index.html mit zB: folgendem Inhalt:
+
+```html
+<html>
+	<head>
+		<meta http-equiv="refresh" content="5; URL=https://www.weiterleitungsziel.domain">
+		<title>Meine Webseite</title>
+	</head>
+	<body>
+	</body>
+</html>
+```
+
+<a id="lJCW6" />
+
+### 2. Weiterleitung mittels .htaccess
+
+Erstellen beziehungsweise bearbeiten Sie die .htaccess-Datei im tatsächlichen Document-Root der betroffenen Website. Sichern Sie vorhandene Regeln und stimmen Sie die gewünschte Weiterleitung mit der Websitebetreuung ab.
+
+<Warning>
+
+(im DocRoot zB: **/www/home/** - oder wenn die Domain in ein Unterverzeichnis zeigt **/www/home/unterverzeichnis/** )
+
+</Warning>
+
+.htaccess
+
+```none
+Redirect 301 / https://www.weiterleitungsziel.domain
+```
+
+HTTP 301 kennzeichnet eine dauerhafte Weiterleitung und ist ein Signal für Suchmaschinen, die Zieladresse zu bevorzugen. Eine sofortige Entfernung der alten Adresse aus dem Suchindex ist damit nicht garantiert. Das gezeigte Redirect-Beispiel kann den angehängten Pfad weitergeben; testen Sie daher auch Unterseiten und benötigte Parameter.
+
+<Warning>
+
+Wenn es sich um eine temporäre Weiterleitung handeln soll, verwenden Sie den Code 302. Damit wissen Suchmaschinen Bescheid, dass es sich nur um eine zeitlich begrenzte Weiterleitung handelt.
+
+</Warning>
+
+<a id="Pz2wg" />
+
+### 3. Redirect als Service
+
+Ohne eigenen Webhost können Sie einen passenden Weiterleitungsdienst im Kundenbereich unter [https://manage.edis.at](https://manage.edis.at) einrichten. Verwenden Sie dafür das aktuell bestätigte DNS-Ziel des Dienstes. Prüfen Sie Hauptdomain, www und HTTPS sowie den Erhalt benötigter Mail-Einträge. Die bisher genannte IP-Adresse ist keine allgemeine Vorgabe für jede Domain und jede Hostingzuordnung.
+
+<Warning>
+
+Je nach Domain-Tarif ist dafür u.U. das Zusatzprodukt ("Aktive Nutzung") nötig.
+
+</Warning>

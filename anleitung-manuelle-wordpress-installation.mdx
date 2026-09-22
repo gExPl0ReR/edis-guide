@@ -1,0 +1,45 @@
+---
+title: "WordPress manuell installieren"
+---
+
+**Anleitung zur manuellen Installation von WordPress**
+****
+
+<Note>
+
+Diese Anleitung beschreibt die manuelle Installation. Prüfen Sie vorher eine aktuelle Sicherung, die Anforderungen der gewählten WordPress-Version sowie die Zuordnung von Domain, Document-Root und Datenbank. Überschreiben Sie keine vorhandene Website ungeprüft. Für die verwaltete Installation und Sicherungsfunktionen kann der EDIS-App-Installer verwendet werden.
+
+</Note>
+
+Vorbereitung:
+
+1. **Webhosting & Domain:** Stellen Sie sicher, dass Sie über Webhosting und eine Domain verfügen.
+2. **Datenbank:** Erstellen Sie eine MySQL-Datenbank über das Control Panel Ihres Hostings.
+
+**Schritt-für-Schritt Anleitung:**
+
+1. **Download:**
+   - Gehen Sie zu [`https://de.wordpress.org/`](https://de.wordpress.org/) und klicken Sie auf „Herunterladen“. Laden Sie die neueste WordPress-Version herunter und entpacken Sie die ZIP-Datei.
+2. **Dateien hochladen:**
+
+Verwenden Sie für den Datei-Upload eine verschlüsselte Verbindung: FTPS oder, wenn Ihr Produkt SSH bietet, SFTP. Übernehmen Sie Server, Port und Benutzer aus den bestätigten Einstellungen Ihres Webhosts; ein FTP-Benutzer ist nicht automatisch ein SSH-/SFTP-Zugang.
+
+Laden Sie die entpackten Dateien in das Hauptverzeichnis Ihrer Website oder in ein Unterverzeichnis, wenn Sie WordPress in einem Unterordner installieren möchten.
+
+1. **Installationsprozess starten:**
+   - Rufen Sie Ihre Website in einem Webbrowser auf. Wenn Sie die Dateien im Hauptverzeichnis abgelegt haben, gehen Sie zu `IhreDomain.at`
+   - Sie werden aufgefordert, eine Sprache auszuwählen. Wählen Sie "Deutsch" und klicken Sie auf "Weiter".
+2. **Konfigurationsinformationen:**
+   - Das System wird Sie informieren, welche Informationen benötigt werden, um fortzufahren. Klicken Sie auf „Los geht‘s“.
+3. **Datenbankdetails:**
+   - Geben Sie die Datenbankinformationen ein: Datenbankname, Benutzername, Passwort, Datenbankhost und Tabellenpräfix.
+   - Klicken Sie auf „Absenden“.
+4. **Installation starten:**
+   - Wenn die Datenbank erfolgreich verbunden wurde, klicken Sie auf „Installation starten“.
+5. **Website-Details:**
+   - Geben Sie den Titel Ihrer Website, einen Benutzernamen, ein Passwort und eine E-Mail-Adresse ein. Diese werden verwendet, um sich in das WordPress-Dashboard einzuloggen.
+   - Klicken Sie auf „WordPress installieren“.
+6. **Anmeldung:**
+   - Nach erfolgreicher Installation klicken Sie auf „Anmelden“ und melden Sie sich mit dem zuvor erstellten Benutzernamen und Passwort an.
+
+Gratulation! Sie haben WordPress erfolgreich installiert. Sie können nun mit dem Designen Ihrer Website beginnen, Plugins hinzufügen und Inhalte veröffentlichen.

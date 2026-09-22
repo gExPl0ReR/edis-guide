@@ -1,0 +1,20 @@
+---
+title: "E-Mail-Fehler: „No such domain at this location“"
+---
+
+<a id="-VpPf" />
+
+### No such domain at this location
+
+Die Meldung bedeutet, dass der antwortende Mailserver die Empfängerdomain an diesem Ziel nicht annimmt. Prüfen Sie zunächst den tatsächlich angesprochenen Server und die aktuellen MX-Einträge. Soll EDIS die Mailboxen betreiben, muss außerdem die lokale Domainzuordnung beziehungsweise der Mailtransport korrekt eingerichtet sein. Ein falsches MX-Ziel ist eine andere Ursache als ein fehlender Transport-Eintrag. Die folgende IP-Adresse stammt aus einem Fehlerbeispiel und ist kein Einrichtungswert.
+
+email error message
+
+```none
+91.227.204.131 does not like recipient.
+Remote host said: 550 No such domain at this location
+```
+
+Weiterführende Infos zur korrekten Konfiguration von Transport-Einträgen im EDIS Mailsystem finden Sie unter nachfolgendem Link.
+
+[Transport-Eintrag im EDIS Mailsystem](/transport-eintrag-im-edis-mailsystem)

@@ -1,0 +1,33 @@
+---
+title: "Domain für Microsoft 365 konfigurieren"
+---
+
+Richten Sie eine Domain für Microsoft 365 anhand der Werte Ihres eigenen Microsoft-Mandanten ein. Werte aus fremden Beispielen und ältere Screenshots sind keine gültigen Konfigurationsvorgaben.
+
+<a id="d9AFf" />
+
+## Domain hinzufügen und verifizieren
+
+Öffnen Sie [https://admin.microsoft.com](https://admin.microsoft.com) mit einem berechtigten Administratorkonto. Unter Einstellungen → Domains fügen Sie die Domain hinzu beziehungsweise wählen die vorhandene Domain aus. Folgen Sie der aktuellen Prüfung der Domaininhaberschaft.
+
+Kopieren Sie den angezeigten TXT-Verifikationswert exakt in die autoritative DNS-Zone. Die Darstellung des Namens für die Hauptdomain hängt vom DNS-Editor ab; prüfen Sie den resultierenden vollständigen DNS-Namen. Beispielwerte wie MS=msXXXXXXXX dürfen nicht unverändert übernommen werden.
+
+<a id="7hU87" />
+
+## Mailumstellung vorbereiten
+
+Richten Sie benötigte Benutzer und Postfächer in Microsoft 365 ein, bevor Sie die MX-Einträge umstellen. Planen Sie die Übernahme bestehender Nachrichten gesondert. Ein MX-Wechsel verschiebt keine alten E-Mails und beendet keine EDIS-Leistung automatisch.
+
+Wählen Sie im Microsoft-365-Assistenten die tatsächlich verwendeten Dienste und übernehmen Sie deren aktuelle MX-, TXT-, CNAME- und gegebenenfalls SRV-Werte. Die MX-Zieladresse und DKIM-Ziele sind mandantenabhängig. Alte Lync-, SIP- oder sonstige Beispiele sind keine pauschale Pflichtliste.
+
+Wenn E-Mail vollständig extern betrieben wird, gleichen Sie auch den lokalen EDIS-Mailtransport mit diesem Ziel ab. Website-Einträge müssen für eine reine Mailumstellung nicht pauschal geändert werden. Bei vorgeschalteten Filtern oder Hybridbetrieb muss der tatsächliche Zustellweg gesondert geplant werden.
+
+<a id="721V7" />
+
+## SPF, DKIM und Ergebnis prüfen
+
+Ergänzen Sie einen vorhandenen SPF-Eintrag um alle tatsächlich verwendeten Versanddienste. Legen Sie keinen zweiten SPF-Eintrag für denselben DNS-Namen an. Aktivieren und prüfen Sie DKIM für die Domain und stimmen Sie DMARC auf die bestätigten Versandwege ab.
+
+Lassen Sie Microsoft die DNS-Einträge prüfen. Testen Sie anschließend Versand, Empfang und gegebenenfalls Autodiscover sowie die unverändert benötigte Website. Bei noch alten DNS-Antworten prüfen Sie TTL und autoritative Zone; eine feste Wartezeit ersetzt diese Kontrolle nicht.
+
+Microsoft-Anleitung: [https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider?view=o365-worldwide](https://learn.microsoft.com/en-us/microsoft-365/admin/get-help-with-domains/create-dns-records-at-any-dns-hosting-provider?view=o365-worldwide)

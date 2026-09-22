@@ -1,0 +1,41 @@
+---
+title: "IMAP-Postfach mit Ordnern zu EDIS übertragen"
+---
+
+<a id="zXYR-" />
+
+## Was ist Imapsync?
+
+Imapsync überträgt Nachrichten und Ordner zwischen IMAP-Postfächern. Beide Server müssen vom ausführenden Migrationssystem erreichbar sein. Ein nur in Ihrem lokalen Netzwerk erreichbarer Mailserver ist für das EDIS-Webtool nicht automatisch zugänglich. Prüfen Sie vorab die passenden Zugangs- und Verbindungsdaten.
+
+[EDIS IMAP Migration Tool](https://manage.edis.at/imapsync)
+
+<a id="j6gXc" />
+
+### Vorteile des EDIS Imapsync Tools
+
+1. **Einfachheit:**
+2. Sie müssen keine technischen Kenntnisse besitzen, um das Tool zu verwenden. Mit einigen wenigen Klicks können Sie die Synchronisation starten.
+3. **Flexibilität**
+4. Prüfen Sie vor der Migration den freien Speicherplatz im Zielpostfach, die Erreichbarkeit beider IMAP-Server und die Zugangsdaten. Laufzeit und Ergebnis hängen auch von der Postfachgröße und den Serverlimits ab.
+5. **Sicherheit**
+6. Verwenden Sie verschlüsselte IMAP-Verbindungen und sichern Sie wichtige Nachrichten vor dem Umzug. Prüfen Sie nach jeder Synchronisation das Ergebnis und mögliche Fehlermeldungen.
+
+![EDIS-Imapsync: Postfachdaten für die Übertragung eingeben](/images/5317842ad13547.png)
+
+<a id="uTse5" />
+
+### Schritte zur Migration mit EDIS Imapsync
+
+1. **Vorsynchronisation**
+2. Bevor Sie Ihre Domain zu EDIS umstellen, führen Sie eine Vorsynchronisation Ihrer IMAP-Konten durch. Prüfen Sie anschließend, ob die erwarteten Ordner und Nachrichten im Zielpostfach vorhanden sind.
+3. **Domain-Umstellung**
+4. Nachdem Sie die Vorsynchronisation durchgeführt haben, können Sie die Umstellung Ihrer Domain zu EDIS vornehmen.
+5. **Nachsynchronisation**
+6. Nach der Umstellung Ihrer Domain zu EDIS sollten Sie eine finale Nachsynchronisation durchführen, um sicherzustellen, dass alle E-Mails, die während des Umstellungsprozesses empfangen wurden, auch bei EDIS gespeichert sind.
+
+<a id="onr_t" />
+
+### Fazit
+
+Vergleichen Sie nach der abschließenden Synchronisation die Ordner und Nachrichten in Quell- und Zielpostfach. Bewahren Sie das alte Postfach und Ihre Sicherung auf, bis Sie die erfolgreiche Übertragung geprüft haben.

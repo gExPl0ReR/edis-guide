@@ -1,0 +1,35 @@
+---
+title: "Domain mit Jimdo verbinden und E-Mail bei EDIS behalten"
+---
+
+Mit einer externen Domain können Sie eine Jimdo-Website verwenden und E-Mail weiterhin bei EDIS betreiben. Prüfen Sie zuerst, welches Jimdo-Produkt und welcher Tarif verwendet wird; Jimdo Creator und der andere Jimdo-Website-Baukasten haben unterschiedliche Verwaltungsoberflächen.
+
+<a id="SLQL6" />
+
+## Domain bei Jimdo vorbereiten
+
+Fügen Sie Ihre vorhandene Domain im Jimdo-Konto der gewünschten Website hinzu. Für Jimdo Creator beschreibt die offizielle Anleitung den Weg über Domains und E-Mails → Domains → Neue Domain hinzufügen → Vorhandene Domain nutzen. Die Funktion benötigt einen dafür geeigneten kostenpflichtigen Tarif.
+
+<a id="ASqpe" />
+
+## Website verbinden und E-Mail erhalten
+
+Übernehmen Sie die DNS-Vorgaben aus Ihrem Jimdo-Konto. Die aktuelle Creator-Anleitung nennt für www einen CNAME auf web.jimdo.com. und eine Weiterleitung der Hauptdomain ohne www auf die www-Adresse. Ein CNAME-Ziel ist ein Hostname; ein A-Eintrag benötigt dagegen eine IPv4-Adresse. Tragen Sie niemals einen Hostnamen in ein A-Feld ein.
+
+Ändern Sie die Einträge beim Anbieter der autoritativen DNS-Zone. Bewahren Sie benötigte MX-, SPF-, DKIM-, DMARC- und Verifikationseinträge. Ein pauschaler Nameserverwechsel kann auch den Mailbetrieb ändern und ist für die beschriebene CNAME-Verbindung nicht erforderlich.
+
+Klären Sie den passenden Weiterleitungsdienst für die Hauptdomain, ohne die benötigte Mailzuordnung zu entfernen. Auch eine HTTPS-Weiterleitung benötigt ein Zertifikat für ihre Ausgangsadresse. Beurteilen Sie IPv6 anhand der aktuellen Jimdo-Vorgaben; eine allgemeine Aussage, Jimdo unterstütze kein IPv6, ist dafür ungeeignet.
+
+<a id="tA5rq" />
+
+## Verbindung prüfen
+
+Prüfen Sie Hauptdomain und www, HTTPS sowie Versand und Empfang bei EDIS. Jimdo nennt für die CNAME-Verbindung eine mögliche Wartezeit bis zu 24 Stunden. Kontrollieren Sie bei Fehlern den tatsächlichen DNS-Wert und den Verbindungsstatus, statt Werte wiederholt auf Verdacht zu ändern.
+
+Aktuelle Jimdo-Creator-Anleitung: [https://help.jimdo.com/hc/en-us/articles/115005537866-Connect-an-external-domain-to-your-Jimdo-website-via-CNAME](https://help.jimdo.com/hc/en-us/articles/115005537866-Connect-an-external-domain-to-your-Jimdo-website-via-CNAME)
+
+![Beispiel einer DNS-Zone für Jimdo mit E-Mail-Versorgung über EDIS](/images/c214700a73960a.png)
+
+[Anycast DNS Benutzer anlegen](/anycast-dns-benutzer-erstellen)
+
+[Anycast DNS Verwaltung](/dns-verwaltung-edis)

@@ -1,0 +1,105 @@
+---
+title: "Zugang zur Anycast-DNS-Verwaltung einrichten"
+---
+
+<a id="WN-S0" />
+
+## Zugang zum PowerDNS-Admin
+
+[PowerDNS-Admin](https://pdns.edis.global/) ist ein direkt zugängliches Portal, welches Sie unabhängig vom Kundenbereich nutzen können. Für den Login verwenden Sie als **Benutzername** Ihre **5-stellige Kunden-Nummer**. Dadurch wird ein schneller und unkomplizierter Zugriff auf die Plattform gewährleistet.
+
+<a id="qZIZP" />
+
+### Erste Schritte mit PowerDNS-Admin
+
+Bevor Sie PowerDNS-Admin nutzen können, ist es notwendig, ein Passwort für den ersten Login zu setzen. Dies geschieht über den Kundenbereich.&#x20;
+
+Melden Sie sich in Ihrem Kundenkonto an und navigieren Sie zum entsprechenden Bereich, um ein initiales Passwort für PowerDNS-Admin zu vergeben.&#x20;
+
+<Steps>
+
+<Step title="Schritt 1">
+
+Klicken Sie im [Kundenbereich](https://manage.edis.at/client/login.php) -> **Domain&#x20;**-> DNS **Benutzer**
+
+</Step>
+
+<Step title="Schritt 2">
+
+Setzen Sie ein neues Passwort (es gilt nur für den PDNS-Admin)
+
+</Step>
+
+</Steps>
+
+<Note>
+
+**Wichtige Hinweise zur Passwort-Syntax für PowerDNS-Admin**
+
+Wenn Sie ein Passwort für PowerDNS-Admin setzen, müssen Sie die folgenden Kriterien beachten:
+
+**Länge:&#x20;**&#x44;as Passwort muss mindestens 10 Zeichen lang sein.
+**Zahlen:** Es muss mindestens eine Zahl enthalten sein.
+**Kleinbuchstaben:&#x20;**&#x4D;indestens ein Kleinbuchstabe ist erforderlich.
+**Großbuchstaben:** Es muss zumindest ein Großbuchstabe enthalten sein.
+
+Beachten Sie die aktuell angezeigten Kennwortvorgaben und verwenden Sie ein langes, einzigartiges Kennwort. Mindestlänge und Zeichenklassen allein garantieren keine ausreichende Kennwortstärke. Aktivieren Sie nach Möglichkeit die vorgesehene Zwei-Faktor-Anmeldung und verwahren Sie Wiederherstellungsinformationen sicher.
+
+</Note>
+
+Nachdem Sie dieses Passwort erfolgreich gesetzt haben, können Sie sich mit Ihrer 5-stelligen Kunden-Nummer als Benutzername und dem gewählten Passwort in PowerDNS-Admin einloggen und das Tool in vollem Umfang nutzen.
+
+<a id="Li2vE" />
+
+### Hinweis zum ersten Login bei PowerDNS-Admin
+
+Ohne aktivierte Zwei-Faktor-Anmeldung bleibt das OTP-Feld leer. Ist 2FA für diesen DNS-Benutzer bereits eingerichtet, benötigen Sie den passenden aktuellen Einmalcode. Ob ein Login für Sie der erste ist, sagt allein nichts über den Sicherheitsstatus des Kontos aus.
+
+<a id="Kaitf" />
+
+### Aktivierung der 2-Faktor-Authentifizierung (OTP Token) bei PowerDNS-Admin
+
+Die Sicherheit Ihres Accounts hat für uns oberste Priorität. Aus diesem Grund bieten wir Ihnen die Möglichkeit, eine 2-Faktor-Authentifizierung (2FA) mittels eines OTP-Tokens zu aktivieren. Dies stellt einen zusätzlichen Schutz Ihrer Daten dar und erhöht den Sicherheitsstandard Ihres Kontos.
+
+**Schritte zur Aktivierung der 2-Faktor-Authentifizierung:**
+
+1. Loggen Sie sich in PowerDNS-Admin ein.
+2. Navigieren Sie zu "My Profile".
+3. Wählen Sie den Reiter "Authentication".
+4. Folgen Sie den Anweisungen, um die 2-Faktor-Authentifizierung mittels OTP-Token zu aktivieren.
+
+Wir empfehlen dringend, diesen zusätzlichen Sicherheitsfaktor zu nutzen, um Ihren Account bestmöglich vor unerwünschten Zugriffen zu schützen.
+
+![Zweifaktor-Authentifizierung im Profil von PowerDNS-Admin](/images/8379acb9a2fa60.png)
+
+Wenn Sie auf Authentication klicken und "Enable Two Factor Authentication" anklicken, werden Sie automatisch wieder zu den "Personal Info" umgeleitet, dann bitte nochmal auf Authentication klicken, dann sollten Sie folgendes Bild sehen:
+
+![Einrichtung eines OTP-Tokens in PowerDNS-Admin](/images/bbddefc47576e3.png)
+
+Wir empfehlen Ihnen, die 2-Faktor-Authentifizierung mittels OTP-Tokens zu aktivieren. Dies stellt einen zusätzlichen Schutzmechanismus dar und schützt Ihr Konto noch effektiver vor unautorisierten Zugriffen.
+
+<a id="30o5G" />
+
+## Erster DNS-Login und OTP-Feld
+
+PowerDNS-Admin verwendet ein eigenes Kennwort. Die EDIS-Anleitung zur DNS-Benutzeranlage beschreibt das Setzen im Kundenbereich unter Domain > DNS Benutzer und die Anmeldung mit der Kundennummer. Beim Erstlogin ohne eingerichtete Zwei-Faktor-Anmeldung bleibt das OTP-Feld leer.
+
+Ist 2FA bereits aktiviert, benötigen Sie den passenden aktuellen Einmalcode. Ein verlorener zweiter Faktor erfordert den vorgesehenen Wiederherstellungsprozess. Senden Sie weder OTP-Codes noch Einrichtungsschlüssel oder Passwörter im Supportticket. Der Sicherheitsstatus des DNS-Portals gilt nicht automatisch für andere EDIS-Zugänge.
+
+Das sichtbare OTP-Feld allein bedeutet nicht, dass Sie bereits einen zweiten Faktor eingerichtet haben. Wenn Sie widersprüchliche Auskünfte erhalten, lassen Sie den Status des konkreten DNS-Benutzers prüfen. Eine nicht aktivierte 2FA muss nicht deaktiviert werden. Teilen Sie dem Support die genaue Fehlermeldung und die Adresse des Anmeldeportals mit, jedoch keine geheimen Zugangswerte.
+
+<a id="6kJhc" />
+
+## DNS-Verwaltung meldet 403 oder zeigt die Domain nicht
+
+Wenn der Kundenbereich funktioniert, die DNS-Verwaltung aber HTTP 403 meldet, lassen Sie die Berechtigung und Zuordnung der betroffenen Domain zu Ihrem Kundenkonto prüfen. Eine fehlende Kundenzuordnung kann einen solchen Zugriff verhindern. Warten auf die Verbreitung von DNS-Änderungen behebt keinen fehlenden Portalzugriff.
+
+Fehlt eine Domain in der Übersicht, prüfen Sie außerdem die zuständigen Nameserver und die zugeordnete DNS-Leistung. Eine registrierte Domain muss nicht automatisch über dieses DNS-Konto verwaltet werden. Nennen Sie dem Support Domain, Kundennummer, aufgerufenes Portal und genaue Fehlermeldung; übermitteln Sie keine Kennwörter. Nach Wiederherstellung des Zugangs prüfen Sie die gewünschte DNS-Änderung und ihre Speicherung gesondert.
+
+<a id="Qcerk" />
+
+## Zugang nach einer 2FA-Wiederherstellung prüfen
+
+Kann der zweite Faktor nicht mehr verwendet werden, wenden Sie sich an den Support und durchlaufen Sie den vorgesehenen Berechtigungs- und Wiederherstellungsprozess. Eine vorübergehende Deaktivierung allein bestätigt noch keinen wiederhergestellten Zugang.
+
+Prüfen Sie anschließend die erfolgreiche Anmeldung und richten Sie den zweiten Faktor wieder sicher ein. Testen Sie die Anmeldung mit dem neu eingerichteten Faktor. Übermitteln Sie weder Einrichtungsschlüssel noch Einmalcodes oder Passwörter im Ticket.

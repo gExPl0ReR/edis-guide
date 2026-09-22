@@ -1,0 +1,22 @@
+---
+title: "SFTP-Verbindung zum EDIS-Webhost einrichten"
+---
+
+SFTP steht für SSH File Transfer Protocol und überträgt Dateien über eine SSH-Verbindung. Dafür benötigt Ihr konkretes Webhostingprodukt einen freigeschalteten SSH-Zugang. Prüfen Sie den gebuchten Leistungsumfang und die im vHost-Bereich angezeigten Verbindungsdaten; ältere oder abweichende Produkte können andere Voraussetzungen haben.
+
+Melden Sie sich bitte im vHost Bereich an und navigieren zu SSH Zugang:
+
+![SSH-Zugangsdaten im vHost-Bereich von EDIS](/images/62fa1686e421b9.png)
+
+Verbindungseinstellung mit zB: [FileZilla](https://filezilla-project.org/):
+
+Servermanager öffnen und einen neuen Server anlegen:
+
+![SFTP-Verbindung im FileZilla-Servermanager einrichten](/images/59896f6907f0c8.png)
+
+Vergleichen Sie bei der Meldung „Unbekannter Serverschlüssel“ den angezeigten Fingerabdruck mit den Angaben des Hosting-Supports. Bestätigen Sie den Schlüssel erst, wenn er übereinstimmt.
+
+![FileZilla zeigt den SSH-Hostschlüssel zur Prüfung an](/images/8e80843e81b3b9.png)
+
+Wenn die Verbindung erfolgreich aufgebaut wurde, sind Sie nun im /home/vHostIDVerzeichnis/ und sehen darunter das Verzeichnis /www/ - einen Doppelklick darauf und Sie sehen das /home/ Verzeichnis und möglicherweise auch die /cgi/ und /log/ Verzeichnisse und je nach Anwendung auch andere Dateien, doppelklicken Sie auf /home/ und Sie sind im DocRoot Verzeichnis, wo auch die Domain in der Regel aufgelöst wird (ausser diese wird in ein Unterverzeichnis umgeleitet).
+Navigieren Sie in das gewünschte Verzeichnis wo Sie Ihre Daten ablegen möchten und starten Sie den Transfer.

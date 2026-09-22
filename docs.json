@@ -1,181 +1,686 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "Edis",
-  "theme": "almond",
+  "theme": "mint",
+  "name": "EDIS GmbH – Knowledge Base",
   "colors": {
-    "primary": "#0050a0",
-    "light": "#5c5c5c"
+    "primary": "#00529C",
+    "light": "#60A5FA",
+    "dark": "#003E77"
   },
-  "favicon": "/favicon.svg",
-  "logo": {
-    "light": "https://media.brand.dev/14413afd-a90b-4bf8-8bee-7a79d04c085b.png",
-    "dark": "https://media.brand.dev/14413afd-a90b-4bf8-8bee-7a79d04c085b.png"
-  },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Customer Portal",
-      "href": "https://manage.edis.at/client/"
-    }
+  "logo": "/logo/edis.png",
+  "favicon": "/logo/favicon.ico",
+  "appearance": {
+    "default": "light",
+    "strict": true
   },
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Web Hosting",
+        "language": "de",
+        "default": true,
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Start",
             "pages": [
-              "hosting/vhost-login",
-              "hosting/website-setup",
-              "hosting/app-installer-wordpress",
-              "hosting/upgrade-hosting-technology"
+              "index"
             ]
           },
           {
-            "group": "File Access",
+            "group": "Allgemeines",
             "pages": [
-              "hosting/ftp-users",
-              "hosting/ftp-settings",
-              "hosting/sftp-setup"
+              "aktive-domain-nutzung",
+              "tausch-oder-umbenennung-einer-domain-geht-das",
+              "fremddomain-externe-domain-bei-edis-hosten",
+              "reloadzeiten-der-root-nameserver-at-zone-nic-at",
+              "kundenkennwort-zuruecksetzen-edis",
+              "verknuefpung-domain-mit-jimdo",
+              "transferkosten-auf-der-service-abrechnung"
             ]
           },
           {
-            "group": "PHP & Databases",
+            "group": "FAQ",
             "pages": [
-              "hosting/php-version",
-              "hosting/php-ini-templates",
-              "hosting/mysql-database-dump",
-              "hosting/strict-trans-tables",
-              "hosting/nodejs-npm"
+              "domain-zu-edis-transferieren",
+              "anleitung-produkte-bei-edis-kuendigen",
+              "php-73-ende-bei-alten-wehosts",
+              "anleitung-umstieg-auf-aktuelle-hosting-technologie",
+              "dos-eintrag-ipv4-vs-ipv6-nichterreichbarkeit-domain",
+              "edis-informationsssicherheit-iso-27001",
+              "ethik-und-verhaltenskodex-der-edis-gmbh",
+              "welches-paket-fur-eine-wordpress-seite-mit-eingebautem-forum-verwenden",
+              "domain-weiterleitung-redirect-meta-refresh-htaccess",
+              "kosten-von-domains"
             ]
           },
           {
-            "group": "Advanced Topics",
+            "group": "DNS und Nameserver",
             "pages": [
-              "hosting/composer-ssh",
-              "hosting/git-repositories",
-              "hosting/imagemagick-paths",
-              "hosting/file-limit-vs-storage",
-              "hosting/website-builder"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Domains",
-        "groups": [
-          {
-            "group": "Domain Management",
-            "pages": [
-              "domains/active-domain-usage",
-              "domains/domain-costs",
-              "domains/transfer-domain",
-              "domains/change-nameservers",
-              "domains/domain-redirect",
-              "domains/external-domain-hosting"
+              "anycast-dns-bei-edis",
+              "anycast-dns-detail",
+              "anycast-dns-benutzer-erstellen",
+              "dns-verwaltung-edis",
+              "nameserver-einer-domain-bei-edis-andern"
             ]
           },
           {
-            "group": "DNS",
+            "group": "E-Mail",
             "pages": [
-              "domains/anycast-dns",
-              "domains/anycast-dns-user",
-              "domains/dns-management",
-              "domains/dns-records-detail"
+              {
+                "group": "FAQs",
+                "pages": [
+                  "autoresponder-automatische-e-mail-antwort-einrichten",
+                  "dmarc-eintrag-fur-ihre-domain-einrichten",
+                  "korrekte-e-mail-weiterleitungen-strikter-spf-srs-sender-rewrite-scheme",
+                  "no-such-domain-at-this-location",
+                  "ip-adressen-der-edis-mailserver-und-spf",
+                  "edis-domain-fuer-microsoft-office-365-konfigurieren",
+                  "winmaildat-statt-anhang-ursache-und-losung"
+                ]
+              },
+              {
+                "group": "Einrichtung",
+                "pages": [
+                  "mailboxen-einrichten-domain-bei-edis",
+                  "edis-mailserver-imap-pop3-und-smtp-einstellungen",
+                  "imap-konto-mit-inhalten-und-ordnern-zu-edis-ubertragen",
+                  "transport-eintrag-im-edis-mailsystem",
+                  "email-passwort-neu-setzen"
+                ]
+              },
+              {
+                "group": "Spamfirewall",
+                "pages": [
+                  "spamfilter-und-quarantane-fur-ihr-postfach-einstellen"
+                ]
+              },
+              {
+                "group": "Abrufen",
+                "pages": [
+                  "pop3-oder-imap-welches-e-mail-protokoll-passt"
+                ]
+              },
+              {
+                "group": "Versenden",
+                "pages": [
+                  "spf-eintrag-fur-den-e-mail-versand-uber-edis",
+                  "gmail-lehnt-e-mails-ab-authentifizierung-und-spf-prufen",
+                  "e-mail-anhang-blockiert-ursachen-und-nachste-schritte"
+                ]
+              },
+              {
+                "group": "Webmail",
+                "pages": [
+                  "kalender-und-kontakte-uber-caldav-und-carddav-synchronisieren",
+                  "synchronisation-kalender-mail-kontakte-caldav-carddav"
+                ]
+              },
+              {
+                "group": "Newsletter",
+                "pages": [
+                  "newsletterversand-geeignete-dienste-und-edis-business-e-mail"
+                ]
+              }
             ]
           },
           {
-            "group": "SSL Certificates",
+            "group": "Webhosting",
             "pages": [
-              "domains/lets-encrypt",
-              "domains/https-redirect"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Email",
-        "groups": [
-          {
-            "group": "Setup",
-            "pages": [
-              "email/mailbox-setup",
-              "email/mail-server-settings",
-              "email/imap-vs-pop3",
-              "email/password-reset",
-              "email/imap-migration"
-            ]
-          },
-          {
-            "group": "Authentication",
-            "pages": [
-              "email/spf-record",
-              "email/dmarc-record",
-              "email/ip-addresses-spf",
-              "email/gmail-spf-check",
-              "email/email-forwarding-spf-srs"
-            ]
-          },
-          {
-            "group": "Features & Tools",
-            "pages": [
-              "email/autoresponder",
-              "email/spam-filter",
-              "email/calendar-contacts-sync",
-              "email/transport-entry",
-              "email/newsletter-services",
-              "email/blocked-attachments",
-              "email/winmail-dat"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "pages": [
-              "email/microsoft-office-365",
-              "email/caldav-carddav"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Help & FAQ",
-        "groups": [
-          {
-            "group": "Account & Billing",
-            "pages": [
-              "faq/reset-password",
-              "faq/cancel-products",
-              "faq/transfer-costs",
-              "faq/rename-domain"
+              "nodejs-und-npm-im-edis-webhosting-installieren",
+              "wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln",
+              "login-vhost-bereich",
+              "wordpress-importieren-mit-installtron",
+              "pfade-zu-imagemagick-graphicsmagic-bei-edis",
+              "eigene-website-fur-eine-domain-oder-subdomain-einrichten",
+              "composer-im-hosting-ssh-cli",
+              "git-im-webhosting-repositories-uber-https-klonen",
+              "anleitung-manuelle-wordpress-installation",
+              "datei-limit-vs-speicherplatz-limit-webhosting",
+              {
+                "group": "FTP",
+                "pages": [
+                  "sftp-verbindung-zum-edis-webhost-einrichten",
+                  "ftp-user-erstellen-edis",
+                  "ftp-einstellungen-firewall-ports-activepassive-mode-pasv-verschlusselung-eol"
+                ]
+              },
+              {
+                "group": "Datenbanken",
+                "pages": [
+                  "strict-trans-tables-mysql-deaktivieren",
+                  "mysql-datenbank-dump-grosse-datenbanken"
+                ]
+              },
+              {
+                "group": "PHP",
+                "pages": [
+                  "phpini-templates-erstellen-und-einer-domain-zuweisen",
+                  "php-version-domain-subdomain-bei-edis-einstellen"
+                ]
+              },
+              {
+                "group": "SSL-Zertifikate",
+                "pages": [
+                  "umleitung-von-anfragen-auf-https-ssl-zertifikat",
+                  "lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren"
+                ]
+              }
             ]
           },
           {
-            "group": "Troubleshooting",
+            "group": "Baukasten",
             "pages": [
-              "faq/no-such-domain",
-              "faq/dos-ipv4-ipv6",
-              "faq/dns-reload-times",
-              "faq/wordpress-package",
-              "faq/wordpress-visitor-ip",
-              "faq/jimdo-domain"
+              "edis-webseiten-baukasten",
+              "cookie-hinweis-und-cookie-banner-im-baukasten-einrichten"
             ]
           },
           {
-            "group": "About EDIS",
+            "group": "Kontakt",
             "pages": [
-              "faq/support-contact",
-              "faq/iso-27001",
-              "faq/ethics-code"
+              "edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege"
             ]
           }
         ]
       }
     ]
   },
-  "footer": {
-    "socials": {
-      "website": "https://www.edis.at"
+  "navbar": {
+    "links": [
+      {
+        "label": "EDIS Website",
+        "href": "https://www.edis.at/"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Kundenbereich",
+      "href": "https://manage.edis.at/client"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/anycast-dns",
+      "destination": "/anycast-dns-bei-edis"
+    },
+    {
+      "source": "/andern-der-nameserver",
+      "destination": "/nameserver-einer-domain-bei-edis-andern"
+    },
+    {
+      "source": "/dmarc",
+      "destination": "/dmarc-eintrag-fur-ihre-domain-einrichten"
+    },
+    {
+      "source": "/edis-mailserver-ports-und-einstellungen",
+      "destination": "/edis-mailserver-imap-pop3-und-smtp-einstellungen"
+    },
+    {
+      "source": "/edis-standard-spf-eintrag",
+      "destination": "/spf-eintrag-fur-den-e-mail-versand-uber-edis"
+    },
+    {
+      "source": "/cookie",
+      "destination": "/cookie-hinweis-und-cookie-banner-im-baukasten-einrichten"
+    },
+    {
+      "source": "/edis-kontaktieren",
+      "destination": "/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege"
+    },
+    {
+      "source": "/OTlS-domain-zu-edis-transferieren",
+      "destination": "/domain-zu-edis-transferieren"
+    },
+    {
+      "source": "/2jtb-here-we-go",
+      "destination": "/anycast-dns-bei-edis"
+    },
+    {
+      "source": "/5zwW-dns-nameserver-bei-einer-domain-andern",
+      "destination": "/nameserver-einer-domain-bei-edis-andern"
+    },
+    {
+      "source": "/5Psq-autoresponder",
+      "destination": "/autoresponder-automatische-e-mail-antwort-einrichten"
+    },
+    {
+      "source": "/Uqfa-dmarc",
+      "destination": "/dmarc-eintrag-fur-ihre-domain-einrichten"
+    },
+    {
+      "source": "/dxq6-ip-adressen-der-edis-mailsysteme",
+      "destination": "/ip-adressen-der-edis-mailserver-und-spf"
+    },
+    {
+      "source": "/Zz8c-wind",
+      "destination": "/winmaildat-statt-anhang-ursache-und-losung"
+    },
+    {
+      "source": "/ELE5-edis-mailserver-ports-und-einstellungen",
+      "destination": "/edis-mailserver-imap-pop3-und-smtp-einstellungen"
+    },
+    {
+      "source": "/y1AL-dominiktiel2",
+      "destination": "/spamfilter-und-quarantane-fur-ihr-postfach-einstellen"
+    },
+    {
+      "source": "/xBGv-pop-oder-imap-welches-protokoll-ist-besser-geeignet",
+      "destination": "/pop3-oder-imap-welches-e-mail-protokoll-passt"
+    },
+    {
+      "source": "/ljZV-and-here-too",
+      "destination": "/spf-eintrag-fur-den-e-mail-versand-uber-edis"
+    },
+    {
+      "source": "/SM4t-google-error-message-this-message-does-not-have-authentication-information-or-fails-to-pass",
+      "destination": "/gmail-lehnt-e-mails-ab-authentifizierung-und-spf-prufen"
+    },
+    {
+      "source": "/CkQz-email-fehler-abgelehnter-datei-anhang-blockierter-anhang-blockiertes-attachment",
+      "destination": "/e-mail-anhang-blockiert-ursachen-und-nachste-schritte"
+    },
+    {
+      "source": "/30je-kalender-kontakte-synchronisieren",
+      "destination": "/kalender-und-kontakte-uber-caldav-und-carddav-synchronisieren"
+    },
+    {
+      "source": "/tqzP-newsletterversand-uber-edis-infrastruktur",
+      "destination": "/newsletterversand-geeignete-dienste-und-edis-business-e-mail"
+    },
+    {
+      "source": "/Lf_p-npm-und-node-oder-nodejs",
+      "destination": "/nodejs-und-npm-im-edis-webhosting-installieren"
+    },
+    {
+      "source": "/7BYH-http",
+      "destination": "/wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln"
+    },
+    {
+      "source": "/-tQy-d",
+      "destination": "/eigene-website-fur-eine-domain-oder-subdomain-einrichten"
+    },
+    {
+      "source": "/FtEh-git",
+      "destination": "/git-im-webhosting-repositories-uber-https-klonen"
+    },
+    {
+      "source": "/WI0W-s",
+      "destination": "/sftp-verbindung-zum-edis-webhost-einrichten"
+    },
+    {
+      "source": "/bT6G-ph",
+      "destination": "/phpini-templates-erstellen-und-einer-domain-zuweisen"
+    },
+    {
+      "source": "/a2Qv-bestellen-oder-aktivieren-sie-ein-ssl-zertifikat-von-lets-encrypt",
+      "destination": "/lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren"
+    },
+    {
+      "source": "/ai7z-cookie",
+      "destination": "/cookie-hinweis-und-cookie-banner-im-baukasten-einrichten"
+    },
+    {
+      "source": "/GBWu-einfach-kontak",
+      "destination": "/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege"
+    },
+    {
+      "source": "/l/de",
+      "destination": "/"
+    },
+    {
+      "source": "/l/de/article/lxb996n3c3-kann-eine-domain-umgetauscht-oder-umbenannt-werden",
+      "destination": "/tausch-oder-umbenennung-einer-domain-geht-das"
+    },
+    {
+      "source": "/l/de/article/xa5h5rgjq5-fremddomain-externe-domain-dns-konfiguration",
+      "destination": "/fremddomain-externe-domain-bei-edis-hosten"
+    },
+    {
+      "source": "/l/de/article/n3lodmnf7r-wann-sind-die-root-nameserver-reloadzeiten-der-at-zone",
+      "destination": "/reloadzeiten-der-root-nameserver-at-zone-nic-at"
+    },
+    {
+      "source": "/l/de/article/a4945a2001-zuruecksetzen-ihres-edis-kundenkennworts",
+      "destination": "/kundenkennwort-zuruecksetzen-edis"
+    },
+    {
+      "source": "/l/de/article/88upn46qk3-meine-domain-mit-jimdo-verknuepfen",
+      "destination": "/verknuefpung-domain-mit-jimdo"
+    },
+    {
+      "source": "/l/de/article/9ev5odbzzr-transferkosten-beim-transfer-einer-gtld-domain",
+      "destination": "/transferkosten-auf-der-service-abrechnung"
+    },
+    {
+      "source": "/l/de/article/evkyls2fd5-informationsssicherheit-iso-27001",
+      "destination": "/edis-informationsssicherheit-iso-27001"
+    },
+    {
+      "source": "/l/de/article/q57nqr8t1j-faq-welches-paket-f-r-eine-wordpress-seite-mit-eingebautem-forum-verwenden",
+      "destination": "/welches-paket-fur-eine-wordpress-seite-mit-eingebautem-forum-verwenden"
+    },
+    {
+      "source": "/l/de/article/kifw7b9sbr-domain-weiterleitung-domain-redirect",
+      "destination": "/domain-weiterleitung-redirect-meta-refresh-htaccess"
+    },
+    {
+      "source": "/l/de/article/308wsou10w-kosten-von-domains-im-ersten-jahr-und-in-den-folgejahren",
+      "destination": "/kosten-von-domains"
+    },
+    {
+      "source": "/l/de/article/i7mhb2gplh-anycast-dns",
+      "destination": "/anycast-dns-bei-edis"
+    },
+    {
+      "source": "/l/de/article/4xdtgn8i6z-dns-benutzer-erstellen",
+      "destination": "/anycast-dns-benutzer-erstellen"
+    },
+    {
+      "source": "/l/de/article/sx0188gh0o-dns-verwaltung-edis-2022",
+      "destination": "/dns-verwaltung-edis"
+    },
+    {
+      "source": "/l/de/article/cl00qht92d-nameserver-einer-domain-aendern",
+      "destination": "/nameserver-einer-domain-bei-edis-andern"
+    },
+    {
+      "source": "/l/de/article/4nwb6cf475-korrekte-e-mail-weiterleitungen-trotz-strikter-spf-pr-fung-dank-srs",
+      "destination": "/korrekte-e-mail-weiterleitungen-strikter-spf-srs-sender-rewrite-scheme"
+    },
+    {
+      "source": "/l/de/article/idmij9ca3w-fehler-500-no-such-domain-at-this-location",
+      "destination": "/no-such-domain-at-this-location"
+    },
+    {
+      "source": "/l/de/article/d84a02875c-domain-microsoft-office-365-vorbereiten",
+      "destination": "/edis-domain-fuer-microsoft-office-365-konfigurieren"
+    },
+    {
+      "source": "/l/de/article/dpcsptlpow-mailboxen-fuer-eine-domain-einrichten",
+      "destination": "/mailboxen-einrichten-domain-bei-edis"
+    },
+    {
+      "source": "/l/en/article/z9urr2gli4-edis-imap-migration-sync-tool",
+      "destination": "/imap-konto-mit-inhalten-und-ordnern-zu-edis-ubertragen"
+    },
+    {
+      "source": "/l/de/article/p0oxoyr840-email-transport-eintrag-mx-edis-intern-extern",
+      "destination": "/transport-eintrag-im-edis-mailsystem"
+    },
+    {
+      "source": "/l/de/article/ip7frhbz8c-kalender-synchronisieren",
+      "destination": "/synchronisation-kalender-mail-kontakte-caldav-carddav"
+    },
+    {
+      "source": "/l/de/article/cplipbk3xr-cms-word-press-joomla-mittels-app-installer-importieren",
+      "destination": "/wordpress-importieren-mit-installtron"
+    },
+    {
+      "source": "/l/de/article/szytzmoeyb-ftp-einstellungen-firewall-ports-active-passive-mode-pasv-verschlusselung-eol",
+      "destination": "/ftp-einstellungen-firewall-ports-activepassive-mode-pasv-verschlusselung-eol"
+    },
+    {
+      "source": "/l/de/article/9g1tzsoj20-umleitung-von-anfragen-auf-https-ssl",
+      "destination": "/umleitung-von-anfragen-auf-https-ssl-zertifikat"
+    },
+    {
+      "source": "/l/de/article/790r4wv8se-bestellen-oder-aktivieren-sie-ein-ssl-zertifikat-von-let-s-encrypt",
+      "destination": "/lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren"
+    },
+    {
+      "source": "/l/de/article/ayyosctqo8-so-kontaktierst-du-edis",
+      "destination": "/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege"
+    },
+    {
+      "source": "/hosting-domains-docs",
+      "destination": "/"
+    },
+    {
+      "source": "/domains/active-domain-usage",
+      "destination": "/aktive-domain-nutzung"
+    },
+    {
+      "source": "/domains/anycast-dns-user",
+      "destination": "/anycast-dns-benutzer-erstellen"
+    },
+    {
+      "source": "/domains/anycast-dns",
+      "destination": "/anycast-dns-bei-edis"
+    },
+    {
+      "source": "/domains/change-nameservers",
+      "destination": "/nameserver-einer-domain-bei-edis-andern"
+    },
+    {
+      "source": "/domains/dns-management",
+      "destination": "/dns-verwaltung-edis"
+    },
+    {
+      "source": "/domains/dns-records-detail",
+      "destination": "/dns-verwaltung-edis"
+    },
+    {
+      "source": "/domains/domain-costs",
+      "destination": "/kosten-von-domains"
+    },
+    {
+      "source": "/domains/domain-redirect",
+      "destination": "/domain-weiterleitung-redirect-meta-refresh-htaccess"
+    },
+    {
+      "source": "/domains/external-domain-hosting",
+      "destination": "/fremddomain-externe-domain-bei-edis-hosten"
+    },
+    {
+      "source": "/domains/https-redirect",
+      "destination": "/umleitung-von-anfragen-auf-https-ssl-zertifikat"
+    },
+    {
+      "source": "/domains/lets-encrypt",
+      "destination": "/lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren"
+    },
+    {
+      "source": "/domains/transfer-domain",
+      "destination": "/domain-zu-edis-transferieren"
+    },
+    {
+      "source": "/email/autoresponder",
+      "destination": "/autoresponder-automatische-e-mail-antwort-einrichten"
+    },
+    {
+      "source": "/email/blocked-attachments",
+      "destination": "/e-mail-anhang-blockiert-ursachen-und-nachste-schritte"
+    },
+    {
+      "source": "/email/caldav-carddav",
+      "destination": "/synchronisation-kalender-mail-kontakte-caldav-carddav"
+    },
+    {
+      "source": "/email/calendar-contacts-sync",
+      "destination": "/kalender-und-kontakte-uber-caldav-und-carddav-synchronisieren"
+    },
+    {
+      "source": "/email/dmarc-record",
+      "destination": "/dmarc-eintrag-fur-ihre-domain-einrichten"
+    },
+    {
+      "source": "/email/email-forwarding-spf-srs",
+      "destination": "/korrekte-e-mail-weiterleitungen-strikter-spf-srs-sender-rewrite-scheme"
+    },
+    {
+      "source": "/email/gmail-spf-check",
+      "destination": "/gmail-lehnt-e-mails-ab-authentifizierung-und-spf-prufen"
+    },
+    {
+      "source": "/email/imap-migration",
+      "destination": "/imap-konto-mit-inhalten-und-ordnern-zu-edis-ubertragen"
+    },
+    {
+      "source": "/email/imap-vs-pop3",
+      "destination": "/pop3-oder-imap-welches-e-mail-protokoll-passt"
+    },
+    {
+      "source": "/email/ip-addresses-spf",
+      "destination": "/ip-adressen-der-edis-mailserver-und-spf"
+    },
+    {
+      "source": "/email/mail-server-settings",
+      "destination": "/edis-mailserver-imap-pop3-und-smtp-einstellungen"
+    },
+    {
+      "source": "/email/mailbox-setup",
+      "destination": "/mailboxen-einrichten-domain-bei-edis"
+    },
+    {
+      "source": "/email/microsoft-office-365",
+      "destination": "/edis-domain-fuer-microsoft-office-365-konfigurieren"
+    },
+    {
+      "source": "/email/newsletter-services",
+      "destination": "/newsletterversand-geeignete-dienste-und-edis-business-e-mail"
+    },
+    {
+      "source": "/email/password-reset",
+      "destination": "/email-passwort-neu-setzen"
+    },
+    {
+      "source": "/email/spam-filter",
+      "destination": "/spamfilter-und-quarantane-fur-ihr-postfach-einstellen"
+    },
+    {
+      "source": "/email/spf-record",
+      "destination": "/spf-eintrag-fur-den-e-mail-versand-uber-edis"
+    },
+    {
+      "source": "/email/transport-entry",
+      "destination": "/transport-eintrag-im-edis-mailsystem"
+    },
+    {
+      "source": "/email/winmail-dat",
+      "destination": "/winmaildat-statt-anhang-ursache-und-losung"
+    },
+    {
+      "source": "/faq/cancel-products",
+      "destination": "/anleitung-produkte-bei-edis-kuendigen"
+    },
+    {
+      "source": "/faq/dns-reload-times",
+      "destination": "/reloadzeiten-der-root-nameserver-at-zone-nic-at"
+    },
+    {
+      "source": "/faq/dos-ipv4-ipv6",
+      "destination": "/dos-eintrag-ipv4-vs-ipv6-nichterreichbarkeit-domain"
+    },
+    {
+      "source": "/faq/ethics-code",
+      "destination": "/ethik-und-verhaltenskodex-der-edis-gmbh"
+    },
+    {
+      "source": "/faq/iso-27001",
+      "destination": "/edis-informationsssicherheit-iso-27001"
+    },
+    {
+      "source": "/faq/jimdo-domain",
+      "destination": "/verknuefpung-domain-mit-jimdo"
+    },
+    {
+      "source": "/faq/no-such-domain",
+      "destination": "/no-such-domain-at-this-location"
+    },
+    {
+      "source": "/faq/rename-domain",
+      "destination": "/tausch-oder-umbenennung-einer-domain-geht-das"
+    },
+    {
+      "source": "/faq/reset-password",
+      "destination": "/kundenkennwort-zuruecksetzen-edis"
+    },
+    {
+      "source": "/faq/support-contact",
+      "destination": "/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege"
+    },
+    {
+      "source": "/faq/transfer-costs",
+      "destination": "/transferkosten-auf-der-service-abrechnung"
+    },
+    {
+      "source": "/faq/wordpress-package",
+      "destination": "/welches-paket-fur-eine-wordpress-seite-mit-eingebautem-forum-verwenden"
+    },
+    {
+      "source": "/faq/wordpress-visitor-ip",
+      "destination": "/wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln"
+    },
+    {
+      "source": "/hosting/app-installer-wordpress",
+      "destination": "/wordpress-importieren-mit-installtron"
+    },
+    {
+      "source": "/hosting/composer-ssh",
+      "destination": "/composer-im-hosting-ssh-cli"
+    },
+    {
+      "source": "/hosting/file-limit-vs-storage",
+      "destination": "/datei-limit-vs-speicherplatz-limit-webhosting"
+    },
+    {
+      "source": "/hosting/ftp-settings",
+      "destination": "/ftp-einstellungen-firewall-ports-activepassive-mode-pasv-verschlusselung-eol"
+    },
+    {
+      "source": "/hosting/ftp-users",
+      "destination": "/ftp-user-erstellen-edis"
+    },
+    {
+      "source": "/hosting/git-repositories",
+      "destination": "/git-im-webhosting-repositories-uber-https-klonen"
+    },
+    {
+      "source": "/hosting/imagemagick-paths",
+      "destination": "/pfade-zu-imagemagick-graphicsmagic-bei-edis"
+    },
+    {
+      "source": "/hosting/mysql-database-dump",
+      "destination": "/mysql-datenbank-dump-grosse-datenbanken"
+    },
+    {
+      "source": "/hosting/nodejs-npm",
+      "destination": "/nodejs-und-npm-im-edis-webhosting-installieren"
+    },
+    {
+      "source": "/hosting/php-ini-templates",
+      "destination": "/phpini-templates-erstellen-und-einer-domain-zuweisen"
+    },
+    {
+      "source": "/hosting/php-version",
+      "destination": "/php-version-domain-subdomain-bei-edis-einstellen"
+    },
+    {
+      "source": "/hosting/sftp-setup",
+      "destination": "/sftp-verbindung-zum-edis-webhost-einrichten"
+    },
+    {
+      "source": "/hosting/strict-trans-tables",
+      "destination": "/strict-trans-tables-mysql-deaktivieren"
+    },
+    {
+      "source": "/hosting/upgrade-hosting-technology",
+      "destination": "/anleitung-umstieg-auf-aktuelle-hosting-technologie"
+    },
+    {
+      "source": "/hosting/vhost-login",
+      "destination": "/login-vhost-bereich"
+    },
+    {
+      "source": "/hosting/website-builder",
+      "destination": "/edis-webseiten-baukasten"
+    },
+    {
+      "source": "/hosting/website-setup",
+      "destination": "/eigene-website-fur-eine-domain-oder-subdomain-einrichten"
+    }
+  ],
+  "seo": {
+    "metatags": {
+      "canonical": "https://www.edis.guide"
     }
   }
 }

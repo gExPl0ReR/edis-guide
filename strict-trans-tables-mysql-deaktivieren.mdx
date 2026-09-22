@@ -1,0 +1,21 @@
+---
+title: "STRICT_TRANS_TABLES in MySQL deaktivieren"
+---
+
+Der SQL-Modus **STRICT\_TRANS\_TABLES** in MySQL erzwingt strenge Datenvalidierung und Fehlerbehandlung für Transaktionstabellen. Manchmal kann es notwendig sein, diesen Modus zu deaktivieren, insbesondere wenn ältere Anwendungen nicht mit diesem strengen Modus kompatibel sind.
+
+Die MySQL-Dokumentation beschreibt die SQL-Modi und ihre Wirkung: [https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) . Prüfen Sie die tatsächlich eingesetzte Datenbankversion. Eine Anpassung alter Anwendungen ist einer pauschalen Abschwächung der Datenprüfung vorzuziehen.
+
+**Wie man STRICT\_TRANS\_TABLES deaktiviert**:
+
+Wenn Sie beispielsweise den Modus **STRICT\_TRANS\_TABLES** aus den aktiven SQL-Modi entfernen möchten, können Sie den folgenden Befehl verwenden:
+
+```mysql
+SET SESSION sql_mode = 'ONLY_FULL_GROUP_BY,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+```
+
+Beachten Sie dabei, dass **STRICT\_TRANS\_TABLES** in diesem Beispiel nicht enthalten ist. Der Befehl ersetzt jedoch die gesamte Liste für die aktuelle Sitzung. Prüfen Sie vorher SELECT @@SESSION.sql\_mode; und behalten Sie alle anderen benötigten Modi bei.
+
+**Wichtiger Hinweis**:
+Es liegt in Ihrer Verantwortung, den SQL-Modus auf Sitzungsebene anzupassen, da er nicht global im gesamten Hosting-System gesetzt werden kann.
