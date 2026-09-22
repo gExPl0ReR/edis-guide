@@ -1,13 +1,16 @@
 ---
 title: "Zugang zur Anycast-DNS-Verwaltung einrichten"
 sidebarTitle: "DNS-Zugang einrichten"
+description: "DNS-Passwort setzen, mit der Kundennummer anmelden und den Zugang mit einem zweiten Faktor schützen."
 ---
 
 <a id="WN-S0" />
 
 ## Zugang zum PowerDNS-Admin
 
-[PowerDNS-Admin](https://pdns.edis.global/) ist ein direkt zugängliches Portal, welches Sie unabhängig vom Kundenbereich nutzen können. Für den Login verwenden Sie als **Benutzername** Ihre **5-stellige Kunden-Nummer**. Dadurch wird ein schneller und unkomplizierter Zugriff auf die Plattform gewährleistet.
+Im **PowerDNS-Admin** verwalten Sie Ihre DNS-Zonen unabhängig vom Kundenbereich. Melden Sie sich mit Ihrer **5-stelligen Kundennummer** und einem **eigenen DNS-Passwort** an.
+
+<a className="edis-button" href="https://pdns.edis.global/">DNS-Verwaltung öffnen</a>
 
 <a id="qZIZP" />
 
@@ -19,13 +22,13 @@ Melden Sie sich in Ihrem Kundenkonto an und navigieren Sie zum entsprechenden Be
 
 <Steps>
 
-<Step title="Schritt 1">
+<Step title="DNS-Benutzer im Kundenbereich öffnen">
 
 Klicken Sie im [Kundenbereich](https://manage.edis.at/client/login.php) -> **Domain&#x20;**-> DNS **Benutzer**
 
 </Step>
 
-<Step title="Schritt 2">
+<Step title="Eigenes DNS-Passwort setzen">
 
 Setzen Sie ein neues Passwort (es gilt nur für den PDNS-Admin)
 
@@ -60,7 +63,7 @@ Ohne aktivierte Zwei-Faktor-Anmeldung bleibt das OTP-Feld leer. Ist 2FA für die
 
 ### Aktivierung der 2-Faktor-Authentifizierung (OTP Token) bei PowerDNS-Admin
 
-Die Sicherheit Ihres Accounts hat für uns oberste Priorität. Aus diesem Grund bieten wir Ihnen die Möglichkeit, eine 2-Faktor-Authentifizierung (2FA) mittels eines OTP-Tokens zu aktivieren. Dies stellt einen zusätzlichen Schutz Ihrer Daten dar und erhöht den Sicherheitsstandard Ihres Kontos.
+Mit der **Zwei-Faktor-Authentifizierung (2FA)** schützen Sie den DNS-Zugang zusätzlich zum Passwort mit einem aktuellen Einmalcode.
 
 **Schritte zur Aktivierung der 2-Faktor-Authentifizierung:**
 
@@ -77,11 +80,15 @@ Wenn Sie auf Authentication klicken und "Enable Two Factor Authentication" ankli
 
 ![Einrichtung eines OTP-Tokens in PowerDNS-Admin](/images/bbddefc47576e3.png)
 
-Wir empfehlen Ihnen, die 2-Faktor-Authentifizierung mittels OTP-Tokens zu aktivieren. Dies stellt einen zusätzlichen Schutzmechanismus dar und schützt Ihr Konto noch effektiver vor unautorisierten Zugriffen.
+Bewahren Sie die Wiederherstellungsinformationen sicher auf und prüfen Sie die Anmeldung mit dem eingerichteten zweiten Faktor.
 
-<a id="30o5G" />
+## Hilfe bei der Anmeldung
 
-## Erster DNS-Login und OTP-Feld
+<AccordionGroup>
+
+<a id="erster-dns-login-und-otp-feld" />
+
+<Accordion title="Erster DNS-Login und OTP-Feld" id="30o5G">
 
 PowerDNS-Admin verwendet ein eigenes Kennwort. Die EDIS-Anleitung zur DNS-Benutzeranlage beschreibt das Setzen im Kundenbereich unter Domain > DNS Benutzer und die Anmeldung mit der Kundennummer. Beim Erstlogin ohne eingerichtete Zwei-Faktor-Anmeldung bleibt das OTP-Feld leer.
 
@@ -89,18 +96,26 @@ Ist 2FA bereits aktiviert, benötigen Sie den passenden aktuellen Einmalcode. Ei
 
 Das sichtbare OTP-Feld allein bedeutet nicht, dass Sie bereits einen zweiten Faktor eingerichtet haben. Wenn Sie widersprüchliche Auskünfte erhalten, lassen Sie den Status des konkreten DNS-Benutzers prüfen. Eine nicht aktivierte 2FA muss nicht deaktiviert werden. Teilen Sie dem Support die genaue Fehlermeldung und die Adresse des Anmeldeportals mit, jedoch keine geheimen Zugangswerte.
 
-<a id="6kJhc" />
+</Accordion>
 
-## DNS-Verwaltung meldet 403 oder zeigt die Domain nicht
+<a id="dns-verwaltung-meldet-403-oder-zeigt-die-domain-nicht" />
+
+<Accordion title="DNS-Verwaltung meldet 403 oder zeigt die Domain nicht" id="6kJhc">
 
 Wenn der Kundenbereich funktioniert, die DNS-Verwaltung aber HTTP 403 meldet, lassen Sie die Berechtigung und Zuordnung der betroffenen Domain zu Ihrem Kundenkonto prüfen. Eine fehlende Kundenzuordnung kann einen solchen Zugriff verhindern. Warten auf die Verbreitung von DNS-Änderungen behebt keinen fehlenden Portalzugriff.
 
 Fehlt eine Domain in der Übersicht, prüfen Sie außerdem die zuständigen Nameserver und die zugeordnete DNS-Leistung. Eine registrierte Domain muss nicht automatisch über dieses DNS-Konto verwaltet werden. Nennen Sie dem Support Domain, Kundennummer, aufgerufenes Portal und genaue Fehlermeldung; übermitteln Sie keine Kennwörter. Nach Wiederherstellung des Zugangs prüfen Sie die gewünschte DNS-Änderung und ihre Speicherung gesondert.
 
-<a id="Qcerk" />
+</Accordion>
 
-## Zugang nach einer 2FA-Wiederherstellung prüfen
+<a id="zugang-nach-einer-2fa-wiederherstellung-prüfen" />
+
+<Accordion title="Zugang nach einer 2FA-Wiederherstellung prüfen" id="Qcerk">
 
 Kann der zweite Faktor nicht mehr verwendet werden, wenden Sie sich an den Support und durchlaufen Sie den vorgesehenen Berechtigungs- und Wiederherstellungsprozess. Eine vorübergehende Deaktivierung allein bestätigt noch keinen wiederhergestellten Zugang.
 
 Prüfen Sie anschließend die erfolgreiche Anmeldung und richten Sie den zweiten Faktor wieder sicher ein. Testen Sie die Anmeldung mit dem neu eingerichteten Faktor. Übermitteln Sie weder Einrichtungsschlüssel noch Einmalcodes oder Passwörter im Ticket.
+
+</Accordion>
+
+</AccordionGroup>

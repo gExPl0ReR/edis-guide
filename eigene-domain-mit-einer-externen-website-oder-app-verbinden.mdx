@@ -2,6 +2,7 @@
 title: "Eigene Domain mit einer externen Website oder App verbinden"
 sidebarTitle: "Externe Website verbinden"
 tag: "Neu"
+description: "Wählen Sie zwischen Weiterleitung, eigener Domain am Zielanbieter und einer unterstützten Einbettung."
 ---
 
 Sie möchten mit Ihrer Domain eine Website oder App bei einem anderen Anbieter aufrufen? Entscheidend ist, welche Adresse nach dem Aufruf im Browser stehen soll.
@@ -14,11 +15,15 @@ Sie möchten mit Ihrer Domain eine Website oder App bei einem anderen Anbieter a
 
 Bei einer gewöhnlichen Weiterleitung wechselt die Browseradresse zur Zieladresse. Soll Ihre eigene Domain sichtbar bleiben, muss der Zielanbieter diese Domain unterstützen und für Ihre Website freischalten. Eine Änderung im DNS allein reicht dafür nicht aus.
 
+## Domainverbindung einrichten
+
 Prüfen Sie beim Zielanbieter zunächst die Domainfunktion Ihres Tarifs. Fügen Sie dort die gewünschte Domain oder Subdomain hinzu und übernehmen Sie die aktuell angezeigten DNS-Vorgaben. Ändern Sie diese Einträge bei dem Anbieter, der Ihre autoritative DNS-Zone verwaltet. Domainregistrierung und DNS-Verwaltung müssen nicht beim selben Anbieter liegen.
 
 Ein Registrarwechsel ist für eine solche Verbindung häufig nicht nötig. Base44 beschreibt beispielsweise die Verbindung einer vorhandenen Domain, die beim bisherigen Registrar bleibt. Verwenden Sie die aktuelle Base44-Anleitung zur Domainverbindung und die Angaben in Ihrem eigenen Projekt.
 
 Halten Sie vor der Änderung fest, welche Domain und welche Hostnamen betroffen sind. Eine andere Website, die unverändert bleiben soll, gehört nicht zum Änderungsauftrag. Bewahren Sie benötigte Mail- und Verifikationseinträge. Ändern oder entfernen Sie nur die Einträge, deren Wirkung auf das gewünschte Ziel geklärt ist.
+
+## Verbindung testen
 
 Prüfen Sie nach der Einrichtung:
 
@@ -29,6 +34,8 @@ Prüfen Sie nach der Einrichtung:
 - Weiter benötigte E-Mail-Dienste senden und empfangen unverändert.
 
 Auch die Ausgangsadresse einer HTTPS-Weiterleitung benötigt ein gültiges Zertifikat. Das Zertifikat der Zielwebsite deckt sie nicht automatisch ab.
+
+## Einbettung und Unterstützung
 
 Eine Einbettung der gesamten fremden Website in einen Frame ist nicht dasselbe wie eine Domainverbindung. Sie kann vom Zielanbieter blockiert werden und muss unter anderem mit Anmeldung und Navigation funktionieren. Verwenden Sie nur einen vom Zielanbieter unterstützten Weg.
 
@@ -42,10 +49,8 @@ Vergleichen Sie die DNS-Werte mit Ihrem Shopify-Konto. Die manuelle Shopify-Anle
 
 Shopify unterstützt DNSSEC derzeit nicht und nennt auch Proxy- und CAA-Einstellungen als mögliche Fehlerquellen. Lassen Sie den tatsächlichen Status und die konkrete Shopify-Meldung prüfen, bevor eine Änderung erfolgt. Ein SSL-Fehler beweist für sich allein keine DNSSEC-Ursache. Funktionierende E-Mail nach einem Nameserverwechsel bestätigt noch keinen funktionierenden Webshop.
 
-Shopify-Anleitung: [https://help.shopify.com/en/manual/domains/add-a-domain/connecting-domains/connect-domain-manual/](https://help.shopify.com/en/manual/domains/add-a-domain/connecting-domains/connect-domain-manual/)
+[Shopify: Domain manuell verbinden](https://help.shopify.com/en/manual/domains/add-a-domain/connecting-domains/connect-domain-manual/)
 
-Shopify-Fehlerdiagnose: [https://help.shopify.com/en/manual/domains/troubleshoot-issues-with-domains?m=1](https://help.shopify.com/en/manual/domains/troubleshoot-issues-with-domains?m=1)
+[Shopify: Verbindungsfehler untersuchen](https://help.shopify.com/en/manual/domains/troubleshoot-issues-with-domains?m=1)
 
-Weiterführende Informationen: Base44 – Domainverbindung
-
-[https://docs.base44.com/Setting-up-your-app/Connecting-an-external-domain](https://docs.base44.com/Setting-up-your-app/Connecting-an-external-domain)
+[Base44: Vorhandene Domain verbinden](https://docs.base44.com/Setting-up-your-app/Connecting-an-external-domain)

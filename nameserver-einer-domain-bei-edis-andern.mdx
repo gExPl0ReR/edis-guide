@@ -1,79 +1,18 @@
 ---
 title: "Nameserver einer Domain bei EDIS ändern"
 sidebarTitle: "Nameserver ändern"
+description: "Zielzone vorbereiten, eine Nameserver-Gruppe anlegen und der Domain zuweisen."
 ---
 
 <Warning>
 
-Wenn Sie die zuständigen NameServer für Ihre Domain ändern möchten, dann bitte **NIEMALS** in der DNS Zone der Domain "**IN NS**" ändern!
-Diese beiden Einträge müssen, wie im Screenshot [Anycast DNS Verwaltung](/dns-verwaltung-edis) gezeigt wird, bleiben!
+Ändern Sie die Nameserver-Zuordnung **im Kundenbereich**. Bearbeiten Sie dafür nicht die **IN-NS-Einträge** in der [DNS-Zone](/dns-verwaltung-edis).
 
 </Warning>
 
 **Änderung der Nameserver bei einer bei EDIS registrierten Domain**
 
 Wenn Sie die Nameserver für eine Domain, die bei EDIS registriert ist, ändern möchten, gibt es bestimmte Schritte, die Sie befolgen müssen. Diese Anleitung konzentriert sich auf das Ändern der autoritativen Nameserver bei der Vergabestelle, wie z.B. das Eintragen von Cloudflare Nameservers. Es geht nicht um das Ändern von Zonen-Informationen im Anycast PowerDNS-Admin.
-
-<a id="6Vzkr" />
-
-### Nameserver-Gruppe erstellen&#xA;
-
-Bevor Sie die Nameserver einer Domain ändern können, müssen Sie eine Nameserver-Gruppe in Ihrem EDIS-Kundenkonto erstellen.
-
-<Steps>
-
-<Step title="Schritt 1">
-
-Loggen Sie sich im Kundenbereich ein ([https://manage.edis.at/client](https://manage.edis.at/client))
-
-</Step>
-
-<Step title="Schritt 2">
-
-Klicken sie auf **Domain&#x20;**-> **Nameserver Gruppen**
-
-1. Erstellen Sie eine Nameserver-Gruppe (das ist ein Template, das die Nameserver beinhaltet)
-2. Geben Sie bis zu vier Nameserver (Hostnamen) ein. Die IP-Adressen werden automatisch ergänzt.
-
-<Note>
-
-Wenn ein Hostname ungültig ist, kann die Nameserver Gruppe nicht gespeichert werden.
-
-</Note>
-
-</Step>
-
-</Steps>
-
-![Nameserver-Gruppe im EDIS-Kundenbereich anlegen](/images/9d3a4b3cbc7f69.png)
-
-![Angelegte Nameserver-Gruppe für eine Domain auswählen](/images/182623ee8a86de.png)
-
-Nachdem die Nameserver Gruppe angelegt wurde, weisen Sie diese der gewünschten Domain zu.
-
-<a id="nNhlC" />
-
-### Nameserver Gruppe der Domain zuweisen
-
-<Steps>
-
-<Step title="Schritt 1">
-
-Klicken Sie links auf **Nameserver**
-
-1. Wählen Sie die gewünschte Domain aus (Checkbox)
-2. Wählen Sie die zuvor angelegte Nameserver Gruppe im Dropdown aus
-3. Bestätigen Sie die Zuweisung mit "Änderung ausführen" 
-
-</Step>
-
-</Steps>
-
-<Note>
-
-Prüfen Sie nach der Zuweisung den Auftragsstatus und die tatsächliche Delegation bei der übergeordneten Zone. Die Verarbeitung durch den Registrar beziehungsweise die Vergabestelle und zwischengespeicherte Antworten können unterschiedliche Zeit benötigen. Ein geänderter WHOIS-Eintrag allein ist noch kein Funktionstest; kontrollieren Sie autoritative DNS-Antworten sowie die betroffenen Web- und Maildienste.
-
-</Note>
 
 <a id="4yVkv" />
 
@@ -105,17 +44,86 @@ Nach einem Anbieterwechsel kann ein alter DS-Eintrag in der übergeordneten Zone
 
 Kontrollieren Sie nach dem Wechsel Delegation, DNS-Antworten und DNSSEC-Validierung. Prüfen Sie anschließend die tatsächlich benötigten Web- und E-Mail-Dienste. Eine pauschale Wartezeit ersetzt diese Kontrolle nicht.
 
-<a id="ihifw" />
+<a id="6Vzkr" />
 
-## EDIS bleibt Registrar, die DNS-Verwaltung wechselt
+### Nameserver-Gruppe erstellen&#xA;
+
+Bevor Sie die Nameserver einer Domain ändern können, müssen Sie eine Nameserver-Gruppe in Ihrem EDIS-Kundenkonto erstellen.
+
+<Steps>
+
+<Step title="Kundenbereich öffnen">
+
+Melden Sie sich im Kundenbereich an.
+
+<a className="edis-button" href="https://manage.edis.at/client">Zum Kundenbereich</a>
+
+</Step>
+
+<Step title="Nameserver-Gruppe anlegen">
+
+Klicken sie auf **Domain&#x20;**-> **Nameserver Gruppen**
+
+1. Erstellen Sie eine Nameserver-Gruppe (das ist ein Template, das die Nameserver beinhaltet)
+2. Geben Sie bis zu vier Nameserver (Hostnamen) ein. Die IP-Adressen werden automatisch ergänzt.
+
+<Note>
+
+Wenn ein Hostname ungültig ist, kann die Nameserver Gruppe nicht gespeichert werden.
+
+</Note>
+
+</Step>
+
+</Steps>
+
+![Nameserver-Gruppe im EDIS-Kundenbereich anlegen](/images/9d3a4b3cbc7f69.png)
+
+![Angelegte Nameserver-Gruppe für eine Domain auswählen](/images/182623ee8a86de.png)
+
+Nachdem die Nameserver Gruppe angelegt wurde, weisen Sie diese der gewünschten Domain zu.
+
+<a id="nNhlC" />
+
+### Nameserver Gruppe der Domain zuweisen
+
+<Steps>
+
+<Step title="Domain auswählen und Gruppe zuweisen">
+
+Klicken Sie links auf **Nameserver**
+
+1. Wählen Sie die gewünschte Domain aus (Checkbox)
+2. Wählen Sie die zuvor angelegte Nameserver Gruppe im Dropdown aus
+3. Bestätigen Sie die Zuweisung mit "Änderung ausführen" 
+
+</Step>
+
+</Steps>
+
+<Note>
+
+Prüfen Sie nach der Zuweisung den Auftragsstatus und die tatsächliche Delegation bei der übergeordneten Zone. Die Verarbeitung durch den Registrar beziehungsweise die Vergabestelle und zwischengespeicherte Antworten können unterschiedliche Zeit benötigen. Ein geänderter WHOIS-Eintrag allein ist noch kein Funktionstest; kontrollieren Sie autoritative DNS-Antworten sowie die betroffenen Web- und Maildienste.
+
+</Note>
+
+## Fragen zum Nameserverwechsel
+
+<AccordionGroup>
+
+<a id="edis-bleibt-registrar-die-dns-verwaltung-wechselt" />
+
+<Accordion title="EDIS bleibt Registrar, die DNS-Verwaltung wechselt" id="ihifw">
 
 Sie können die Domainregistrierung und die autoritative DNS-Verwaltung getrennt betrachten. Wenn Sie einen anderen DNS-Anbieter etwa wegen einer API nutzen möchten, klären Sie zuerst die vollständige Übernahme Ihrer DNS-Einträge und die Funktionen des neuen Diensts. Die aktuelle Verfügbarkeit einer EDIS-DNS-API muss für das konkrete Produkt bestätigt werden.
 
 Lassen Sie außerdem prüfen, ob und ab wann eine bisherige DNS-Zusatzleistung oder der Tarif geändert wird. Der technische Nameserverwechsel allein bestätigt keine Preis- oder Vertragsänderung. Fragen Sie bei einer späteren Rückkehr zu EDIS-DNS nach den dann geltenden Leistungen und Konditionen.
 
-<a id="0z09K" />
+</Accordion>
 
-## DNSSEC mit externen Nameservern
+<a id="dnssec-mit-externen-nameservern" />
+
+<Accordion title="DNSSEC mit externen Nameservern" id="0z09K">
 
 Auch bei externen Nameservern muss die DNSSEC-Verknüpfung über den zuständigen Registrar zur signierten Zone passen. Klären Sie das aktuelle Verfahren für Ihre Domainendung. Übermitteln Sie die vom DNS-Anbieter angezeigten DS-Daten vollständig: Key Tag, Algorithmus, Digest-Typ und Digest. Ein öffentlicher Schlüssel ist nicht mit dem Digest gleichzusetzen; private Schlüssel oder Kontopasswörter werden dafür nicht benötigt.
 
@@ -123,18 +131,26 @@ Stimmen Sie die Entfernung alter DS-Daten, deren Gültigkeitsdauer und den Names
 
 Technische Grundlagen: [https://developers.cloudflare.com/dns/dnssec/](https://developers.cloudflare.com/dns/dnssec/) und [https://www.rfc-editor.org/rfc/rfc4034.html](https://www.rfc-editor.org/rfc/rfc4034.html)
 
-<a id="dkrRA" />
+</Accordion>
 
-## Das Formular meldet „input validation failed“
+<a id="das-formular-meldet-input-validation-failed" />
+
+<Accordion title="Das Formular meldet „input validation failed“" id="dkrRA">
 
 Übermitteln Sie die genaue Feldmeldung, die vorgesehenen Nameserver und den Zeitpunkt. Bei einem Fehler zum Mailserver müssen MX-Ziel und zugehörige A-/AAAA-Antworten geprüft werden. Eine funktionierende direkte Abfrage am neuen Nameserver kann einer fehlschlagenden Formularprüfung gegenüberstehen. Lassen Sie diesen Unterschied untersuchen, bevor Sie funktionierende Mailziele ändern. Eine Cache-Vermutung allein ist keine gesicherte Ursache.
 
-<a id="yBsx0" />
+</Accordion>
 
-## Ein Resolver liefert SERVFAIL, ein anderer antwortet
+<a id="ein-resolver-liefert-servfail-ein-anderer-antwortet" />
+
+<Accordion title="Ein Resolver liefert SERVFAIL, ein anderer antwortet" id="yBsx0">
 
 Unterschiedliche Antworten rekursiver Resolver beweisen nicht, dass nur eine alte TTL ablaufen muss. Prüfen Sie die autoritativen Nameserver, die Delegation, DNSSEC und den konkret betroffenen Recordtyp. Notieren Sie Zeitpunkt und abgefragten Resolver, damit die Ergebnisse vergleichbar sind.
 
 Bei gleichzeitigem Mailausfall werden zusätzlich die aktuellen MX-Ziele und die Maildomain-Zuordnung beim zuständigen Anbieter geprüft. Ein abgeschlossener Domaintransfer oder eine vorhandene Weiterleitung bestätigt noch keinen funktionierenden Empfang. Testen Sie die betroffenen Dienste nach der gezielten Korrektur erneut.
 
 Technische Hilfe: [https://developers.google.com/speed/public-dns/docs/troubleshooting](https://developers.google.com/speed/public-dns/docs/troubleshooting)
+
+</Accordion>
+
+</AccordionGroup>

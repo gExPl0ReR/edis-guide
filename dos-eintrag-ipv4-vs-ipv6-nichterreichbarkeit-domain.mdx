@@ -1,6 +1,7 @@
 ---
 title: "Website nach DNS-Änderung nicht erreichbar: A und AAAA prüfen"
 sidebarTitle: "Website nach DNS-Änderung"
+description: "Prüfen Sie IPv4, IPv6 und den Zugriff aus verschiedenen Netzen, wenn Ihre Website nicht wie erwartet lädt."
 ---
 
 <a id="lLOYo" />
@@ -9,14 +10,18 @@ sidebarTitle: "Website nach DNS-Änderung"
 
 Wenn Ihre Website nach einer DNS-Änderung nicht wie erwartet erreichbar ist, prüfen Sie A- und AAAA-Einträge gemeinsam. Damit müssen Sie nicht pauschal 48 Stunden warten. Vergleichen Sie das autoritative DNS-Ergebnis mit noch zwischengespeicherten Antworten.
 
-Standardmäßig haben wir in unseren DNS-Einträgen immer IPv6 records konfiguriert (d.h. den AAAA-Record) eingestellt. Daher ist es wichtig, die folgenden Punkte zu überprüfen:
+EDIS-DNS-Vorlagen können auch einen **AAAA-Eintrag für IPv6** enthalten. Prüfen Sie deshalb beide Adressfamilien:
 
 1. **Überprüfen des AAAA-Records (IPv6):** Wenn Sie den A-Record (IPv4) geändert haben, stellen Sie sicher, dass Sie auch den dazugehörigen AAAA-Record (IPv6) entsprechend angepasst oder entfernt haben.
 2. **Konsistenz zwischen A- und AAAA-Records:** Es ist entscheidend, dass die Einträge für IPv4 (A-Record) und IPv6 (AAAA-Record) konsistent sind und korrekt auf Ihren Server zeigen. Wenn es eine Diskrepanz zwischen diesen beiden gibt, kann dies zu Problemen bei der Erreichbarkeit Ihrer Webseite führen.
 
-<a id="Q0UCC" />
+## Probleme in einzelnen Netzen
 
-## Website nur aus einem bestimmten Netz nicht erreichbar
+<AccordionGroup>
+
+<a id="website-nur-aus-einem-bestimmten-netz-nicht-erreichbar" />
+
+<Accordion title="Website nur aus einem bestimmten Netz nicht erreichbar" id="Q0UCC">
 
 Wenn eine Website nur aus einem bestimmten Netz nicht erreichbar ist, vergleichen Sie den Zugriff aus einem zweiten Netz. Notieren Sie genaue URL, Zeitpunkt, Fehlermeldung und die öffentliche IP des betroffenen Anschlusses.
 
@@ -24,10 +29,16 @@ In Schul- und Firmennetzen können viele Geräte dieselbe öffentliche IP verwen
 
 Lassen Sie eine vermutete Schutzsperre anhand der konkreten Anfrage prüfen. Nach einer Korrektur muss derselbe Zugriff aus dem ursprünglich betroffenen Netz erneut funktionieren. Schalten Sie den gesamten Schutz nicht pauschal ab.
 
-<a id="tchMF" />
+</Accordion>
 
-## IP-Adressen und Umfang einer Sperre klären
+<a id="ip-adressen-und-umfang-einer-sperre-klären" />
+
+<Accordion title="IP-Adressen und Umfang einer Sperre klären" id="tchMF">
 
 Logauszüge können anonymisierte oder gekürzte Adressen enthalten. Kennzeichnen Sie solche Änderungen ausdrücklich und nennen Sie für eine berechtigte technische Prüfung die tatsächliche betroffene öffentliche Adresse über den vorgesehenen Supportweg. Aus einer anonymisierten Adresse lässt sich kein zuverlässiger Sperr- oder Freigabeauftrag ableiten.
 
 Die Sperre einer einzelnen Adresse und die Sperre eines ganzen Netzbereichs haben unterschiedliche Auswirkungen. Halten Sie deshalb den betroffenen Dienst, die genaue Regel und den vorgesehenen Zeitraum fest. Eine bestätigte Änderung sollte anschließend mit der ursprünglichen Anfrage geprüft werden; bei unerwünschten Nebenwirkungen muss sie gezielt korrigiert werden können.
+
+</Accordion>
+
+</AccordionGroup>

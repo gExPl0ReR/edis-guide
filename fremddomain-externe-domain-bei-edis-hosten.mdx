@@ -1,17 +1,26 @@
 ---
 title: "Externe Domain mit EDIS-Webhosting verbinden"
 sidebarTitle: "Externe Domain einbinden"
+description: "Ihre Domain bleibt beim bisherigen Registrar. Website und Hosting können Sie trotzdem bei EDIS betreiben."
 ---
 
 <a id="aKWUb" />
 
-### Hosten von Fremddomain bei EDIS
+## Hosten von Fremddomain bei EDIS
 
-Sie können problemlos externe Domains bei EDIS hosten. Folgen Sie diesen Schritten:
+<Steps>
+<Step title="Fremddomain bestellen">
+Bestellen Sie Ihre vorhandene Domain im EDIS-Online-Shop als **Fremddomain**. Die Registrierung bleibt beim bisherigen Provider.
+</Step>
+<Step title="Webhost auswählen">
+Ordnen Sie die Domain dem gewünschten EDIS-Webhost zu. EDIS richtet die Webserverzuordnung gemäß Ihren Vorgaben ein; dieser Service ist kostenfrei.
+</Step>
+<Step title="DNS-Verbindung vorbereiten">
+Ermitteln Sie die für Ihren Webhost vorgesehenen Zieladressen und tragen Sie diese beim zuständigen DNS-Anbieter ein. Beachten Sie die Hinweise zur Zuordnung und zu bestehenden Maildiensten im nächsten Abschnitt.
+</Step>
+</Steps>
 
-1. Bestellen Sie die Domain, die Sie bei EDIS hosten möchten, als "Fremddomain" über unseren Online-Shop.
-2. Ordnen Sie die Domain Ihrem gewünschten Webhost bei EDIS zu.
-3. Beachten Sie, dass die Domain beim aktuellen Provider bleibt. EDIS nimmt lediglich die Konfiguration der Webserver gemäß Ihren Vorgaben vor. Dieser Service ist für Sie kostenfrei.
+## Zieladressen für das Hosting
 
 <Warning>
 
@@ -19,10 +28,11 @@ Verwenden Sie für die DNS-Verbindung die Ihrem konkreten Webhost zugewiesenen Z
 
 </Warning>
 
-**Hosting Produkte&#x20;**&#xA0;(Mokka, Ristretto, Espresso, Doppio)
+### Mokka, Ristretto, Espresso und Doppio
 
-| **Österreich**  | **HOSTING.AT.EDIS.GLOBAL** | **91.227.205.222** |
-| --------------- | -------------------------- | ------------------ |
+| Standort | Hostname | IPv4-Adresse |
+| --- | --- | --- |
+| Österreich | HOSTING.AT.EDIS.GLOBAL | 91.227.205.222 |
 | **Deutschland** | **HOSTING.DE.EDIS.GLOBAL** | **158.255.214.5**  |
 | **England**     | **HOSTING.UK.EDIS.GLOBAL** | **192.121.113.50** |
 | **Frankreich**  | **HOSTING.FR.EDIS.GLOBAL** | **151.236.21.20**  |
@@ -36,7 +46,9 @@ Verwenden Sie für die DNS-Verbindung die Ihrem konkreten Webhost zugewiesenen Z
 
 2a03\:f80\:ad15:91:227:205:222:1
 
-**ältere Hosting Produkte** (Smart, Starter, Basic, Advanced, Premium, Platinum Hosting)
+### Ältere Hostingprodukte
+
+Smart, Starter, Basic, Advanced, Premium und Platinum Hosting:
 
 **Österreich** HOSTING.EDIS-LPS.AT (91.227.204.35)
 
@@ -44,10 +56,6 @@ Verwenden Sie für die DNS-Verbindung die Ihrem konkreten Webhost zugewiesenen Z
 
 **Schweiz** ​ ​HOSTING.EDIS-LPS.CH (178.209.42.104)
 
-<Warning>
-
-Bitte beachten Sie, dass externe Domains nicht bei EDIS registriert sind.
-
-</Warning>
+## Verbindung prüfen
 
 Die Wirksamkeit einer DNS-Änderung hängt von der zuständigen Zone und den bisherigen TTLs ab. Prüfen Sie das tatsächlich aufgelöste Ziel sowie Website, HTTPS und E-Mail. Ein Registrartransfer ist für diese DNS-Verbindung nicht erforderlich. Möchten Sie zusätzlich den Registrar zu EDIS wechseln, stimmen Sie Bestellung, Auth-Code und Transferstatus gesondert mit dem Support ab.
