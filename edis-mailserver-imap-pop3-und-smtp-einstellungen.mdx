@@ -1,133 +1,132 @@
 ---
 title: "EDIS-Mailserver: IMAP-, POP3- und SMTP-Einstellungen"
 sidebarTitle: "Mailserver & Ports"
+description: "Servernamen, Ports und Verschlüsselung für Ihr Mailprogramm – mit Hilfe bei Verbindungs- und Ordnerproblemen."
 ---
 
-<a id="CBzpS" />
+## Servereinstellungen
 
-## POP3
+| Protokoll | Server | Port | Verschlüsselung |
+| --- | --- | --- | --- |
+| <a id="UxMpj" /><a id="imap" />IMAP · Empfang | `mx.edis.at` | **993** | SSL/TLS |
+| <a id="CBzpS" /><a id="pop3" />POP3 · Empfang | `mx.edis.at` | **995** | SSL/TLS |
+| <a id="dcCm3" /><a id="smtp" />SMTP · Versand | `mailrelay.edis.at` | **587** | STARTTLS |
+| SMTP · Versand | `mailrelay.edis.at` | **465** | SSL/TLS |
 
-Posteingangsserver: **mx.edis.at (alt -> mail.edis.at)**
-Port: **995** (SSL)
+Für den Empfang und den Versand verwenden Sie dieselben Zugangsdaten:
 
-**Benutzername** / ID: Ihre E-Mail Adresse
-**Passwort**: E-Mail Passwort
-
-<a id="UxMpj" />
-
-## IMAP
-
-Posteingangsserver:  **mx.edis.at (alt -> mail.edis.at)**
-Port: **993** (SSL)
-Verschlüsselungstyp: **SSL**
+- **Benutzername:** Ihre vollständige E-Mail-Adresse
+- **Passwort:** das Passwort dieses E-Mail-Postfachs
 
 <Note>
-
-**Verschlüsselungstyp:**
-
-Wenn **SSL&#x20;**&#x69;n Ihrem Programm nicht zur Auswahl steht, dann wählen Sie bitte **SSL/TLS**
-
+  Manche Mailprogramme nennen die Einstellung **SSL**, andere **SSL/TLS**. Verwenden Sie für Port 587 die Einstellung **STARTTLS**.
 </Note>
 
-<Note>
+In älteren Einstellungen kann noch `mail.edis.at` als Posteingangsserver stehen. Die aktuelle Serveradresse finden Sie in der Tabelle oben.
 
-Ändern Sie den IMAP-Pfad-Präfix beziehungsweise Stammordnerpfad nicht pauschal. Wenn Ordner fehlen oder falsch zugeordnet werden, vergleichen Sie zuerst die Ordner im Webmail mit denen im Mailprogramm. Bei einer dazu passenden Kontokonfiguration kann INBOX als Pfad helfen. Die folgenden Abbildungen zeigen Beispiele; die Menüs unterscheiden sich je nach Programmversion. Prüfen Sie nach einer Änderung den Empfang, den Versand sowie die Ordner „Gesendet“, „Entwürfe“ und „Papierkorb“.
+[Anleitungen für verschiedene Mailprogramme](https://www.edis.at/de/support-und-faq/anleitungen)
 
-</Note>
+## Hilfe bei Problemen
 
-![IMAP-Ordnereinstellungen für ein EDIS-Postfach](/images/dcbf109566f3d5.png)
+Öffnen Sie den Abschnitt, der zu Ihrer Fehlermeldung oder Ihrem Mailprogramm passt.
 
-![Stammordnerpfad für ein IMAP-Konto einstellen](/images/f47598253f7eba.png)
+<a id="fehlende-spezialordner-in-outlook" />
 
-**Benutzername&#x20;**/ ID: Ihre E-Mail Adresse
+<Accordion id="y5MKh" title="IMAP: Ordner fehlen oder sind falsch zugeordnet">
+  Wenn „Gesendet“, „Entwürfe“ oder „Papierkorb“ fehlen, vergleichen Sie zuerst die Ordner des betroffenen Kontos im Webmail mit denen im Mailprogramm.
 
-**Passwort**: E-Mail Passwort
+  Ändern Sie den **IMAP-Pfad-Präfix beziehungsweise Stammordnerpfad nicht pauschal**. Bei einer passenden Kontokonfiguration kann `INBOX` helfen. Verwenden Sie diese Einstellung gezielt für das betroffene Konto.
 
-<a id="dcCm3" />
+  Die folgenden Abbildungen zeigen Beispiele; die Menüs unterscheiden sich je nach Programmversion.
 
-## SMTP
+  ![IMAP-Ordnereinstellungen für ein EDIS-Postfach](/images/dcbf109566f3d5.png)
 
-Postausgangsserver **mailrelay.edis.at**
-**Port: 587** (STARTTLS) oder **465** (SSL)
+  ![Stammordnerpfad für ein IMAP-Konto einstellen](/images/f47598253f7eba.png)
 
-<Note>
-
-**Verschlüsselungstyp**
-
-Wenn **SSL&#x20;**&#x69;n Ihrem Programm nicht zur Auswahl steht, dann wählen Sie bitte **SSL/TLS**
-
-</Note>
-
-**Benutzername&#x20;**/ ID: Ihre E-Mail Adresse
-
-**Passwort**: E-Mail Passwort
-
-<Note>
-
-Sie finden im unten angeführten Link ein paar Anleitungen für unterschiedliche Email Programme:
-
-</Note>
-
-[https://www.edis.at/de/support-und-faq/anleitungen#](https://www.edis.at/de/support-und-faq/anleitungen)
+  Prüfen Sie nach einer Änderung Empfang, Versand, Synchronisierung und Löschen sowie die Ordner „Gesendet“, „Entwürfe“ und „Papierkorb“. Sichern Sie lokale Nachrichten vor einem Kontoneuaufbau. Eine Meldung über ein gelöschtes Objekt beweist allein keinen dauerhaften Datenverlust.
+</Accordion>
 
 <a id="zDylg" />
+<a id="von-wo-wird-die-verbindung-aufgebaut" />
+<a id="smtp-aus-einer-website-oder-anwendung" />
 
-## Von wo wird die Verbindung aufgebaut?
+<Accordion id="Ukllo" title="SMTP aus einer Website oder Anwendung">
+  Ein Mailprogramm auf Ihrem Computer und ein Skript auf dem Webhost greifen aus unterschiedlichen Umgebungen auf den SMTP-Server zu. Ein angebotener Port ist deshalb nicht automatisch aus jeder Hosting-Umgebung erreichbar.
 
-Ein Mailprogramm auf Ihrem Computer und ein Skript auf dem Webhost greifen aus unterschiedlichen Umgebungen auf einen SMTP-Server zu. Ein vom Mailserver angebotener Port ist nicht automatisch aus jeder Hosting-Umgebung erreichbar.
+  Prüfen Sie bei einem Verbindungsfehler:
 
-<a id="Ukllo" />
+  1. **Einsatzort:** Entsteht der Fehler im Mailprogramm oder in einer Anwendung auf dem Webhost?
+  2. **Server und Port:** Stimmen die Angaben mit den Vorgaben des SMTP-Anbieters überein?
+  3. **Ausgehende Verbindung:** Ist der verwendete Port für dieses Hosting und diesen Zielserver freigegeben?
 
-## SMTP aus einer Website oder Anwendung
+  Port 587 mit STARTTLS ist ein möglicher Ausgangspunkt; die Freigabe muss für die konkrete Umgebung geprüft werden. Speichern Sie Kennwörter geschützt und senden Sie keine Zugangsdaten im Supportticket.
+</Accordion>
 
-Prüfen Sie bei einem Verbindungsfehler zuerst den Einsatzort und den verwendeten Port. Port 587 ist ein möglicher Ausgangspunkt für SMTP mit STARTTLS; die ausgehende Freigabe muss für das konkrete Hosting und den Zielserver geprüft werden.
+<a id="smtp-verbindung-öffnet-aber-die-tls-prüfung-scheitert" />
 
-Nutzen Sie die tatsächlichen Vorgaben des SMTP-Anbieters und speichern Sie Kennwörter geschützt. Senden Sie Zugangsdaten nicht im Supportticket.
+<Accordion id="65YPl" title="SMTP: Die TLS- oder Zertifikatsprüfung scheitert">
+  Eine Serverbegrüßung mit Status `220` und eine angenommene STARTTLS-Anfrage zeigen, dass die Verbindung bereits aufgebaut wurde. Ein allgemeiner Hinweis des Servers gegen unerwünschte Werbung ist für sich allein keine Ablehnung Ihrer Nachricht.
+
+  Bei **„certificate verify failed“** oder **„unknown ca“** lassen Sie diese Punkte prüfen:
+
+  - den verwendeten SMTP-Servernamen;
+  - die Zertifikatskette des SMTP-Servers;
+  - die vertrauenswürdigen CA-Zertifikate in der tatsächlich verwendeten PHP-Umgebung.
+
+  Nach einem Hostingumzug kann die neue Umgebung betroffen sein. Ein lokaler Test auf Ihrem Computer ersetzt die Prüfung auf dem Webhost nicht.
+
+  <Warning>
+    Schalten Sie die Zertifikatsprüfung nicht ab. Lassen Sie fehlende oder veraltete CA-Daten durch die zuständige Technik korrigieren und testen Sie anschließend erneut aus derselben Anwendung.
+  </Warning>
+
+  Ein Plugin kann **„Could not authenticate“** anzeigen, obwohl die Verbindung bereits bei der TLS-Prüfung und damit vor der Anmeldung abbricht. Ändern Sie daher nicht allein aufgrund dieser Kurzmeldung das Passwort.
+
+  Eine erfolgreiche Webmail-Anmeldung prüft einen anderen Verbindungsweg. Auch das HTTPS-Zertifikat Ihrer Website und das Zertifikat des SMTP-Servers sind getrennt zu prüfen. Testen Sie nach der Korrektur jede betroffene Website; ein Erfolg bei einer Domain bestätigt nicht automatisch die anderen.
+
+  Für die Diagnose benötigt der Support die Anwendung, PHP-Version, SMTP-Hostname, Port, TLS-Einstellung und einen bereinigten Fehlerausschnitt mit Zeitpunkt.
+</Accordion>
+
+<a id="versand-gelingt-aber-die-nachricht-kommt-nicht-an" />
+
+<Accordion id="03TKv" title="Versand gelingt, aber die Nachricht kommt nicht an">
+  Halten Sie Absender, Empfänger, einen möglichen Rückläufer und die Nachrichtenkennung bereit. Prüfen Sie auch den autorisierten Versandweg Ihrer Domain.
+
+  Ein SPF-Problem und ein fehlgeschlagener Verbindungsaufbau sind unterschiedliche Fehlerklassen. Hinweise zur Absenderfreigabe finden Sie im Artikel [SPF-Eintrag für den E-Mail-Versand über EDIS](/spf-eintrag-fur-den-e-mail-versand-uber-edis).
+</Accordion>
+
+<a id="abruf-und-versand-einer-cloud-anwendung-unterscheiden" />
+
+<Accordion id="0Gm_P" title="Eine Cloud-Anwendung kann E-Mails nicht abrufen oder senden">
+  Klären Sie zuerst, ob die Anwendung Nachrichten per **SMTP versendet** oder das Postfach per **IMAP abruft**.
+
+  Eine Versand-Blacklist beweist keine IMAP-Sperre. Auch ein Portscan gegen die Cloud-IP prüft nicht, ob die Anwendung von dort aus den EDIS-Mailserver erreichen kann.
+
+  Für die Prüfung benötigen wir den tatsächlichen Verbindungsweg, Zielserver, Port, Zeitpunkt und eine bereinigte Fehlermeldung. Übermitteln Sie keine Passwörter. Ein funktionierender Empfang auf einem Gerät bestätigt keine korrekt eingerichtete SMTP-Anmeldung auf einem anderen Gerät.
+</Accordion>
+
+<a id="umlaute-in-der-e-mail-adresse" />
+
+<Accordion id="gUG36" title="Umlaute in der E-Mail-Adresse">
+  Unterscheiden Sie den **Domainteil nach dem @** vom **Postfachnamen davor**:
+
+  - Eine Umlautdomain kann eine technische IDNA-Schreibweise besitzen.
+  - Für Umlaute im Postfachnamen ist Unterstützung für internationalisierte E-Mail, unter anderem SMTPUTF8, erforderlich. Die IDNA-Schreibweise der Domain löst diese Frage nicht.
+
+  Lassen Sie die genaue gewünschte Schreibweise und die Unterstützung durch Hostingprodukt, Mailprogramm und beteiligte Versandwege prüfen. Aus der Betriebssystemsprache allein lässt sich weder eine pauschale Unmöglichkeit noch eine uneingeschränkte Zustellung ableiten.
+
+  Eine zusätzliche Adresse ohne Umlaute kann nach Absprache eine Alternative sein. Bestehende Adressen werden dadurch nicht automatisch umbenannt.
+</Accordion>
 
 <a id="Adk0Q" />
+<a id="diese-informationen-helfen-bei-der-diagnose" />
 
-## Diese Informationen helfen bei der Diagnose
+## Diese Angaben helfen dem Support
 
-Nennen Sie die betroffene Website oder Postfachadresse, den Einsatzort (Mailprogramm oder Skript auf dem Webhost), SMTP-Hostname, Port und TLS-Einstellung sowie die genaue, von Geheimnissen bereinigte Fehlermeldung und den Zeitpunkt mit Zeitzone.
+Für eine gezielte Prüfung nennen Sie bitte:
 
-<a id="03TKv" />
+- **Betroffene Leistung:** Website oder E-Mail-Adresse
+- **Einsatzort:** Mailprogramm, Webhost oder Cloud-Anwendung; bei einer PHP-Anwendung auch die PHP-Version
+- **Verbindung:** Servername, Port und TLS-Einstellung
+- **Fehler:** genaue Fehlermeldung und Zeitpunkt mit Zeitzone
 
-## Versand gelingt, aber die Nachricht kommt nicht an
-
-Dann sind Absender, Empfänger, Rückläufer und Nachrichtenkennung hilfreich. Prüfen Sie auch den autorisierten Versandweg Ihrer Domain. Ein SPF-Problem und ein fehlgeschlagener Verbindungsaufbau sind unterschiedliche Fehlerklassen.
-
-<a id="gUG36" />
-
-## Umlaute in der E-Mail-Adresse
-
-Unterscheiden Sie den Domainteil nach dem @ vom Postfachnamen davor. Eine Umlautdomain kann eine technische IDNA-Schreibweise besitzen. Diese löst jedoch keine Kompatibilitätsfrage für Umlaute im lokalen Teil der Adresse. Dafür ist Unterstützung für internationalisierte E-Mail, unter anderem SMTPUTF8, erforderlich.
-
-Lassen Sie die genaue gewünschte Schreibweise und die Unterstützung durch Hostingprodukt, Mailprogramm und beteiligte Versandwege prüfen. Weder pauschale Unmöglichkeit noch uneingeschränkte Zustellung lässt sich allein aus der Betriebssystemsprache ableiten. Eine zusätzliche Adresse ohne Umlaute kann nach Absprache eine Alternative sein; bestehende Adressen werden dadurch nicht automatisch umbenannt.
-
-<a id="65YPl" />
-
-## SMTP-Verbindung öffnet, aber die TLS-Prüfung scheitert
-
-Lesen Sie die genaue Reihenfolge im SMTP-Protokoll. Eine Serverbegrüßung mit Status 220 und eine angenommene STARTTLS-Anfrage bedeuten, dass die Verbindung bereits aufgebaut wurde. Ein allgemeiner Hinweis des Servers gegen unerwünschte Werbung ist für sich allein keine Ablehnung Ihrer Nachricht.
-
-Bei „certificate verify failed“ oder „unknown ca“ sind der verwendete Servername, die Zertifikatskette der Gegenstelle und die vertrauenswürdigen CA-Zertifikate in der tatsächlichen PHP-Umgebung zu prüfen. Nach einem Hostingumzug kann auch die neue Umgebung betroffen sein. Ein lokaler Test auf Ihrem Computer ersetzt diese Prüfung nicht.
-
-Übermitteln Sie dem Support die betroffene Anwendung, PHP-Version, SMTP-Hostname, Port, TLS-Einstellung und den bereinigten Fehlerausschnitt mit Zeitpunkt. Lassen Sie fehlende oder veraltete CA-Daten durch die zuständige Technik korrigieren. Schalten Sie die Zertifikatsprüfung nicht ab. Testen Sie anschließend erneut aus derselben Anwendung.
-
-Ein Plugin kann „Could not authenticate“ anzeigen, obwohl die Verbindung schon bei der TLS-Prüfung und damit vor der Anmeldung abbricht. Ändern Sie deshalb nicht allein aufgrund dieser Kurzmeldung das Passwort. Eine erfolgreiche Webmail-Anmeldung prüft einen anderen Verbindungsweg. Auch das HTTPS-Zertifikat Ihrer Website und das Zertifikat des SMTP-Servers sind getrennt zu prüfen. Testen Sie nach der Korrektur jede betroffene Website; der Erfolg bei einer Domain bestätigt nicht automatisch die anderen.
-
-<a id="y5MKh" />
-
-## Fehlende Spezialordner in Outlook
-
-Wenn „Gesendet“, „Entwürfe“ oder „Papierkorb“ fehlen, prüfen Sie zuerst das betroffene Konto und die Ordner im Webmail. Vergleichen Sie anschließend die IMAP-Ordnerzuordnung im Mailprogramm.
-
-Bei passenden IMAP-Konfigurationen kann der Stammordnerpfad INBOX helfen. Verwenden Sie ihn gezielt für das betroffene Konto; sichern Sie lokale Nachrichten vor einem Kontoneuaufbau. Testen Sie nach einer Änderung Synchronisierung, Senden und Löschen. Eine Meldung über ein gelöschtes Objekt beweist allein keinen dauerhaften Datenverlust.
-
-<a id="0Gm_P" />
-
-## Abruf und Versand einer Cloud-Anwendung unterscheiden
-
-Klären Sie zuerst, ob die Anwendung Nachrichten per SMTP versendet oder das Postfach per IMAP abruft. Eine Versand-Blacklist beweist keine IMAP-Sperre. Auch ein Portscan gegen die Cloud-IP prüft nicht, ob die Anwendung von dort aus den EDIS-Mailserver erreichen kann.
-
-Für die Prüfung benötigen wir den tatsächlichen Verbindungsweg, Zielserver, Port, Zeitpunkt und eine bereinigte Fehlermeldung. Übermitteln Sie keine Passwörter. Ein funktionierender Empfang auf einem Gerät bestätigt keine korrekt eingerichtete SMTP-Anmeldung auf einem anderen Gerät.
+Entfernen Sie Passwörter und andere vertrauliche Zugangsdaten aus Fehlermeldungen und Protokollen, bevor Sie diese übermitteln.
