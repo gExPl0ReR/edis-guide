@@ -22,7 +22,7 @@ Wenn Sie die Nameserver für eine bei EDIS registrierte Domain ändern möchten,
 
 **Wichtige Anforderungen:**
 
-1. **Vollständige A-Records:**&#x46;ür über IPv4 erreichbare Dienste müssen die passenden A-Records vorhanden sein; bei IPv6 sind AAAA-Records zu berücksichtigen. Welche Einträge benötigt werden, hängt von den betriebenen Diensten ab. Eine DNS-Zone benötigt nicht grundsätzlich einen A-Record am Domainnamen. Zusätzliche Prüfregeln des Änderungsformulars sind anhand einer konkreten Fehlermeldung zu klären.
+1. **Vollständige A-Records:** Für über IPv4 erreichbare Dienste müssen die passenden A-Records vorhanden sein; bei IPv6 sind AAAA-Records zu berücksichtigen. Welche Einträge benötigt werden, hängt von den betriebenen Diensten ab. Eine DNS-Zone benötigt nicht grundsätzlich einen A-Record am Domainnamen. Zusätzliche Prüfregeln des Änderungsformulars sind anhand einer konkreten Fehlermeldung zu klären.
 2. **MX-Records:** Wenn Ihre Domain E-Mail-Dienste nutzt, müssen auch vollständige MX-Records (Mail Exchanger Einträge) vorhanden sein. Diese leiten E-Mails an den richtigen Server weiter.
 3. **Korrektes Ausliefern der Domain:** Es ist wichtig, vor der Umstellung sicherzustellen, dass die Zielnameserver die Domain korrekt ausliefern. Dies bedeutet, dass sie korrekte und aktuelle DNS-Informationen für die Domain bereitstellen.
 
@@ -46,7 +46,9 @@ Kontrollieren Sie nach dem Wechsel Delegation, DNS-Antworten und DNSSEC-Validier
 
 <a id="6Vzkr" />
 
-### Nameserver-Gruppe erstellen&#xA;
+<a id="nameserver-gruppe-erstellen" />
+
+## Nameserver-Gruppe erstellen
 
 Bevor Sie die Nameserver einer Domain ändern können, müssen Sie eine Nameserver-Gruppe in Ihrem EDIS-Kundenkonto erstellen.
 
@@ -62,7 +64,7 @@ Melden Sie sich im Kundenbereich an.
 
 <Step title="Nameserver-Gruppe anlegen">
 
-Klicken sie auf **Domain&#x20;**-> **Nameserver Gruppen**
+Klicken sie auf **Domain** -> **Nameserver Gruppen**
 
 1. Erstellen Sie eine Nameserver-Gruppe (das ist ein Template, das die Nameserver beinhaltet)
 2. Geben Sie bis zu vier Nameserver (Hostnamen) ein. Die IP-Adressen werden automatisch ergänzt.
@@ -85,7 +87,9 @@ Nachdem die Nameserver Gruppe angelegt wurde, weisen Sie diese der gewünschten 
 
 <a id="nNhlC" />
 
-### Nameserver Gruppe der Domain zuweisen
+<a id="nameserver-gruppe-der-domain-zuweisen" />
+
+## Nameserver-Gruppe zuweisen
 
 <Steps>
 
@@ -129,7 +133,7 @@ Auch bei externen Nameservern muss die DNSSEC-Verknüpfung über den zuständige
 
 Stimmen Sie die Entfernung alter DS-Daten, deren Gültigkeitsdauer und den Nameserverwechsel aufeinander ab. Nach der Umstellung werden neue Signierung und passender DS-Eintrag eingerichtet und geprüft. Eine Migration mit durchgehend aktivem DNSSEC benötigt zusätzliche Voraussetzungen. Eine Eingabebestätigung allein ersetzt keine Prüfung der veröffentlichten Daten und der validierenden Auflösung.
 
-Technische Grundlagen: [https://developers.cloudflare.com/dns/dnssec/](https://developers.cloudflare.com/dns/dnssec/) und [https://www.rfc-editor.org/rfc/rfc4034.html](https://www.rfc-editor.org/rfc/rfc4034.html)
+Technische Grundlagen: [Cloudflare: DNSSEC](https://developers.cloudflare.com/dns/dnssec/) und [RFC 4034: DNSSEC-Einträge](https://www.rfc-editor.org/rfc/rfc4034.html)
 
 </Accordion>
 
@@ -149,7 +153,7 @@ Unterschiedliche Antworten rekursiver Resolver beweisen nicht, dass nur eine alt
 
 Bei gleichzeitigem Mailausfall werden zusätzlich die aktuellen MX-Ziele und die Maildomain-Zuordnung beim zuständigen Anbieter geprüft. Ein abgeschlossener Domaintransfer oder eine vorhandene Weiterleitung bestätigt noch keinen funktionierenden Empfang. Testen Sie die betroffenen Dienste nach der gezielten Korrektur erneut.
 
-Technische Hilfe: [https://developers.google.com/speed/public-dns/docs/troubleshooting](https://developers.google.com/speed/public-dns/docs/troubleshooting)
+Technische Hilfe: [Google Public DNS: Fehlerdiagnose](https://developers.google.com/speed/public-dns/docs/troubleshooting)
 
 </Accordion>
 

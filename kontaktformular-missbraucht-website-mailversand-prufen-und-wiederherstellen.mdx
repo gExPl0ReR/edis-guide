@@ -2,13 +2,18 @@
 title: "Kontaktformular missbraucht: Website-Mailversand prüfen und wiederherstellen"
 sidebarTitle: "Formularmissbrauch"
 tag: "Neu"
+description: "Missbrauchten Formularversand gezielt absichern und die Funktion nach bestätigter Entsperrung testen."
 ---
 
 Eine Sperre des Mailversands Ihrer Website kann Kontaktformulare und Bestellbenachrichtigungen betreffen, während E-Mail-Programme weiterhin normal senden. Lesen Sie die Sperrmitteilung genau und prüfen Sie, welche Website und welcher Versandweg genannt werden.
 
+## Ursache beheben und Schutz prüfen
+
 Lassen Sie die betroffene Anwendung durch den zuständigen Websitebetreuer prüfen. Halten Sie fest, welche Funktion missbraucht wurde und welche Änderung die Ursache behebt. Das reine Einblenden eines Captchas ist noch kein Nachweis, dass das Formular ungültige Anfragen tatsächlich zurückweist.
 
 Bei einem Captcha- oder Tokenverfahren muss die Verarbeitung auf dem Server den vorgesehenen Schutz prüfen. Für Turnstile ist die serverseitige Validierung ausdrücklich erforderlich. Die genaue Umsetzung richtet sich nach dem verwendeten Verfahren und Formular.
+
+## Entsperrung abstimmen und Formular testen
 
 Informieren Sie den Support über die konkrete Änderung. Nach der Prüfung und einer bestätigten Entsperrung testen Sie das zuvor betroffene Formular: Wird eine legitime Anfrage verarbeitet und am vorgesehenen Ziel zugestellt? Bleibt der Schutz aktiv? Eine erfolgreiche Outlook-Anmeldung ersetzt diesen Formulartest nicht.
 
@@ -16,9 +21,7 @@ Informieren Sie den Support über die konkrete Änderung. Nach der Prüfung und 
 
 ## Weiterführende Informationen
 
-serverseitige Validierung ausdrücklich erforderlich
-
-[https://developers.cloudflare.com/turnstile/get-started/server-side-validation/](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+[Turnstile: Serverseitige Validierung](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
 
 <a id="s-miM" />
 

@@ -6,7 +6,9 @@ description: "DNS-Zone öffnen, Record-Typen richtig verwenden und Änderungen m
 
 <a id="q7GKh" />
 
-## Erstes Einloggen im PDNS-Admin
+<a id="erstes-einloggen-im-pdns-admin" />
+
+## Zugang und zuständige DNS-Zone prüfen
 
 Für die DNS-Verwaltung benötigen Sie einen [DNS-Benutzer mit eigenem Passwort](/anycast-dns-benutzer-erstellen). Prüfen Sie vor Änderungen, ob EDIS die autoritative DNS-Zone Ihrer Domain verwaltet.
 
@@ -110,7 +112,7 @@ Wenn Sie einen TXT Eintrag (z.B. einen SPF-Record) erfassen, öffnet sich ein we
 
 <Note>
 
-Geben Sie den gewünschten Eintrag, **ohne Anführungszeichen und ohne Hochkommas,&#x20;**&#x65;in.
+Geben Sie den gewünschten Eintrag, **ohne Anführungszeichen und ohne Hochkommas,** ein.
 
 korrekt: `v=spf1 a:spf.edis.at -all`
 
@@ -146,13 +148,13 @@ Längere TTLs erlauben eine längere Nutzung zwischengespeicherter Antworten; k�
 
 ![TTL-Einstellung eines DNS-Eintrags bei EDIS](/images/b96414206ab8b4.png)
 
-Im Feld **Comment&#x20;**(Notiz) können beliebige Kommentare bzw. Notizen zu einem Eintrag erfasst werden.
+Im Feld **Comment** (Notiz) können beliebige Kommentare bzw. Notizen zu einem Eintrag erfasst werden.
 
 <Note>
 
-Änderungen an DNS-Einträgen sind pro Zeile explizit mit **"Save"&#x20;**&#x7A;u speichern.
+Änderungen an DNS-Einträgen sind pro Zeile explizit mit **"Save"** zu speichern.
 
-**Cancel&#x20;**&#x62;richt eine Änderung ohne zu speichern ab.
+**Cancel** bricht eine Änderung ohne zu speichern ab.
 
 </Note>
 
@@ -160,7 +162,7 @@ Im Feld **Comment&#x20;**(Notiz) können beliebige Kommentare bzw. Notizen zu ei
 
 <Note>
 
-Wenn Sie alle Änderungen an einer Domain abgeschlossen haben, wenden Sie Ihre Änderungen mit **"Apply Changes"&#x20;**&#x61;n.
+Wenn Sie alle Änderungen an einer Domain abgeschlossen haben, wenden Sie Ihre Änderungen mit **"Apply Changes"** an.
 
 **Erst nach erfolgtem Anwenden von Änderungen mittels "Apply Changes" werden die Änderungen ins Internet repliziert!**
 

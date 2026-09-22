@@ -2,6 +2,7 @@
 title: "Backups und Wiederherstellung: Datenverlust richtig melden"
 sidebarTitle: "Backups wiederherstellen"
 tag: "Neu"
+description: "Fehlende Daten präzise melden, den gewünschten Sicherungsstand festlegen und eine Wiederherstellung gezielt vorbereiten."
 ---
 
 So melden Sie fehlende Dateien, Datenbanken oder E-Mails bei EDIS. Erfahren Sie, welche Angaben zur Prüfung einer Wiederherstellung benötigt werden.
@@ -32,20 +33,6 @@ Eine bereitgestellte Kopie verändert die aktive Website nicht. Bei einer Wieder
 
 Wenn Sie vorerst nur eine Kopie wünschen, schreiben Sie ausdrücklich dazu, dass nichts in die aktive Website eingespielt werden soll. Benötigen Sie einen Sicherungsstand noch für eine spätere Entscheidung, bitten Sie um Bestätigung, ob und bis wann dieser aufbewahrt werden kann. Die Bitte allein ist noch keine Zusage. Auch die Weitergabe eines Kostenangebots durch Ihre Agentur ersetzt keine bestätigte Kostenübernahme. Lassen Sie Umfang, Bereitstellung und gegebenenfalls Aufbewahrung jeweils ausdrücklich bestätigen.
 
-<a id="gv4XL" />
-
-## Der Datenbank-Download ist verschwunden
-
-Eine bereitgestellte Exportdatei kann nur befristet zum Herunterladen verfügbar sein. Beachten Sie die im Kundenbereich angezeigte Gültigkeit. Ist der Link abgelaufen, nennen Sie dem Support die Datenbank und den gewünschten Sicherungsstand und lassen Sie prüfen, ob ein neuer Download bereitgestellt werden kann. Die Gültigkeit der Download-Datei sagt nichts darüber aus, wie lange Sicherungen oder Protokolle aufbewahrt werden.
-
-Unterscheiden Sie das ausgewählte Datum, den tatsächlich im Auftrag genannten Sicherungsstand und den Zeitpunkt der Bereitstellung. Ein erfolgreich erstellter Download bedeutet nicht, dass Daten in Ihre aktive Datenbank eingespielt wurden.
-
-<a id="yVQfu" />
-
-## Ein Datenbank-Restore wurde abgebrochen
-
-Senden Sie die genaue Fehlermeldung, den Zeitpunkt und den gewählten Sicherungsstand. Nach einem Timeout kann ohne technische Prüfung unklar sein, ob bereits ein Teil der Daten verändert wurde. Starten Sie daher nicht mehrfach denselben Restore. Lassen Sie zuerst den aktuellen Zustand, den Zielbestand und mögliche Auswirkungen auf neuere Daten prüfen und sichern.
-
 <a id="eObMH" />
 
 ## Umfang und Kosten vorab klären
@@ -56,9 +43,35 @@ Geben Sie bei mehreren Postfächern für jede Adresse getrennt an, ob sie entfal
 
 Prüfen Sie den genauen Sicherungszeitpunkt und den vereinbarten Umfang. Dateien und Datenbanken können unterschiedliche Sicherungen benötigen. Stimmt das in einer Bestätigung genannte Datum nicht mit Ihrem Auftrag überein, lassen Sie den tatsächlich verwendeten Sicherungsstand prüfen. Ein abweichender Monat darf nicht ungeprüft als Schreibfehler behandelt werden.
 
-<a id="qy7DR" />
+<Warning>
+**Nach einem Website-Hack:** Eine ältere Sicherung kann ebenfalls Schadsoftware enthalten. Stimmen Sie Bereinigung und sichere Wiederfreigabe ab, bevor Sie die Website wieder öffentlich betreiben.
+</Warning>
 
-## S3-Medien und WordPress-Multisite gezielt wiederherstellen
+## Besondere Wiederherstellungsfälle
+
+<AccordionGroup>
+
+<a id="der-datenbank-download-ist-verschwunden" />
+
+<Accordion title="Der Datenbank-Download ist verschwunden" id="gv4XL">
+
+Eine bereitgestellte Exportdatei kann nur befristet zum Herunterladen verfügbar sein. Beachten Sie die im Kundenbereich angezeigte Gültigkeit. Ist der Link abgelaufen, nennen Sie dem Support die Datenbank und den gewünschten Sicherungsstand und lassen Sie prüfen, ob ein neuer Download bereitgestellt werden kann. Die Gültigkeit der Download-Datei sagt nichts darüber aus, wie lange Sicherungen oder Protokolle aufbewahrt werden.
+
+Unterscheiden Sie das ausgewählte Datum, den tatsächlich im Auftrag genannten Sicherungsstand und den Zeitpunkt der Bereitstellung. Ein erfolgreich erstellter Download bedeutet nicht, dass Daten in Ihre aktive Datenbank eingespielt wurden.
+
+</Accordion>
+
+<a id="ein-datenbank-restore-wurde-abgebrochen" />
+
+<Accordion title="Ein Datenbank-Restore wurde abgebrochen" id="yVQfu">
+
+Senden Sie die genaue Fehlermeldung, den Zeitpunkt und den gewählten Sicherungsstand. Nach einem Timeout kann ohne technische Prüfung unklar sein, ob bereits ein Teil der Daten verändert wurde. Starten Sie daher nicht mehrfach denselben Restore. Lassen Sie zuerst den aktuellen Zustand, den Zielbestand und mögliche Auswirkungen auf neuere Daten prüfen und sichern.
+
+</Accordion>
+
+<a id="s3-medien-und-wordpress-multisite-gezielt-wiederherstellen" />
+
+<Accordion title="S3-Medien und WordPress-Multisite gezielt wiederherstellen" id="qy7DR">
 
 Bei ausgelagerten Medien müssen Webdateien, S3-Objekte und Datenbankeinträge getrennt geprüft werden. Nennen Sie die betroffene Website beziehungsweise Multisite-Unterseite, den Bucket, den Objektpfad und einen möglichst genauen Zeitpunkt vor dem Verlust. Übermitteln Sie keine S3-Zugangsschlüssel.
 
@@ -66,9 +79,11 @@ Klären Sie, ob nur Dateien fehlen oder auch Medienverknüpfungen und andere Dat
 
 Die für Webhosting genannten Sicherungen gelten nicht automatisch für den Objektspeicher. Für S3 müssen aktuelle Sicherungsstände, Versionierung und Aufbewahrung gesondert bestätigt werden. Ein aktueller Disaster-Recovery-Stand ist kein Beleg für einen älteren gewünschten Objektstand. Ändern sich Zielzeit oder Umfang Ihres Auftrags, müssen diese vor der Ausführung erneut eindeutig feststehen.
 
-<a id="DNzIP" />
+</Accordion>
 
-## Warnungen bei einer Wiederherstellung mit UpdraftPlus
+<a id="warnungen-bei-einer-wiederherstellung-mit-updraftplus" />
+
+<Accordion title="Warnungen bei einer Wiederherstellung mit UpdraftPlus" id="DNzIP">
 
 Halten Sie fest, ob die Wiederherstellung erst vorbereitet wird, bereits gestartet wurde oder mit einer Fehlermeldung abgebrochen ist. Senden Sie den genauen Warntext und das relevante Protokoll ohne Zugangsdaten. Eine Warnung vor dem Start belegt noch keinen fehlgeschlagenen Restore.
 
@@ -76,9 +91,11 @@ Zeitlimit, abweichende Website-Adresse und Datenbank-Zeichensatz sind getrennte 
 
 Ändern Sie Zeichensätze oder Website-Adressen nicht versuchsweise und überschreiben Sie keine aktive Datenbank ohne passende Sicherung und abgestimmten Wiederherstellungsumfang. Ein Tarifwechsel ist erst sinnvoll, wenn die konkrete Ursache und die benötigten Eigenschaften geklärt sind. Prüfen Sie danach auch die Website-Funktionen; eine Erfolgsmeldung des Backup-Plugins allein reicht dafür nicht aus.
 
-<a id="2lTYt" />
+</Accordion>
 
-## Backups nach einem Website-Hack
+<a id="backups-nach-einem-website-hack" />
+
+<Accordion title="Backups nach einem Website-Hack" id="2lTYt">
 
 Ein älteres Backup ist nicht automatisch frei von Schadsoftware. Wenn eine Website länger kompromittiert war, können auch frühe Sicherungen betroffen sein. Vor einer Wiederinbetriebnahme müssen Ursache, verwendeter Datenstand und Bereinigungsmaßnahmen geprüft werden.
 
@@ -90,28 +107,38 @@ Notieren Sie vor der Bereinigung die Symptome, den Zeitpunkt mit Zeitzone sowie 
 
 Das Entfernen eines betroffenen Plugins oder die Sperre einer einzelnen verdächtigen Domain beweist keine vollständige Bereinigung. Schadcode kann auch außerhalb des Plugins zurückbleiben. Lassen Sie den konkreten Befund, weitere betroffene Dateien und Zugänge sowie die Eintrittsstelle prüfen. Pauschale Aussagen zur Betroffenheit ähnlich benannter Plugin-Versionen reichen dafür nicht aus.
 
-<a id="htCN2" />
+</Accordion>
 
-## Eine kompromittierte Website vorübergehend offline nehmen
+<a id="eine-kompromittierte-website-vorübergehend-offline-nehmen" />
+
+<Accordion title="Eine kompromittierte Website vorübergehend offline nehmen" id="htCN2">
 
 Wenn Sie die Website zunächst offline nehmen möchten, nennen Sie dies als eigenes Sofortziel. Stimmen Sie mit dem Support eine gezielte vorübergehende Abschaltung oder Isolation ab und erhalten Sie die benötigten Daten und Belege. Die vollständige Bereinigung und eine spätere sichere Freigabe bleiben separate Aufgaben.
 
 Falls Sie Dateien wegen fehlender Rechte nicht entfernen können, nennen Sie den betroffenen Webhost, den genauen Pfad und die Fehlermeldung. Ändern Sie Rechte nicht pauschal und löschen Sie nicht vorsorglich ganze Verzeichnisbäume. Vor einer Löschung müssen Zuordnung, Umfang, Sicherung und Freigabe feststehen. Ein deaktivierter Webauftritt beweist nicht, dass keine weiteren schädlichen Prozesse oder Zugänge bestehen.
 
-Weiterführende Hinweise von WordPress: [https://wordpress.org/documentation/article/faq-my-site-was-hacked/](https://wordpress.org/documentation/article/faq-my-site-was-hacked/)
+[WordPress: Vorgehen nach einem Website-Hack](https://wordpress.org/documentation/article/faq-my-site-was-hacked/)
 
-<a id="bQiqu" />
+</Accordion>
 
-## Warum nennen wir keine pauschale Wiederherstellungsgarantie?
+<a id="warum-nennen-wir-keine-pauschale-wiederherstellungsgarantie" />
+
+<Accordion title="Warum nennen wir keine pauschale Wiederherstellungsgarantie?" id="bQiqu">
 
 Aufbewahrung, Datenart, Produkt und tatsächlicher Sicherungsbestand sind entscheidend. Eine erfolgreiche Wiederherstellung in einem anderen Fall sagt nichts über den aktuell benötigten Stand aus.
 
-<a id="yPuHu" />
+</Accordion>
 
-## Datenbankexport ohne SSH anfordern
+<a id="datenbankexport-ohne-ssh-anfordern" />
+
+<Accordion title="Datenbankexport ohne SSH anfordern" id="yPuHu">
 
 Bricht ein Export über phpMyAdmin ab, nennen Sie Datenbank, ungefähre Größe und genaue Fehlermeldung. Prüfen Sie zuerst, welche Exportwege Ihr konkretes Produkt bietet. Ein SSH-Dump ist nur bei tatsächlich vorhandenem SSH-Zugang möglich; ältere Produkte können diesen Zugang nicht haben.
 
 Falls im vHost-Bereich „Backup download anfordern“ angeboten wird, prüfen Sie nach der Anforderung den dort angezeigten Auftragsstatus. Die Erstellung kann im Hintergrund erfolgen. Aktualisieren Sie die Ansicht, bis der Download bereitsteht oder eine Fehlermeldung erscheint; eine zusätzliche E-Mail ist nicht für jeden Ablauf zugesagt. Fordern Sie nicht mehrfach denselben Export an.
 
 Behandeln Sie Downloadlink und Archivkennwort vertraulich. Prüfen Sie anschließend, ob die benötigte Datenbank und der gewünschte Stand enthalten sind. Ein erfolgreicher Download bestätigt noch keine erfolgreiche Wiederherstellung.
+
+</Accordion>
+
+</AccordionGroup>

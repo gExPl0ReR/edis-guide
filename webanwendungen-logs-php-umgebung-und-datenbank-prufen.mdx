@@ -2,9 +2,19 @@
 title: "Webanwendungen: Logs, PHP-Umgebung und Datenbank prüfen"
 sidebarTitle: "Webfehler untersuchen"
 tag: "Neu"
+description: "Webfehler anhand des betroffenen Aufrufs, der tatsächlichen PHP-Umgebung und passender Protokolle untersuchen."
 ---
 
-Beschreiben Sie zunächst, welche Aktion fehlschlägt und welche Fehlermeldung erscheint. Nennen Sie Domain, Anwendung, Zeitpunkt und die verwendete PHP-Version. Ein kleiner aussagekräftiger Logausschnitt ist oft hilfreicher als eine sehr große unkommentierte Datei.
+## Zuerst den Fehler eingrenzen
+
+Halten Sie für eine gezielte Prüfung fest:
+
+- **Domain und genaue Aktion**, die fehlschlägt
+- **Anwendung und PHP-Version**
+- **Vollständige Fehlermeldung und Zeitpunkt mit Zeitzone**
+- Einen **kurzen passenden Logausschnitt**, ohne Zugangsdaten
+
+Ein kleiner aussagekräftiger Ausschnitt hilft mehr als eine große unkommentierte Protokolldatei.
 
 Web-PHP und PHP auf der Kommandozeile können unterschiedliche Einstellungen und Erweiterungen verwenden. Prüfen Sie deshalb den tatsächlich betroffenen Ausführungskontext. Ein funktionierender CLI-Aufruf beweist nicht, dass dieselbe Funktion auch im Webprozess verfügbar ist.
 
@@ -12,53 +22,61 @@ Ein selbst erstelltes PHP.INI-Template muss der vorgesehenen Domain zugewiesen s
 
 Falls eine Anwendung fortlaufend große Logs erzeugt, muss die Ursache behoben werden. Dauerhaftes Abschalten der Fehlermeldungen oder wiederholtes Löschen der Logdatei ersetzt keine Korrektur. Speichern Sie sensible Protokolle nicht in öffentlich erreichbaren Verzeichnissen.
 
-<a id="pjwgs" />
+## PHP, Datenbank und Cache
 
-## Welche Protokolle helfen bei einem Sicherheitsvorfall?
+<AccordionGroup>
 
-Nennen Sie die betroffene Website, den Zeitraum mit Zeitzone und die genaue Frage. Bei verdächtigen Webaufrufen helfen beispielsweise Methode und URL-Pfad. Möchten Sie dagegen wissen, ob eine Anwendung eine externe Adresse kontaktiert hat, muss geprüft werden, ob dafür passende DNS- oder Netzwerkprotokolle vorhanden sind. Webzugriffslogs decken solche ausgehenden Verbindungen nicht automatisch ab.
+<a id="php-eingabelimit-von-speicher-und-upload-trennen" />
 
-Bitten Sie frühzeitig um Prüfung und gegebenenfalls Sicherung der passenden Protokolle. Die tatsächliche Verfügbarkeit und der Umfang der Aufzeichnung müssen bestätigt werden. Kein Treffer bedeutet nicht automatisch, dass kein Angriff stattgefunden hat. Öffnen Sie verdächtige Ziele nicht zur Probe und übermitteln Sie keine Passwörter oder ungekürzten vertraulichen Datensätze.
+<Accordion title="PHP-Eingabelimit von Speicher und Upload trennen" id="iLInX">
 
-<a id="jDtvV" />
+Meldet ein Theme oder Formular ein zu niedriges max\_input\_vars, prüfen Sie genau diesen Wert in der PHP-Umgebung der betroffenen Website. Das Eingabelimit ist von der PHP-Version, dem Arbeitsspeicher, der Laufzeit und der maximalen Dateigröße beim Upload zu unterscheiden. Die PHP-Dokumentation beschreibt max\_input\_vars als Begrenzung übermittelter Eingabevariablen.
 
-## Nur der SEO-Crawler wird blockiert
+Prüfen Sie, ob das vorgesehene PHP.INI-Template tatsächlich der richtigen Domain zugewiesen ist und welchen Wert die Anwendung anschließend verwendet. Übernehmen Sie die konkrete Anforderung des eingesetzten Themes; ein Wert aus einem früheren Supportfall ist kein allgemeiner EDIS-Standard. Testen Sie danach das betroffene Formular beziehungsweise das Speichern der Einstellungen.
 
-Vergleichen Sie einen normalen Seitenaufruf mit dem betroffenen Crawler. Nennen Sie die genaue Adresse, Uhrzeit, Fehlermeldung beziehungsweise HTTP-Status und den verwendeten Dienst. Die zuständige Technik prüft die tatsächliche Quell-IP, den User-Agent und die ausgelöste Schutzregel. AhrefsBot und AhrefsSiteAudit sind unterschiedliche Crawler; verwenden Sie die aktuellen Angaben des Anbieters.
+Technischer Hintergrund: [PHP-Handbuch: max_input_vars](https://www.php.net/manual/en/info.configuration.php#ini.max-input-vars)
 
-Eine Freigabe muss zur konkreten Ursache und Last passen. Stimmen Sie gegebenenfalls eine begrenzte Ausnahme, die Crawlgeschwindigkeit und die Bedingungen für deren Rücknahme ab. Schalten Sie Schutzmaßnahmen nicht pauschal ab. Prüfen Sie danach sowohl den erfolgreichen Abruf als auch die Ressourcenlast; eine angekündigte Freigabe bestätigt noch keinen erfolgreichen Test.
+</Accordion>
 
-Informationen des Anbieters zur Crawler-Identität und Steuerung: [https://ahrefs.com/robot](https://ahrefs.com/robot)
+<a id="api-funktioniert-per-ssh-aber-nicht-aus-web-php" />
 
-<a id="b49-h" />
+<Accordion title="API funktioniert per SSH, aber nicht aus Web-PHP" id="-FEtI">
 
-## Wiederkehrende Last durch Fehlerseiten
+Ein erfolgreicher API-Aufruf über SSH beweist nicht, dass derselbe Zugriff aus Web-PHP oder einem Cronjob funktioniert. Nennen Sie Zielhost, Anwendung, genaue Fehlermeldung und Zeitpunkt mit Zeitzone. Lassen Sie Ausführungskontext, DNS-Ziel, PHP-/cURL-Konfiguration und passende Sicherheitsprotokolle vergleichen.
 
-Ungültige URLs können ebenfalls viel Rechenleistung verbrauchen, wenn jede Anfrage eine aufwendige dynamische Fehlerseite auslöst. Prüfen Sie Anfragehäufigkeit, URL-Muster, HTTP-Status, PHP-/Datenbanklast und Fehlermeldungen der Anwendung gemeinsam.
+Eine Freigabe in einem Schutzsystem muss zum tatsächlichen Befund passen. Umfang, Dauer, Auswirkungen und Rücknahme werden mit der zuständigen Technik geklärt. Übernehmen Sie keine weit gefassten Netzfreigaben aus einem fremden Einzelfall. Testen Sie die ursprüngliche Anfrage nach der gezielten Korrektur erneut.
 
-Wurden Updates durchgeführt, Statistikaufgaben auf Cronjobs verlegt oder Weiterleitungsregeln geändert, kontrollieren Sie anschließend die Wirkung. Ein erneutes Auftreten muss mit der früheren Diagnose abgeglichen werden. Leiten Sie nicht pauschal jeden unbekannten Pfad auf die Startseite weiter; stimmen Sie eine gezielte und ressourcenschonende Fehlerbehandlung mit der für die Website zuständigen Person ab.
+</Accordion>
 
-<a id="9OW6V" />
+<a id="curl-60-zertifikatsprüfung-fehlgeschlagen" />
 
-## DNS entfernen schützt eine Website nicht zuverlässig
+<Accordion title="cURL 60: Zertifikatsprüfung fehlgeschlagen" id="sbVOo">
 
-Das Entfernen eines DNS-Eintrags ersetzt keine Zugriffsbeschränkung auf dem Webserver. Bereits bekannte Zieladressen oder andere Zugriffswege müssen gesondert berücksichtigt werden. Wenn eine Website zur Untersuchung geschützt werden muss, stimmen Sie einen begrenzten Wartungszugang mit dem Support und der verantwortlichen Webagentur ab.
+Ein Fehler wie „server certificate verification failed“ betrifft die Prüfung der TLS-Verbindung. Lassen Sie Zielhostname, Zertifikatskette und den tatsächlich von PHP oder der Anwendung verwendeten CA-Zertifikatsspeicher prüfen. Browser, Kommandozeile und WordPress können unterschiedliche Einstellungen verwenden.
 
-Auch eine Fehlerseite mit HTTP-Status 404 kann PHP und Datenbank belasten. Prüfen Sie daher tatsächliche Aufrufe und Ressourcenlast. Nach einer Reparatur und Freigabe kontrollieren Sie, ob die Last dauerhaft zurückgeht und die benötigten Funktionen wieder arbeiten.
+Ein fehlgeschlagener Plugin-Download beweist weder eine zu große Datenbank noch automatisch eine unpassende PHP-Version. Beheben Sie die konkrete Vertrauens- oder Konfigurationsursache; schalten Sie die Zertifikatsprüfung im produktiven Betrieb nicht ab.
 
-<a id="LiPyr" />
+Technischer Hintergrund: [cURL: Zertifikatsprüfung](https://curl.se/docs/sslcerts.html)
 
-## Adminbereich meldet 404, eine Testdatei funktioniert
+</Accordion>
 
-Ein erfolgreicher Abruf einer Textdatei oder einer PHP-Testdatei zeigt nur, dass dieser einzelne Aufruf funktioniert. Er bestätigt nicht, dass der Adminbereich Ihres CMS richtig zugeordnet ist oder dessen Weiterleitungsregeln greifen.
+<a id="datenbankfehler-1615-prepared-statement-needs-to-be-re-prepared" />
 
-Nennen Sie die vollständige betroffene Adresse, das CMS und die letzte Änderung. Prüfen Sie Hauptdomain, www oder Subdomain, das zugewiesene Webverzeichnis und den tatsächlich vorhandenen Startpfad. Für die weitere Diagnose helfen passende Zugriffs- und Fehlerprotokolle zum selben Zeitpunkt.
+<Accordion title="Datenbankfehler 1615: Prepared statement needs to be re-prepared" id="s2EHF">
 
-Ändern Sie Rewrite-Regeln oder Schutzfunktionen nur gezielt und mit gesichertem Ausgangszustand. Deaktivieren Sie die Web Application Firewall nicht pauschal und übernehmen Sie keine globale Serverkonfiguration auf Verdacht. Eine veränderte Einstellung muss anschließend am ursprünglich betroffenen Adminpfad geprüft werden.
+Diese Meldung allein beweist nicht, dass ein bestimmtes CMS-Plugin fehlerhaft ist. Nennen Sie den genauen Zeitpunkt, die betroffene Aktion, CMS- und Erweiterungsversionen sowie den eingesetzten Datenbankserver und seine Version. Ein bereinigter Logausschnitt und ein reproduzierbarer Aufruf helfen bei der Zuordnung.
 
-<a id="SktS7" />
+MySQL beschreibt ein erneutes Vorbereiten von Anweisungen unter anderem nach Metadatenänderungen oder Änderungen im Tabellen-Definitionscache. Welcher Auslöser im konkreten Fall vorliegt, muss anhand der verwendeten Version und passenden Server- und Anwendungsprotokolle geprüft werden.
 
-## WordPress-Cache und wechselnde HTTP-Header untersuchen
+Eine erneute CMS-Installation, die nur kurzzeitig hilft, bestätigt keine dauerhafte Behebung. Stimmen Sie die weitere Diagnose mit Hosting-Support und Websitebetreuung ab. Löschen Sie keine Datenbank und verändern Sie keine globalen Cachewerte auf Verdacht.
+
+Technischer Hintergrund: [MySQL: Zwischenspeichern vorbereiteter Anweisungen](https://dev.mysql.com/doc/refman/8.0/en/statement-caching.html)
+
+</Accordion>
+
+<a id="wordpress-cache-und-wechselnde-http-header-untersuchen" />
+
+<Accordion title="WordPress-Cache und wechselnde HTTP-Header untersuchen" id="SktS7">
 
 Eine installierte PHP-Erweiterung bedeutet nicht automatisch, dass WordPress sie als dauerhaften Objektcache verwendet. Objektcache, gespeicherte HTML-Seiten und die Cache-Anweisungen im HTTP-Header sind unterschiedliche Ebenen. Prüfen Sie, welche Erweiterungen und Cache-Plugins tatsächlich aktiv sind.
 
@@ -66,47 +84,11 @@ Vergleichen Sie dieselbe Adresse unter gleichen Bedingungen: angemeldet oder abg
 
 Lassen Sie die aktuelle Hostingarchitektur und den angebotenen Cache-Dienst für Ihr konkretes Paket bestätigen. Allgemeine Pluginhinweise sind keine Beschreibung der EDIS-Plattform. Ändern Sie möglichst nur einen Punkt gleichzeitig und messen Sie erneut. Eine Verbesserung nach Prozessneustart und Pluginänderung belegt noch keine eindeutige Ursache.
 
-<a id="IZ0nm" />
+</Accordion>
 
-## Logdaten und Aufbewahrung für Ihre Datenschutzerklärung
+<a id="cache-erweiterung-und-verwaltungsplugin-unterscheiden" />
 
-Trennen Sie Protokolle des Hostinganbieters von Daten, die Ihre Website selbst durch CMS, Plugins oder Analysewerkzeuge erfasst. Für eine technische Auskunft benötigt der Support die konkrete Website, das Hostingprodukt und die gewünschten Logarten.
-
-Lassen Sie die aktuell erfassten Datenfelder, Speicherorte, Aufbewahrungszeiten und Löschverfahren bestätigen. Ein allgemeiner Link zur Auftragsverarbeitungsvereinbarung bestätigt nicht sämtliche Angaben eines eigenen Textentwurfs. Achten Sie auf Fassung und Geltungsbereich des Dokuments; widersprüchliche Fristen müssen vor der Übernahme geklärt werden.
-
-Die technische Auskunft ersetzt keine vollständige rechtliche Prüfung Ihrer Datenschutzerklärung. Ob eine Vereinbarung bereits abgeschlossen wurde und welcher Serverstandort für Ihren Vertrag gilt, sind eigene Prüfpunkte.
-
-<a id="iLInX" />
-
-## PHP-Eingabelimit von Speicher und Upload trennen
-
-Meldet ein Theme oder Formular ein zu niedriges max\_input\_vars, prüfen Sie genau diesen Wert in der PHP-Umgebung der betroffenen Website. Das Eingabelimit ist von der PHP-Version, dem Arbeitsspeicher, der Laufzeit und der maximalen Dateigröße beim Upload zu unterscheiden. Die PHP-Dokumentation beschreibt max\_input\_vars als Begrenzung übermittelter Eingabevariablen.
-
-Prüfen Sie, ob das vorgesehene PHP.INI-Template tatsächlich der richtigen Domain zugewiesen ist und welchen Wert die Anwendung anschließend verwendet. Übernehmen Sie die konkrete Anforderung des eingesetzten Themes; ein Wert aus einem früheren Supportfall ist kein allgemeiner EDIS-Standard. Testen Sie danach das betroffene Formular beziehungsweise das Speichern der Einstellungen.
-
-Technischer Hintergrund: [https://www.php.net/manual/en/info.configuration.php#ini.max-input-vars](https://www.php.net/manual/en/info.configuration.php#ini.max-input-vars)
-
-<a id="s9ch8" />
-
-## 503, gezielte Sperren und Hintergrundaufgaben prüfen
-
-Wenn eine Website mit einem Hostnamen HTTP 503 liefert, mit einem anderen aber funktioniert, prüfen Sie zusätzlich eine mögliche hostbezogene Deaktivierung. Ein funktionierender Alias zum selben Verzeichnis bestätigt nicht, dass alle Zuordnungen freigeschaltet sind.
-
-Bei vielen Aufrufen eines einzelnen Skripts müssen Zeitpunkt, Anzahl und tatsächliche Ressourcenlast zusammenpassen. Eine vorübergehende Sperre kann den Aufruf unterbinden und gleichzeitig benötigte Hintergrundfunktionen beeinträchtigen. Ein HTTP-403-Test bestätigt die Sperre dieses Aufrufs; er ist noch kein vollständiger Funktionstest der Anwendung.
-
-Stimmen Sie gezielte Maßnahmen und den Rücknahmeweg mit der zuständigen Person ab. Prüfen Sie bei einer Wiki-Anwendung auch Suche, Indexierung und andere betroffene Hintergrundaufgaben. Nach der berechtigten Wiederfreigabe testen Sie die ursprüngliche Adresse und beobachten die Last erneut. Alte .htaccess-Beispiele müssen zur aktuell verwendeten Serverkonfiguration passen.
-
-<a id="-FEtI" />
-
-## API funktioniert per SSH, aber nicht aus Web-PHP
-
-Ein erfolgreicher API-Aufruf über SSH beweist nicht, dass derselbe Zugriff aus Web-PHP oder einem Cronjob funktioniert. Nennen Sie Zielhost, Anwendung, genaue Fehlermeldung und Zeitpunkt mit Zeitzone. Lassen Sie Ausführungskontext, DNS-Ziel, PHP-/cURL-Konfiguration und passende Sicherheitsprotokolle vergleichen.
-
-Eine Freigabe in einem Schutzsystem muss zum tatsächlichen Befund passen. Umfang, Dauer, Auswirkungen und Rücknahme werden mit der zuständigen Technik geklärt. Übernehmen Sie keine weit gefassten Netzfreigaben aus einem fremden Einzelfall. Testen Sie die ursprüngliche Anfrage nach der gezielten Korrektur erneut.
-
-<a id="1sOw4" />
-
-## Cache-Erweiterung und Verwaltungsplugin unterscheiden
+<Accordion title="Cache-Erweiterung und Verwaltungsplugin unterscheiden" id="1sOw4">
 
 OPcache oder APCu als PHP-Erweiterung und ein dazugehöriges Verwaltungsplugin sind unterschiedliche Komponenten. Wenn Seiten nach Deaktivierung eines Managers funktionieren, das Backend mit aktivem Manager aber weiter fehlschlägt, ist nur eine Teilbehebung bestätigt.
 
@@ -114,11 +96,65 @@ Prüfen Sie Frontend und Backend mit gleichen Aufrufen und passenden Logs. Fehle
 
 Passende PHP.INI-Anleitung
 
-[PHP.INI-Templates erstellen und einer Domain zuweisen](/phpini-templates-erstellen-und-einer-domain-zuweisen)&#x20;
+[PHP.INI-Templates erstellen und einer Domain zuweisen](/phpini-templates-erstellen-und-einer-domain-zuweisen) 
 
-<a id="4AbNc" />
+</Accordion>
 
-## Shop-Bots: Warenkorbpfade und tatsächliche Entlastung prüfen
+</AccordionGroup>
+
+## Erreichbarkeit, Crawler und Last
+
+<AccordionGroup>
+
+<a id="adminbereich-meldet-404-eine-testdatei-funktioniert" />
+
+<Accordion title="Adminbereich meldet 404, eine Testdatei funktioniert" id="LiPyr">
+
+Ein erfolgreicher Abruf einer Textdatei oder einer PHP-Testdatei zeigt nur, dass dieser einzelne Aufruf funktioniert. Er bestätigt nicht, dass der Adminbereich Ihres CMS richtig zugeordnet ist oder dessen Weiterleitungsregeln greifen.
+
+Nennen Sie die vollständige betroffene Adresse, das CMS und die letzte Änderung. Prüfen Sie Hauptdomain, www oder Subdomain, das zugewiesene Webverzeichnis und den tatsächlich vorhandenen Startpfad. Für die weitere Diagnose helfen passende Zugriffs- und Fehlerprotokolle zum selben Zeitpunkt.
+
+Ändern Sie Rewrite-Regeln oder Schutzfunktionen nur gezielt und mit gesichertem Ausgangszustand. Deaktivieren Sie die Web Application Firewall nicht pauschal und übernehmen Sie keine globale Serverkonfiguration auf Verdacht. Eine veränderte Einstellung muss anschließend am ursprünglich betroffenen Adminpfad geprüft werden.
+
+</Accordion>
+
+<a id="nur-der-seo-crawler-wird-blockiert" />
+
+<Accordion title="Nur der SEO-Crawler wird blockiert" id="jDtvV">
+
+Vergleichen Sie einen normalen Seitenaufruf mit dem betroffenen Crawler. Nennen Sie die genaue Adresse, Uhrzeit, Fehlermeldung beziehungsweise HTTP-Status und den verwendeten Dienst. Die zuständige Technik prüft die tatsächliche Quell-IP, den User-Agent und die ausgelöste Schutzregel. AhrefsBot und AhrefsSiteAudit sind unterschiedliche Crawler; verwenden Sie die aktuellen Angaben des Anbieters.
+
+Eine Freigabe muss zur konkreten Ursache und Last passen. Stimmen Sie gegebenenfalls eine begrenzte Ausnahme, die Crawlgeschwindigkeit und die Bedingungen für deren Rücknahme ab. Schalten Sie Schutzmaßnahmen nicht pauschal ab. Prüfen Sie danach sowohl den erfolgreichen Abruf als auch die Ressourcenlast; eine angekündigte Freigabe bestätigt noch keinen erfolgreichen Test.
+
+Informationen des Anbieters zur Crawler-Identität und Steuerung: [Ahrefs: Crawler-Identität und Steuerung](https://ahrefs.com/robot)
+
+</Accordion>
+
+<a id="wiederkehrende-last-durch-fehlerseiten" />
+
+<Accordion title="Wiederkehrende Last durch Fehlerseiten" id="b49-h">
+
+Ungültige URLs können ebenfalls viel Rechenleistung verbrauchen, wenn jede Anfrage eine aufwendige dynamische Fehlerseite auslöst. Prüfen Sie Anfragehäufigkeit, URL-Muster, HTTP-Status, PHP-/Datenbanklast und Fehlermeldungen der Anwendung gemeinsam.
+
+Wurden Updates durchgeführt, Statistikaufgaben auf Cronjobs verlegt oder Weiterleitungsregeln geändert, kontrollieren Sie anschließend die Wirkung. Ein erneutes Auftreten muss mit der früheren Diagnose abgeglichen werden. Leiten Sie nicht pauschal jeden unbekannten Pfad auf die Startseite weiter; stimmen Sie eine gezielte und ressourcenschonende Fehlerbehandlung mit der für die Website zuständigen Person ab.
+
+</Accordion>
+
+<a id="503-gezielte-sperren-und-hintergrundaufgaben-prüfen" />
+
+<Accordion title="503, gezielte Sperren und Hintergrundaufgaben prüfen" id="s9ch8">
+
+Wenn eine Website mit einem Hostnamen HTTP 503 liefert, mit einem anderen aber funktioniert, prüfen Sie zusätzlich eine mögliche hostbezogene Deaktivierung. Ein funktionierender Alias zum selben Verzeichnis bestätigt nicht, dass alle Zuordnungen freigeschaltet sind.
+
+Bei vielen Aufrufen eines einzelnen Skripts müssen Zeitpunkt, Anzahl und tatsächliche Ressourcenlast zusammenpassen. Eine vorübergehende Sperre kann den Aufruf unterbinden und gleichzeitig benötigte Hintergrundfunktionen beeinträchtigen. Ein HTTP-403-Test bestätigt die Sperre dieses Aufrufs; er ist noch kein vollständiger Funktionstest der Anwendung.
+
+Stimmen Sie gezielte Maßnahmen und den Rücknahmeweg mit der zuständigen Person ab. Prüfen Sie bei einer Wiki-Anwendung auch Suche, Indexierung und andere betroffene Hintergrundaufgaben. Nach der berechtigten Wiederfreigabe testen Sie die ursprüngliche Adresse und beobachten die Last erneut. Alte .htaccess-Beispiele müssen zur aktuell verwendeten Serverkonfiguration passen.
+
+</Accordion>
+
+<a id="shop-bots-warenkorbpfade-und-tatsächliche-entlastung-prüfen" />
+
+<Accordion title="Shop-Bots: Warenkorbpfade und tatsächliche Entlastung prüfen" id="4AbNc">
 
 Erfassen Sie bei hoher Shoplast die konkreten URLs, Parameter, Zeitpunkte und die Datenbank- beziehungsweise Speicherlast. Warenkorbaktionen können über verschiedene Sprachpfade erreichbar sein. Eine Regel für einen einzelnen Pfad deckt deshalb nicht automatisch alle betroffenen Aufrufe ab. Prüfen Sie auch IPv4 und IPv6 sowie die tatsächlich beteiligten Schutzebenen.
 
@@ -128,32 +164,54 @@ Ein Test mit einem bestimmten Bot-User-Agent und der Antwort HTTP 403 bestätigt
 
 Liegen mehrere Websites im selben Webhost, können sie gemeinsam von einer Sperre betroffen sein. Prüfen Sie mit dem Support, ob eine getrennte Unterbringung sinnvoll ist und welche Migration dafür erforderlich wäre.
 
-<a id="s2EHF" />
+</Accordion>
 
-## Datenbankfehler 1615: Prepared statement needs to be re-prepared
+<a id="monitoring-meldet-ausfälle-direkte-aufrufe-funktionieren" />
 
-Diese Meldung allein beweist nicht, dass ein bestimmtes CMS-Plugin fehlerhaft ist. Nennen Sie den genauen Zeitpunkt, die betroffene Aktion, CMS- und Erweiterungsversionen sowie den eingesetzten Datenbankserver und seine Version. Ein bereinigter Logausschnitt und ein reproduzierbarer Aufruf helfen bei der Zuordnung.
-
-MySQL beschreibt ein erneutes Vorbereiten von Anweisungen unter anderem nach Metadatenänderungen oder Änderungen im Tabellen-Definitionscache. Welcher Auslöser im konkreten Fall vorliegt, muss anhand der verwendeten Version und passenden Server- und Anwendungsprotokolle geprüft werden.
-
-Eine erneute CMS-Installation, die nur kurzzeitig hilft, bestätigt keine dauerhafte Behebung. Stimmen Sie die weitere Diagnose mit Hosting-Support und Websitebetreuung ab. Löschen Sie keine Datenbank und verändern Sie keine globalen Cachewerte auf Verdacht.
-
-Technischer Hintergrund: [https://dev.mysql.com/doc/refman/8.0/en/statement-caching.html](https://dev.mysql.com/doc/refman/8.0/en/statement-caching.html)
-
-<a id="Af_Ha" />
-
-## Monitoring meldet Ausfälle, direkte Aufrufe funktionieren
+<Accordion title="Monitoring meldet Ausfälle, direkte Aufrufe funktionieren" id="Af_Ha">
 
 Prüfen Sie den fehlerhaften Aufruf aus genau dem betroffenen Skript oder Cronjob. Vergleichen Sie Zieladresse, HTTP-Methode, DNS-Antwort, IPv4/IPv6, ausgehende IP, Zeitlimit und Zeitpunkt mit Zeitzone. Ein erfolgreicher cURL-Test von einem anderen Host oder zu einem anderen Zeitpunkt schließt eine Störung dieses Skripts nicht aus.
 
 Melden mehrere unabhängige Ziele gleichzeitig einen Ausfall, prüfen Sie auch den Monitor selbst: Läuft die geplante Prüfung noch, wie alt ist „Letzter Check“, und funktioniert der Versand der Alarmmeldungen? Eine mit HTTP 200 geladene Anmeldeseite bestätigt nur diesen Abruf. Fehlende Ziel-Logs und eine vermutete Firewall-Sperre sind noch kein Ursachennachweis.
 
-<a id="sbVOo" />
+</Accordion>
 
-## cURL 60: Zertifikatsprüfung fehlgeschlagen
+</AccordionGroup>
 
-Ein Fehler wie „server certificate verification failed“ betrifft die Prüfung der TLS-Verbindung. Lassen Sie Zielhostname, Zertifikatskette und den tatsächlich von PHP oder der Anwendung verwendeten CA-Zertifikatsspeicher prüfen. Browser, Kommandozeile und WordPress können unterschiedliche Einstellungen verwenden.
+## Sicherheit und Protokolle
 
-Ein fehlgeschlagener Plugin-Download beweist weder eine zu große Datenbank noch automatisch eine unpassende PHP-Version. Beheben Sie die konkrete Vertrauens- oder Konfigurationsursache; schalten Sie die Zertifikatsprüfung im produktiven Betrieb nicht ab.
+<AccordionGroup>
 
-Technischer Hintergrund: [https://curl.se/docs/sslcerts.html](https://curl.se/docs/sslcerts.html)
+<a id="welche-protokolle-helfen-bei-einem-sicherheitsvorfall" />
+
+<Accordion title="Welche Protokolle helfen bei einem Sicherheitsvorfall?" id="pjwgs">
+
+Nennen Sie die betroffene Website, den Zeitraum mit Zeitzone und die genaue Frage. Bei verdächtigen Webaufrufen helfen beispielsweise Methode und URL-Pfad. Möchten Sie dagegen wissen, ob eine Anwendung eine externe Adresse kontaktiert hat, muss geprüft werden, ob dafür passende DNS- oder Netzwerkprotokolle vorhanden sind. Webzugriffslogs decken solche ausgehenden Verbindungen nicht automatisch ab.
+
+Bitten Sie frühzeitig um Prüfung und gegebenenfalls Sicherung der passenden Protokolle. Die tatsächliche Verfügbarkeit und der Umfang der Aufzeichnung müssen bestätigt werden. Kein Treffer bedeutet nicht automatisch, dass kein Angriff stattgefunden hat. Öffnen Sie verdächtige Ziele nicht zur Probe und übermitteln Sie keine Passwörter oder ungekürzten vertraulichen Datensätze.
+
+</Accordion>
+
+<a id="dns-entfernen-schützt-eine-website-nicht-zuverlässig" />
+
+<Accordion title="DNS entfernen schützt eine Website nicht zuverlässig" id="9OW6V">
+
+Das Entfernen eines DNS-Eintrags ersetzt keine Zugriffsbeschränkung auf dem Webserver. Bereits bekannte Zieladressen oder andere Zugriffswege müssen gesondert berücksichtigt werden. Wenn eine Website zur Untersuchung geschützt werden muss, stimmen Sie einen begrenzten Wartungszugang mit dem Support und der verantwortlichen Webagentur ab.
+
+Auch eine Fehlerseite mit HTTP-Status 404 kann PHP und Datenbank belasten. Prüfen Sie daher tatsächliche Aufrufe und Ressourcenlast. Nach einer Reparatur und Freigabe kontrollieren Sie, ob die Last dauerhaft zurückgeht und die benötigten Funktionen wieder arbeiten.
+
+</Accordion>
+
+<a id="logdaten-und-aufbewahrung-für-ihre-datenschutzerklärung" />
+
+<Accordion title="Logdaten und Aufbewahrung für Ihre Datenschutzerklärung" id="IZ0nm">
+
+Trennen Sie Protokolle des Hostinganbieters von Daten, die Ihre Website selbst durch CMS, Plugins oder Analysewerkzeuge erfasst. Für eine technische Auskunft benötigt der Support die konkrete Website, das Hostingprodukt und die gewünschten Logarten.
+
+Lassen Sie die aktuell erfassten Datenfelder, Speicherorte, Aufbewahrungszeiten und Löschverfahren bestätigen. Ein allgemeiner Link zur Auftragsverarbeitungsvereinbarung bestätigt nicht sämtliche Angaben eines eigenen Textentwurfs. Achten Sie auf Fassung und Geltungsbereich des Dokuments; widersprüchliche Fristen müssen vor der Übernahme geklärt werden.
+
+Die technische Auskunft ersetzt keine vollständige rechtliche Prüfung Ihrer Datenschutzerklärung. Ob eine Vereinbarung bereits abgeschlossen wurde und welcher Serverstandort für Ihren Vertrag gilt, sind eigene Prüfpunkte.
+
+</Accordion>
+
+</AccordionGroup>

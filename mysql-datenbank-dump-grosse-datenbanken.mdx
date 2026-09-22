@@ -8,7 +8,9 @@ Wenn der Export über **phpMyAdmin** nicht möglich ist, können Sie einen Downl
 
 <a id="bea97" />
 
-## 1. Über den vHost Bereich:
+<a id="1-über-den-vhost-bereich" />
+
+## Datenbank-Download im vHost anfordern
 
 1. Navigieren Sie zum **vHost Bereich**.
 2. Wählen Sie **Datenbank** aus und gehen Sie zu **Rücksicherung**.
@@ -16,9 +18,11 @@ Wenn der Export über **phpMyAdmin** nicht möglich ist, können Sie einen Downl
 
 <a id="4C-so" />
 
-## 2. Über die Kommandozeile mit SSH:
+<a id="2-über-die-kommandozeile-mit-ssh" />
 
-1. Erstellen Sie ein eigenes Verzeichnis, idealerweise außerhalb des **www/home&#x20;**&#x56;erzeichnisses, z.B. **www/backup/**
+## Alternative: Export über SSH
+
+1. Erstellen Sie ein eigenes Verzeichnis, idealerweise außerhalb des **www/home** Verzeichnisses, z.B. **www/backup/**
 
 Verwenden Sie den tatsächlichen Datenbankserver und Datenbankbenutzer Ihres Webhosts. Der Wert nach -u ist der Benutzername und muss nicht mit dem Datenbanknamen übereinstimmen. Ersetzen Sie alle Platzhalter im folgenden Beispiel. Die Option -B schreibt zusätzlich Datenbankauswahl-Anweisungen in den Dump; beachten Sie dies vor einer Rücksicherung.
 
