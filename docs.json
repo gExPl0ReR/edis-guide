@@ -32,9 +32,19 @@
               "tausch-oder-umbenennung-einer-domain-geht-das",
               "fremddomain-externe-domain-bei-edis-hosten",
               "reloadzeiten-der-root-nameserver-at-zone-nic-at",
-              "kundenkennwort-zuruecksetzen-edis",
               "verknuefpung-domain-mit-jimdo",
-              "transferkosten-auf-der-service-abrechnung"
+              "transferkosten-auf-der-service-abrechnung",
+              "domain-bestellt-registrierung-und-mailbereitschaft-prufen",
+              "domain-umziehen-hosting-und-e-mail-bei-edis-behalten"
+            ]
+          },
+          {
+            "group": "Kundenkonto & Rechnung",
+            "pages": [
+              "kundenkennwort-zuruecksetzen-edis",
+              "domainkontakte-debitor-und-inhaber-unterscheiden",
+              "rechnungszustellung-andern-und-zahlungsnachweise-zuordnen",
+              "websitebetreuung-wechseln-und-zugange-sicher-ubergeben"
             ]
           },
           {
@@ -59,7 +69,8 @@
               "anycast-dns-detail",
               "anycast-dns-benutzer-erstellen",
               "dns-verwaltung-edis",
-              "nameserver-einer-domain-bei-edis-andern"
+              "nameserver-einer-domain-bei-edis-andern",
+              "eigene-domain-mit-einer-externen-website-oder-app-verbinden"
             ]
           },
           {
@@ -74,7 +85,8 @@
                   "no-such-domain-at-this-location",
                   "ip-adressen-der-edis-mailserver-und-spf",
                   "edis-domain-fuer-microsoft-office-365-konfigurieren",
-                  "winmaildat-statt-anhang-ursache-und-losung"
+                  "winmaildat-statt-anhang-ursache-und-losung",
+                  "e-mail-rucklaufer-und-weiterleitungen-gezielt-untersuchen"
                 ]
               },
               {
@@ -96,7 +108,8 @@
               {
                 "group": "Abrufen",
                 "pages": [
-                  "pop3-oder-imap-welches-e-mail-protokoll-passt"
+                  "pop3-oder-imap-welches-e-mail-protokoll-passt",
+                  "eine-e-mail-fehlt-nur-auf-einem-gerat"
                 ]
               },
               {
@@ -111,7 +124,8 @@
                 "group": "Webmail",
                 "pages": [
                   "kalender-und-kontakte-uber-caldav-und-carddav-synchronisieren",
-                  "synchronisation-kalender-mail-kontakte-caldav-carddav"
+                  "synchronisation-kalender-mail-kontakte-caldav-carddav",
+                  "anhange-lassen-sich-im-webmail-nicht-hochladen"
                 ]
               },
               {
@@ -163,14 +177,19 @@
                   "umleitung-von-anfragen-auf-https-ssl-zertifikat",
                   "lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren"
                 ]
-              }
+              },
+              "backups-und-wiederherstellung-datenverlust-richtig-melden",
+              "webanwendungen-logs-php-umgebung-und-datenbank-prufen",
+              "kontaktformular-missbraucht-website-mailversand-prufen-und-wiederherstellen",
+              "s3-mit-aws-cli-verbinden-und-zugriffsfehler-prufen"
             ]
           },
           {
             "group": "Baukasten",
             "pages": [
               "edis-webseiten-baukasten",
-              "cookie-hinweis-und-cookie-banner-im-baukasten-einrichten"
+              "cookie-hinweis-und-cookie-banner-im-baukasten-einrichten",
+              "fehlende-bestell-und-buchungsbestatigungen-prufen"
             ]
           },
           {
@@ -186,15 +205,22 @@
   "navbar": {
     "links": [
       {
-        "label": "EDIS Website",
-        "href": "https://www.edis.at/"
+        "label": "Webhosting & Domains",
+        "href": "https://www.edis.at"
+      },
+      {
+        "label": "Kundenbereich",
+        "href": "https://manage.edis.at/client"
+      },
+      {
+        "label": "Webmail",
+        "href": "https://afterlogic.edis.at"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.edis.at"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Kundenbereich",
-      "href": "https://manage.edis.at/client"
-    }
+    ]
   },
   "redirects": [
     {
@@ -676,6 +702,58 @@
     {
       "source": "/hosting/website-setup",
       "destination": "/eigene-website-fur-eine-domain-oder-subdomain-einrichten"
+    },
+    {
+      "source": "/nLEI-s3-mit-aws-cli-verbinden-und-zugriffsfehler-prufen",
+      "destination": "/s3-mit-aws-cli-verbinden-und-zugriffsfehler-prufen"
+    },
+    {
+      "source": "/IG1w-kontaktformular-missbraucht-website-mailversand-prufen-und-wiederherstellen",
+      "destination": "/kontaktformular-missbraucht-website-mailversand-prufen-und-wiederherstellen"
+    },
+    {
+      "source": "/x9GD-webanwendungen-logs-php-umgebung-und-datenbank-prufen",
+      "destination": "/webanwendungen-logs-php-umgebung-und-datenbank-prufen"
+    },
+    {
+      "source": "/EdYq-fehlende-bestell-und-buchungsbestatigungen-prufen",
+      "destination": "/fehlende-bestell-und-buchungsbestatigungen-prufen"
+    },
+    {
+      "source": "/BArl-eigene-domain-mit-einer-externen-website-oder-app-verbinden",
+      "destination": "/eigene-domain-mit-einer-externen-website-oder-app-verbinden"
+    },
+    {
+      "source": "/kFIl-rechnungszustellung-andern-und-zahlungsnachweise-zuordnen",
+      "destination": "/rechnungszustellung-andern-und-zahlungsnachweise-zuordnen"
+    },
+    {
+      "source": "/kXVQ-domain-bestellt-registrierung-und-mailbereitschaft-prufen",
+      "destination": "/domain-bestellt-registrierung-und-mailbereitschaft-prufen"
+    },
+    {
+      "source": "/Cg0O-domain-umziehen-hosting-und-e-mail-bei-edis-behalten",
+      "destination": "/domain-umziehen-hosting-und-e-mail-bei-edis-behalten"
+    },
+    {
+      "source": "/E5NL-domainkontakte-debitor-und-inhaber-unterscheiden",
+      "destination": "/domainkontakte-debitor-und-inhaber-unterscheiden"
+    },
+    {
+      "source": "/Qk-z-websitebetreuung-wechseln-und-zugange-sicher-ubergeben",
+      "destination": "/websitebetreuung-wechseln-und-zugange-sicher-ubergeben"
+    },
+    {
+      "source": "/vQ0N-eine-e-mail-fehlt-nur-auf-einem-gerat",
+      "destination": "/eine-e-mail-fehlt-nur-auf-einem-gerat"
+    },
+    {
+      "source": "/So_B-e-mail-rucklaufer-und-weiterleitungen-gezielt-untersuchen",
+      "destination": "/e-mail-rucklaufer-und-weiterleitungen-gezielt-untersuchen"
+    },
+    {
+      "source": "/21RI-anhange-lassen-sich-im-webmail-nicht-hochladen",
+      "destination": "/anhange-lassen-sich-im-webmail-nicht-hochladen"
     }
   ],
   "seo": {

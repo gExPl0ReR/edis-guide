@@ -1,0 +1,85 @@
+---
+title: "E-Mail-Rückläufer und Weiterleitungen gezielt untersuchen"
+sidebarTitle: "Zustellfehler & Rückläufer"
+tag: "Neu"
+---
+
+Nennen Sie bei einer fehlgeschlagenen Zustellung Absender, betroffenen Empfänger, Zeitpunkt mit Zeitzone und den vollständigen technischen Rückläufer. Wenn mehrere Empfänger unterschiedliche Fehler melden, benötigen wir die jeweiligen Meldungen getrennt.
+
+Leiten Sie möglichst den Originalrückläufer weiter, statt die Fehlermeldung nur telefonisch zu übertragen. Wenn unklar ist, wer an wen gesendet hat, müssen tatsächlicher Absender und Empfänger zuerst eindeutig feststehen. Prüfen Sie die Schreibweise der Adresse. Ein Tippfehler in einer Supportanfrage beweist für sich noch nicht, dass dieselbe falsche Adresse beim ursprünglichen Versand verwendet wurde.
+
+Eine erfolgreiche Anmeldung am EDIS-Ausgangsserver beweist noch keine Zustellung beim Empfänger. Der Zielserver kann eine Nachricht beispielsweise wegen seiner Empfängerregeln, ihres Formats oder seiner Filterentscheidung ablehnen.
+
+Bei einer Weiterleitung gehören der ursprüngliche Absender, der weiterleitende Dienst und das endgültige Ziel zur Prüfung. SPF- und DKIM-Ergebnisse können sich auf dieser Strecke ändern. Google beschreibt die Besonderheiten weitergeleiteter Nachrichten. Eine einzelne SPF-Anpassung löst nicht automatisch jeden Fehler.
+
+Nach einer Korrektur sollte genau der zuvor fehlgeschlagene Versand erneut geprüft werden. Halten Sie fest, ob der Empfänger die Nachricht erhalten hat oder welcher neue Rückläufer vorliegt. Ein Domaintransfer allein behebt keine fehlerhaften Nachrichtenheader oder SMTP-Konfiguration.
+
+<a id="XW7gY" />
+
+## Normale E-Mails kommen an, Newsletter fehlen
+
+Newsletter können über ein anderes System laufen als die normale Korrespondenz desselben Unternehmens. Dieses System kann einzelne Empfänger vom Versand ausschließen, etwa nach Rückläufern, Beschwerden oder einer Abmeldung. Prüfen Sie deshalb vorhandene Versandereignisse oder CRM-Meldungen zur konkreten Adresse. Eine allgemeine Aussage, die Absenderdomain sei erreichbar, beantwortet diese Frage noch nicht.
+
+Zeigt das Versandsystem eine Unterdrückung oder Sperrliste, muss dessen Betreiber den Grund und den aktuellen Status prüfen. Eine Freigabe im EDIS-Empfängerfilter hebt diese absenderseitige Sperre nicht auf. Ein Abmeldewunsch darf nicht einfach übergangen werden. Lassen Sie nach einer berechtigten Korrektur eine neue Nachricht senden und deren Empfang prüfen.
+
+Für die Zuordnung helfen Empfänger, Kampagne beziehungsweise Betreff, Zeitpunkt mit Zeitzone und gegebenenfalls Message-ID. Die sichtbare Absenderadresse kann vom technischen Absender im Versandprotokoll abweichen. Ein Spamcheck oder eine BULK-Markierung bestätigt noch nicht die endgültige Zustellung. Übermitteln Sie nur die relevanten Angaben zu Adressen, für die Sie berechtigt sind.
+
+Beispielhafte Anbietererklärung zum Mechanismus einer Versandsperre: [https://www.twilio.com/docs/sendgrid/ui/sending-email/index-suppressions](https://www.twilio.com/docs/sendgrid/ui/sending-email/index-suppressions)
+
+<a id="euRQC" />
+
+## Timeout vor dem SMTP-Dialog
+
+Meldet ein Rückläufer beim Verbindungsaufbau „Connection timed out“, konnte der sendende Server das angegebene Ziel in diesem Versuch nicht erreichen. Die hinter „connect to“ genannte Adresse gehört zum Zielserver. Für die Untersuchung wird zusätzlich die tatsächliche öffentliche Ausgangs-IP des sendenden Mailservers benötigt.
+
+Halten Sie das Datum der ursprünglichen Nachricht, mögliche Wiederholungsversuche und das Datum des Rückläufers auseinander. Ein alter Rückläufer belegt nicht automatisch die Ursache eines neu gemeldeten Vorfalls. Ein Verbindungs-Timeout allein beweist weder eine Blacklist-Sperre noch einen Fehler bei SPF oder DKIM.
+
+<a id="2N3xN" />
+
+## Bestätigungscode eines externen Dienstes fehlt
+
+Prüfen Sie die eingegebene Zieladresse, Webmail und Spamordner. Notieren Sie den Zeitpunkt, zu dem Sie den Code angefordert haben. Wenn verfügbar, halten Sie die Versandbestätigung oder den Versandstatus des externen Dienstes bereit.
+
+Der Markenname eines Dienstes ist nicht immer der technische Absender seiner E-Mails. Auch die für die Anbieterdomain eingetragenen MX-Server zeigen nicht automatisch, über welchen Dienst Bestätigungscodes versandt werden. Für eine gezielte Prüfung helfen die technischen Angaben eines Vergleichsversands oder ein Versandprotokoll des Anbieters. Geben Sie keine Bestätigungscodes, Passwörter oder privaten Schlüssel an den Support weiter.
+
+<a id="awcc4" />
+
+## Versteckte Weiterleitungen und Catchall
+
+Wenn eine Weiterleitung trotz Abschaltung weiter wirkt, prüfen Sie neben der zentralen Weiterleitungsfunktion auch Filter im Webmail und weitere Alias- oder Catchall-Regeln. Halten Sie den gesamten Weg einer Beispielnachricht fest. Eine mehrstufige Weiterleitung kann mehrere unabhängige Regeln enthalten.
+
+Wurde SRS beim weiterleitenden Anbieter eingeschaltet, muss die konkrete Nachricht zeigen, ob der technische Absender tatsächlich umgeschrieben wurde. Eine erfolgreiche andere Nachricht oder die bloße Zusage einer Aktivierung reicht dafür nicht aus. Änderungen müssen auf die Postfächer beschränkt bleiben, für die Sie berechtigt sind.
+
+<a id="A3K0O" />
+
+## „Access denied“ und fehlgeschlagene SMTP-Anmeldung
+
+Notieren Sie die vollständige Fehlermeldung, den Zeitpunkt und das verwendete Mailprogramm. Entscheidend ist, ob die Verbindung, die Anmeldung am Ausgangsserver oder erst die Weitergabe an den Empfänger scheitert.
+
+Eine serverseitig protokollierte fehlgeschlagene Anmeldung wird anders untersucht als eine Ablehnung durch den Empfängerserver nach erfolgreicher Anmeldung. Prüfen Sie Benutzername, Server, Port und Verschlüsselung anhand der aktuellen Anleitung. Senden Sie dabei keine Passwörter. Schalten Sie die Zertifikatsprüfung nicht zur Fehlerbehebung aus. Ein gleichzeitig erfolgter Zertifikatswechsel beweist für sich noch nicht die Ursache.
+
+<a id="tsDD-" />
+
+## Die richtige Nachricht im Protokoll zuordnen
+
+Die sichtbare Absenderadresse im Mailprogramm kann von der technischen Absenderadresse im Transport abweichen. Geben Sie für eine fehlende Nachricht deshalb Empfänger, Zeitpunkt mit Zeitzone und möglichst die Message-ID an. Wenn vorhanden, helfen die Kopfzeilen einer passenden Nachricht bei der Zuordnung. Ein Eintrag von ungefähr derselben Uhrzeit ist allein noch kein sicherer Treffer.
+
+Ein protokollierter Spamcheck oder eine Weiterleitung bestätigt noch nicht, dass die Nachricht im endgültigen Zielpostfach angekommen ist. Bei einer Weiterleitung zu einem externen Anbieter müssen auch dessen Annahme und Ablage geprüft werden. Die Weiterleitung einer Adresse berechtigt außerdem nicht automatisch zum Versand mit dieser Adresse als Absender.
+
+<a id="iwTyS" />
+
+## Ablehnung schon am externen Versandserver
+
+Eine Nachricht kann bereits am Versanddienst des Absenders als Spam abgewiesen werden, bevor sie EDIS erreicht. Der Server, der den Rückläufer erstellt, muss nicht der Server sein, der die Nachricht abgelehnt hat. Deshalb sollten der vollständige Versandmitschnitt, der genannte Remote-Server, die tatsächlichen Empfänger und die Zeitangaben gemeinsam geprüft werden. Mehrere Rückläufer können verschiedene Adressen oder Zustellversuche betreffen.
+
+Eine erfolgreiche verschlüsselte Verbindung und Anmeldung sowie eine positive Antwort auf die Empfängeradresse belegen noch keine Annahme der gesamten Nachricht. Entscheidend ist die abschließende Antwort nach Übertragung des Nachrichtentexts. Bei einer dortigen Ablehnung muss der zuständige Versanddienst die konkrete Filterentscheidung untersuchen. Eine Änderung am EDIS-Empfängerfilter ist dafür keine belegte Lösung. Nach einer Korrektur den ursprünglichen Versand gezielt erneut testen.
+
+Technischer Hintergrund: RFC 5321, Abschnitt 4.2.5 – [https://www.rfc-editor.org/info/rfc5321/](https://www.rfc-editor.org/info/rfc5321/)
+
+<a id="DDnEJ" />
+
+## Weiterführende Informationen
+
+Google beschreibt die Besonderheiten weitergeleiteter Nachrichten
+
+[https://support.google.com/mail/answer/175365?hl=en](https://support.google.com/mail/answer/175365?hl=en)

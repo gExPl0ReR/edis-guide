@@ -1,0 +1,83 @@
+---
+title: "S3 mit AWS CLI verbinden und Zugriffsfehler prüfen"
+sidebarTitle: "S3-Speicher & AWS CLI"
+tag: "Neu"
+---
+
+Wenn die AWS CLI beim Zugriff auf Ihren S3-Speicher „InvalidAccessKeyId“ meldet, prüfen Sie zuerst den angesprochenen Dienst. Ein passender Zugangsschlüssel allein reicht nicht aus, wenn die Anfrage an den falschen Endpoint gesendet wird.
+
+<a id="JzI-c" />
+
+## Endpoint, Bucket und Objektpfad unterscheiden
+
+Der Endpoint ist die HTTPS-Adresse des S3-Dienstes. Der Bucket ist der Speichercontainer innerhalb dieses Dienstes; dahinter kann ein Objektpfad stehen. Übernehmen Sie den Endpoint und die Zugangsdaten aus der aktuellen Verwaltung beziehungsweise einer bestätigten EDIS-Anleitung. Ein technischer Servername mit edis.global ist für sich kein Beleg für einen EDIS-Global-Vertrag.
+
+Bei der AWS CLI wird ein abweichender Dienst mit --endpoint-url angegeben. In einem S3-Pfad steht dagegen zuerst der Bucketname: s3://BUCKETNAME/ORDNER/. Den Endpointnamen dort einzusetzen ersetzt die Endpoint-Konfiguration nicht.
+
+<a id="oua9W" />
+
+## Profil und wirksame Konfiguration prüfen
+
+Klären Sie, welches CLI-Profil und welche Konfiguration der konkrete Befehl verwendet. Prüfen Sie lokal, ob die zum EDIS-S3-Dienst gehörenden Zugangsdaten ausgewählt sind und eine andere Umgebungseinstellung die beabsichtigte Konfiguration überschreibt. Senden Sie keine Secret Keys und keine vollständige Credentials-Datei an den Support.
+
+<a id="13Vpt" />
+
+## Mit einer lesenden Abfrage beginnen
+
+Das folgende Muster listet den Inhalt eines bereits vorhandenen, für Sie freigegebenen Buckets. Ersetzen Sie BUCKETNAME, ENDPOINT-HOSTNAME und PROFILNAME durch Ihre bestätigten Angaben. Der Befehl lädt keine Dateien hoch und löscht keine Objekte.
+
+```bash
+aws s3 ls "s3://BUCKETNAME/" --endpoint-url "https://ENDPOINT-HOSTNAME" --profile "PROFILNAME"
+```
+
+Das Auflisten aller Buckets und das Lesen eines bestimmten Buckets können unterschiedliche Berechtigungen erfordern. Prüfen Sie deshalb die genaue Fehlermeldung und den tatsächlich benötigten Zugriff. Ein Sync-Befehl ist kein reiner Lesetest: Quelle, Ziel und mögliche Datenänderungen müssen davor feststehen.
+
+<a id="hRNu6" />
+
+## Fehler gezielt eingrenzen
+
+Bei InvalidAccessKeyId prüfen Sie Endpoint und verwendeten Schlüsselbezug, bevor Sie Zugangsdaten ersetzen. Bei anderen Fehlern wie AccessDenied, einem fehlenden Bucket oder einer fehlgeschlagenen TLS-Verbindung muss der jeweilige Prüfschritt betrachtet werden. Schalten Sie die Zertifikatsprüfung nicht als allgemeine Lösung ab.
+
+Für die weitere Diagnose helfen der bereinigte Befehl ohne Geheimnisse, CLI-Version, Zeitpunkt und vollständiger Fehlertext. Nach einer Korrektur muss derselbe Zugriff erneut geprüft werden. Eine vermutete Ursache oder ein Verweis auf eine Anleitung bestätigt noch keinen erfolgreichen Zugriff.
+
+<a id="9SxGH" />
+
+## Cyberduck: DNS-Fehler durch die Bucket-Adressierung
+
+Wenn Cyberduck die Konfiguration nicht lesen kann und die DNS-Auflösung eines Namens aus BUCKETNAME.ENDPOINT-HOSTNAME fehlschlägt, prüfen Sie neben dem Endpoint auch das gewählte S3-Profil. Die Fehlermeldung beweist weder falsche Zugangsschlüssel noch fehlende Objekte.
+
+Für S3-Dienste, die Buckets nur über den Pfad ansprechen, beschreibt Cyberduck das Profil „S3 (Deprecated path style requests)“. Ob dieses Profil für Ihren EDIS-Dienst erforderlich ist, muss anhand des bestätigten Endpoints und der unterstützten Adressierung geklärt werden. Verwenden Sie weiterhin HTTPS; ein Profilwechsel ist kein Anlass, die Transportverschlüsselung oder Zertifikatsprüfung abzuschalten.
+
+Prüfen Sie nach der Korrektur zunächst lesend, ob der benötigte Bucket und die erwarteten Objekte erreichbar sind. Ein erfolgreicher Verbindungsaufbau ist noch kein Nachweis eines vorhandenen Backups. Technische Quelle: [https://docs.cyberduck.io/protocols/s3/#connecting-using-deprecated-path-style-requests](https://docs.cyberduck.io/protocols/s3/#connecting-using-deprecated-path-style-requests)
+
+<a id="yZ5fU" />
+
+## Mehrere Buckets und das Speicherbudget
+
+Getrennte Buckets können für unterschiedliche Anwendungen oder Test- und Produktivdaten sinnvoll sein. Ein zusätzlich angelegter Bucket vergrößert das gebuchte Speicherkontingent nicht automatisch. Prüfen Sie aktuelle Tarifgrenzen sowie die Anrechnung von reserviertem und belegtem S3-Speicher auf Ihren Webhost; historische Angaben eines einzelnen Tarifs gelten nicht für jedes Produkt.
+
+<a id="hvxqJ" />
+
+## Weiterführende Informationen
+
+AWS CLI: eigene Endpoints verwenden – [https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-endpoints.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-endpoints.html)
+
+AWS CLI: S3-Inhalte auflisten – [https://docs.aws.amazon.com/cli/latest/reference/s3/ls.html](https://docs.aws.amazon.com/cli/latest/reference/s3/ls.html)
+
+<a id="ZEdBq" />
+
+## Bucket erreichbar, aber Datei kann nicht angelegt werden
+
+Ein erreichbarer Bucket bestätigt noch keine Schreibberechtigung und keinen korrekt aufgebauten Objektpfad. Prüfen Sie bei einem fehlgeschlagenen Schreibtest den genauen Fehler, Endpoint, Bucketnamen, Clientprofil und mögliche doppelte Bucket- oder Pfadangaben. Ein HTTP-400-Fehler allein beweist weder ein falsches Passwort noch ein ausgeschöpftes Kontingent.
+
+Beginnen Sie mit einem berechtigten Lesezugriff. Falls ein Schreibtest benötigt wird, stimmen Sie Ziel und unkritische Testdatei vorher ab und vermeiden Sie das Überschreiben vorhandener Objekte. Prüfen Sie nach einer gezielten Korrektur dieselbe Operation erneut; „Fehler gefunden“ ist noch kein dokumentierter erfolgreicher Datentransfer.
+
+<a id="g1E4L" />
+
+## Öffentliche Objekte und gesperrte Bucket-Auflistung
+
+Ein einzelnes S3-Objekt kann öffentlich lesbar sein, während die Auflistung des gesamten Buckets nicht erlaubt ist. AccessDenied an der Bucket-Wurzel beweist deshalb weder Datenverlust noch einen fehlgeschlagenen Zugriff auf ein bekanntes Objekt. Prüfen Sie mit einem berechtigten Konto den konkret benötigten Objektpfad und die dafür geltende Berechtigung. Geben Sie den Bucket nicht pauschal öffentlich frei, um eine Fehlermeldung zu beseitigen.
+
+S3 wird über eine S3-kompatible Schnittstelle und einen passenden Client angesprochen. Ein FTP-Zugang oder die Regeln einer Webserver-Verzeichnisauflistung gelten nicht automatisch. Bildzuschnitt, Vorschaubilder und automatische Größen gehören zur Websiteanwendung oder ihrem Medien-Plugin und müssen dort gesondert geprüft werden.
+
+Technische Referenz zum Unterschied: [https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) und [https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListObjectsV2.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) . Für den EDIS-Dienst bleiben dessen bestätigte Zugriffseinstellungen maßgeblich.

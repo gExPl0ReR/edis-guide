@@ -1,0 +1,29 @@
+/* Restore the action links from the original EDIS documentation. */
+a.edis-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0.4rem 0;
+  padding: 0.65rem 1rem;
+  border: 1px solid #00529c;
+  border-radius: 0.5rem;
+  background: #00529c;
+  color: #fff !important;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none !important;
+  overflow-wrap: anywhere;
+  box-shadow: 0 2px 4px rgb(0 62 119 / 16%);
+}
+a.edis-button:hover {
+  background: #003e77;
+  border-color: #003e77;
+}
+a.edis-button:focus-visible {
+  outline: 3px solid #00529c;
+  outline-offset: 3px;
+}

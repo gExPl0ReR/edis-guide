@@ -1,0 +1,29 @@
+---
+title: "Kontaktformular missbraucht: Website-Mailversand prüfen und wiederherstellen"
+sidebarTitle: "Formularmissbrauch beheben"
+tag: "Neu"
+---
+
+Eine Sperre des Mailversands Ihrer Website kann Kontaktformulare und Bestellbenachrichtigungen betreffen, während E-Mail-Programme weiterhin normal senden. Lesen Sie die Sperrmitteilung genau und prüfen Sie, welche Website und welcher Versandweg genannt werden.
+
+Lassen Sie die betroffene Anwendung durch den zuständigen Websitebetreuer prüfen. Halten Sie fest, welche Funktion missbraucht wurde und welche Änderung die Ursache behebt. Das reine Einblenden eines Captchas ist noch kein Nachweis, dass das Formular ungültige Anfragen tatsächlich zurückweist.
+
+Bei einem Captcha- oder Tokenverfahren muss die Verarbeitung auf dem Server den vorgesehenen Schutz prüfen. Für Turnstile ist die serverseitige Validierung ausdrücklich erforderlich. Die genaue Umsetzung richtet sich nach dem verwendeten Verfahren und Formular.
+
+Informieren Sie den Support über die konkrete Änderung. Nach der Prüfung und einer bestätigten Entsperrung testen Sie das zuvor betroffene Formular: Wird eine legitime Anfrage verarbeitet und am vorgesehenen Ziel zugestellt? Bleibt der Schutz aktiv? Eine erfolgreiche Outlook-Anmeldung ersetzt diesen Formulartest nicht.
+
+<a id="aIISY" />
+
+## Weiterführende Informationen
+
+serverseitige Validierung ausdrücklich erforderlich
+
+[https://developers.cloudflare.com/turnstile/get-started/server-side-validation/](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+
+<a id="s-miM" />
+
+## Auffällige Eingaben sind noch kein bestätigter Einbruch
+
+SQL-artige Zeichenfolgen oder sleep-Aufrufe in zugesandten Formularfeldern zeigen einen Angriffsversuch. Allein daraus lässt sich nicht ableiten, dass SQL-Befehle ausgeführt wurden, Daten verändert wurden oder ein Kundenrechner infiziert ist. Dafür müssen die zuständigen Betreuer Anwendungs- und Datenbankbefunde prüfen.
+
+Behandeln Sie missbrauchten Websiteversand, Probleme eines Mailprogramms und einen geplanten Hostingumzug getrennt. Ein Tarifwechsel oder eine neuere PHP-Version bereinigt keine bereits kompromittierten Dateien. Bereinigung, Migration, Entsperrung und anschließender Funktionstest brauchen jeweils einen eigenen Nachweis.

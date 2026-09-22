@@ -2,7 +2,7 @@
 
 Die vollständige, geprüfte öffentliche Dokumentation der EDIS GmbH für Webhosting, Domains und E-Mail.
 
-- 65 deutschsprachige Artikel einschließlich Startseite
+- 79 deutschsprachige Artikel einschließlich Startseite
 - Originale Screenshots und lokal gespeicherte Bilder
 - Historische Artikeladressen und die bisherigen Mintlify-Pfade als Weiterleitungen in `docs.json`
 
