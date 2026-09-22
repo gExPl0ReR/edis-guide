@@ -1,0 +1,64 @@
+---
+title: 'Active Domain Usage: DNS Records and Redirects'
+sidebarTitle: 'Domain Usage'
+description: 'Learn what the Active Domain Usage service includes at EDIS — full DNS zone access and the ability to configure domain redirects from your customer portal.'
+---
+
+The **Active Domain Usage** plan is designed for customers who want a domain registration without a full hosting package. It gives you everything you need to point your domain wherever you like — whether that is an external server, a VPS, or a cloud service such as Microsoft 365 — while keeping your DNS fully under your control through the EDIS infrastructure.
+
+## What Is Included
+
+With the Active Domain Usage service, you receive two core capabilities:
+
+<CardGroup cols={2}>
+  <Card title="DNS Zone Management" icon="server">
+    Full access to the EDIS Anycast DNS panel at [pdns.edis.global](https://pdns.edis.global/login). Create, edit, and delete A, AAAA, MX, TXT, CNAME, and other record types for your domain.
+  </Card>
+  <Card title="Domain Redirects" icon="arrow-right">
+    Set up HTTP redirects directly from the [EDIS customer portal](https://manage.edis.at/client/) — no separate web hosting required. Redirect your domain to any external URL.
+  </Card>
+</CardGroup>
+
+## Who Should Use This Plan
+
+This plan suits you if any of the following applies:
+
+- You host your website on your own server or VPS and only need DNS management at EDIS.
+- Your email is handled by an external provider such as Microsoft 365 or Google Workspace and you need to set the appropriate MX and SPF records.
+- You want to redirect a domain to another URL without purchasing a full hosting package.
+- You are using EDIS purely as your domain registrar and want to delegate DNS authoratively from the EDIS Anycast network.
+
+## Accessing the DNS Panel
+
+Log in to the DNS panel at [pdns.edis.global](https://pdns.edis.global/login) using your EDIS account credentials. From there you can manage all DNS records for every domain enrolled in the Active Domain Usage service.
+
+## Setting Up Redirects
+
+To configure a redirect from the customer portal:
+
+<Steps>
+  <Step title="Log in to the customer portal">
+    Navigate to [manage.edis.at/client](https://manage.edis.at/client/) and sign in with your EDIS credentials.
+  </Step>
+  <Step title="Open the redirect settings">
+    Locate the domain you want to redirect, then open its settings to find the redirect or forwarding option.
+  </Step>
+  <Step title="Enter the destination URL">
+    Provide the full destination URL (including `https://`) and save your changes.
+  </Step>
+  <Step title="Verify the redirect">
+    Wait for DNS propagation and then test the redirect in a browser to confirm it resolves correctly.
+  </Step>
+</Steps>
+
+<Note>
+  The redirect service through the customer portal may require the **Active Domain Usage** add-on depending on your current domain plan. If the redirect option is not visible in your portal, check whether this add-on is enabled for your domain, or contact support at [hosting@edis.at](mailto:hosting@edis.at).
+</Note>
+
+## Need Help?
+
+If you have questions about the Active Domain Usage service or need assistance configuring your DNS records, reach out to the EDIS support team:
+
+- **Email:** [hosting@edis.at](mailto:hosting@edis.at)
+- **Phone:** +43 1 909 4111 (Monday–Friday, 08:00–17:00)
+- **WhatsApp:** +43 670 3084988

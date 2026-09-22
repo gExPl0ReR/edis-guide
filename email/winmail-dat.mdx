@@ -1,0 +1,83 @@
+---
+title: 'winmail.dat Instead of Attachment: Cause and Fix'
+sidebarTitle: 'winmail.dat'
+description: 'Find out why Outlook sends a winmail.dat file instead of a readable attachment and how both senders and recipients can resolve this TNEF formatting issue.'
+---
+
+If you have received an email with a mysterious `winmail.dat` file where you expected to find a document or image, or if someone has told you that your email arrived with a `winmail.dat` attachment they cannot open, the cause is almost always Microsoft's **TNEF** (Transport Neutral Encapsulation Format). This is a proprietary Microsoft format that classic Outlook and Exchange use to send rich formatting and attachments bundled together. Mail clients that do not understand TNEF see the bundle as an opaque file called `winmail.dat` instead of the intended attachments.
+
+The fix is straightforward and depends on whether you are the **sender** or the **recipient**.
+
+## For Senders: Fix It in Outlook
+
+The most effective and permanent solution is to configure Outlook to send messages in HTML or Plain Text format instead of Outlook's Rich Text format (RTF). When RTF is disabled, Outlook stops producing TNEF-encoded messages and recipients receive standard attachments.
+
+<Steps>
+
+### Open Outlook Options
+
+In classic Outlook for Windows, go to **File** → **Options** → **Mail**.
+
+### Change the default message format
+
+Under **Compose messages**, find the **Compose messages in this format** dropdown and select either **HTML** or **Plain Text**. Avoid **Outlook Rich Text (RTF)** — this is the format that triggers TNEF encoding.
+
+### Check per-contact format settings
+
+If the problem only occurs with specific recipients, Outlook may be overriding the default format for that contact. To check:
+
+1. Open the **Contacts** folder and find the recipient's entry.
+2. Double-click to open the contact.
+3. Double-click the recipient's email address field.
+4. In the **Internet format** dropdown, select **Send Plain Text only** or **Send using Outlook Rich Text format** → change to **Let Outlook decide** or **HTML**.
+
+### Check Exchange server settings (IT administrators)
+
+If your organisation uses Microsoft Exchange, the Exchange server can also enforce TNEF encoding for specific recipients or globally. Contact your IT team or Exchange administrator to verify whether TNEF is being enforced at the server level, particularly for messages sent to external recipients.
+
+### Test by resending
+
+After changing the format, compose a new message and attach the original files again. Send it to the recipient and ask them to confirm that the attachments are now visible and openable.
+
+</Steps>
+
+<Tip>
+  The simplest test: ask the recipient to tell you whether they can see and open your attachments **after** you have changed the format setting. A change in settings alone does not confirm the problem is resolved — a successful resend does.
+</Tip>
+
+## For Recipients: Open winmail.dat Without the Sender's Help
+
+If you cannot reach the sender or need to access the content immediately, you can extract the files from `winmail.dat` using a TNEF-decoding tool.
+
+<Steps>
+
+### Choose a trusted TNEF viewer
+
+Use a reputable, locally-installed TNEF viewer rather than uploading the file to an online converter. Some well-known options:
+
+- **TNEF's Enough** (macOS) — available on the Mac App Store
+- **Letter Opener** (macOS) — available on the Mac App Store
+- **winmaildat.com viewer** — browser-based, suitable for non-confidential files only
+- **Freeware TNEF Reader** (Windows) — check the publisher's site for the current version
+
+### Open or import the winmail.dat file
+
+Launch the TNEF viewer application and open the `winmail.dat` file you saved from the email. The application will display the embedded attachments and any rich-text body content.
+
+### Extract the attachments
+
+Select the files you need and export them to a local folder. You can then open them with the appropriate application.
+
+</Steps>
+
+<Warning>
+  Do not upload confidential or sensitive files to online TNEF conversion services. If the email contains personal data, contracts, or other sensitive material, use a locally installed TNEF viewer only, and make sure it comes from a verified, trustworthy source.
+</Warning>
+
+## Asking the Sender to Resend
+
+The most reliable long-term solution is always to ask the sender to resend the message in HTML or Plain Text format. Provide them with this simple instruction:
+
+> "Please resend the email with the attachments. Before sending, change the message format in Outlook to **HTML** or **Plain Text** (under File → Options → Mail). This prevents the winmail.dat issue."
+
+Once the sender corrects their Outlook settings, the problem will not recur for future messages.

@@ -1,0 +1,68 @@
+---
+title: 'Connect Your EDIS Domain to a Jimdo Website'
+sidebarTitle: 'Jimdo Domain'
+description: 'Point an EDIS-registered domain to a Jimdo website by adding the correct CNAME and redirect DNS records, while keeping your EDIS email working.'
+---
+
+If you have a domain registered at EDIS and want to use it with a Jimdo website, you can connect the two by updating the DNS records in the EDIS DNS portal — no nameserver transfer is required. This approach also lets you keep your email running through EDIS while your website is served by Jimdo.
+
+Before you begin, confirm which Jimdo product you are using: **Jimdo Creator** and the newer **Jimdo Website Builder** have different admin interfaces, and the exact DNS values may differ. Check the connection settings in your Jimdo account to get the current, authoritative DNS values for your plan.
+
+## Preparing Jimdo for Your Domain
+
+<Steps>
+  <Step title="Add Your Domain in Jimdo">
+    Log in to your Jimdo account and navigate to the domain settings for the website you want to connect. In Jimdo Creator, go to **Domains and Emails → Domains → Add New Domain → Use Existing Domain** and enter your EDIS domain name. This step requires a paid Jimdo plan that supports external domain connections.
+  </Step>
+
+  <Step title="Copy the DNS Values from Jimdo">
+    After adding the domain, Jimdo will display the DNS values you need to configure. For Jimdo Creator, the typical requirements are:
+
+    - A **CNAME record** for `www` pointing to `web.jimdo.com.`
+    - A **redirect** (or forwarding rule) from the apex/root domain (without `www`) to the `www` address
+
+    Copy these values exactly as shown in your Jimdo account — they may have changed since this guide was written.
+
+    <Note>
+      A CNAME record target is always a **hostname** (e.g. `web.jimdo.com.`), never an IP address. Do not enter a hostname into an A record field — A records require an IPv4 address. If Jimdo gives you an IP address, use an A record; if it gives you a hostname, use a CNAME.
+    </Note>
+  </Step>
+</Steps>
+
+## Updating DNS Records at EDIS
+
+<Steps>
+  <Step title="Log In to the EDIS DNS Portal">
+    Open the [EDIS DNS portal](https://pdns.edis.global/login) and sign in. Select the DNS zone for your domain.
+  </Step>
+
+  <Step title="Add or Update the www CNAME Record">
+    Add a **CNAME record** for `www` with the target hostname provided by Jimdo (typically `web.jimdo.com.`). If a CNAME or A record for `www` already exists, update it to the new value.
+  </Step>
+
+  <Step title="Configure the Root Domain Redirect">
+    Jimdo requires visitors who reach your root domain (e.g. `yourdomain.at`) to be redirected to `www.yourdomain.at`. Set this up using the domain redirect feature in the EDIS vHost management panel at [manage.edis.at/vhost/](https://manage.edis.at/vhost/).
+
+    <Warning>
+      An HTTPS redirect from the root domain requires a valid SSL certificate for the root domain. Make sure an SSL certificate is in place before enabling an HTTPS redirect, otherwise visitors will see a certificate error.
+    </Warning>
+  </Step>
+
+  <Step title="Preserve Your Email DNS Records">
+    Do **not** delete or replace your MX, SPF, DKIM, or DMARC records when making these changes. These records keep your EDIS email working. A nameserver change is not required and should be avoided, as it would move DNS control away from EDIS and could affect your email routing.
+  </Step>
+
+  <Step title="Wait for Propagation and Verify">
+    Jimdo states that a CNAME-based domain connection may take up to **24 hours** to fully propagate. Check both your root domain and the `www` subdomain, verify that HTTPS works, and send a test email to confirm that mail delivery is unaffected.
+
+    If anything looks wrong, check the actual DNS values published in the EDIS portal first before making additional changes — repeated untested edits make diagnosing problems harder.
+  </Step>
+</Steps>
+
+<Tip>
+  For the latest step-by-step instructions from Jimdo, refer to the official Jimdo guide: [Connect an external domain to your Jimdo website via CNAME](https://help.jimdo.com/hc/en-us/articles/115005537866-Connect-an-external-domain-to-your-Jimdo-website-via-CNAME).
+</Tip>
+
+## Keeping Email at EDIS
+
+Your email continues to flow through EDIS as long as your MX record still points to `mx.edis.at` and your SPF, DKIM, and DMARC records remain intact. Connecting to Jimdo via CNAME only affects the `www` subdomain and does not touch the mail-related DNS entries. If you have any doubt about which records to keep, contact EDIS support at [hosting@edis.at](mailto:hosting@edis.at) before making changes.

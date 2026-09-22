@@ -1,0 +1,88 @@
+---
+title: 'Configure Transport Entries in the EDIS Mail System'
+sidebarTitle: 'Transport Entry'
+description: 'Understand and manage transport table entries in EDIS to control whether mail for a domain is accepted and routed through the EDIS mail servers.'
+---
+
+A transport entry is a switch in the EDIS mail system that tells the EDIS mail servers whether they are authorised to accept and deliver email for a given domain. Getting this setting right is essential: if the transport entry and your public MX records are out of sync, email will either bounce or be lost. Every domain hosted at EDIS that uses EDIS mailboxes must have a transport entry set; every domain whose email is handled entirely externally must not.
+
+## What a Transport Entry Does
+
+When a message arrives at an EDIS mail server, the server checks whether a transport entry exists for the recipient domain. If the entry is present, the server accepts the message and delivers it to the matching mailbox. If no entry exists, the server refuses the message — signalling to the sending system that EDIS does not handle mail for that domain.
+
+This behaviour is independent of where the domain's DNS zone is hosted. The transport entry is a configuration item inside the EDIS mail system itself, not a DNS record.
+
+<Note>
+  **Common use cases for transport entries:**
+  - You are hosting mailboxes for a domain at EDIS and your MX record points to the EDIS mail server `mx.edis.at`.
+  - You are using an external spam gateway (such as McAfee or mymailwall) whose MX records accept mail first and then forward clean messages to EDIS mailboxes. In this case your public MX points to the external gateway, but a transport entry at EDIS is still required so that EDIS accepts the forwarded delivery.
+  - You have migrated a domain's email away from EDIS and need to remove the transport entry to prevent EDIS from accepting mail it can no longer deliver.
+</Note>
+
+## Transport Entry and MX Record: Valid Combinations
+
+The following table shows the four possible states. Only two are correct configurations:
+
+| Mail hosted at | Public MX points to | Transport entry | Status |
+|---|---|---|---|
+| EDIS | EDIS (`mx.edis.at`) | Set | ✅ Correct |
+| External provider | External server | Not set | ✅ Correct |
+| External provider | EDIS | Not set | ❌ Misconfiguration — EDIS refuses mail |
+| EDIS (or via external gateway) | External | Set | ⚠️ Usually misconfiguration — but valid for external spam gateways feeding EDIS |
+
+The vHost panel shows a green indicator when your transport entry and MX record are consistent with each other, and a red indicator when they conflict.
+
+## How to Set or Remove a Transport Entry
+
+<Steps>
+
+### Log in to the appropriate panel
+
+You can manage transport entries from two places:
+
+- **Customer portal**: [https://manage.edis.at/client/](https://manage.edis.at/client/) → **Domain** → **Mail Transport**
+- **vHost panel**: [https://manage.edis.at/vhost/](https://manage.edis.at/vhost/) → **Email Addresses** → **Transport**
+
+Both interfaces show the same setting. Use whichever you have access to.
+
+### Find the domain
+
+Locate the domain you want to configure in the list.
+
+### Set or remove the transport entry
+
+- To **enable** mail delivery at EDIS, activate the transport entry for the domain.
+- To **disable** mail delivery at EDIS (because email is handled externally), remove or deactivate the transport entry.
+
+### Check the status indicator
+
+After saving, check the status light:
+
+- **Green** — the transport entry and MX record are consistent.
+- **Red** — there is a conflict between the transport entry and the public MX record. Resolve the inconsistency to avoid mail delivery failures.
+
+### Update your MX record to match
+
+If you set the transport entry to active, make sure your domain's MX record points to `mx.edis.at`. If you removed the transport entry, update the MX record to point to your external mail server. DNS changes can take up to 24–48 hours to propagate fully.
+
+</Steps>
+
+## Special Case: External Spam Gateway with EDIS Mailboxes
+
+If you use an external mail security service (such as McAfee, Ikarus Cloud Security, or a similar spam gateway), that service's MX records receive your incoming mail first. After scanning, the gateway forwards clean messages to EDIS for final delivery. In this setup:
+
+- Your **public MX record** points to the external gateway — not to `mx.edis.at`.
+- The **EDIS transport entry must still be set** so that EDIS accepts the forwarded messages.
+
+This combination looks like the fourth row in the table above and would normally be flagged as a misconfiguration. However, it is intentional and correct for the external-gateway scenario. Do not remove the transport entry simply because the indicator shows red — verify the actual mail flow first.
+
+## Troubleshooting
+
+**"Too many hops" bounce messages after a migration**
+This error usually means mail is looping between servers. Provide the complete bounce message, the queue ID, and the `Received:` headers to EDIS support. After a provider migration, old transport rules, gateways, or forwarding chains may still be active and need to be cleaned up.
+
+**Mail arriving in the wrong mailbox after migration**
+The visible To: address may differ from where the message is technically delivered. EDIS support can inspect the transport table, aliases, forwarding rules, and public MX records together to identify the cause. Contact [hosting@edis.at](mailto:hosting@edis.at) with the sender address, recipient address, and the timestamp of a specific example.
+
+**Certificate name mismatch on incoming transport**
+If a remote mail server reports a `certificate name mismatch` when delivering to your domain, compare the MX target hostname with the certificate the EDIS server presents. Check for any MTA-STS policy that restricts which MX hostnames and certificates are acceptable. Do not disable TLS verification as a blanket workaround. Contact [hosting@edis.at](mailto:hosting@edis.at) to confirm the correct MX target for your domain.

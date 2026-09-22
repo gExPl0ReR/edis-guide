@@ -1,0 +1,41 @@
+# Source: https://www.edis.guide/edis-informationsssicherheit-iso-27001
+
+FAQ
+
+# Häufig gestellte Fragen zur Informationssicherheit (ISO 27001)
+
+4 min
+
+Diese Übersicht betrifft EDIS-GmbH-Webhosting und E-Mail. Redaktioneller Prüfstand: 21. September 2026. Für verbindliche Zusagen gelten Ihr Vertrag und die für Ihre konkrete Leistung bestätigten Unterlagen.
+
+## [Verfügbarkeit und Nachweise](https://www.edis.guide/edis-informationsssicherheit-iso-27001#verfgbarkeit-und-nachweise)Verfügbarkeit und Nachweise
+
+Eine prozentuelle Mindestverfügbarkeit gilt nur, soweit sie ausdrücklich vertraglich beziehungsweise in einem SLA vereinbart ist. Frühere Durchschnittswerte ohne benannten Messzeitraum, Messverfahren und betroffene Dienste sind kein Nachweis der aktuellen Verfügbarkeit.
+
+Benötigen Sie Angaben für eine Sicherheitsprüfung, nennen Sie Produkt, Standort, Prüfzeitraum und die benötigten Nachweise. Die Erreichbarkeit einer einzelnen Website und die Verfügbarkeit von Netzwerk, Stromversorgung und Klimatisierung sind unterschiedliche Messgrößen.
+
+## [Geschützte Datenübertragung](https://www.edis.guide/edis-informationsssicherheit-iso-27001#geschtzte-datenbertragung)Geschützte Datenübertragung
+
+Je nach Dienst stehen HTTPS beziehungsweise TLS, FTPS, SFTP und SSH zur Verfügung. FTPS ist FTP mit TLS. SFTP ist ein eigenes Dateiübertragungsprotokoll über SSH und darf nicht mit FTPS gleichgesetzt werden. Welche Zugänge Ihr Tarif bietet, entnehmen Sie der Produktbeschreibung und den Einstellungen des betroffenen Webhosts.
+
+## [Datenverarbeitung und Aufbewahrung](https://www.edis.guide/edis-informationsssicherheit-iso-27001#datenverarbeitung-und-aufbewahrung)Datenverarbeitung und Aufbewahrung
+
+Die öffentlich verlinkte Auftragsverarbeitungsvereinbarung trägt Version 1.0, Stand Mai 2018. Die technischen und organisatorischen Maßnahmen stehen in Anlage 1 auf den Seiten 5 und 6. Prüfen Sie die für Ihren Vertrag geltende Fassung; das Datum dieser redaktionellen Übersicht aktualisiert nicht automatisch das Vertragsdokument.
+
+EDIS beschreibt für aktuelle Webhostingprodukte tägliche Sicherungen mit bis zu 40 Tagesständen. Verfügbarkeit eines konkreten Standes, Datenumfang, Wiederherstellungsweg und mögliche Kosten müssen für den Auftrag geprüft werden. Webhosting-, Mail-, S3- und Protokollaufbewahrung dürfen nicht pauschal gleichgesetzt werden.
+
+Bei einer Kündigung müssen Leistungsende, Datenlöschung und mögliche verbleibende Sicherungsstände anhand der geltenden Vereinbarung geklärt werden. Sichern Sie benötigte Daten rechtzeitig; eine Aufbewahrungsfrist ist keine Zusage einer beliebig späteren Wiederherstellung.
+
+## [Redundanz und Zertifizierungen](https://www.edis.guide/edis-informationsssicherheit-iso-27001#redundanz-und-zertifizierungen)Redundanz und Zertifizierungen
+
+Redundante Stromversorgung, Klimatisierung, Netzwerkanbindung, Serveranbindung und Ersatzhardware dienen unterschiedlichen Ausfallrisiken. Welche Maßnahmen für Ihre Leistung gelten, muss aus der aktuellen technischen Beschreibung hervorgehen. Eine ältere Aufzählung einzelner Netzwerkpartner ist kein vollständiger aktueller Infrastrukturnachweis.
+
+Unterscheiden Sie Zertifizierungen des Rechenzentrumsbetreibers von einer Zertifizierung der EDIS GmbH oder eines bestimmten Dienstes. Für ISO-27001- oder ISO-22301-Nachweise benötigen Sie Zertifikatsinhaber, Geltungsbereich, betroffene Standorte und Gültigkeit. Lassen Sie die benötigten aktuellen Nachweise gezielt bereitstellen.
+
+Verlinkte Auftragsverarbeitungsvereinbarung: [https://manage.edis.at/client/ADV\_EU-DSGVO-EDIS\_GmbH.pdf](https://manage.edis.at/client/ADV_EU-DSGVO-EDIS_GmbH.pdf 'https://manage.edis.at/client/ADV_EU-DSGVO-EDIS_GmbH.pdf')﻿
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Website nach DNS-Änderung nicht erreichbar: A und AAAA prüfen](https://www.edis.guide/dos-eintrag-ipv4-vs-ipv6-nichterreichbarkeit-domain 'Website nach DNS-Änderung nicht erreichbar: A und AAAA prüfen') [ALS NÄCHSTES\\ \\ Ethik- und Verhaltenskodex der EDIS GmbH](https://www.edis.guide/ethik-und-verhaltenskodex-der-edis-gmbh 'Ethik- und Verhaltenskodex der EDIS GmbH')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

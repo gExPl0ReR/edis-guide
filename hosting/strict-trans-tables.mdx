@@ -1,0 +1,67 @@
+---
+title: 'Disable strict_trans_tables in MySQL on Your Webhost'
+sidebarTitle: 'MySQL Strict Mode'
+description: 'Learn what MySQL strict_trans_tables mode does and how to disable it per session on EDIS web hosting when running legacy applications that require it.'
+---
+
+MySQL's `STRICT_TRANS_TABLES` mode enforces rigorous data validation for transactional storage engines such as InnoDB. When this mode is active, MySQL rejects invalid or out-of-range values instead of silently truncating or substituting them. This is the correct behaviour for modern applications — but some older or poorly maintained applications were written to rely on MySQL's lenient legacy behaviour and fail when strict mode is enabled.
+
+If you are running a legacy application that generates MySQL errors related to strict mode, you may need to disable `STRICT_TRANS_TABLES` for that application's database session.
+
+<Warning>
+Disabling `STRICT_TRANS_TABLES` reduces MySQL's data integrity enforcement. Invalid data that would otherwise be rejected will be silently accepted or truncated. This can lead to corrupt or inconsistent data in your database over time. Where possible, fix the application to handle data correctly rather than weakening the database validation. Consult the [MySQL SQL Mode documentation](https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html) for details on the impact of each mode.
+</Warning>
+
+## How strict_trans_tables Works
+
+When `STRICT_TRANS_TABLES` is enabled (the default in MySQL 5.7+), the database engine rejects:
+
+- Inserting a value that is too long for a column (e.g. a string that exceeds `VARCHAR` length)
+- Inserting `NULL` into a `NOT NULL` column without a default value
+- Inserting values that are out of range for a numeric column
+
+Without strict mode, MySQL would silently truncate the string, insert `0` or an empty string, or use the column's default — behaviours that legacy applications may have depended upon.
+
+## Disable strict_trans_tables for a Session
+
+On EDIS shared hosting, you **cannot change the global MySQL configuration** — the SQL mode can only be adjusted at the **session level**, meaning it applies only to the current database connection.
+
+To remove `STRICT_TRANS_TABLES` from the active SQL modes for a session, run the following SQL command at the start of your database connection:
+
+```sql
+SET SESSION sql_mode = 'ONLY_FULL_GROUP_BY,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+```
+
+This replaces the entire `sql_mode` for the current session with the listed modes — note that `STRICT_TRANS_TABLES` is intentionally absent from the list.
+
+<Note>
+Before setting a new `sql_mode`, check what modes are currently active in your environment so you do not accidentally remove other important settings:
+
+```sql
+SELECT @@SESSION.sql_mode;
+```
+
+Copy the output, remove `STRICT_TRANS_TABLES` from the list, and use the result as your new `sql_mode` value.
+</Note>
+
+## Apply the Setting in Your Application
+
+The session-level `SET` command must be executed each time a new database connection is opened, because session settings are reset when the connection closes. The best approach depends on your application:
+
+- **Custom PHP applications:** Execute the `SET SESSION sql_mode` statement immediately after establishing the database connection (e.g. after `mysqli_connect()` or `PDO::__construct()`).
+- **WordPress:** Use a `db.php` drop-in or a plugin that fires early on the `after_db_connect` action to issue the `SET` command.
+- **Other CMS platforms:** Check your platform's documentation for a database connection hook or drop-in mechanism.
+
+<Tip>
+If your application framework or CMS supports a configuration option for the database connection's initial SQL commands, that is the cleanest place to add the `SET SESSION sql_mode` statement.
+</Tip>
+
+## When to Consider Upgrading Your Application
+
+Disabling strict mode is a workaround, not a fix. If your application consistently requires strict mode to be disabled, you should:
+
+1. Check whether an updated version of the application is available that is compatible with strict SQL mode.
+2. Contact the application's developer or support community to report the compatibility issue.
+3. Evaluate migrating to a modern alternative that handles data validation correctly.
+
+If you need further assistance, contact EDIS support at [hosting@edis.at](mailto:hosting@edis.at).

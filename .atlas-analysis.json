@@ -1,23 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "Edis",
+  "projectType": "saas",
+  "projectName": "Edis",
+  "projectDescription": "EDIS GmbH is an Austrian web hosting provider offering web hosting, domain registration, email, and DNS services.",
   "theme": "almond",
-  "colors": {
-    "primary": "#0050a0",
-    "light": "#5c5c5c"
-  },
-  "favicon": "/favicon.svg",
-  "logo": {
-    "light": "https://media.brand.dev/14413afd-a90b-4bf8-8bee-7a79d04c085b.png",
-    "dark": "https://media.brand.dev/14413afd-a90b-4bf8-8bee-7a79d04c085b.png"
-  },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Customer Portal",
-      "href": "https://manage.edis.at/client/"
-    }
-  },
+  "primaryColor": "#0050a0",
+  "lightColor": "#5c5c5c",
+  "darkColor": null,
   "navigation": {
     "tabs": [
       {
@@ -173,9 +161,24 @@
       }
     ]
   },
-  "footer": {
-    "socials": {
-      "website": "https://www.edis.at"
-    }
-  }
+  "keyFeatures": [
+    "Web hosting with vHost management panel",
+    "Domain registration and transfer (.at and other TLDs)",
+    "Anycast DNS with PowerDNS-Admin portal",
+    "Email mailboxes, forwarding, and spam filtering",
+    "Let's Encrypt SSL certificates",
+    "App Installer (Installatron) for WordPress and other CMS",
+    "FTP/SFTP file access",
+    "PHP version management per domain/subdomain",
+    "CalDAV/CardDAV calendar and contact sync",
+    "Website builder (Baukasten)"
+  ],
+  "publicApiSurface": [
+    "manage.edis.at — Customer control panel",
+    "manage.edis.at/vhost — vHost management area",
+    "pdns.edis.global — PowerDNS-Admin DNS portal",
+    "mx.edis.at — Mail server (IMAP/POP3/SMTP)",
+    "ns1.edis.global / ns2.edis.global — Anycast nameservers",
+    "spf.edis.at — SPF record host"
+  ]
 }

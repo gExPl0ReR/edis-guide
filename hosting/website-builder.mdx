@@ -1,0 +1,96 @@
+---
+title: 'Build Your Website with the EDIS Website Builder'
+sidebarTitle: 'Website Builder'
+description: 'Create and manage your website using the EDIS drag-and-drop website builder — no coding required. Add text, images, links, and set up cookie consent.'
+---
+
+The EDIS Website Builder (Baukasten) lets you create and manage a complete website through a visual, drag-and-drop interface — no coding or technical knowledge required. You can add and arrange text, images, links, and downloadable documents, and configure settings such as cookie consent banners. The specific features available to you — including the number of domains, email accounts, and e-commerce capabilities — depend on the plan you have booked.
+
+<Tip>
+  Before ordering, check the current pricing (including applicable taxes), the included feature set, and whether the e-commerce module requires an additional fee at [edis.at/de/hosting/webseiten-baukasten](https://www.edis.at/de/hosting/webseiten-baukasten). Older pricing or package descriptions do not automatically apply to new orders.
+</Tip>
+
+## Accessing the Website Builder
+
+<Steps>
+  <Step title="Log in to the vHost management panel">
+    Open the [vHost management panel](https://manage.edis.at/vhost/) and log in with your vHost credentials. Your vHost login is separate from your customer portal login and your Website Builder login — they are not interchangeable.
+  </Step>
+  <Step title="Open the Website Builder">
+    Locate the vHost that belongs to your Website Builder plan. Select **Baukasten → CMS Login** to launch the builder interface.
+  </Step>
+  <Step title="Start editing your site">
+    Once inside the builder, use the drag-and-drop interface to add and arrange content elements such as text blocks, image galleries, buttons, and contact forms.
+  </Step>
+</Steps>
+
+<Note>
+  If a direct builder link returns a 404 error, do not assume the issue is a wrong password. A 404 is a routing or configuration problem — check the correct entry path through the vHost panel and contact support with the exact URL you tried and the time of the error. Never send passwords in a support ticket; if credentials have been exposed, reset them through the secure management interface.
+</Note>
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Text and Images" icon="pen-to-square">
+    Add and format text blocks, embed images, and arrange page sections using the visual editor — no HTML required.
+  </Card>
+  <Card title="Links and Documents" icon="link">
+    Insert hyperlinks to internal pages or external URLs, and offer downloadable files such as PDFs directly from your pages.
+  </Card>
+  <Card title="Cookie Consent Banner" icon="shield-check">
+    Configure a cookie notice page and an optional cookie consent banner to meet legal transparency requirements.
+  </Card>
+  <Card title="External Widgets" icon="puzzle-piece">
+    Embed third-party widgets (maps, booking tools, social feeds) by inserting the provider's HTML snippet — no server installation needed in most cases.
+  </Card>
+  <Card title="Contact Forms" icon="envelope">
+    Add contact forms to your pages. Form notifications are sent to your configured recipient address.
+  </Card>
+  <Card title="SEO Settings" icon="magnifying-glass">
+    Manage page titles, meta descriptions, and canonical URLs through the builder's SEO and optimisation settings.
+  </Card>
+</CardGroup>
+
+## Setting Up the Cookie Consent Banner
+
+European data protection regulations require websites to inform visitors about cookie usage and obtain consent where applicable. The EDIS Website Builder includes a built-in cookie notice and banner feature.
+
+<Steps>
+  <Step title="Create your cookie information page">
+    In the builder, create a new page containing your cookie policy and privacy information. Write the content, then save and publish the page. Note down the full URL of this page (e.g. `https://yourdomain.at/cookie-policy`).
+  </Step>
+  <Step title="Open the cookie settings">
+    In the builder's top-left navigation, click **Menu**, then go to **Settings**. Under **General Settings**, select **SEO and Optimisation**, then click **Cookie** in the left-hand sidebar.
+  </Step>
+  <Step title="Enter your cookie policy page URL">
+    In the **Link to Cookie Notice** field, enter the complete URL of the cookie information page you created in step 1. Click **Save**.
+  </Step>
+  <Step title="Optionally enable the cookie banner">
+    Toggle the cookie banner option to activate a visible consent banner on your site. This displays the banner to new visitors and links to your cookie policy page.
+  </Step>
+  <Step title="Test the banner in a fresh browser session">
+    Open a private/incognito browser window and visit your website. Verify that the banner appears correctly, that accepting and declining works as expected, and that visitors can withdraw consent at a later time.
+  </Step>
+</Steps>
+
+<Warning>
+  A visible cookie banner alone does not confirm that consent-required services are technically blocked before a visitor makes a choice. After enabling the banner, test your full site in a fresh session and review which third-party services (analytics, fonts, maps, etc.) load before any consent is given. Legal compliance depends on your full website configuration, not just the presence of a banner.
+</Warning>
+
+## Embedding External Widgets
+
+Many third-party services provide a simple HTML snippet that you paste into your page — no server-side installation is needed. Before embedding a widget, read the provider's integration instructions carefully to understand whether it requires only HTML, additional JavaScript, or an actual server installation.
+
+Check that your builder plan supports the type of embed the widget requires. Some providers also require you to register your domain in their own platform before the widget will display correctly. Always test the embedded widget in preview mode and across different screen sizes, and confirm that forms and other interactive elements function as expected.
+
+## Replying to Contact Form Submissions
+
+When you receive a contact form notification, the technical sender address in the email header may differ from the visitor's actual email address shown in the message body. Always check the actual reply-to or contact address in the message body before responding — replying to the notification's sender header may send your reply to the form system rather than to the person who contacted you.
+
+## Connecting an External Shop
+
+If your main website stays with the EDIS Website Builder but you run a shop or checkout on an external platform, configure the destination for each domain and subdomain separately. Account for the `www` variant, any existing redirects, email routing, and HTTPS. Do not change your primary domain's configuration wholesale if only part of your offering is moving to the external provider.
+
+## Removing Old Content from Search Results
+
+Cancelling a contract or making DNS changes does not remove indexed pages from Google or other search engines. If you need specific URLs removed from search results, use [Google's URL removal tool](https://developers.google.com/search/docs/crawling-indexing/remove-information) and decide first whether the content should remain accessible or be taken offline entirely. Search engines distinguish between content removal, access restriction, and `noindex` directives — each has a different effect.

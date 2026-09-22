@@ -1,0 +1,39 @@
+---
+title: 'Choosing the Right Hosting Plan for WordPress and Forums'
+sidebarTitle: 'WordPress Package'
+description: 'Which EDIS hosting plan to choose when running a WordPress site with a forum plugin, covering resource requirements, limits to check, and upgrade considerations.'
+---
+
+Running WordPress with a built-in forum (such as bbPress or a similar plugin) places more demands on your hosting environment than a simple blog or brochure site. The forum adds database queries, user sessions, email notifications, and potentially a large number of files — all of which need to fit within the limits of your chosen hosting plan. Rather than selecting a plan based on a generic recommendation, assess your actual requirements first and then match them against the EDIS plan specifications.
+
+## Requirements to Assess Before Choosing a Plan
+
+Before comparing plans on the [EDIS hosting page](https://www.edis.at/de/hosting), gather the following information about your project:
+
+- **Number of email addresses** you need to create for the domain
+- **FTP or SSH access** — confirm which access method you require and that the plan includes it
+- **Number of databases** — WordPress requires one MySQL database; some plugins or multisite setups need more
+- **Concurrent PHP processes** — a forum with active users generates simultaneous requests. Check how many parallel PHP processes the plan allows
+- **PHP memory limit** — WordPress with plugins typically requires at least 128 MB; resource-heavy plugins or a busy forum may need 256 MB or more
+- **Storage space and file count** — forums that allow user-uploaded attachments or avatars can accumulate a large number of files. Check both the storage quota and the maximum file count (inode limit) of the plan
+- **Cron jobs** — WordPress and many forum plugins rely on scheduled background tasks (WP-Cron). Confirm that scheduled PHP execution is supported
+
+<Note>
+  Knowing that an application needs PHP and a database is not enough to make a reliable plan selection. The number of simultaneous users, the volume of data, and the frequency of background tasks all affect whether a plan has sufficient capacity.
+</Note>
+
+## Comparing EDIS Hosting Plans
+
+Review the current EDIS shared hosting plans at [https://www.edis.at/de/hosting](https://www.edis.at/de/hosting). When comparing plans, pay attention to:
+
+- **Included domains and SSL certificates** — confirm whether the plan covers one domain or multiple, and whether SSL is included
+- **Additional costs** — check for any charges that apply beyond the base plan price (for example, extra databases or additional storage)
+- **Upgrade path** — if your forum grows, can you move to a larger plan without rebuilding your site? Ask EDIS support about the technical migration process and lead time before you commit to a plan
+
+<Tip>
+  Set up your WordPress site and forum in a staging or test environment before going live. Run the forum with simulated activity to check page load times and resource consumption. This gives you real data to confirm that the plan you chose has enough headroom, or tells you early if you need to upgrade.
+</Tip>
+
+## When to Consider an Upgrade
+
+If your forum grows and you start seeing slow page loads, PHP timeout errors, or resource limit warnings in the WordPress admin panel, it is time to consider moving to a higher-tier plan. Contact EDIS support at [hosting@edis.at](mailto:hosting@edis.at) to discuss upgrade options and to understand any impact on your existing website and email during the migration.

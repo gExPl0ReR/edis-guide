@@ -1,0 +1,57 @@
+---
+title: 'Get the Real Visitor IP in WordPress Behind a Proxy'
+sidebarTitle: 'WordPress Visitor IP'
+description: 'Configure WordPress security plugins to read the correct visitor IP from the X-Forwarded-For header when your site runs behind an EDIS proxy or load balancer.'
+---
+
+On EDIS shared hosting, incoming requests pass through a proxy layer before reaching your WordPress installation. This means that server-side code — including WordPress security plugins — sees the **proxy's IP address** in the standard `REMOTE_ADDR` variable instead of the actual visitor's IP address. If your security plugin logs or rate-limits based on IP, it may block the proxy rather than the real visitor, or it may fail to block a genuine bad actor at all.
+
+To fix this, you need to tell your security plugin to read the visitor's real IP from the `HTTP_X_FORWARDED_FOR` header, which the EDIS proxy populates with the original client IP.
+
+## How HTTP_X_FORWARDED_FOR Works
+
+When a request passes through the EDIS proxy, the proxy adds an `X-Forwarded-For` HTTP header containing the visitor's original IP address (which may be IPv4 or IPv6). WordPress exposes this header to PHP as `$_SERVER['HTTP_X_FORWARDED_FOR']`. Security plugins that support this header can be configured to use it as the authoritative source for the visitor's IP.
+
+<Warning>
+  Only trust `HTTP_X_FORWARDED_FOR` when you are certain the header is set by a **known, trusted proxy** — in this case, the EDIS proxy infrastructure. Never configure a plugin to accept arbitrary `X-Forwarded-For` headers from the public internet, as this would allow any visitor to spoof their IP address and bypass rate-limiting or block rules.
+</Warning>
+
+## Configuring Limit Login Attempts
+
+The popular **Limit Login Attempts** plugin (and its maintained forks such as Limit Login Attempts Reloaded) supports reading the visitor IP from a forwarded header. To enable this:
+
+<Steps>
+  <Step title="Open the Plugin Settings">
+    In your WordPress admin panel, go to **Settings → Limit Login Attempts** (or the equivalent settings page for your installed version of the plugin).
+  </Step>
+
+  <Step title="Locate the IP Origin Setting">
+    Find the option that controls where the plugin reads the client IP from. It is typically labelled **"Trusted IP Origin"** or similar, and the choices are usually `REMOTE_ADDR` and `HTTP_X_FORWARDED_FOR`.
+  </Step>
+
+  <Step title="Select HTTP_X_FORWARDED_FOR">
+    Change the setting to **`HTTP_X_FORWARDED_FOR`**. Save the settings.
+
+    After saving, the plugin will start logging and rate-limiting based on the real visitor IP passed through the proxy header.
+  </Step>
+
+  <Step title="Verify the Change">
+    Trigger a login attempt (from your own account) and check the plugin's log. Confirm that the recorded IP address matches your actual public IP address, not the EDIS proxy IP.
+
+    You can find your public IP by visiting a service such as [https://ifconfig.me](https://ifconfig.me) from the same connection.
+  </Step>
+</Steps>
+
+## Other Security Plugins
+
+The same principle applies to other WordPress security plugins that log IP addresses — for example, Wordfence, WP Cerber, or similar tools. Look for a setting named **"IP detection method"**, **"Real IP header"**, or **"Behind a reverse proxy"** and set it to use `HTTP_X_FORWARDED_FOR` or `X-Forwarded-For`.
+
+If your plugin does not have a built-in setting for this, consult the plugin's official documentation for the version you have installed. Note that not all plugins offer this feature in all versions.
+
+## High-Traffic Sites and Shared Proxies
+
+If your WordPress access log shows only Cloudflare IPs or other shared proxy addresses, the X-Forwarded-For values in those logs come from the proxy and need to be validated against the proxy's own logs. Work with your hosting administrator to ensure that the real client IP is being passed through correctly at each proxy layer before relying on it for security decisions.
+
+<Tip>
+  After changing the IP origin setting, monitor the plugin's log for a short period to confirm that legitimate users are not being incorrectly blocked, and that the IP addresses being logged are real public addresses rather than internal proxy addresses.
+</Tip>

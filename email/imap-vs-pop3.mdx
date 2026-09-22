@@ -1,0 +1,80 @@
+---
+title: 'POP3 vs. IMAP: Which Email Protocol Should You Use?'
+sidebarTitle: 'IMAP vs POP3'
+description: 'Understand the difference between IMAP and POP3 so you can choose the right protocol for your EDIS email setup — across one device or many.'
+---
+
+When you connect an email client to your EDIS mailbox, you choose between two incoming mail protocols: IMAP and POP3. They both let you read your email, but they handle storage and synchronisation very differently. For most users, IMAP is the right choice — but understanding the distinction helps you avoid accidental data loss and make an informed decision.
+
+<Tabs>
+  <Tab title="IMAP">
+    ## IMAP — email stays on the server
+
+    With IMAP, your messages and folder structure live on the EDIS mail server. Your email client synchronises with the server, so you see the same inbox, sent items, and folders on every device — phone, laptop, tablet, and webmail all show the same state.
+
+    **How it works:**
+    - Messages remain on the server unless you explicitly delete them.
+    - Read/unread status, folder moves, and deletions are synchronised across all connected devices.
+    - Your email client may cache messages locally for offline access, but the authoritative copy is on the server.
+
+    **Best for:**
+    - Anyone who checks email on more than one device
+    - Users who want webmail access as a fallback
+    - Shared or team mailboxes where multiple people need the same view
+
+    <Warning>
+      Synchronisation goes both ways. If you delete a message on one device, it disappears from all other devices too. Make sure you want to delete something before you do it — and keep an eye on your trash folder.
+    </Warning>
+  </Tab>
+  <Tab title="POP3">
+    ## POP3 — email is downloaded to your device
+
+    With POP3, your email client connects to the server, downloads new messages to your local device, and — depending on your client settings — removes them from the server. The messages then exist only on the device that downloaded them.
+
+    **How it works:**
+    - Messages are downloaded to a single device.
+    - Whether copies remain on the server depends on a setting in your email client ("Leave messages on server"). This is often disabled by default.
+    - Folder structure, sent items, and read status are **not** synchronised between devices.
+
+    **Best for:**
+    - A single-device setup where you want all email stored locally
+    - Users with limited server storage who prefer to archive mail locally
+    - Offline-first workflows where internet access is intermittent
+
+    <Note>
+      If you use POP3 on one device **and** IMAP on another device for the same mailbox, the POP3 device may download and remove messages from the server, making them invisible on your IMAP device. Check the "Leave messages on server" option in your POP3 client to prevent this.
+    </Note>
+  </Tab>
+</Tabs>
+
+## Side-by-side comparison
+
+| Feature | IMAP | POP3 |
+|---|---|---|
+| Messages stored | On the server | On your local device |
+| Multi-device sync | ✅ Yes | ❌ No |
+| Webmail access | ✅ Full | ⚠️ Only undownloaded messages |
+| Folder synchronisation | ✅ Yes | ❌ No |
+| Read/unread sync | ✅ Yes | ❌ No |
+| Server storage usage | Higher | Lower (if messages are removed) |
+| Risk of accidental deletion | Deletions sync everywhere | Deletion is local only |
+
+## Which should you choose?
+
+**Choose IMAP** if:
+- You use more than one device to check email.
+- You want to access your email via [EDIS webmail](https://webmail.edis.at/) as a fallback.
+- You want your sent items and folder organisation consistent everywhere.
+
+**Choose POP3** if:
+- You use a single device exclusively for email.
+- You want to archive all mail locally and minimise server storage usage.
+- You explicitly prefer a download-and-remove workflow.
+
+<Tip>
+  If you are unsure, choose IMAP. It is easier to switch from IMAP to POP3 later than the reverse, and IMAP gives you the flexibility of webmail access even when your email client is unavailable.
+</Tip>
+
+## A note on data location
+
+EDIS hosting stores email messages in Austria on EDIS infrastructure. If you use POP3 and download messages to a local device, those local copies are subject to the storage and backup practices of that device — not EDIS. Any additional cloud synchronisation (for example iCloud or Google Drive backing up your mail application data) is entirely outside EDIS infrastructure and governed by the respective cloud provider's policies.

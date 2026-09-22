@@ -1,0 +1,110 @@
+---
+title: 'Export a MySQL Database Dump from Your Webhost'
+sidebarTitle: 'MySQL Dump'
+description: 'Export and restore MySQL databases on EDIS web hosting using phpMyAdmin or the command line via SSH — including large databases that exceed phpMyAdmin limits.'
+---
+
+Exporting a MySQL database dump is the standard way to back up your data or migrate a database between environments. On EDIS web hosting you have two main options: the browser-based **phpMyAdmin** interface for smaller databases, and the command-line **`mysqldump`** tool via SSH for larger databases or for automation. For very large databases that time out or fail in phpMyAdmin, you can also request a download directly from the vHost panel.
+
+## Method 1: Export via phpMyAdmin
+
+phpMyAdmin is suitable for databases that are small enough to export within a single browser session (typically up to a few hundred megabytes).
+
+<Steps>
+  <Step title="Log in to phpMyAdmin">
+    Open the vHost panel at [https://manage.edis.at/vhost/](https://manage.edis.at/vhost/), navigate to **Database**, and click the **phpMyAdmin** link for the relevant database.
+  </Step>
+  <Step title="Select your database">
+    In the left-hand sidebar, click the name of the database you want to export.
+  </Step>
+  <Step title="Start the export">
+    Click the **Export** tab at the top. Choose **Quick** export method and **SQL** as the format, then click **Go**.
+  </Step>
+  <Step title="Save the file">
+    Your browser downloads a `.sql` file containing the full database dump. Store this file in a secure location outside your web root.
+  </Step>
+</Steps>
+
+## Method 2: Request a Download via the vHost Panel
+
+For large databases, you can request a direct download through the vHost panel without needing SSH access.
+
+<Steps>
+  <Step title="Open the vHost panel">
+    Go to [https://manage.edis.at/vhost/](https://manage.edis.at/vhost/) and log in.
+  </Step>
+  <Step title="Navigate to Database Backup">
+    Click **Database** in the left-hand menu, then select **Backup** (Rücksicherung).
+  </Step>
+  <Step title="Request the database download">
+    Click **Request database download**. EDIS will prepare your database dump and provide a download link.
+  </Step>
+</Steps>
+
+## Method 3: Export via SSH Using `mysqldump`
+
+For large databases, or when you need to automate exports, use `mysqldump` over an SSH connection. This method bypasses phpMyAdmin's browser timeouts and memory limits.
+
+<Tip>
+SSH access requires a **Ristretto** hosting plan or higher. You can find your SSH credentials and database hostname in the vHost panel under **Database**.
+</Tip>
+
+<Steps>
+  <Step title="Connect to your webhost via SSH">
+    Open a terminal and connect using your vHost key:
+
+    ```bash
+    ssh ssh.at.edis.global -l VHOSTKEY -p 22
+    ```
+
+    Replace `VHOSTKEY` with your actual vHost access key found in the vHost panel.
+  </Step>
+  <Step title="Create a backup directory">
+    Create a dedicated directory for your dumps, ideally outside the public web root to keep backup files inaccessible to visitors:
+
+    ```bash
+    mkdir ~/backup
+    ```
+  </Step>
+  <Step title="Run the database dump">
+    Use `mysqldump` to export your database. Replace the placeholders with your actual database hostname, username, and database name:
+
+    ```bash
+    mysqldump -u db_username -p -h dbXX.at.edis.global -B db_name --no-tablespaces > ~/backup/db_name.sql
+    ```
+
+    - `-u db_username` — the database username (find it in the vHost panel under **Database**)
+    - `-p` — prompts you for the database password
+    - `-h dbXX.at.edis.global` — your specific database server hostname (e.g. `db01.at.edis.global`)
+    - `-B db_name` — includes `CREATE DATABASE` and `USE` statements in the dump
+    - `--no-tablespaces` — avoids permission errors on shared hosting
+    - `> ~/backup/db_name.sql` — writes the dump to a file
+
+    You will be prompted to enter your database password after running the command.
+  </Step>
+  <Step title="Verify the dump file">
+    Confirm the dump was created successfully:
+
+    ```bash
+    ls -lh ~/backup/db_name.sql
+    ```
+
+    The file size shown may differ from the size reported in phpMyAdmin — the dump is plain text and does not use the same internal structure as the live database.
+  </Step>
+</Steps>
+
+<Note>
+The `-B` flag writes `CREATE DATABASE` and `USE` statements into the dump file. Keep this in mind when restoring: these statements will influence which database the import targets. If you need to import into a differently named database, use a dump created without `-B`, or edit the statements in the SQL file before importing.
+</Note>
+
+## Restore a Database from a Dump
+
+To import a previously exported dump back into a MySQL database, use the `mysql` client over SSH:
+
+```bash
+mysql -u db_username -p -h dbXX.at.edis.global db_name < ~/backup/db_name.sql
+```
+
+<Warning>
+Importing a dump **overwrites existing data** in the target database. Always back up the current state of the target database before running an import. Double-check that the hostname, username, and target database name are correct before proceeding. If your dump was created with `-B`, review it for `CREATE DATABASE` / `USE` statements that might redirect the import to an unintended database.
+</Warning>

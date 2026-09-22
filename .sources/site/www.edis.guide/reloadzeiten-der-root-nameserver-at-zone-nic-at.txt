@@ -1,0 +1,25 @@
+# Source: https://www.edis.guide/reloadzeiten-der-root-nameserver-at-zone-nic-at
+
+Allgemeines
+
+# .at-Domains: Wann werden Nameserver-Änderungen wirksam?
+
+2 min
+
+## [Nameserverwechsel und DNS-Einträge unterscheiden](https://www.edis.guide/reloadzeiten-der-root-nameserver-at-zone-nic-at#nameserverwechsel-und-dns-eintrge-unterscheiden)Nameserverwechsel und DNS-Einträge unterscheiden
+
+Bei einem Nameserverwechsel wird die Delegation Ihrer .at-Domain in der .at-Zone geändert. Die .at-Nameserver sind keine Root-Nameserver des gesamten DNS. Eine Änderung von A-, AAAA- oder MX-Einträgen bei unveränderten Nameservern erfolgt dagegen direkt in Ihrer autoritativen DNS-Zone.
+
+Die EDIS-Domain-FAQ nennt für die .at-Zone eine Aktualisierung zu jeder vollen Stunde. Daraus folgt keine weltweite Wirksamkeit zu einer bestimmten Minute: Bearbeitung beim Registrar, Veröffentlichung bei der Registry und zwischengespeicherte DNS-Antworten sind getrennte Schritte. Maßgeblich sind der bestätigte Auftragsstatus und die verbleibenden Cache-Laufzeiten (TTL).
+
+## [Nach der Änderung prüfen](https://www.edis.guide/reloadzeiten-der-root-nameserver-at-zone-nic-at#nach-der-nderung-prfen)Nach der Änderung prüfen
+
+Vergleichen Sie die tatsächlich delegierten Nameserver mit den beauftragten Werten. Prüfen Sie die Antworten der autoritativen Nameserver und anschließend die Auflösung über die betroffenen Internetzugänge. Ein geänderter WHOIS-Datensatz allein bestätigt noch keine überall aktualisierte DNS-Auflösung.
+
+Testen Sie Website, HTTPS und E-Mail getrennt. Bei DNSSEC müssen Delegation, DS-Eintrag und Signierung zusammenpassen. Ändern Sie nicht erneut mehrere Werte, nur weil ein einzelner Resolver noch den alten Stand anzeigt.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Externe Domain mit EDIS-Webhosting verbinden](https://www.edis.guide/fremddomain-externe-domain-bei-edis-hosten 'Externe Domain mit EDIS-Webhosting verbinden') [ALS NÄCHSTES\\ \\ Kundenkennwort bei EDIS zurücksetzen](https://www.edis.guide/kundenkennwort-zuruecksetzen-edis 'Kundenkennwort bei EDIS zurücksetzen')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

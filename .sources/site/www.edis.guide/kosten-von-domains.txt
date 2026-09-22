@@ -1,0 +1,21 @@
+# Source: https://www.edis.guide/kosten-von-domains
+
+FAQ
+
+# Kosten einer .at-Domain bei EDIS
+
+0 min
+
+Die EDIS-Domainseite nennt für Registrierung und jährliche Verlängerung einer .at-Domain derzeit EUR 15,00 einschließlich 20 % österreichischer Mehrwertsteuer. Prüfstand: 21. September 2026.
+
+Das Angebot umfasst laut Domainseite Anycast DNS; zusätzliche Leistungen wie aktive Domainnutzung, Webhosting oder weitere Dienste richten sich nach dem gewählten Produkt. Prüfen Sie vor der Bestellung den vollständigen Leistungsumfang.
+
+Maßgeblich sind das aktuelle Angebot, die Bestellanzeige und Ihr Vertrag. Die Angabe gleicher Registrierungs- und Verlängerungspreise ist keine unbegrenzte Zusage, dass sich Preise künftig unter keinen Umständen ändern können.
+
+Aktuelle Domainangebote: [https://www.edis.at/de/domains](https://www.edis.at/de/domains 'https://www.edis.at/de/domains')﻿
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Domain weiterleiten: Redirects und .htaccess](https://www.edis.guide/domain-weiterleitung-redirect-meta-refresh-htaccess 'Domain weiterleiten: Redirects und .htaccess') [ALS NÄCHSTES\\ \\ Anycast DNS bei EDIS](https://www.edis.guide/anycast-dns-bei-edis 'Anycast DNS bei EDIS')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

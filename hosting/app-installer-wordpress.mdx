@@ -1,0 +1,137 @@
+---
+title: 'Install or Import WordPress with the App Installer'
+sidebarTitle: 'WordPress Install'
+description: 'Use the built-in Installatron App Installer to deploy a fresh WordPress site or import an existing installation into your EDIS hosting package.'
+---
+
+The EDIS vHost area includes **Installatron**, a built-in App Installer that lets you deploy, manage, back up, and update web applications — including WordPress — directly from the control panel. You can use it to install a brand-new WordPress site in a few clicks, or to import an existing WordPress installation from another server or hosting account so that Installatron can manage it going forward.
+
+## Before You Begin
+
+<Note>
+  Always check the **PHP version** configured on your target hosting package before installing or importing WordPress. An incompatible PHP version can cause your site to display errors immediately after import. You can view and change the PHP version in the vHost area under **Apache → PHP Version**.
+</Note>
+
+Make sure you also know:
+- The domain and document root path where WordPress should be installed.
+- Your database credentials (for a manual import or advanced setup).
+- The PHP version currently used by the existing installation (if you are importing).
+
+## Install a Fresh WordPress Site
+
+<Steps>
+  <Step title="Open the App Installer">
+    Log in to the vHost area at [manage.edis.at/vhost/](https://manage.edis.at/vhost/) and click **App-Installer** in the navigation menu.
+  </Step>
+  <Step title="Switch to Expert Mode">
+    Click **Expert Mode** to unlock the full set of installation and import options.
+  </Step>
+  <Step title="Find WordPress in the Application Browser">
+    Click the **Application Browser** tab. Locate the **WordPress** icon and click it.
+  </Step>
+  <Step title="Configure the Installation">
+    Click **Install this Application**. Fill in the installation details:
+    - **Domain / directory** — choose the domain and, optionally, a subdirectory.
+    - **Admin username and password** — choose a strong password for the WordPress admin account.
+    - **Email address** — used for WordPress admin notifications.
+    - **Site title** — the name of your website.
+  </Step>
+  <Step title="Complete the Installation">
+    Click **Install**. Installatron creates the database, uploads WordPress, and runs the setup automatically. Once finished, your new WordPress site appears under **My Applications**.
+  </Step>
+  <Step title="Create an Initial Backup">
+    Immediately after installation, create a backup from the **My Applications** view. This gives you a clean restore point before you start customising the site.
+  </Step>
+</Steps>
+
+## Import an Existing WordPress Installation
+
+If you have a WordPress site running elsewhere, you can import it into Installatron so it can manage updates and backups for you.
+
+<Steps>
+  <Step title="Open the App Installer in Expert Mode">
+    In the vHost area, click **App-Installer**, then enable **Expert Mode**.
+  </Step>
+  <Step title="Open the WordPress Import Menu">
+    In the **Application Browser**, click the **WordPress** icon. Next to the **Install this Application** button, click the **three horizontal lines (≡)** icon to open the additional options menu.
+  </Step>
+  <Step title="Choose Import">
+    Click **Import an Existing Installation**.
+  </Step>
+  <Step title="Select the Import Source">
+    You are presented with two options:
+
+    <Tabs>
+      <Tab title="From Another Account">
+        Choose **From another account** and click **Continue**. This option transfers files and the database from a remote server.
+
+        Under **Source**, enter the domain name of the existing site and choose a transfer protocol such as **FTP**. If the FTP user's home directory is not the document root of the WordPress installation, make sure to specify the correct subdirectory path.
+
+        Under **Destination**, enter your EDIS domain (or the temporary domain if the live domain is not yet pointed here). If your files live in a subdirectory such as `/www/home/mysite/`, include that path.
+
+        Click **Import** to start the transfer.
+      </Tab>
+      <Tab title="From This Account">
+        Choose **From this account** and click **Continue**. Use this option when WordPress files are already uploaded to the hosting account (e.g., via FTP) but are not yet managed by Installatron.
+
+        Select the directory that contains the existing WordPress installation. Installatron will detect the installation and register it under **My Applications**.
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Verify the Import">
+    Once the import finishes, open **My Applications** and confirm that the WordPress installation appears. Visit the site URL to check that it loads correctly.
+  </Step>
+  <Step title="Run Updates and Create a Backup">
+    Apply any available WordPress core, theme, and plugin updates immediately. Then create a fresh backup so you have a stable post-import restore point.
+  </Step>
+</Steps>
+
+<Warning>
+  Before importing, confirm that the **PHP version** on your EDIS hosting package matches — or is compatible with — the PHP version the existing WordPress site was running on. Importing under an incompatible PHP version may cause the site to display fatal errors. Adjust the PHP version under **Apache → PHP Version** in the vHost area if needed.
+</Warning>
+
+## After the Import: Manual Domain Change Checklist
+
+If you imported the site to a new domain or the domain's DNS has not yet been switched to EDIS, work through the following checks before going live:
+
+- **DNS** — ensure the domain's A (and AAAA) records point to your EDIS hosting IP address.
+- **TLS/HTTPS** — verify that a valid SSL certificate is active for the domain in the vHost area.
+- **vHost domain assignment** — confirm the domain is assigned to the correct document root under Apache → SubDomains.
+- **App Installer domain entry** — update the registered URL in Installatron (My Applications → edit) once the domain resolves correctly.
+- **WordPress site URL** — check that `siteurl` and `home` in `wp-config.php` or the WordPress database match the new domain.
+
+<Tip>
+  For more information on Installatron's features and options, visit the official support documentation at [installatron.com/support](https://installatron.com/support).
+</Tip>
+
+## Manual WordPress Installation
+
+If you prefer to install WordPress without the App Installer, you can do so manually:
+
+<Steps>
+  <Step title="Download WordPress">
+    Download the latest version from [wordpress.org](https://wordpress.org/) and extract the ZIP archive on your computer.
+  </Step>
+  <Step title="Create a Database">
+    In the vHost area, go to **Database → Expert Mode** and create a new MySQL database and database user. Note the database name, username, and password.
+  </Step>
+  <Step title="Upload Files">
+    Connect to your hosting account via **FTPS** or **SFTP** and upload the extracted WordPress files to the document root of your domain. Do not use unencrypted FTP.
+  </Step>
+  <Step title="Run the WordPress Installer">
+    Open your domain in a browser. The WordPress setup wizard starts automatically. Select your language, then click **Let's go**.
+  </Step>
+  <Step title="Enter Database Details">
+    Provide the database name, database username, password, host (usually `localhost`), and a table prefix. Click **Submit**.
+  </Step>
+  <Step title="Complete the Setup">
+    Click **Run the installation**, then fill in your site title, admin username, admin password, and email address. Click **Install WordPress**.
+  </Step>
+  <Step title="Log In">
+    Click **Log In** and sign in with the admin credentials you just created. Your WordPress dashboard is ready.
+  </Step>
+</Steps>
+
+<Note>
+  The manual installation does not give you Installatron's automatic update and backup features. Consider importing a manually installed WordPress site into the App Installer afterwards using the **From this account** option described above.
+</Note>

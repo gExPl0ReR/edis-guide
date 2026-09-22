@@ -1,0 +1,25 @@
+# Source: https://www.edis.guide/gmail-lehnt-e-mails-ab-authentifizierung-und-spf-prufen
+
+Email
+
+Versenden
+
+# Gmail lehnt E-Mails ab: Authentifizierung und SPF prüfen
+
+1 min
+
+Sie versenden eine Email von Ihrem Konto an eine Google Email Adresse und bekommen folgende Fehlermeldung zurück:
+
+550-5.7.1 This message does not have authentication information or fails to pass 550-5.7.1 authentication checks. To best protect our users from spam, the 550-5.7.1 message has been blocked. Please visit 550-5.7.1 https://support.google.com/mail/answer/81126#authentication
+
+Die Meldung weist auf fehlende oder fehlgeschlagene E-Mail-Authentifizierung hin. Prüfen Sie den [SPF Eintrag](https://www.edis.guide/spf-eintrag-fur-den-e-mail-versand-uber-edis 'SPF Eintrag') bei Ihrer Domain sowie DKIM und die tatsächlich verwendeten Versanddienste.
+
+Bearbeiten Sie den SPF-Eintrag in der autoritativen DNS-Verwaltung Ihrer Domain. Bei EDIS verwenden Sie die für Ihre Domain eingerichtete DNS-Verwaltung beziehungsweise PowerDNS-Admin. Ändern Sie einen vorhandenen SPF-TXT-Eintrag, statt einen zweiten für denselben Namen anzulegen.
+
+Aktuelle Anforderungen von Gmail an Absender: [https://support.google.com/mail/answer/81126](https://support.google.com/mail/answer/81126 'https://support.google.com/mail/answer/81126') . Prüfen Sie die Authentifizierung anhand des vollständigen Rückläufers und eines neuen Tests über den tatsächlich verwendeten Versanddienst.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ SPF-Eintrag für den E-Mail-Versand über EDIS](https://www.edis.guide/spf-eintrag-fur-den-e-mail-versand-uber-edis 'SPF-Eintrag für den E-Mail-Versand über EDIS') [ALS NÄCHSTES\\ \\ E-Mail-Anhang blockiert: Ursachen und nächste Schritte](https://www.edis.guide/e-mail-anhang-blockiert-ursachen-und-nachste-schritte 'E-Mail-Anhang blockiert: Ursachen und nächste Schritte')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

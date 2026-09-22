@@ -1,0 +1,39 @@
+# Source: https://www.edis.guide/wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln
+
+Webhosting
+
+# WordPress: Besucher-IP über HTTP\_X\_FORWARDED\_FOR ermitteln
+
+3 min
+
+Wenn ein Sicherheitsplugin eine interne Proxyadresse statt der tatsächlichen Besucheradresse protokolliert, klären Sie zuerst die vertrauenswürdigen Proxyadressen und den von EDIS bestätigten Header für Ihren Webhost. X-Forwarded-For kann IPv4- und IPv6-Adressen enthalten. Die folgenden Abbildungen zeigen eine bisherige Konfiguration von „Limit Login Attempts“ und sind keine allgemeine Vorgabe für andere Plugins oder Hostingumgebungen.
+
+Nur wenn Hostingkonfiguration und Plugin-Auswertung dafür bestätigt sind, verwenden Sie die passende Einstellung für HTTP\_X\_FORWARDED\_FOR und speichern sie. Übernehmen Sie keine beliebigen vom Besucher gesetzten Header als vertrauenswürdige Adresse. Testen Sie die protokollierte IP anschließend mit einem kontrollierten Zugriff.
+
+![HTTP_X_FORWARDED_FOR in den Einstellungen des WordPress-Plugins](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/vh8Tqx-iHCubjrRcW2mdP_grafik.png?format=webp)
+
+Es wird **REMOTE\_ADDR** automatisch hinzugefügt, dann sieht das wie folgt aus:
+
+![HTTP_X_FORWARDED_FOR und REMOTE_ADDR als Quellen der Besucher-IP](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/p56TcQHxiHn9u74QTvliY_grafik.png?format=webp)
+
+Fehlt die Einstellung in Ihrem Plugin, prüfen Sie dessen offizielle Dokumentation und die eingesetzte Version. Daraus folgt weder automatisch eine kostenpflichtige Funktion noch die Eignung eines beliebigen Ersatzplugins.
+
+## [Proxyheader nur passend zur Hostingkonfiguration verwenden](https://www.edis.guide/wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln#proxyheader-nur-passend-zur-hostingkonfiguration-v)Proxyheader nur passend zur Hostingkonfiguration verwenden
+
+Prüfen Sie außerdem, ob ein Sicherheitsplugin die tatsächliche Besucheradresse oder nur die Adresse eines vorgeschalteten Proxys erkennt. IPv4- und IPv6-Zugriffe können dabei unterschiedliche Wege nehmen. Die Auswertung von Proxyheadern muss zur bestätigten Hostingkonfiguration passen; beliebige vom Besucher gelieferte Header sind keine verlässliche Identität.
+
+Die oben gezeigte Einstellung bezieht sich auf das beschriebene Plugin und die dortige Hostingkonfiguration. Prüfen Sie vor einer Änderung, welche Proxyadressen vertrauenswürdig sind und wie das Plugin weitergeleitete Adressen auswertet. Vergleichen Sie anschließend die protokollierte Adresse mit einem kontrollierten Zugriff.
+
+Lassen Sie eine vermutete Schutzsperre anhand der konkreten Anfrage prüfen. Nach einer Korrektur muss derselbe Zugriff aus dem ursprünglich betroffenen Netz erneut funktionieren. Schalten Sie den gesamten Schutz nicht pauschal ab.
+
+## [Hohe Last hinter einem vorgeschalteten Proxy](https://www.edis.guide/wordpress-besucher-ip-uber-httpxforwardedfor-ermitteln#hohe-last-hinter-einem-vorgeschalteten-proxy)Hohe Last hinter einem vorgeschalteten Proxy
+
+Wenn im Hosting-Zugriffslog nur Adressen von Cloudflare oder eines anderen Proxys erscheinen, lassen sich Besucher daraus nicht unmittelbar zuordnen. Prüfen Sie gemeinsam mit den zuständigen Administratoren die Proxyprotokolle und die tatsächlich konfigurierte Weitergabe der Client-IP.
+
+Sperren Sie gemeinsam genutzte Proxyadressen nicht pauschal. Eine HEAD-Anfrage oder eine curl-Kennung allein beweist ebenfalls keinen Angriff. Stimmen Sie gezielte Filter im zuständigen Proxykonto mit der Hostingdiagnose ab und prüfen Sie danach die tatsächliche Serverlast sowie normale Websitefunktionen.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Node.js und npm im EDIS-Webhosting installieren](https://www.edis.guide/nodejs-und-npm-im-edis-webhosting-installieren 'Node.js und npm im EDIS-Webhosting installieren') [ALS NÄCHSTES\\ \\ Im vHost-Bereich von EDIS anmelden](https://www.edis.guide/login-vhost-bereich 'Im vHost-Bereich von EDIS anmelden')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

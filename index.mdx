@@ -1,20 +1,66 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: "EDIS Knowledge Base: Webhosting, Domains & Email"
+sidebarTitle: "Home"
+description: "Everything you need to set up and manage your EDIS webhosting, domains, email accounts, and DNS — with step-by-step guides and reference articles."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+Welcome to the EDIS knowledge base. Whether you're setting up your first website, configuring email for your domain, or managing DNS records, you'll find clear, step-by-step guidance here. EDIS provides webhosting, domain registration, Anycast DNS, SSL certificates, and email services to customers in Austria and beyond.
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Web Hosting" icon="server" href="/hosting/vhost-login">
+    Log in to your vHost panel, set up websites, install WordPress, and manage your hosting environment.
+  </Card>
+  <Card title="Domains" icon="globe" href="/domains/active-domain-usage">
+    Register, transfer, and configure your domains — including DNS records and SSL certificates.
+  </Card>
+  <Card title="Email" icon="envelope" href="/email/mailbox-setup">
+    Set up mailboxes, configure mail clients, manage SPF/DMARC, and use calendars and contacts.
+  </Card>
+  <Card title="Help & FAQ" icon="circle-question" href="/faq/support-contact">
+    Answers to common questions about billing, account management, and troubleshooting.
+  </Card>
+</CardGroup>
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+## Getting Started
+
+<Steps>
+  <Step title="Log in to your customer portal">
+    Visit [manage.edis.at](https://manage.edis.at/client/) and sign in with your 5-digit customer number and password.
+  </Step>
+  <Step title="Access your vHost area">
+    In the customer portal, click **vHost** in the left menu and then click the green arrow next to your webhost to enter the vHost management area.
+  </Step>
+  <Step title="Set up your website or email">
+    From the vHost area you can configure your website's document root, install WordPress via the App Installer, create email mailboxes, and manage FTP users.
+  </Step>
+  <Step title="Configure your DNS">
+    Manage DNS records for your domains in the [PDNS-Admin portal](https://pdns.edis.global/login) using your EDIS DNS credentials.
+  </Step>
+</Steps>
+
+## Popular Topics
+
+<CardGroup cols={3}>
+  <Card title="Mail Server Settings" icon="at" href="/email/mail-server-settings">
+    IMAP, POP3, and SMTP server addresses and ports for your email client.
+  </Card>
+  <Card title="Let's Encrypt SSL" icon="lock" href="/domains/lets-encrypt">
+    Order and activate a free SSL certificate for your domain.
+  </Card>
+  <Card title="DNS Management" icon="sitemap" href="/domains/dns-management">
+    Add and edit A, AAAA, CNAME, MX, and TXT records in the DNS portal.
+  </Card>
+  <Card title="SPF Record" icon="shield-check" href="/email/spf-record">
+    Configure SPF to authorize EDIS mail servers to send on your behalf.
+  </Card>
+  <Card title="PHP Version" icon="code" href="/hosting/php-version">
+    Switch the PHP version for a domain or subdomain in the vHost panel.
+  </Card>
+  <Card title="Transfer Domain" icon="arrows-rotate" href="/domains/transfer-domain">
+    Move an existing domain to EDIS with minimal downtime.
+  </Card>
+</CardGroup>
+
+<Note>
+  You can reach the EDIS support team by email at [hosting@edis.at](mailto:hosting@edis.at), by phone at **+43 1 909 4111** (Mon–Fri, 8:00–17:00), or via WhatsApp at **+43 670 3084988**.
+</Note>

@@ -1,0 +1,23 @@
+# Source: https://www.edis.guide/tausch-oder-umbenennung-einer-domain-geht-das
+
+Allgemeines
+
+# Domain umbenennen oder tauschen: Was ist möglich?
+
+1 min
+
+### [Ist der Umtausch von Domains möglich?](https://www.edis.guide/tausch-oder-umbenennung-einer-domain-geht-das#ist-der-umtausch-von-domains-mglich)Ist der Umtausch von Domains möglich?
+
+Ein registrierter Domainname kann nicht umbenannt oder gegen einen anderen Namen getauscht werden. Für einen anderen Namen ist eine neue, eigenständige Registrierung erforderlich. Die bisherige Domain und ihre laufenden Vertragsverpflichtungen bleiben davon getrennt.
+
+Möchten Sie einen anderen Domainnamen, bieten sich folgende Optionen:
+
+1. Kündigung der aktuellen Domain: Beachten Sie die vertraglichen Kündigungsfristen, das bestätigte Leistungsende und noch offene Entgelte. Eine Kündigung führt nicht automatisch zu einer anteiligen Erstattung bereits berechneter Registrierungs- oder Verlängerungsgebühren.
+
+2. **Registrierung eines neuen Domainnamens:** Sie können jederzeit einen neuen Domainnamen Ihrer Wahl registrieren. Die neue Registrierung wird regulär verrechnet.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Aktive Domainnutzung: DNS und Weiterleitungen](https://www.edis.guide/aktive-domain-nutzung 'Aktive Domainnutzung: DNS und Weiterleitungen') [ALS NÄCHSTES\\ \\ Externe Domain mit EDIS-Webhosting verbinden](https://www.edis.guide/fremddomain-externe-domain-bei-edis-hosten 'Externe Domain mit EDIS-Webhosting verbinden')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

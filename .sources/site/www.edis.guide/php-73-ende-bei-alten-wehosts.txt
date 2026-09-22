@@ -1,0 +1,35 @@
+# Source: https://www.edis.guide/php-73-ende-bei-alten-wehosts
+
+FAQ
+
+# PHP 7.1 oder 7.3: Wechsel von älteren Hosting-Produkten
+
+3 min
+
+### [Hinweis zu älteren Webhost Produkten](https://www.edis.guide/php-73-ende-bei-alten-wehosts#hinweis-zu-lteren-webhost-produkten)**Hinweis zu älteren Webhost Produkten**
+
+Für unsere älteren Webhost Produkte wie "Smart", "Starter", "Basic" (EOL 2019) ist die PHP Version auf PHP 7.3 begrenzt. Für diese Produkte können aufgrund von Einschränkungen der Plattform keine PHP Updates über 7.3 hinaus bereitgestellt werden.
+
+### [Empfehlung zum Wechsel auf ein neues Produkt](https://www.edis.guide/php-73-ende-bei-alten-wehosts#empfehlung-zum-wechsel-auf-ein-neues-produkt)**Empfehlung zum Wechsel auf ein neues Produkt**
+
+Wenn Sie aktuellere PHP Versionen oder technische Updates wünschen, empfehlen wir einen Wechsel zu unseren neuen "[Kaffee" Hosting Produkte](https://www.edis.at/de/hosting 'Kaffee" Hosting Produkte'). Mit diesen Produkten profitieren Sie von:
+
+- PHP 8.x
+
+- MySQL 8
+
+- Regelmäßigen technischen Updates (zukunftssicher)
+
+[Anleitung Umstieg auf neue Hosting Produkte](https://www.edis.guide/anleitung-umstieg-auf-aktuelle-hosting-technologie)
+
+### [Zukunft älterer Webhost Produkte](https://www.edis.guide/php-73-ende-bei-alten-wehosts#zukunft-lterer-webhost-produkte)**Zukunft älterer Webhost Produkte**
+
+Bitte beachten Sie, dass unsere älteren Webhost Produkte nach und nach aus dem Angebot genommen werden und in der Zukunft deaktiviert werden könnten. Wir empfehlen daher, rechtzeitig auf unsere neueren Hosting Lösungen zu wechseln, um von den technischen Neuerungen und Sicherheitsupdates zu profitieren.
+
+Sollten Sie Unterstützung beim Wechsel benötigen oder weitere Fragen haben, steht Ihnen unser Kundenservice gerne zur Verfügung.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Domains und Webhosting bei EDIS kündigen](https://www.edis.guide/anleitung-produkte-bei-edis-kuendigen 'Domains und Webhosting bei EDIS kündigen') [ALS NÄCHSTES\\ \\ Auf ein neues EDIS-Webhosting-Produkt umsteigen](https://www.edis.guide/anleitung-umstieg-auf-aktuelle-hosting-technologie 'Auf ein neues EDIS-Webhosting-Produkt umsteigen')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

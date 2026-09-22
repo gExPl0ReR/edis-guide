@@ -1,0 +1,78 @@
+---
+title: 'FTP Connection Settings, Ports, and Encryption'
+sidebarTitle: 'FTP Settings'
+description: 'Reference guide for EDIS FTP and SFTP connection settings: ports, passive and active mode, TLS/SSL encryption, and firewall considerations.'
+---
+
+To connect to your EDIS webhost via FTP or SFTP, you need the correct server address, port, protocol, and encryption settings. You can find the exact connection values for your webhost in the [vHost management panel](https://manage.edis.at/vhost/). FTP, FTPS, and SFTP are distinct connection types — your client settings must match the protocol you intend to use.
+
+## FTP and FTPS
+
+Plain FTP uses TCP port 21 for the control connection and transmits credentials and file contents **without encryption**. For all production use, choose FTPS (FTP over TLS), which wraps the same FTP protocol in a TLS-encrypted channel.
+
+| Setting | Value |
+|---|---|
+| Protocol | FTP / FTPS (FTP over TLS) |
+| Control port | TCP 21 |
+| Encryption | Explicit TLS (STARTTLS) recommended |
+| Data port (active mode) | TCP 20 (server-side source port) |
+| Data port (passive mode) | Negotiated dynamically — see note below |
+
+<Warning>
+  Plain FTP sends your username and password in cleartext. Always use FTPS with TLS enabled and verify the server certificate. Never switch to unencrypted FTP simply to work around a connection error.
+</Warning>
+
+### Passive Mode (PASV) — Recommended for Most Users
+
+In **passive mode**, the client opens both the control connection and the data connection to the server. The server tells the client which port to use for data transfers. This works reliably behind routers and firewalls because no inbound connection to the client is required.
+
+Passive mode is the recommended default for most desktop clients and hosting environments.
+
+<Note>
+  If you need to know the exact passive port range used by EDIS for your specific hosting product, contact hosting support at [hosting@edis.at](mailto:hosting@edis.at) and your own network or firewall administrator.
+</Note>
+
+### Active Mode
+
+In **active mode**, the server opens the data connection back to the client. TCP port 20 is the typical *source* port on the server side — it is not the port you need to open on the client. Your firewall or router must permit inbound connections from the server to your client for data transfers to succeed.
+
+For typical setups behind a home router or corporate firewall, passive mode is simpler and more reliable than active mode.
+
+## SFTP over SSH
+
+SFTP (SSH File Transfer Protocol) is an entirely different protocol from FTP or FTPS. It runs over an encrypted SSH session and does **not** use FTP ports.
+
+| Setting | Value |
+|---|---|
+| Protocol | SFTP (SSH File Transfer Protocol) |
+| Port | TCP 22 (confirm in vHost panel) |
+| Encryption | Inherent — SSH encrypts the entire session |
+| Separate data ports | Not required |
+| Authentication | Password or SSH key pair |
+
+<Note>
+  SFTP availability depends on your hosting product. Not every webhosting plan includes SSH/SFTP access. Check your plan details in the [vHost panel](https://manage.edis.at/vhost/) under **SSH Access**. An FTP user is not automatically an SSH/SFTP user.
+</Note>
+
+When you connect via SFTP for the first time, your client will display the server's host key fingerprint and ask you to confirm it. Compare this fingerprint against the value provided by EDIS support before accepting it. Do not disable the host key check to bypass the warning — that would expose you to man-in-the-middle attacks.
+
+## Choosing the Right Protocol
+
+| Protocol | Port | Encrypted | Use Case |
+|---|---|---|---|
+| FTP | 21 | ❌ No | Legacy or internal use only |
+| FTPS (Explicit TLS) | 21 | ✅ Yes | Encrypted FTP — preferred for FTP-based access |
+| SFTP (SSH) | 22 | ✅ Yes | Most secure — preferred when SSH is available |
+
+## Firewall Checklist
+
+- Allow **outbound TCP port 21** for FTP/FTPS control connections.
+- Allow **outbound TCP port 22** for SFTP connections.
+- For passive mode, allow outbound connections to the passive port range provided by EDIS.
+- For active mode, allow inbound connections from the server's data port (TCP 20 is the typical server source port) — passive mode avoids this requirement.
+
+<Tip>
+  If you are troubleshooting a failed connection, isolate the problem: determine whether the network connection itself is failing, whether TLS/SSH negotiation is failing, or whether the login is rejected. These are separate failure points with different causes and solutions.
+</Tip>
+
+If you need assistance identifying the right settings for your specific plan, contact [hosting@edis.at](mailto:hosting@edis.at) or call **+43 1 909 4111** (Monday–Friday, 08:00–17:00).

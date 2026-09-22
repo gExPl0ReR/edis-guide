@@ -1,0 +1,161 @@
+# Source: https://www.edis.guide/fremddomain-externe-domain-bei-edis-hosten
+
+Allgemeines
+
+# Externe Domain mit EDIS-Webhosting verbinden
+
+3 min
+
+### [Hosten von Fremddomain bei EDIS](https://www.edis.guide/fremddomain-externe-domain-bei-edis-hosten#hosten-von-fremddomain-bei-edis)Hosten von Fremddomain bei EDIS
+
+Sie können problemlos externe Domains bei EDIS hosten. Folgen Sie diesen Schritten:
+
+1. Bestellen Sie die Domain, die Sie bei EDIS hosten möchten, als "Fremddomain" über unseren Online-Shop.
+
+2. Ordnen Sie die Domain Ihrem gewünschten Webhost bei EDIS zu.
+
+3. Beachten Sie, dass die Domain beim aktuellen Provider bleibt. EDIS nimmt lediglich die Konfiguration der Webserver gemäß Ihren Vorgaben vor. Dieser Service ist für Sie kostenfrei.
+
+Verwenden Sie für die DNS-Verbindung die Ihrem konkreten Webhost zugewiesenen Zieladressen. Die folgende Tabelle gibt die bisherige Übersicht wieder und ersetzt keine Prüfung der aktuellen Hostingzuordnung. Ein A-Eintrag benötigt eine IPv4-Adresse, ein AAAA-Eintrag eine passende IPv6-Adresse. Übernehmen Sie nur bestätigte Werte und erhalten Sie benötigte Mail- und Verifikationseinträge.
+
+**Hosting Produkte**  (Mokka, Ristretto, Espresso, Doppio)
+
+| 
+**Österreich**
+
+ | 
+
+**HOSTING.AT.EDIS.GLOBAL**
+
+ | 
+
+**91.227.205.222**
+
+ |
+| --- | --- | --- |
+| 
+
+**Deutschland**
+
+ | 
+
+**HOSTING.DE.EDIS.GLOBAL**
+
+ | 
+
+**158.255.214.5**
+
+ |
+| 
+
+**England**
+
+ | 
+
+**HOSTING.UK.EDIS.GLOBAL**
+
+ | 
+
+**192.121.113.50**
+
+ |
+| 
+
+**Frankreich**
+
+ | 
+
+**HOSTING.FR.EDIS.GLOBAL**
+
+ | 
+
+**151.236.21.20**
+
+ |
+| 
+
+**Italien**
+
+ | 
+
+**HOSTING.IT.EDIS.GLOBAL**
+
+ | 
+
+**192.121.47.2**
+
+ |
+| 
+
+**Schweiz**
+
+ | 
+
+**HOSTING.CH.EDIS.GLOBAL**
+
+ | 
+
+**151.236.27.50**
+
+ |
+| 
+
+**U.S.A.**
+
+ | 
+
+**HOSTING.US.EDIS.GLOBAL**
+
+ | 
+
+**151.236.22.5**
+
+ |
+| 
+
+**Schweden**
+
+ | 
+
+**HOSTING.SE.EDIS.GLOBAL**
+
+ | 
+
+**46.246.24.100**
+
+ |
+| 
+
+**Hongkong**
+
+ | 
+
+**HOSTING.HK.EDIS.GLOBAL**
+
+ | 
+
+**151.236.20.215**
+
+ |
+
+**IPv6 Hosting Austria:**
+
+2a03:f80:ad15:91:227:205:222:1
+
+**ältere Hosting Produkte** (Smart, Starter, Basic, Advanced, Premium, Platinum Hosting)
+
+**Österreich** HOSTING.EDIS-LPS.AT (91.227.204.35)
+
+**Deutschland** HOSTING.EDIS-LPS.DE (149.154.159.6)
+
+**Schweiz** ​ ​HOSTING.EDIS-LPS.CH (178.209.42.104)
+
+Bitte beachten Sie, dass externe Domains nicht bei EDIS registriert sind.
+
+Die Wirksamkeit einer DNS-Änderung hängt von der zuständigen Zone und den bisherigen TTLs ab. Prüfen Sie das tatsächlich aufgelöste Ziel sowie Website, HTTPS und E-Mail. Ein Registrartransfer ist für diese DNS-Verbindung nicht erforderlich. Möchten Sie zusätzlich den Registrar zu EDIS wechseln, stimmen Sie Bestellung, Auth-Code und Transferstatus gesondert mit dem Support ab.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Domain umbenennen oder tauschen: Was ist möglich?](https://www.edis.guide/tausch-oder-umbenennung-einer-domain-geht-das 'Domain umbenennen oder tauschen: Was ist möglich?') [ALS NÄCHSTES\\ \\ .at-Domains: Wann werden Nameserver-Änderungen wirksam?](https://www.edis.guide/reloadzeiten-der-root-nameserver-at-zone-nic-at '.at-Domains: Wann werden Nameserver-Änderungen wirksam?')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

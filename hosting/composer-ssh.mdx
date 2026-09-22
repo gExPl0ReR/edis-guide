@@ -1,0 +1,95 @@
+---
+title: 'Use Composer via SSH in EDIS Web Hosting'
+sidebarTitle: 'Composer'
+description: 'Run PHP Composer to manage dependencies in your EDIS web hosting account via SSH, using the correct versioned PHP interpreter for your project.'
+---
+
+Composer is available on EDIS web hosting servers and can be invoked directly from your SSH session. Because the PHP version selected for your website does not automatically apply to command-line contexts, you must call Composer using the full path to the correct PHP CLI binary for your project.
+
+## Running the System Composer
+
+EDIS provides a system-wide Composer installation at `/usr/bin/composer`. To use it, prefix the call with the PHP CLI binary that matches the version your project requires.
+
+<Steps>
+  <Step title="Connect to your hosting account via SSH">
+    Open a terminal and log in using the SSH credentials for your vHost. You can find these in the [vHost management panel](https://manage.edis.at/vhost/).
+  </Step>
+  <Step title="Navigate to your project directory">
+    Change into the directory that contains your `composer.json` file:
+    ```bash
+    cd /home/yourVhostID/html/your-project
+    ```
+    Replace `yourVhostID` with your actual hosting identifier.
+  </Step>
+  <Step title="Run Composer with the correct PHP version">
+    Call the system Composer by specifying the versioned PHP binary first:
+    ```bash
+    /usr/local/bin/edis-php-cli-82 /usr/bin/composer install
+    ```
+    Use `edis-php-cli-81` or `edis-php-cli-82` depending on which PHP version your project requires:
+    ```bash
+    # PHP 8.1
+    /usr/local/bin/edis-php-cli-81 /usr/bin/composer install
+
+    # PHP 8.2
+    /usr/local/bin/edis-php-cli-82 /usr/bin/composer install
+    ```
+  </Step>
+</Steps>
+
+<Warning>
+  Do not install packages into `/usr/bin/` — it is a system directory. The system Composer at `/usr/bin/composer` is for running Composer, not as an installation target.
+</Warning>
+
+## Installing Your Own Composer Instance
+
+If you need a specific Composer version, install it inside your hosting account rather than relying on the system binary.
+
+<Steps>
+  <Step title="Create a bin directory in your account">
+    ```bash
+    mkdir -p /home/yourVhostID/bin
+    ```
+    This creates a personal `bin/` directory within your hosting account. Do not confuse this with the system `/bin/` directory.
+  </Step>
+  <Step title="Download Composer into your bin directory">
+    Follow the [official Composer installation guide](https://getcomposer.org/doc/00-intro.md#locally) to download the `composer.phar` file and save it as `/home/yourVhostID/bin/composer`. Make it executable:
+    ```bash
+    chmod +x /home/yourVhostID/bin/composer
+    ```
+  </Step>
+  <Step title="Run your own Composer installation">
+    Always use the full path to both the PHP binary and your Composer installation:
+    ```bash
+    /usr/local/bin/edis-php-cli-82 /home/yourVhostID/bin/composer install
+    ```
+  </Step>
+</Steps>
+
+## Understanding PHP Contexts in Hosting
+
+<Note>
+  The PHP version configured for your domain in the vHost panel (under **Apache → PHP Version**) controls web requests only. It does not automatically set the PHP interpreter used for SSH sessions, Composer, or other CLI processes. Always specify the PHP CLI binary explicitly when running Composer.
+</Note>
+
+Because different PHP contexts load different configurations and extensions, a successful website request does not confirm that the CLI environment is correctly set up. If Composer reports a missing extension, check its availability under the specific PHP interpreter you are invoking — not the one used by your website.
+
+## Checking for Missing Extensions
+
+When Composer reports a missing extension, take the exact extension name from the error message. For example, `sqlite3` and `pdo_sqlite` are distinct extensions — do not assume they are the same.
+
+To enable a PHP extension for your website, use the **PHP.INI Template** feature in the vHost panel under **Apache → PHP.INI Templates and PHP.INI Assignment**. Add the extension directive, for example:
+
+```ini
+extension=imagick
+```
+
+Keep in mind that changes applied to the website PHP configuration do not affect the CLI environment, and vice versa.
+
+## Frameworks and Long-Running Processes
+
+Installing a framework via Composer does not mean EDIS manages that framework, takes over its maintenance, or supports every operating mode it offers. If your application requires background queues, persistent processes, or scheduled tasks, clarify those requirements with EDIS support before deploying. Review both the Composer invocation and the running application after any configuration change.
+
+<Tip>
+  Before making changes, verify SSH access is enabled for your hosting product, check that your dependencies are compatible with the available PHP versions, and create a backup of your project.
+</Tip>

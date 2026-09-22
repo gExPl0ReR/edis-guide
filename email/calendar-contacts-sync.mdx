@@ -1,0 +1,180 @@
+---
+title: 'Sync Calendars and Contacts with CalDAV and CardDAV'
+sidebarTitle: 'Calendar & Contacts'
+description: 'Synchronize your EDIS email calendars and contacts with iOS, Android, macOS, and Windows devices using CalDAV and CardDAV protocols.'
+---
+
+EDIS webmail supports CalDAV for calendar synchronisation and CardDAV for contact synchronisation. Both protocols work over HTTPS and let you keep your calendars and address books in sync across multiple devices and apps. The server URLs and credentials for your specific mailbox are available inside the EDIS webmail interface.
+
+## Find Your Server URLs
+
+Before setting up any device, retrieve the correct CalDAV and CardDAV URLs for your mailbox:
+
+<Steps>
+
+### Log in to EDIS webmail
+
+Open [https://webmail.edis.at](https://webmail.edis.at) and sign in with your full email address and mailbox password.
+
+### Open Mobile Sync settings
+
+Go to **Settings** → **Mobile Sync**. The portal displays the exact CalDAV URL for each calendar and the CardDAV URL for each address book you have created.
+
+### Copy the URLs
+
+Copy the CalDAV URL for the calendar you want to sync and the CardDAV URL for your contacts. Use these exact URLs — a calendar path and a contacts path are different and are not interchangeable.
+
+</Steps>
+
+<Note>
+  Always retrieve URLs directly from your webmail settings. The paths are unique to your account and cannot be guessed from your email address alone.
+</Note>
+
+## Connection Settings Reference
+
+| Setting | Value |
+|---|---|
+| CalDAV server | From webmail → Settings → Mobile Sync |
+| CardDAV server | From webmail → Settings → Mobile Sync |
+| Port | 443 (HTTPS) |
+| Username | Your full email address (e.g. `you@yourdomain.at`) |
+| Password | Your mailbox password |
+| SSL/TLS | Required — always enabled |
+
+---
+
+## Set Up on Your Device
+
+<Tabs>
+  <Tab title="iOS (iPhone / iPad)">
+    **CalDAV — Calendar**
+
+    <Steps>
+      ### Open device settings
+      Go to **Settings** → **Calendar** → **Accounts** → **Add Account** → **Other** → **Add CalDAV Account**.
+
+      ### Enter your details
+      - **Server**: paste the CalDAV URL from webmail
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+      - **Description**: a label for this calendar (e.g., *EDIS Calendar*)
+
+      ### Tap Next
+      iOS will attempt to verify the account. Once confirmed, your calendar entries will begin syncing. Open the **Calendar** app to see your events.
+    </Steps>
+
+    **CardDAV — Contacts**
+
+    <Steps>
+      ### Open device settings
+      Go to **Settings** → **Contacts** → **Accounts** → **Add Account** → **Other** → **Add CardDAV Account**.
+
+      ### Enter your details
+      - **Server**: paste the CardDAV URL from webmail
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+      - **Description**: a label for this address book (e.g., *EDIS Contacts*)
+
+      ### Tap Next
+      iOS verifies the connection and starts syncing your contacts with the **Contacts** app.
+    </Steps>
+  </Tab>
+
+  <Tab title="Android">
+    Android does not include built-in CalDAV/CardDAV support. You need a third-party app such as **DAVx⁵** (recommended, available on F-Droid and Google Play).
+
+    <Steps>
+      ### Install DAVx⁵
+      Install DAVx⁵ from the [Google Play Store](https://play.google.com/store/apps/details?id=at.bitfire.davdroid) or [F-Droid](https://f-droid.org/packages/at.bitfire.davdroid/).
+
+      ### Add a new account
+      Open DAVx⁵ and tap the **+** button. Select **Login with URL and username**.
+
+      ### Enter your details
+      - **Base URL**: paste the CalDAV or CardDAV URL from your webmail settings
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+
+      ### Select calendars and address books
+      DAVx⁵ will discover available calendars and address books. Tick the ones you want to sync and tap **Save**.
+
+      ### Grant permissions
+      Allow DAVx⁵ to access the Calendar and Contacts apps when prompted. Your data will sync automatically in the background.
+    </Steps>
+
+    <Tip>
+      If you want to sync both calendars and contacts, you can add both the CalDAV and CardDAV URLs to DAVx⁵ in one account — DAVx⁵ discovers all resources from the account root automatically.
+    </Tip>
+  </Tab>
+
+  <Tab title="macOS">
+    **CalDAV — Calendar**
+
+    <Steps>
+      ### Open System Settings
+      On macOS Ventura or later, go to **System Settings** → **Internet Accounts** → **Add Account** → **Other** → **CalDAV Account**.
+
+      On older macOS, go to **System Preferences** → **Internet Accounts** → **Add Other Account…** → **CalDAV account**.
+
+      ### Choose Manual configuration
+      Select **Advanced** or **Manual** as the account type.
+
+      ### Enter your details
+      - **Server address**: paste the CalDAV URL from webmail
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+
+      ### Click Sign In
+      macOS verifies the connection. Your calendars appear in the **Calendar** app.
+    </Steps>
+
+    **CardDAV — Contacts**
+
+    <Steps>
+      ### Open System Settings
+      Go to **System Settings** → **Internet Accounts** → **Add Account** → **Other** → **CardDAV Account**.
+
+      ### Enter your details
+      - **Server address**: paste the CardDAV URL from webmail
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+
+      ### Click Sign In
+      macOS verifies the account. Your contacts appear in the **Contacts** app.
+    </Steps>
+  </Tab>
+
+  <Tab title="Windows / Outlook">
+    Outlook for Windows does not natively support CalDAV or CardDAV. For **classic Outlook** (not the new Outlook experience), you can use the free **Outlook CalDav Synchronizer** plugin.
+
+    <Steps>
+      ### Download Outlook CalDav Synchronizer
+      Visit [https://caldavsynchronizer.org/](https://caldavsynchronizer.org/) and download the latest release. Install it and restart Outlook.
+
+      ### Add a new synchronisation profile
+      In Outlook, go to the **CalDav Synchronizer** tab → **Synchronisation Profiles** → **Add**.
+
+      ### Configure the profile
+      - **Profile name**: a label of your choice
+      - **Outlook folder**: select the Calendar or Contacts folder you want to sync
+      - **DAV URL**: paste the CalDAV or CardDAV URL from your webmail settings
+      - **Username**: your full email address
+      - **Password**: your mailbox password
+
+      ### Run an initial sync
+      Click **OK**, then trigger a manual sync from the ribbon. Verify that your calendar entries or contacts appear in the selected Outlook folder.
+    </Steps>
+
+    <Warning>
+      The Outlook CalDav Synchronizer plugin applies to **classic Outlook for Windows** only. It does not work with the new Outlook experience, Outlook on the web, or Outlook for Mac. Check the plugin's official documentation at [caldavsynchronizer.org](https://caldavsynchronizer.org/) for the current list of supported Outlook versions.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## Before You Sync
+
+<Warning>
+  Synchronisation is bidirectional: a deletion on one device propagates to all synced devices. Back up your local calendars and contacts before connecting a new account — an empty remote book can overwrite your local data.
+</Warning>
+
+After setup, test with a non-critical entry: create a new calendar event or contact in your webmail and confirm that it appears on your device within a few minutes. Also test in the opposite direction. If changes are not propagating, check the time zone settings in your calendar app and confirm you have selected the correct calendar or address book during setup.

@@ -1,0 +1,85 @@
+---
+title: "Order and Activate a Let's Encrypt SSL Certificate"
+sidebarTitle: "Let's Encrypt"
+description: "Order and enable a Let's Encrypt SSL certificate for your domain in the EDIS vHost panel to serve your website securely over HTTPS."
+---
+
+Every domain hosted at EDIS can be equipped with an SSL/TLS certificate so visitors can reach your website over an encrypted HTTPS connection. The EDIS vHost panel lets you order and activate a certificate directly — no command-line tools or manual certificate uploads required. The following steps walk you through the process from start to finish.
+
+<Note>
+  The name "Let's Encrypt" refers to the certificate authority that issues the certificate. It does not mean the service is free of charge through EDIS. Always check the current order screen for applicable fees before confirming your order. Your contract terms are authoritative.
+</Note>
+
+## Order a Certificate
+
+<Steps>
+  <Step title="Open the vHost panel">
+    Log in to the [EDIS vHost area](https://manage.edis.at/vhost/) and select the domain you want to secure.
+  </Step>
+  <Step title="Navigate to HTTPS (SSL/TLS)">
+    In the domain settings, click **HTTPS (SSL/TLS)** to open the certificate management section.
+  </Step>
+  <Step title="Click the green + icon">
+    Click the **green + icon** to the left of the domain name to initiate a new certificate order for that domain.
+  </Step>
+  <Step title="Review the order details">
+    Before confirming, review the list of domains and subdomains that will be covered by the certificate, as well as any applicable costs. Make sure the correct hostname is listed.
+
+    <Warning>
+      Each domain and alias domain that visitors can access directly needs its own certificate. A certificate issued for `example.at` does not cover `shop.example.at` or `www.example.at` unless those names are explicitly included. Check each hostname separately.
+    </Warning>
+  </Step>
+  <Step title="Confirm the order">
+    Confirm the order. Certificate issuance and activation may take a few minutes. Provisioning is not always instantaneous — there is no fixed maximum wait time.
+  </Step>
+</Steps>
+
+## Verify the Certificate Is Active
+
+After ordering, confirm that the certificate has been issued and is being served before redirecting traffic or announcing the change.
+
+<Steps>
+  <Step title="Check the status in vHost">
+    Return to **vHost → HTTPS (SSL/TLS)** and check the status shown for your domain. A lock icon or "active" status in the panel is a good indicator, but verify independently.
+  </Step>
+  <Step title="Open the domain over HTTPS">
+    Type `https://yourdomain.at` directly into a browser. If the padlock icon appears in the address bar and no certificate warning is shown, the certificate is live and valid.
+  </Step>
+  <Step title="Inspect the certificate details">
+    Click the padlock icon in your browser and view the certificate. Confirm the domain name, issuer (Let's Encrypt), and expiry date match what you expect.
+  </Step>
+</Steps>
+
+<Note>
+  A lock symbol or greyed-out option in the vHost panel alone does not confirm a specific DNS issue or the absence of a certificate. Always verify by loading the hostname over HTTPS in a browser and inspecting the actual certificate that is delivered.
+</Note>
+
+## Alias Domains and Subdomains
+
+If your domain has alias domains (additional names that point to the same website), each alias needs its own certificate before it can be reached over HTTPS. An alias domain that redirects to your main domain still requires a valid certificate for its own hostname — the certificate of the destination domain does not cover the source address.
+
+<Steps>
+  <Step title="Identify all publicly accessible hostnames">
+    List every hostname visitors might type or click: your main domain, `www`, and any alias domains.
+  </Step>
+  <Step title="Order a certificate for each alias">
+    Repeat the certificate order process for each alias domain that does not yet have a certificate.
+  </Step>
+  <Step title="Verify each hostname over HTTPS">
+    Test each hostname individually by opening it in a browser over HTTPS and confirming the certificate is valid.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+**Certificate not appearing or order fails**
+
+Contact [hosting@edis.at](mailto:hosting@edis.at) with the domain name, the exact error message or status shown in the panel, and the time you attempted the order.
+
+**Website shows a directory listing or test page instead of your site after HTTPS works**
+
+A working certificate does not automatically fix domain-to-directory mapping. Check the domain assignment, document root, and default index file in the vHost settings separately.
+
+**Cancellation notice and certificate validity**
+
+A cancellation notice may refer to a billing line item or a future renewal — not necessarily the immediate validity of the currently active certificate. If you receive a cancellation-related message, have the affected domain, the certificate expiry date, and the contract end date checked separately before taking any action.

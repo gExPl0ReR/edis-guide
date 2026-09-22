@@ -1,0 +1,29 @@
+# Source: https://www.edis.guide/no-such-domain-at-this-location
+
+Email
+
+FAQs
+
+# E-Mail-Fehler: „No such domain at this location“
+
+2 min
+
+### [No such domain at this location](https://www.edis.guide/no-such-domain-at-this-location#no-such-domain-at-this-location)**No such domain at this location**
+
+Die Meldung bedeutet, dass der antwortende Mailserver die Empfängerdomain an diesem Ziel nicht annimmt. Prüfen Sie zunächst den tatsächlich angesprochenen Server und die aktuellen MX-Einträge. Soll EDIS die Mailboxen betreiben, muss außerdem die lokale Domainzuordnung beziehungsweise der Mailtransport korrekt eingerichtet sein. Ein falsches MX-Ziel ist eine andere Ursache als ein fehlender Transport-Eintrag. Die folgende IP-Adresse stammt aus einem Fehlerbeispiel und ist kein Einrichtungswert.
+
+email error message
+
+191.227.204.131 does not like recipient. 2Remote host said: 550 No such domain at this location 
+
+91.227.204.131 does not like recipient. Remote host said: 550 No such domain at this location
+
+Weiterführende Infos zur korrekten Konfiguration von Transport-Einträgen im EDIS Mailsystem finden Sie unter nachfolgendem Link.
+
+[Transport-Eintrag im EDIS Mailsystem](https://www.edis.guide/transport-eintrag-im-edis-mailsystem)
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ E-Mail-Weiterleitungen: SPF und SRS bei EDIS](https://www.edis.guide/korrekte-e-mail-weiterleitungen-strikter-spf-srs-sender-rewrite-scheme 'E-Mail-Weiterleitungen: SPF und SRS bei EDIS') [ALS NÄCHSTES\\ \\ IP-Adressen der EDIS-Mailserver und SPF](https://www.edis.guide/ip-adressen-der-edis-mailserver-und-spf 'IP-Adressen der EDIS-Mailserver und SPF')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

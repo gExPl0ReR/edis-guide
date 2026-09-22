@@ -1,0 +1,45 @@
+# Source: https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting
+
+Webhosting
+
+# Dateilimit und Speicherplatz: Unterschiede im Webhosting
+
+4 min
+
+Speicherplatz, Dateianzahl und Mailboxkontingente sind unterschiedliche Grenzen. Prüfen Sie zuerst, welche Ressource eine Warnung betrifft und welche Grenze für Ihr gebuchtes Produkt gilt. Freier Speicher allein bedeutet nicht, dass weitere Dateien angelegt werden können.
+
+## [Speicherplatz und Dateilimit unterscheiden](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting#speicherplatz-und-dateilimit-unterscheiden)Speicherplatz und Dateilimit unterscheiden
+
+Das Speicherplatzlimit begrenzt die belegte Datenmenge, beispielsweise in GB. Das Datei- beziehungsweise Inode-Limit begrenzt die Zahl der gezählten Dateisystemobjekte. Viele kleine Dateien können dieses Limit erreichen, obwohl noch Kapazität frei ist. Die genaue Zählweise und beide Grenzwerte müssen zum konkreten Produkt passen.
+
+Solche Grenzen helfen, die gemeinsam genutzten Ressourcen zu verwalten. Bei Erreichen einer Grenze können neue Dateien oder Daten nicht mehr gespeichert werden. Übernehmen Sie keine Werte aus einem anderen Tarif oder einer älteren Produktgeneration.
+
+## [Warnung und Statistik vergleichen](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting#warnung-und-statistik-vergleichen)Warnung und Statistik vergleichen
+
+Notieren Sie Zeitpunkt, Einheit, Verbrauch und Produktgrenze. Die bisherige Supportpraxis beschreibt eine tägliche Aktualisierung der Speicherstatistik; eine Bereinigung kann deshalb zeitverzögert erscheinen. Lassen Sie das aktuelle Aktualisierungsintervall bei unklaren Anzeigen prüfen.
+
+Vergleichen Sie die Warnung mit dem damaligen und dem aktuellen Messstand. Eine spätere Anzeige unterhalb der Grenzen erklärt die ursprüngliche Warnung nicht. Nennen Sie zwischenzeitliche Löschungen, verschobene Backups oder Anwendungsänderungen und lassen Sie ursprünglichen Messwert und Warnschwelle prüfen.
+
+## [Gezielt und mit Sicherung aufräumen](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting#gezielt-und-mit-sicherung-aufrumen)Gezielt und mit Sicherung aufräumen
+
+Prüfen Sie große Dateien, nicht mehr benötigte Sicherungskopien, Caches, Logs und Verzeichnisse mit sehr vielen kleinen Dateien. Klären Sie vor dem Löschen, ob diese zu einer aktiven Anwendung gehören. Benötigte Sicherungen müssen außerhalb des zu bereinigenden Bestands erhalten bleiben.
+
+Fassen Sie Anwendungsdateien nicht wahllos zusammen und löschen Sie keine E-Mails, wenn die Warnung das Web-Dateisystem betrifft. Eine dauerhaft wachsende Anwendung benötigt eine Ursachenprüfung; ein größeres Paket allein beseitigt diese Ursache nicht.
+
+## [S3-Kapazität im Produktbudget prüfen](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting#s3-kapazitt-im-produktbudget-prfen)S3-Kapazität im Produktbudget prüfen
+
+Bei Produkten mit gemeinsamem Budget kann zugewiesene S3-Kapazität aus dem Webspace-Budget reserviert werden. Sie ist dann kein zusätzlicher Speicher. Prüfen Sie vor einer Reservierung die Regeln Ihres Produkts und die verbleibende Kapazität.
+
+Im ausgewerteten Produktfall wurden S3-Objekte nicht gegen das Dateilimit des Web-Dateisystems gezählt. Die S3-Belegung, reservierte Kapazität und das Web-Dateilimit sind deshalb getrennt zu prüfen; daraus folgt keine unbegrenzte S3-Kapazität.
+
+## [Mailspeicher und Produktwechsel](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting#mailspeicher-und-produktwechsel)Mailspeicher und Produktwechsel
+
+Mailboxkontingente können unabhängig vom Website-Speicher geregelt sein. Prüfen Sie bei mehreren Postfächern die Einzel- und Gesamtgrenzen. Ein Mailumzug oder eine technische Bereinigung beendet keine separat berechnete Zusatzleistung automatisch.
+
+Wenn die dauerhaft benötigten Daten die vorhandenen Grenzen überschreiten, vergleichen Sie die tatsächlichen Kapazitäten und Konditionen eines passenden Produkts. Vereinbaren Sie Umfang und Zeitpunkt einer Änderung ausdrücklich. Weiterführende Hinweise zu Mailboxgrenzen und Zusatzkosten finden Sie in der Postfach-Anleitung: [https://www.edis.guide/mailboxen-einrichten-domain-bei-edis](https://www.edis.guide/mailboxen-einrichten-domain-bei-edis 'https://www.edis.guide/mailboxen-einrichten-domain-bei-edis')﻿
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ WordPress manuell installieren](https://www.edis.guide/anleitung-manuelle-wordpress-installation 'WordPress manuell installieren') [ALS NÄCHSTES\\ \\ SFTP-Verbindung zum EDIS-Webhost einrichten](https://www.edis.guide/sftp-verbindung-zum-edis-webhost-einrichten 'SFTP-Verbindung zum EDIS-Webhost einrichten')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

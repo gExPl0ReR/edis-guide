@@ -1,0 +1,48 @@
+---
+title: 'Anycast DNS at EDIS: Overview and Nameservers'
+sidebarTitle: 'Anycast DNS'
+description: 'EDIS operates authoritative Anycast DNS across global locations. Learn how Anycast DNS works and find the nameserver hostnames and IP addresses.'
+---
+
+EDIS uses authoritative Anycast nameservers to resolve DNS queries for domains hosted on its platform. With Anycast routing, the same nameserver hostname and IP address are reachable from multiple physical locations simultaneously. When a DNS query reaches the network, routing infrastructure directs it to one of the available Anycast nodes — distributing query load across locations and providing alternative paths if one node becomes unavailable.
+
+## How Anycast DNS Works
+
+In a traditional (Unicast) setup, each nameserver hostname resolves to a single IP address at a single location. With Anycast, multiple servers around the world share the same IP address. Network routers automatically send each query toward the topologically nearest or best-routed node, without any additional configuration required on your end.
+
+This architecture offers several benefits:
+
+- **Distributed query handling** — queries are spread across nodes instead of hitting a single server
+- **Resilience** — if one node is unreachable, routing automatically shifts to an available alternative
+- **Reduced latency** — queries travel a shorter network path in many cases
+
+<Note>
+  Which Anycast node answers a given query is determined entirely by network routing topology, not by geographic distance alone. Anycast can reduce response times and improve availability, but it does not guarantee a specific response time or uninterrupted reachability under all circumstances.
+</Note>
+
+## EDIS Anycast Nameservers
+
+Use the following nameservers when delegating your domain to EDIS DNS:
+
+| Hostname | Cloud | IPv4 | IPv6 |
+|---|---|---|---|
+| **ns1.edis.global** | Cloud 1 | `192.174.68.12` | `2001:67c:1bc::12` |
+| **ns2.edis.global** | Cloud 2 | `176.97.158.12` | `2001:67c:10b8::12` |
+
+Both nameservers must be set as the authoritative nameservers for your domain. You can update the nameserver delegation through the [EDIS customer portal](https://manage.edis.at/client/) or via your domain registrar.
+
+## Global Node Locations
+
+EDIS operates Anycast nodes across two independent clouds:
+
+**Cloud 1 — ns1.edis.global**
+
+Amsterdam · Atlanta · Chicago · Dallas · Dublin · Frankfurt · Hong Kong · Johannesburg · London · Los Angeles · Madrid · Miami · Moscow · New York · Paris · Reykjavík · Rhine Valley · Salzburg · São Paulo · Seattle · Singapore · Stockholm · Sydney · Tokyo · Warsaw · Vienna · Zurich
+
+**Cloud 2 — ns2.edis.global**
+
+Amsterdam · Athens · Chicago · Dallas · Dubai · Frankfurt · Geneva · Hong Kong · Johannesburg · London · Miami · Reston · San Jose · São Paulo · Seattle · Seoul · Sydney · Toronto · Vienna
+
+<Note>
+  The node list above reflects the documented infrastructure at the time of writing. For current platform details, locations, and service guarantees, the confirmed EDIS service description for your contract is authoritative.
+</Note>

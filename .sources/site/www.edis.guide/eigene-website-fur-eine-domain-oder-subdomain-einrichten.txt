@@ -1,0 +1,79 @@
+# Source: https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten
+
+Webhosting
+
+# Eigene Website für eine Domain oder Subdomain einrichten
+
+6 min
+
+### [Document-Root für Domain oder Subdomain bei EDIS einrichten](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#document-root-fr-domain-oder-subdomain-bei-edis-ei)**Document-Root für Domain oder Subdomain bei EDIS einrichten**
+
+Wenn Sie bei EDIS eine eigene Webseite, wie z.B. ein separates WordPress, auf einer Subdomain oder einer anderen dem Webhost zugeordneten Domain betreiben möchten, können Sie dies tun, indem Sie der Domain oder Subdomain eine eigene Document-Root zuweisen. Folgen Sie diesen Schritten:
+
+1. **Anmelden**: Melden Sie sich zuerst im EDIS [Verwaltungsbereich](https://manage.edis.at/vhost/ 'Verwaltungsbereich') an
+
+2. **Apache-Konfiguration**:
+
+- Navigieren Sie im Menü zu **Apache**
+
+- Wählen Sie dann den Punkt **SubDomains** aus
+
+3. **Domain oder Subdomain zuweisen**:
+
+- Wählen Sie die gewünschte Domain oder Subdomain aus, der Sie ein eigenes Document-root zuweisen möchten.
+
+- Lassen Sie die Domain oder Subdomain auf ein Unterverzeichnis zeigen.
+
+4. **Verzeichnis erstellen**:
+
+- Geben Sie den Pfad des gewünschten Unterverzeichnisses ein. Zum Beispiel:
+
+- **/home/userid/www/home/mein-mit-FTP-angelegtes-Verzeichnis/**
+
+- Stellen Sie sicher, dass Sie zuvor dieses Verzeichnis mittels FTP erstellt haben.
+
+5. **Änderungen speichern**: Speichern Sie Ihre Änderungen, um die neue Document-root für die ausgewählte Domain oder Subdomain zu aktivieren.
+
+Nachdem Sie diese Schritte abgeschlossen haben, können Sie eine separate Software oder Webseite auf Ihrer Domain oder Subdomain betreiben, da diese nun über ein eigenes Document-Root verfügt.
+
+Laden Sie die Dateien für Ihre Webseite in das angegebene Verzeichnis hoch. Beachten Sie, dass das Aktivieren von Domain- oder Subdomain-Zuweisungen bis zu 10 Minuten dauern kann.
+
+## [Eine Domain mit vorhandenem Hosting verbinden](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#eine-domain-mit-vorhandenem-hosting-verbinden)Eine Domain mit vorhandenem Hosting verbinden
+
+Ein Registrarwechsel verbindet die Domain nicht automatisch mit dem gewünschten Webhost. Prüfen Sie vor einer weiteren Bestellung, ob bereits passendes Hosting vorhanden ist und welche Domainzuordnung beziehungsweise Nutzung eingerichtet werden muss. DNS, Webverzeichnis, Mailbetrieb und Zertifikat bleiben getrennte Prüfpunkte. Verwenden alte und neue Domain dasselbe Verzeichnis, muss eine gewünschte Weiterleitung auf den richtigen Hostnamen begrenzt sein. Testen Sie beide Namen einschließlich HTTPS.
+
+## [Dieselben Dateien sind unter mehreren Adressen erreichbar](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#dieselben-dateien-sind-unter-mehreren-adressen-err)Dieselben Dateien sind unter mehreren Adressen erreichbar
+
+Ein eigenes Zielverzeichnis für eine zusätzliche Domain verhindert nicht automatisch den Zugriff auf denselben physischen Unterordner über die Hauptdomain. Prüfen Sie die Zuordnung jeder Domain und die tatsächlich erreichbaren Pfade. Ein Domain-Zielverzeichnis ist keine vollständige Zugriffssperre.
+
+Legen Sie mit der für die Website zuständigen Person fest, welche Adresse öffentlich verwendet werden soll. Je nach Aufbau kommen eine passende Verzeichnisstruktur oder eine gezielte Weiterleitung infrage. Übernehmen Sie keine fremde .htaccess-Regel ungeprüft. Kontrollieren Sie HTTPS, Pfade, benötigte Parameter und mögliche Weiterleitungsschleifen.
+
+Ein Canonical-Hinweis hilft Suchmaschinen, eine bevorzugte Adresse zuzuordnen. Er verhindert den anderen Seitenaufruf nicht. Auch robots.txt ersetzt weder die Canonical-Abstimmung noch einen Zugriffsschutz. Veraltete Anwendungen oder PHP-Versionen müssen unabhängig davon mit Sicherung, Kompatibilitätsprüfung und Tests aktualisiert beziehungsweise migriert werden.
+
+Technische Grundlagen: [https://httpd.apache.org/docs/2.4/urlmapping.html](https://httpd.apache.org/docs/2.4/urlmapping.html 'https://httpd.apache.org/docs/2.4/urlmapping.html') und [https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls 'https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls')﻿
+
+## [DNS-Werte und bedingte Änderungen](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#dns-werte-und-bedingte-nderungen)DNS-Werte und bedingte Änderungen
+
+Übernehmen Sie Serveradressen nur aus der tatsächlichen Hostingzuordnung oder den verbindlichen Vorgaben des Zielanbieters. Wenn eine Anleitung zu einer falschen Änderung geführt hat, prüfen Sie zuerst die Änderungshistorie. Ändern Sie keine weiteren Werte auf Verdacht. Nach einer Korrektur müssen DNS-Auflösung und Websitezugriff für die betroffenen Namen geprüft werden.
+
+Wenn Sie eine alte Domain nur dann entfernen lassen möchten, falls andernfalls kein freier Platz für eine neue Domain vorhanden ist, nennen Sie diese Bedingung ausdrücklich. Bleibt die Bedingung unerfüllt, besteht daraus kein Auftrag zur Entfernung.
+
+## [App-Installation scheitert nach einer DNS-Änderung](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#app-installation-scheitert-nach-einer-dns-nderung)App-Installation scheitert nach einer DNS-Änderung
+
+Vergleichen Sie zuerst den exakt bestellten Domainnamen mit der im Installationsassistenten verwendeten Adresse. Ein Tippfehler, ein abweichendes www oder ein falsches Zielverzeichnis kann zu einem anderen Webhost führen. Prüfen Sie das zuständige DNS-Ziel und die Zuordnung des Hostnamens im Hosting.
+
+Eine HTTP-Antwort mit Status 200 beweist nicht, dass der Assistent seine Prüfdatei am richtigen Ziel gefunden hat. Halten Sie die konkrete Installationsfehlermeldung und den betroffenen Prüfschritt fest. Für die Diagnose müssen erwarteter Inhalt und tatsächlich ausgelieferte Seite zusammenpassen.
+
+Löschen Sie eine fehlgeschlagene Installation erst, wenn geklärt ist, welche Dateien und Datenbanken betroffen sind und ob dort bereits benötigte Inhalte liegen. Sichern Sie den erforderlichen Stand und prüfen Sie den Löschumfang. Ein früher genannter Expertenmodus ist keine Garantie für dieselben Bedienelemente oder eine risikolose Deinstallation im aktuellen Produkt.
+
+## [Website vorübergehend für Wartung abschalten](https://www.edis.guide/eigene-website-fur-eine-domain-oder-subdomain-einrichten#website-vorbergehend-fr-wartung-abschalten)Website vorübergehend für Wartung abschalten
+
+Klären Sie zuerst das Ziel: Soll eine Wartungsseite erscheinen oder sollen sämtliche Websiteinhalte für Besucher unzugänglich sein? Ein Wartungsmodus im CMS oder eine andere Document-Root kann die Startseite ersetzen, verhindert aber nicht automatisch jeden direkten Aufruf über andere Pfade oder Hostnamen.
+
+Stimmen Sie die betroffenen Domains, Subdomains, benötigten Verwaltungszugänge und den Erhalt von E-Mail ab. Prüfen Sie einen erforderlichen Zugriffsschutz und testen Sie ihn mit direkten Inhaltsaufrufen. Halten Sie fest, wie der ursprüngliche Zustand wiederhergestellt wird. Eine vorübergehende Wartung ist kein Kündigungsauftrag.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ ImageMagick und GraphicsMagick: Pfade und PHP-Erweiterungen](https://www.edis.guide/pfade-zu-imagemagick-graphicsmagic-bei-edis 'ImageMagick und GraphicsMagick: Pfade und PHP-Erweiterungen') [ALS NÄCHSTES\\ \\ Composer mit der passenden PHP-Version über SSH nutzen](https://www.edis.guide/composer-im-hosting-ssh-cli 'Composer mit der passenden PHP-Version über SSH nutzen')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

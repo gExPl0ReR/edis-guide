@@ -1,0 +1,67 @@
+---
+title: 'Can You Rename or Swap a Domain? What to Know'
+sidebarTitle: 'Rename Domain'
+description: 'Why EDIS cannot rename a registered domain, what registry rules prevent it, and the practical alternatives including new registration and redirects.'
+---
+
+It is a common wish — you registered a domain and now want a slightly different name, or you want to swap an existing domain for a newer one. Unfortunately, renaming or exchanging a registered domain is not possible, and this is a fundamental constraint of how the global domain name system works, not a limitation specific to EDIS.
+
+<Note>
+  A registered domain name is tied to a unique entry in the domain registry (such as nic.at for `.at` domains). Registries do not allow a domain name to be modified once registered. The name is either registered as-is, or it must be deleted and a new name registered from scratch.
+</Note>
+
+## Why Domains Cannot Be Renamed
+
+When you register a domain, the exact string (e.g. `example.at`) is reserved in the registry under your name for the duration of the registration period. There is no registry-level mechanism to change that string to a different one — the old name and the new name are two entirely separate objects, each requiring its own registration, billing cycle, and potentially separate WHOIS record.
+
+## What You Can Do Instead
+
+Even though renaming is not possible, there are straightforward alternatives that achieve the same practical result for visitors and users.
+
+### Option 1: Register a New Domain
+
+Register the name you actually want. EDIS will set this up as a separate domain with its own registration fee and contract period.
+
+<Steps>
+  <Step title="Check Availability">
+    Search for the new domain name in the EDIS customer portal at [manage.edis.at/client/](https://manage.edis.at/client/) to confirm it is available.
+  </Step>
+
+  <Step title="Register the New Domain">
+    Complete the registration. The new domain is billed at the standard registration rate for its extension.
+  </Step>
+
+  <Step title="Set Up Your Website on the New Domain">
+    Configure your web hosting to serve your website under the new domain name.
+  </Step>
+
+  <Step title="Redirect the Old Domain">
+    Set up a redirect from the old domain to the new one (see Option 2 below) so that any existing links, bookmarks, or search engine results continue to work.
+  </Step>
+
+  <Step title="Cancel the Old Domain (Optional)">
+    Once you are confident that all traffic has moved to the new domain, you can cancel the old domain registration via the customer portal or in writing. Observe the six-week notice period.
+  </Step>
+</Steps>
+
+### Option 2: Set Up a Redirect from the Old Domain
+
+<Tip>
+  A domain redirect (also called a URL redirect) automatically sends visitors from the old domain to the new one. EDIS supports HTTP redirects via `.htaccess` rules or through the domain management settings in the vHost panel. This is the best way to preserve existing links and maintain your search engine ranking during a transition.
+</Tip>
+
+A redirect means you keep the old domain registered and active — it simply forwards all incoming traffic to the new domain. This is especially important if the old domain has been indexed by search engines or is referenced in printed materials, social media profiles, or external links.
+
+### Option 3: Update Links Directly
+
+If the old domain is brand new and has not yet been shared publicly, the simplest approach is to update all references — in your CMS, email signatures, marketing materials, and any third-party accounts — to use the new domain name before launch. No redirect is needed if no one has the old address yet.
+
+## Summary
+
+| Approach | When to Use |
+|---|---|
+| Register a new domain | You want a different name going forward |
+| Redirect old → new | Old domain has existing traffic or backlinks |
+| Update all links | Old domain is brand new with no existing references |
+
+If you need help registering a new domain or setting up a redirect, contact EDIS support at [hosting@edis.at](mailto:hosting@edis.at).

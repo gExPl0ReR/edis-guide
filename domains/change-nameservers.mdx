@@ -1,0 +1,118 @@
+---
+title: 'Change the Nameservers for Your Domain at EDIS'
+sidebarTitle: 'Change Nameservers'
+description: 'Learn how to update the authoritative nameservers for a domain registered at EDIS — create a nameserver group and assign it to your domain in the portal.'
+---
+
+If you want to delegate DNS management for your domain to a third-party provider — for example Cloudflare, or your own nameserver — you can change the authoritative nameservers directly from the EDIS customer portal. This guide walks you through creating a nameserver group and assigning it to your domain.
+
+<Warning>
+  **Do not edit the `IN NS` records inside the DNS zone editor.** Changing NS records within the zone file itself has no effect on the actual delegation at the registry. To change authoritative nameservers for a domain registered at EDIS, you must use the **Nameserver Groups** feature in the customer portal as described below.
+</Warning>
+
+## EDIS Default Nameservers
+
+If you are not switching to an external provider, the standard EDIS Anycast nameservers are:
+
+```
+ns1.edis.global
+ns2.edis.global
+```
+
+These serve your domain from the EDIS global Anycast DNS network. Use these nameservers if you want to manage DNS through the EDIS DNS panel at [pdns.edis.global](https://pdns.edis.global/login).
+
+## Changing Nameservers
+
+The process has two parts: first create a **Nameserver Group** (a reusable template that stores your nameserver hostnames), then assign that group to the desired domain.
+
+### Part 1 — Create a Nameserver Group
+
+<Steps>
+  <Step title="Log in to the EDIS customer portal">
+    Go to [manage.edis.at/client](https://manage.edis.at/client/) and sign in with your EDIS credentials.
+  </Step>
+  <Step title="Navigate to Nameserver Groups">
+    In the left-hand menu, click **Domain** → **Nameserver Groups**.
+  </Step>
+  <Step title="Create a new group">
+    Click the button to add a new Nameserver Group. Give it a recognisable name (for example, `Cloudflare` or `My Custom NS`).
+  </Step>
+  <Step title="Enter the nameserver hostnames">
+    Enter up to four nameserver hostnames. The portal will automatically resolve their IP addresses — you do not need to enter IPs manually.
+
+    <Note>
+      If a hostname cannot be resolved or is invalid, the group cannot be saved. Make sure each nameserver you enter is publicly reachable and correctly configured before saving. See the requirements section below for details.
+    </Note>
+  </Step>
+  <Step title="Save the group">
+    Confirm and save the new Nameserver Group. It will now appear in your list of available groups.
+  </Step>
+</Steps>
+
+### Part 2 — Assign the Nameserver Group to a Domain
+
+<Steps>
+  <Step title="Go to the Nameservers section">
+    In the left-hand menu, click **Nameservers**.
+  </Step>
+  <Step title="Select the domain">
+    Locate your domain in the list and check the checkbox next to it.
+  </Step>
+  <Step title="Choose the nameserver group">
+    Select the nameserver group you just created from the dropdown menu.
+  </Step>
+  <Step title="Apply the change">
+    Click **Apply Change** (or the equivalent confirmation button) to submit the nameserver update to the registry.
+  </Step>
+  <Step title="Verify the delegation">
+    After the change has been submitted, verify that the delegation has been updated at the registry level. Use a DNS lookup tool (for example `dig NS yourdomain.at`) to confirm the authoritative nameservers are correct.
+
+    <Warning>
+      A WHOIS update alone is not a functional test. Always verify actual DNS delegation and test your website, HTTPS, and email after any nameserver change. Registry processing times and previously cached responses can vary — do not assume the change is live immediately.
+    </Warning>
+  </Step>
+</Steps>
+
+## Requirements for Target Nameservers
+
+Before pointing your domain to new nameservers, ensure the target nameservers meet the following requirements — otherwise the change form will reject the submission:
+
+<Accordion title="A and AAAA Records">
+  The target nameservers must be reachable. For services accessible over IPv4, the corresponding A records must exist; for IPv6 services, AAAA records are required. Which records are needed depends on which services you are running. If the portal returns a validation error, use it to determine exactly what is missing.
+</Accordion>
+
+<Accordion title="MX Records">
+  If your domain sends or receives email, the target nameservers must be able to serve valid MX records for your domain. Ensure these are set up correctly in the new zone before switching.
+</Accordion>
+
+<Accordion title="Correct zone data served by the new nameservers">
+  The target nameservers must already be authoritative for your domain and serving correct, current DNS data before you submit the change. Test the target nameservers directly (for example with `dig @ns1.example.com yourdomain.at`) to confirm they respond correctly before triggering the switch.
+</Accordion>
+
+## DNSSEC Considerations
+
+If your domain uses DNSSEC, coordinate the change carefully:
+
+- Determine whether the new nameservers will sign the zone, and how DS records will be managed.
+- A stale DS record in the parent zone that no longer matches the new zone's signing keys will cause `SERVFAIL` for DNSSEC-validating resolvers, making your domain unreachable.
+- Align the removal of the old DS record, any TTL expiry, and the introduction of new keys before finalising the switch.
+
+For further reading on DNSSEC migration, see the [Cloudflare DNSSEC documentation](https://developers.cloudflare.com/dns/dnssec/) and [RFC 4034](https://www.rfc-editor.org/rfc/rfc4034.html).
+
+## Troubleshooting
+
+<Accordion title="The form returns 'input validation failed'">
+  Share the exact error message, the nameserver hostnames you entered, and the time of the attempt with EDIS support. If the error mentions a mail server, check that the MX target and its A/AAAA records are all resolvable from the target nameservers. A nameserver that answers correctly when queried directly may still fail the portal's validation — have EDIS support investigate the discrepancy before making changes to working mail records.
+</Accordion>
+
+<Accordion title="One resolver returns SERVFAIL but another works fine">
+  Differing answers from recursive resolvers do not simply mean a cached TTL needs to expire. Check the authoritative nameservers, the delegation, DNSSEC status, and the specific record type that is failing. Note the exact resolver address and time of each test so the results are comparable. If email is also broken, check the current MX targets and the mail domain assignment at the relevant provider.
+</Accordion>
+
+## Need Help?
+
+Contact EDIS support for assistance with nameserver changes:
+
+- **Email:** [hosting@edis.at](mailto:hosting@edis.at)
+- **Phone:** +43 1 909 4111 (Monday–Friday, 08:00–17:00)
+- **WhatsApp:** +43 670 3084988

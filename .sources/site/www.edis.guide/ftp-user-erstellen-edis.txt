@@ -1,0 +1,55 @@
+# Source: https://www.edis.guide/ftp-user-erstellen-edis
+
+Webhosting
+
+FTP
+
+# FTP-Benutzer erstellen, befristen und deaktivieren
+
+4 min
+
+### [FTP-Nutzer: Erstellen eines FTP Benutzers](https://www.edis.guide/ftp-user-erstellen-edis#ftp-nutzer-erstellen-eines-ftp-benutzers)**FTP-Nutzer: Erstellen eines FTP Benutzers**
+
+FTP (File Transfer Protocol) ermöglicht das Übertragen von Dateien zwischen Ihrem Computer und Ihrem Webhost.
+
+1. Besuchen Sie den EDIS [Verwaltungsbereich](https://manage.edis.at/vhost/ 'Verwaltungsbereich')﻿
+
+2. Navigieren Sie im Menü zu **FTP**
+
+3. Wählen Sie **Verwaltung** aus
+
+4. Klicken Sie auf **FTP User erstellen**.
+
+Nun können Sie die notwendigen Informationen eingeben, um einen neuen FTP-User zu erstellen.
+
+### [FTP-Nutzer: Sicherheitsüberlegungen und zeitliche Einschränkung](https://www.edis.guide/ftp-user-erstellen-edis#ftp-nutzer-sicherheitsberlegungen-und-zeitliche-ei)**FTP-Nutzer: Sicherheitsüberlegungen und zeitliche Einschränkung**
+
+Es ist wichtig, sicherzustellen, dass Ihre FTP-Zugänge geschützt und sicher sind.
+
+1. **Zeitliche Einschränkung für FTP-Nutzer:** Um potenzielle Sicherheitsrisiken zu minimieren, sollten Sie in Erwägung ziehen, eine zeitliche Einschränkung für die Gültigkeit Ihres FTP-Nutzers zu setzen. Nach Ablauf dieser Gültigkeitsdauer wird der Benutzer automatisch suspendiert, das heißt, der Zugriff wird vorübergehend unterbrochen, aber der Nutzer wird nicht gelöscht. Dieses Feature kann besonders nützlich sein, wenn Sie wissen, dass Sie den FTP-Zugang nur für einen bestimmten Zeitraum benötigen. Sollten Sie den Zugang zu einem späteren Zeitpunkt wieder benötigen, können Sie den Benutzer einfach erneut aktivieren.
+
+2. Deaktivieren Sie nicht mehr benötigte FTP-Zugänge oder begrenzen Sie ihre Gültigkeit. Das verringert die Angriffsfläche, garantiert aber nicht, dass über andere Konten, Anwendungen oder bereits kompromittierte Zugänge kein Zugriff mehr möglich ist. Prüfen Sie bei einem Sicherheitsvorfall alle betroffenen Zugangswege.
+
+Die Sicherheit Ihrer Website und Ihrer Daten sollte immer an erster Stelle stehen. Durch die Befolgung dieser Empfehlungen können Sie dazu beitragen, Ihr Webhosting sicher und geschützt zu halten.
+
+## [Passwortänderung und Anmeldung getrennt prüfen](https://www.edis.guide/ftp-user-erstellen-edis#passwortnderung-und-anmeldung-getrennt-prfen)Passwortänderung und Anmeldung getrennt prüfen
+
+Achten Sie nach einer Passwortänderung auf die Erfolgsmeldung. Wird das neue Kennwort bei der Eingabe abgelehnt, wurde es möglicherweise noch nicht gespeichert. Verwenden Sie ein langes, einzigartiges Kennwort und beachten Sie die aktuell angezeigten Vorgaben für den konkreten Zugang. Senden Sie Ihr Kennwort nicht per E-Mail oder Chat.
+
+Die Meldung „Password must be in the ASCII charset“ weist auf den erlaubten Zeichensatz hin. Sie bedeutet nicht, dass sämtliche Sonderzeichen ausgeschlossen sind. Falls Hinweise zur Mindestlänge oder zu zulässigen Zeichen widersprüchlich sind, lassen Sie die geltenden Vorgaben prüfen.
+
+Verwenden Sie einen passenden FTP-Client und den FTP-Benutzer des richtigen Webhosts. Ein FTP-Servername ist keine über HTTPS aufzurufende Webseite. Prüfen Sie außerdem, ob der Benutzer aktiv ist und seine Gültigkeit noch nicht abgelaufen ist.
+
+Zeigt FileZilla zunächst „TLS-Verbindung hergestellt“ und danach „530 Login incorrect“, ist die Anmeldung fehlgeschlagen. Prüfen Sie Benutzerkennung und gespeicherte Zugangsdaten. Geben Sie dem Support den bereinigten Fehlertext mit Zeitpunkt, Server und verwendetem Protokoll weiter. Eine erfolgreiche Passwortänderung allein bestätigt noch keinen erfolgreichen Datei-Upload.
+
+## [Nach einer Korrektur kann ein anderer Fehler sichtbar werden](https://www.edis.guide/ftp-user-erstellen-edis#nach-einer-korrektur-kann-ein-anderer-fehler-sicht)Nach einer Korrektur kann ein anderer Fehler sichtbar werden
+
+Vergleichen Sie den vollständigen Ablauf vor und nach einer Änderung. Eine zunächst abgelehnte Verbindung kann nach Korrektur von Protokoll, TLS-Modus oder Port bis zur Anmeldung gelangen und dort mit 530 scheitern. Das sind unterschiedliche Fehlerphasen. Ein erreichbarer Steuerport oder erfolgreiches TLS bestätigt noch keinen Login und keinen Datentransfer.
+
+Lassen Sie bei widersprüchlichen Meldungen den konkreten Benutzerstatus und die passenden Serverprotokolle mit Zeitpunkt prüfen. Ein einzelner Fehlertext beweist keine bestimmte Passwortursache. Verwenden Sie ein starkes Kennwort nach den aktuellen Vorgaben; entfernen Sie nicht pauschal alle Sonderzeichen und wechseln Sie nicht als allgemeine Reparatur auf unverschlüsseltes FTP.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ SFTP-Verbindung zum EDIS-Webhost einrichten](https://www.edis.guide/sftp-verbindung-zum-edis-webhost-einrichten 'SFTP-Verbindung zum EDIS-Webhost einrichten') [ALS NÄCHSTES\\ \\ FTP und SFTP: Verbindung, Ports und Verschlüsselung](https://www.edis.guide/ftp-einstellungen-firewall-ports-activepassive-mode-pasv-verschlusselung-eol 'FTP und SFTP: Verbindung, Ports und Verschlüsselung')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

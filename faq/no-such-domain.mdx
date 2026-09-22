@@ -1,0 +1,50 @@
+---
+title: "Fix 'No Such Domain at This Location' Error"
+sidebarTitle: 'No Such Domain'
+description: "What the '550 No such domain at this location' mail error means, what causes it, and how to resolve it by checking MX records and mail transport settings."
+---
+
+If an email to one of your addresses bounces back with the message **"550 No such domain at this location"**, it means the receiving mail server does not recognise the recipient domain as one it should accept mail for. This is a server-side rejection — the message never reached its destination. The error typically looks like this:
+
+```
+191.227.204.131 does not like recipient.
+Remote host said: 550 No such domain at this location
+```
+
+This error has two common root causes: the mail server receiving the message is not the correct one for that domain, or the correct mail server is missing the internal configuration that tells it to accept mail for your domain.
+
+## Diagnosing the Error
+
+Work through the following checklist to identify and fix the cause.
+
+<Steps>
+  <Step title="Check Which Server Is Receiving the Mail">
+    Look at the IP address in the bounce message and identify which server it belongs to. Confirm whether this is the EDIS mail server (`mx.edis.at`) or a different host. If the mail is being delivered to the wrong server, your MX record is misconfigured.
+  </Step>
+
+  <Step title="Verify Your MX Record">
+    Look up the current MX record for your domain. If EDIS is handling your email, your MX record should point to `mx.edis.at`. Log in to the [EDIS DNS portal](https://pdns.edis.global/login) and confirm the MX entry is correct.
+
+    <Note>
+      An incorrect MX record and a missing mail transport entry are two separate problems. An incorrect MX sends mail to the wrong server entirely. A missing transport entry means the right server receives the mail but has no instruction to accept it for your domain.
+    </Note>
+  </Step>
+
+  <Step title="Check the Mail Transport Configuration">
+    If the MX record is correct but the error persists, the EDIS mail server is receiving the message but has no transport entry for your domain. A transport entry tells the mail system which mailbox or server should handle incoming mail for a given domain.
+
+    Configure the transport entry for your domain through the vHost management panel at [manage.edis.at/vhost/](https://manage.edis.at/vhost/). Refer to the EDIS guide on transport entries for step-by-step instructions.
+  </Step>
+
+  <Step title="Wait for DNS Propagation">
+    If you have just updated your MX record, allow time for DNS propagation. Changes to `.at` domains are published by nic.at roughly once per hour; full propagation across all resolvers may take longer depending on cached TTL values.
+  </Step>
+
+  <Step title="Test Mail Delivery">
+    Once your MX record and transport entry are in place, send a test email to an address on your domain and verify it is received. If the bounce persists, check the exact error code in the bounce message — a 550 error from a different IP or server may indicate a different underlying issue.
+  </Step>
+</Steps>
+
+<Tip>
+  If you are unsure about the transport entry configuration, email [hosting@edis.at](mailto:hosting@edis.at) with the affected domain name and the full bounce message. The EDIS support team can review your mail routing setup and identify the missing configuration.
+</Tip>

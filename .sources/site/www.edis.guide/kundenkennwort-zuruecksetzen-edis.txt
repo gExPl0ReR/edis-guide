@@ -1,0 +1,33 @@
+# Source: https://www.edis.guide/kundenkennwort-zuruecksetzen-edis
+
+Allgemeines
+
+# Kundenkennwort bei EDIS zurücksetzen
+
+1 min
+
+### [Passwort zum Login in den Kundenbereich ("Kundenkennwort") zurückzusetzen](https://www.edis.guide/kundenkennwort-zuruecksetzen-edis#passwort-zum-login-in-den-kundenbereich-kundenkenn)**Passwort zum Login in den Kundenbereich ("Kundenkennwort") zurückzusetzen**
+
+1
+
+Navigieren Sie zur [Passwort-Reset Seite](https://manage.edis.at/passwd/ 'Passwort-Reset Seite').
+
+2
+
+Tragen Sie Ihre **Kundennummer** in das vorgesehene Feld ein. Diese Nummer finden Sie rechts oben auf all Ihren Serviceabrechnungen von EDIS. Nachdem Sie das Formular abgesendet haben, wird an die bei EDIS hinterlegte E-Mail-Adresse eine Nachricht mit einem Link zum Zurücksetzen des Passworts versendet.
+
+3
+
+**Link im Email anklicken.** Öffnen Sie die zugesandte Email und klicken Sie auf den darin enthaltenen Link. Befolgen Sie anschließend die Anweisungen auf dem Bildschirm, um ein neues Passwort festzulegen.
+
+4
+
+Mit Ihrer **Kundennummer** und dem **neu gesetzten Passwort** können Sie sich jetzt im [Kundenbereich](https://manage.edis.at/client/login.php 'Kundenbereich') einloggen.
+
+Sollten Sie weiterhin Probleme beim Einloggen haben, wenden Sie sich bitte an unseren Support unter hosting@edis.at
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ .at-Domains: Wann werden Nameserver-Änderungen wirksam?](https://www.edis.guide/reloadzeiten-der-root-nameserver-at-zone-nic-at '.at-Domains: Wann werden Nameserver-Änderungen wirksam?') [ALS NÄCHSTES\\ \\ Domain mit Jimdo verbinden und E-Mail bei EDIS behalten](https://www.edis.guide/verknuefpung-domain-mit-jimdo 'Domain mit Jimdo verbinden und E-Mail bei EDIS behalten')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

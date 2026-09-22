@@ -1,0 +1,75 @@
+# Source: https://www.edis.guide/umleitung-von-anfragen-auf-https-ssl-zertifikat
+
+Webhosting
+
+SSL Zertifikate
+
+# Website nach SSL-Aktivierung auf HTTPS umleiten
+
+5 min
+
+Wenn Sie ein SSL-Zertifikat für Ihre Website erworben haben, ist es essenziell, dass die gesamte Website über **https://** statt **http://** aufgerufen wird, um die Sicherheit der Datenübertragung zu gewährleisten.
+
+**Wie kann dies erreicht werden?**
+
+Es gibt zwei gängige Methoden, um dies umzusetzen:
+
+1. **Umleitung im vHost-Bereich**
+
+2. **.htaccess-Datei**
+
+**Was wird benötigt?**
+
+- Für HTTPS benötigen Sie ein gültiges TLS-Zertifikat, das den aufgerufenen Hostnamen abdeckt. Let’s Encrypt ist eine mögliche Zertifikatsquelle. Verwenden Sie den für Ihr EDIS-Produkt vorgesehenen Ablauf unter HTTPS (SSL/TLS) und prüfen Sie den tatsächlichen Installationsstatus.
+
+- Aktivieren Sie die Weiterleitung erst, nachdem die betroffenen Hostnamen mit einem gültigen Zertifikat per HTTPS erreichbar sind. Die Bereitstellung kann verzögert erfolgen; eine feste Wartezeit ersetzt die Prüfung von Ausstellung, Installation und DNS-Ziel nicht.
+
+Achten Sie immer darauf, dass Ihre Website korrekt auf **https://** umleitet, um die Sicherheit Ihrer Besucher zu gewährleisten und die Vorteile des SSL-Zertifikats voll auszuschöpfen.
+
+### [So können Sie die Umleitung auf https:// aktivieren](https://www.edis.guide/umleitung-von-anfragen-auf-https-ssl-zertifikat#so-knnen-sie-die-umleitung-auf-https-aktivieren)So können Sie die **Umleitung auf https://** aktivieren
+
+![HTTPS-Weiterleitung im EDIS-vHost-Bereich aktivieren](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/CmAzvREdH_j0YCdGv0pjU_let-s-encrypt-ssl-zertifikat-3d4417a67d.png?format=webp)
+
+### [Umleitung auf https:// via .htaccess](https://www.edis.guide/umleitung-von-anfragen-auf-https-ssl-zertifikat#umleitung-auf-https-via-htaccess)Umleitung auf https:// via .htaccess
+
+Alternativ können passende Rewrite-Regeln in der .htaccess-Datei des tatsächlichen Document-Roots verwendet werden. Sichern Sie vorhandene Regeln. Wählen Sie die Variante passend zur bestätigten HTTPS-Erkennung Ihrer Hosting- und Proxykonfiguration; ein Forwarded-Header darf nur von einem vertrauenswürdigen Proxy übernommen werden. Kombinieren Sie die Varianten nicht ungeprüft.
+
+**Variante 1**
+
+.htaccess
+
+1RewriteEngine on 2RewriteCond %{ENV:HTTPS} !=on 3RewriteRule ^ https://%{HTTP\_HOST}%{REQUEST\_URI} \[L,R\=301\] 
+
+RewriteEngine on RewriteCond %{ENV:HTTPS} !=on RewriteRule ^ https://%{HTTP\_HOST}%{REQUEST\_URI} \[L,R=301\]
+
+**Variante 2**
+
+.htaccess
+
+1RewriteEngine on 2RewriteCond %{HTTP:X\-Forwarded\-Proto} !https 3RewriteRule ^ https://%{HTTP\_HOST}%{REQUEST\_URI} \[L,R\=301\] 
+
+RewriteEngine on RewriteCond %{HTTP:X-Forwarded-Proto} !https RewriteRule ^ https://%{HTTP\_HOST}%{REQUEST\_URI} \[L,R=301\]
+
+Die .htaccess Redirect Varianten 1 und 2 sind weniger effizient, da sie Anfragen bis zum Webserver weiterleiten, was Zeit kostet. Unsere Umleitung über den vHost-Bereich erfolgt bereits an den Load-Balancern, wo die Anfragen zuerst eintreffen. Dies ermöglicht eine schnellere Umleitung, ohne dass Anfragen den kompletten Weg zum Webserver und zurück nehmen müssen. Dabei können besonders durch Regeln in .htaccess-Dateien Verzögerungen entstehen.
+
+Warum funktioniert nur die HTTP-Weiterleitung?
+
+Bei HTTPS wird die verschlüsselte Verbindung aufgebaut, bevor die Weiterleitung ausgeführt werden kann. Deshalb muss das Zertifikat bereits zur Ausgangsdomain passen. Testen Sie Ausgangs- und Zieldomain getrennt.
+
+## [HTTPS für Haupt- und Alias-Domains prüfen](https://www.edis.guide/umleitung-von-anfragen-auf-https-ssl-zertifikat#https-fr-haupt-und-alias-domains-prfen)HTTPS für Haupt- und Alias-Domains prüfen
+
+Prüfen Sie jede Adresse, die Besucher direkt aufrufen können: Hauptdomain, www und weitere Alias-Domains. Halten Sie Domainzuordnung, Weiterleitungsregel und Zertifikatsabdeckung getrennt fest. Auch eine Alias-Domain braucht für ihren eigenen HTTPS-Aufruf ein gültiges Zertifikat, bevor die Weiterleitung zur Hauptdomain greifen kann.
+
+## [Zu viele Weiterleitungen nach Aktivierung von HTTPS](https://www.edis.guide/umleitung-von-anfragen-auf-https-ssl-zertifikat#zu-viele-weiterleitungen-nach-aktivierung-von-http)Zu viele Weiterleitungen nach Aktivierung von HTTPS
+
+Notieren Sie die vollständige aufgerufene Adresse und die letzte Änderung an der Website oder am Hosting. Prüfen Sie die Weiterleitungskette: Welche Adresse steht jeweils im Location-Header? Eine Weiterleitung von einer HTTPS-Adresse zurück auf dieselbe Adresse kann eine Schleife verursachen.
+
+Die Gültigkeit des Zertifikats und die Weiterleitungslogik sind unterschiedliche Prüfpunkte. Neben der vHost-Einstellung können Regeln in der .htaccess, Anwendungseinstellungen oder eine vorgeschaltete Proxy-Konfiguration beteiligt sein. Ändern Sie jeweils nur einen begründeten Punkt und halten Sie den vorherigen Zustand für eine Rücknahme fest. Ein einzelner HTTP-301-Status zeigt noch nicht, welche Komponente die Weiterleitung erzeugt hat.
+
+Bleibt die Schleife nach einer kontrollierten Prüfung bestehen, übermitteln Sie dem Support die Ausgangsadresse, Weiterleitungskette, letzte Änderung und die bereits durchgeführten Tests. Löschen Sie nicht wahllos Konfigurationen.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ PHP-Version für eine Domain oder Subdomain ändern](https://www.edis.guide/php-version-domain-subdomain-bei-edis-einstellen 'PHP-Version für eine Domain oder Subdomain ändern') [ALS NÄCHSTES\\ \\ Let's-Encrypt-Zertifikat bei EDIS bestellen und aktivieren](https://www.edis.guide/lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren 'Let's-Encrypt-Zertifikat bei EDIS bestellen und aktivieren')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

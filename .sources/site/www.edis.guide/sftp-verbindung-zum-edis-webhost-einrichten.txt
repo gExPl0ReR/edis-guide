@@ -1,0 +1,33 @@
+# Source: https://www.edis.guide/sftp-verbindung-zum-edis-webhost-einrichten
+
+Webhosting
+
+FTP
+
+# SFTP-Verbindung zum EDIS-Webhost einrichten
+
+2 min
+
+SFTP steht für SSH File Transfer Protocol und überträgt Dateien über eine SSH-Verbindung. Dafür benötigt Ihr konkretes Webhostingprodukt einen freigeschalteten SSH-Zugang. Prüfen Sie den gebuchten Leistungsumfang und die im vHost-Bereich angezeigten Verbindungsdaten; ältere oder abweichende Produkte können andere Voraussetzungen haben.
+
+Melden Sie sich bitte im vHost Bereich an und navigieren zu SSH Zugang:
+
+![SSH-Zugangsdaten im vHost-Bereich von EDIS](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/Tl7AfgBHizB5cjWdd_Q7t_grafik.png?format=webp)
+
+Verbindungseinstellung mit zB: [FileZilla](https://filezilla-project.org/ 'FileZilla'):
+
+Servermanager öffnen und einen neuen Server anlegen:
+
+![SFTP-Verbindung im FileZilla-Servermanager einrichten](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/VJlKKNuMjRFsBDEs10nVX_grafik.png?format=webp)
+
+Vergleichen Sie bei der Meldung „Unbekannter Serverschlüssel“ den angezeigten Fingerabdruck mit den Angaben des Hosting-Supports. Bestätigen Sie den Schlüssel erst, wenn er übereinstimmt.
+
+![FileZilla zeigt den SSH-Hostschlüssel zur Prüfung an](https://images.archbee.com/1QBD-DLdiTyAuJDThr9g_/R3gAuDyqYN95n3bUXAtm1_grafik.png?format=webp)
+
+Wenn die Verbindung erfolgreich aufgebaut wurde, sind Sie nun im /home/vHostIDVerzeichnis/ und sehen darunter das Verzeichnis /www/ - einen Doppelklick darauf und Sie sehen das /home/ Verzeichnis und möglicherweise auch die /cgi/ und /log/ Verzeichnisse und je nach Anwendung auch andere Dateien, doppelklicken Sie auf /home/ und Sie sind im DocRoot Verzeichnis, wo auch die Domain in der Regel aufgelöst wird (ausser diese wird in ein Unterverzeichnis umgeleitet). Navigieren Sie in das gewünschte Verzeichnis wo Sie Ihre Daten ablegen möchten und starten Sie den Transfer.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ Dateilimit und Speicherplatz: Unterschiede im Webhosting](https://www.edis.guide/datei-limit-vs-speicherplatz-limit-webhosting 'Dateilimit und Speicherplatz: Unterschiede im Webhosting') [ALS NÄCHSTES\\ \\ FTP-Benutzer erstellen, befristen und deaktivieren](https://www.edis.guide/ftp-user-erstellen-edis 'FTP-Benutzer erstellen, befristen und deaktivieren')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

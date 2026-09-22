@@ -1,0 +1,25 @@
+# Source: https://www.edis.guide/kalender-und-kontakte-uber-caldav-und-carddav-synchronisieren
+
+Email
+
+Webmail
+
+# Kalender und Kontakte über CalDAV und CardDAV synchronisieren
+
+1 min
+
+Kalender werden über CalDAV, Kontakte über CardDAV synchronisiert. Die jeweilige Serveradresse ist nicht beliebig austauschbar.
+
+Melden Sie sich unter [https://webmail.edis.at](https://webmail.edis.at 'https://webmail.edis.at') mit Ihrer vollständigen E-Mail-Adresse und dem Postfachkennwort an. Öffnen Sie Einstellungen → Mobile Sync und übernehmen Sie die dort zum gewünschten Kalender beziehungsweise Adressbuch angezeigten Angaben.
+
+Wählen Sie auf dem Gerät einen Client, der das benötigte Protokoll unterstützt. Für unterstützte klassische Outlook-Versionen unter Windows kommt beispielsweise Outlook CalDav Synchronizer infrage. Diese Plugin-Anleitung gilt nicht automatisch für das neue Outlook, Outlook im Browser oder Outlook für Mac.
+
+Prüfen Sie die aktuelle Kompatibilitätsliste und laden Sie Erweiterungen nur aus der offiziellen Quelle: [https://caldavsynchronizer.org/](https://caldavsynchronizer.org/ 'https://caldavsynchronizer.org/')﻿
+
+Testen Sie nach der Einrichtung einen unkritischen Kalendereintrag beziehungsweise Kontakt in beide Richtungen. Synchronisierte Löschungen können weitere Geräte betreffen; bewahren Sie eine unabhängige Sicherung auf.
+
+Aktualisiert 21 Sept. 2026
+
+[VORHERIGE\\ \\ E-Mail-Anhang blockiert: Ursachen und nächste Schritte](https://www.edis.guide/e-mail-anhang-blockiert-ursachen-und-nachste-schritte 'E-Mail-Anhang blockiert: Ursachen und nächste Schritte') [ALS NÄCHSTES\\ \\ Webmail-Kalender und Kontakte auf Geräten einrichten](https://www.edis.guide/synchronisation-kalender-mail-kontakte-caldav-carddav 'Webmail-Kalender und Kontakte auf Geräten einrichten')
+
+[Docs powered by Archbee](https://www.archbee.com/?utm_campaign=hosted-docs&utm_medium=referral&utm_source=www.edis.guide)

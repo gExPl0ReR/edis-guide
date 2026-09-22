@@ -1,0 +1,106 @@
+---
+title: 'Set Up Domain Redirects with Meta Refresh and .htaccess'
+sidebarTitle: 'Redirects'
+description: 'Configure domain redirects at EDIS using a meta refresh tag, .htaccess rules, or the built-in redirect service in the EDIS customer portal.'
+---
+
+There are several ways to redirect a domain to a different URL, and the best choice depends on whether you have a web hosting package and what outcome you need. EDIS supports three main approaches: a **meta refresh** via an HTML file, an **.htaccess redirect**, and a **portal-based redirect service** for domains without a hosting package. Each method has different implications for SEO, browser behaviour, and ease of setup.
+
+<Tip>
+  For the best SEO outcome, use a **301 (permanent) redirect via `.htaccess`**. A 301 tells search engines to transfer ranking signals to the destination URL and to update their index. Meta refresh redirects and 302 (temporary) redirects do not pass the same signals and may leave old URLs indexed for longer.
+</Tip>
+
+## Method 1 — Meta Refresh (HTML)
+
+A meta refresh is the simplest option when you have a hosting package. You place a small HTML file in your document root, and the browser automatically redirects visitors to the target URL after a short delay.
+
+Create an `index.html` file in the document root of your website (for example `/www/home/`) with the following content:
+
+```html
+<html>
+  <head>
+    <meta http-equiv="refresh" content="5; URL=https://www.destination-domain.example">
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <!-- You will be redirected shortly. -->
+  </body>
+</html>
+```
+
+The `content="5"` value is the delay in seconds before the browser follows the redirect. Set it to `0` for an immediate redirect. Replace `https://www.destination-domain.example` with your actual target URL.
+
+<Note>
+  Meta refresh is a client-side redirect — the browser loads the HTML page first, then follows the redirect instruction. This is less efficient than a server-side redirect and is generally **not recommended for SEO purposes**. Use `.htaccess` for production redirects wherever possible.
+</Note>
+
+## Method 2 — .htaccess Redirect (Recommended)
+
+An `.htaccess` redirect is a server-side redirect and the preferred method for permanent domain forwarding. It is processed by the Apache web server before any page content is served, so visitors never see an intermediate page.
+
+Open (or create) the `.htaccess` file in the **actual document root** of the website you want to redirect. This is typically `/www/home/` for the main domain, or `/www/home/subdirectory/` if the domain points to a subdirectory.
+
+### Permanent redirect (301)
+
+Use a 301 redirect when you are permanently moving to a new URL:
+
+```apache
+Redirect 301 / https://www.destination-domain.example
+```
+
+### Temporary redirect (302)
+
+Use a 302 redirect when the move is temporary and you expect the original URL to return:
+
+```apache
+Redirect 302 / https://www.destination-domain.example
+```
+
+<Tip>
+  The `Redirect 301 /` rule forwards the full path — if someone visits `yourdomain.at/page/about`, they will land on `https://www.destination-domain.example/page/about`. Test both your root domain and key subpages after adding the rule to make sure all paths redirect as expected.
+</Tip>
+
+<Warning>
+  Always **back up your existing `.htaccess` file** before making changes. A syntax error in `.htaccess` can take your entire site offline (returning a 500 Internal Server Error). If you manage WordPress or another CMS, the `.htaccess` file likely already contains rewrite rules — add your redirect *above* the existing rules and test immediately.
+</Warning>
+
+### Choosing between 301 and 302
+
+| Code | Meaning | Use when… |
+|---|---|---|
+| **301** | Permanent redirect | You are permanently moving to the new URL and want search engines to update their index |
+| **302** | Temporary redirect | The redirect is short-term; the original URL will be active again in the future |
+
+## Method 3 — Redirect as a Service (No Hosting Required)
+
+If your domain does not have a web hosting package, you can set up a redirect directly from the EDIS customer portal at [manage.edis.at](https://manage.edis.at/client/). This is useful for domains registered with the **Active Domain Usage** plan.
+
+<Steps>
+  <Step title="Log in to the customer portal">
+    Go to [manage.edis.at/client](https://manage.edis.at/client/) and sign in.
+  </Step>
+  <Step title="Locate your domain">
+    Find the domain you want to redirect in your domain list.
+  </Step>
+  <Step title="Open redirect settings">
+    Navigate to the redirect or forwarding settings for that domain.
+  </Step>
+  <Step title="Enter the destination URL and save">
+    Enter the full destination URL (including `https://`) and save the configuration.
+  </Step>
+  <Step title="Test the redirect">
+    After a few minutes, open a browser and visit your domain to confirm it redirects to the correct destination. Also verify that the `www` subdomain and HTTPS work correctly, and that any required mail records are still intact.
+  </Step>
+</Steps>
+
+<Note>
+  Depending on your domain plan, the redirect-as-a-service feature may require the **Active Domain Usage** add-on. If you cannot see the redirect option in the portal, check whether this add-on is enabled or contact [hosting@edis.at](mailto:hosting@edis.at) for assistance.
+</Note>
+
+## Need Help?
+
+Contact EDIS support if you run into issues setting up a redirect:
+
+- **Email:** [hosting@edis.at](mailto:hosting@edis.at)
+- **Phone:** +43 1 909 4111 (Monday–Friday, 08:00–17:00)
+- **WhatsApp:** +43 670 3084988

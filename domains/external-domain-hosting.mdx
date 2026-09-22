@@ -1,0 +1,86 @@
+---
+title: 'Host an Externally Registered Domain at EDIS'
+sidebarTitle: 'External Domain'
+description: 'Use EDIS web hosting for a domain registered at another registrar — point nameservers to EDIS and assign the domain to your hosting package in the portal.'
+---
+
+You do not need to transfer your domain to EDIS in order to host your website with EDIS. If your domain is registered elsewhere, you can keep it at your current registrar and simply point it to EDIS hosting by updating your nameservers. EDIS handles the web server configuration on its end — this service is included at no additional charge.
+
+## How It Works
+
+EDIS refers to this arrangement as a **Fremddomain** (external domain). The domain registration remains at your current registrar; EDIS provides the hosting infrastructure and configures the web server according to your needs. You manage the DNS records either at your registrar or through the EDIS DNS panel, depending on which nameservers you use.
+
+## Setting Up an External Domain at EDIS
+
+<Steps>
+  <Step title="Order the domain as an external domain (Fremddomain) at EDIS">
+    In the EDIS online shop, order the domain you want to host using the **Fremddomain** (external domain) option — not as a new registration or transfer. This creates the web hosting configuration at EDIS without touching your domain registration.
+  </Step>
+  <Step title="Assign the domain to your hosting package">
+    Once the order is processed, log in to the [EDIS customer portal](https://manage.edis.at/client/) and assign the external domain to the hosting package (webhost) where you want it to point. This links your domain name to the correct web server configuration on the EDIS side.
+  </Step>
+  <Step title="Determine your hosting server address">
+    Identify the correct DNS target for your hosting server. Use the table below to find the hostname and IP address for your server location. Always use the values confirmed for your specific hosting package — do not use addresses from this table without verifying them against your actual server assignment in the portal.
+
+    **Current hosting products** (Mokka, Ristretto, Espresso, Doppio):
+
+    | Location | Hostname | IPv4 Address |
+    |---|---|---|
+    | Austria | `HOSTING.AT.EDIS.GLOBAL` | `91.227.205.222` |
+    | Germany | `HOSTING.DE.EDIS.GLOBAL` | `158.255.214.5` |
+    | United Kingdom | `HOSTING.UK.EDIS.GLOBAL` | `192.121.113.50` |
+    | France | `HOSTING.FR.EDIS.GLOBAL` | `151.236.21.20` |
+    | Italy | `HOSTING.IT.EDIS.GLOBAL` | `192.121.47.2` |
+    | Switzerland | `HOSTING.CH.EDIS.GLOBAL` | `151.236.27.50` |
+    | USA | `HOSTING.US.EDIS.GLOBAL` | `151.236.22.5` |
+    | Sweden | `HOSTING.SE.EDIS.GLOBAL` | `46.246.24.100` |
+    | Hong Kong | `HOSTING.HK.EDIS.GLOBAL` | `151.236.20.215` |
+
+    **Austria IPv6:** `2a03:f80:ad15:91:227:205:222:1`
+
+    **Legacy hosting products** (Smart, Starter, Basic, Advanced, Premium, Platinum):
+
+    | Location | Hostname | IPv4 Address |
+    |---|---|---|
+    | Austria | `HOSTING.EDIS-LPS.AT` | `91.227.204.35` |
+    | Germany | `HOSTING.EDIS-LPS.DE` | `149.154.159.6` |
+    | Switzerland | `HOSTING.EDIS-LPS.CH` | `178.209.42.104` |
+
+    <Warning>
+      Always verify the correct target address for your specific hosting package in the EDIS customer portal. The table above is a reference overview — use only confirmed values and preserve any existing mail or verification records when making changes.
+    </Warning>
+  </Step>
+  <Step title="Point the nameservers to EDIS at your registrar">
+    Log in to your current domain registrar's control panel and update the authoritative nameservers to the EDIS Anycast nameservers:
+
+    ```
+    ns1.edis.global
+    ns2.edis.global
+    ```
+
+    If you prefer to manage DNS at your registrar instead, you can add an **A record** (and optionally a **CNAME for `www`**) pointing to the IP address of your EDIS hosting server without changing the nameservers. However, using EDIS nameservers gives you full DNS management through the EDIS DNS panel.
+  </Step>
+  <Step title="Verify DNS propagation and test your site">
+    DNS changes propagate gradually across the internet. The speed depends on the TTL values previously set in your DNS zone.
+
+    <Note>
+      DNS propagation can take anywhere from a few minutes to 48 hours depending on the TTL of the old records and how quickly your registrar's zone updates. To verify the change is live, use a tool such as [dnschecker.org](https://dnschecker.org) or run `dig yourdomain.example` from the command line. Always test your website, HTTPS certificate, and email delivery after making DNS changes.
+    </Note>
+  </Step>
+</Steps>
+
+## What EDIS Does Not Handle
+
+Keep the following in mind when using an external domain with EDIS hosting:
+
+- **Domain registration** remains entirely at your current registrar. EDIS does not manage renewals, WHOIS data, or domain locks on your behalf.
+- A **registrar transfer** is not required for this setup and should be handled separately if desired — contact [hosting@edis.at](mailto:hosting@edis.at) to coordinate a transfer if you decide to move the registration later.
+- Website files and email data are **not automatically migrated** — you need to upload your files to the EDIS hosting environment manually or via FTP/SFTP.
+
+## Need Help?
+
+Contact EDIS support at any stage of the setup:
+
+- **Email:** [hosting@edis.at](mailto:hosting@edis.at)
+- **Phone:** +43 1 909 4111 (Monday–Friday, 08:00–17:00)
+- **WhatsApp:** +43 670 3084988

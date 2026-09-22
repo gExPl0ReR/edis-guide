@@ -1,0 +1,59 @@
+---
+title: 'Redirect HTTP Traffic to HTTPS After SSL Activation'
+sidebarTitle: 'HTTPS Redirect'
+description: 'Set up an automatic 301 redirect from HTTP to HTTPS using .htaccess after installing an SSL certificate on your EDIS-hosted domain.'
+---
+
+Once your SSL certificate is active and your domain is accessible over HTTPS, you can configure your website to automatically redirect all plain HTTP requests to the secure HTTPS version. This ensures that visitors who type your domain without `https://`, follow an old bookmark, or arrive via an HTTP link are transparently upgraded to the encrypted connection.
+
+There are two ways to set up this redirect at EDIS: through the **vHost panel** or via a **`.htaccess` file**. The vHost method is handled at the load balancer level and is therefore faster — requests are redirected before they reach the web server. The `.htaccess` method is applied by Apache on the web server itself, which adds a small amount of overhead. Both methods produce a permanent 301 redirect.
+
+<Tip>
+  Only activate the HTTPS redirect after you have confirmed that your SSL certificate is fully issued and that the hostname loads correctly in a browser over `https://`. Enabling a redirect before the certificate is active will result in a redirect loop or a certificate error page for your visitors.
+</Tip>
+
+## Redirect via the vHost Panel
+
+Log in to the [EDIS vHost area](https://manage.edis.at/vhost/), open the settings for your domain, and look for the HTTPS redirect option. Enabling it here configures the redirect at the load balancer level for the fastest possible response.
+
+## Redirect via .htaccess
+
+If you prefer to manage the redirect through a `.htaccess` file — for example, to keep all redirect rules together with your other rewrite rules — place the following code in the `.htaccess` file in the **document root** of your website.
+
+EDIS hosting supports two variants depending on how HTTPS is detected in your environment. Use the variant that matches your configuration:
+
+**Variant 1 — using the `HTTPS` environment variable (recommended for most EDIS setups):**
+
+```apache
+RewriteEngine on
+RewriteCond %{ENV:HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+```
+
+**Variant 2 — using the `X-Forwarded-Proto` header (for proxy or load balancer setups):**
+
+```apache
+RewriteEngine on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+```
+
+<Note>
+  Only use `X-Forwarded-Proto` if you are confident that the header is set by a trusted proxy in your infrastructure. Do not combine both variants in the same `.htaccess` file — this can produce unexpected redirect behaviour or loops.
+</Note>
+
+Both variants redirect any request that arrives without HTTPS to the same path on `https://`. The `R=301` flag issues a permanent redirect, which browsers and search engines cache. The `L` flag stops processing further rewrite rules once this rule matches.
+
+## Check for Redirect Loops
+
+If you see a "too many redirects" error after activating the HTTPS redirect, a loop has formed. Common causes include:
+
+- The redirect is active but the SSL certificate has not been installed yet
+- A redirect in `.htaccess` conflicts with a redirect set in the vHost panel
+- An application-level redirect is sending HTTPS requests back to HTTP
+
+To diagnose, note the full URL you are visiting and trace the redirect chain (most browsers show this in developer tools under the Network tab). Change only one configuration point at a time, and keep note of the previous state so you can revert if needed. If the issue persists, contact [hosting@edis.at](mailto:hosting@edis.at) with the starting URL, the redirect chain, your last configuration change, and the steps you have already tried.
+
+## Alias Domains
+
+Each alias domain (additional domain names pointing to the same website) requires its own valid SSL certificate before you enable the HTTPS redirect for it. An alias domain that tries to redirect to HTTPS without its own certificate will present a certificate error to visitors. Order and verify the certificate for each alias domain individually before activating any redirect.
