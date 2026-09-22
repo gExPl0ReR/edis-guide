@@ -1,19 +1,93 @@
 ---
-title: "EDIS GmbH: Hilfe zu Webhosting, Domains und E-Mail"
+title: "EDIS Hilfe & Anleitungen"
 sidebarTitle: "Startseite"
+description: "Domains verbinden, E-Mail einrichten und Ihre Website betreuen. Hier finden Sie den passenden Einstieg – Schritt für Schritt."
+mode: "wide"
+hideFooterPagination: true
 ---
 
 <a id="aLZjB" />
+<a id="willkommen-zur-edis-knowledge-base-" />
 
-## Willkommen zur EDIS Knowledge Base! 🌐
+<div className="edis-home-access">
+  <p className="edis-home-eyebrow">DIREKT ZUR VERWALTUNG</p>
+  <div className="edis-home-actions">
+    <a className="edis-button" href="https://manage.edis.at/client/">Kundenbereich öffnen</a>
+    <a className="edis-button edis-home-secondary" href="https://afterlogic.edis.at/">Zum Webmail</a>
+    <a className="edis-button edis-home-secondary" href="https://pdns.edis.global/">DNS verwalten</a>
+  </div>
+  <p className="edis-home-access-note">Zugang vergessen? <a href="/kundenkennwort-zuruecksetzen-edis">Kundenpasswort zurücksetzen</a></p>
+</div>
 
-Hier finden Sie alle wichtigen Informationen, Tipps und Tricks zu unseren Hosting-, Domain- und E-Mail-Services. Wir haben unsere Inhalte so aufbereitet, dass Sie schnell und unkompliziert die richtigen Antworten finden – egal, ob Sie gerade erst starten oder bereits Experte sind. Viel Spaß beim Entdecken!
+## Was möchten Sie erledigen?
 
-Herzlichst
-Ihr EDIS Hosting Team
+<Columns cols={2}>
+  <Card title="Domains & DNS" icon="globe" className="edis-home-topic">
+    Verbinden Sie Ihre Domain mit den richtigen Diensten.
 
-<a className="edis-button" href="/anycast-dns-bei-edis">Anycast DNS</a>
+    - [Domain zu EDIS transferieren](/domain-zu-edis-transferieren)
+    - [DNS-Einträge verwalten](/dns-verwaltung-edis)
+    - [Aktive Domainnutzung](/aktive-domain-nutzung)
+    - [Anycast DNS erklärt](/anycast-dns-bei-edis)
+  </Card>
+  <Card title="E-Mail" icon="envelope" className="edis-home-topic">
+    Richten Sie Ihr Postfach und Ihre Geräte ein.
 
-<a className="edis-button" href="/php-73-ende-bei-alten-wehosts">Älteres Hosting und PHP aktualisieren</a>
+    - [Postfächer und Weiterleitungen](/mailboxen-einrichten-domain-bei-edis)
+    - [Mailserver, Ports und Einstellungen](/edis-mailserver-imap-pop3-und-smtp-einstellungen)
+    - [E-Mail-Passwort ändern](/email-passwort-neu-setzen)
+    - [Abwesenheitsantwort einrichten](/autoresponder-automatische-e-mail-antwort-einrichten)
+  </Card>
+  <Card title="Webhosting & WordPress" icon="server" className="edis-home-topic">
+    Verwalten Sie Ihre Website und die Hosting-Umgebung.
 
-<a className="edis-button" href="/edis-mailserver-imap-pop3-und-smtp-einstellungen">E-Mail konfigurieren: Ports und Einstellungen</a>
+    - [Im vHost-Bereich anmelden](/login-vhost-bereich)
+    - [WordPress zu EDIS übernehmen](/wordpress-importieren-mit-installtron)
+    - [PHP-Version ändern](/php-version-domain-subdomain-bei-edis-einstellen)
+    - [Älteres Hosting und PHP aktualisieren](/php-73-ende-bei-alten-wehosts)
+  </Card>
+  <Card title="Website-Baukasten" icon="wand-magic-sparkles" className="edis-home-topic">
+    Gestalten Sie Ihre Website ohne Programmierkenntnisse.
+
+    - [Baukasten öffnen und loslegen](/edis-webseiten-baukasten)
+    - [Cookie-Hinweis und Banner einrichten](/cookie-hinweis-und-cookie-banner-im-baukasten-einrichten)
+    - [Fehlende Bestellmails prüfen](/fehlende-bestell-und-buchungsbestatigungen-prufen)
+  </Card>
+  <Card title="Kundenkonto & Rechnung" icon="address-card" className="edis-home-topic">
+    Klären Sie Zugänge, Kontaktdaten und Vertragsfragen.
+
+    - [Kundenpasswort zurücksetzen](/kundenkennwort-zuruecksetzen-edis)
+    - [Rechnungen und Zahlungen](/rechnungszustellung-andern-und-zahlungsnachweise-zuordnen)
+    - [Inhaber und Kundendaten ändern](/domainkontakte-debitor-und-inhaber-unterscheiden)
+    - [Domains oder Hosting kündigen](/anleitung-produkte-bei-edis-kuendigen)
+  </Card>
+  <Card title="Sicherheit & Backups" icon="shield-halved" className="edis-home-topic">
+    Schützen Sie Ihre Website und sichern Sie wichtige Daten.
+
+    - [HTTPS mit Let’s Encrypt aktivieren](/lets-encrypt-zertifikat-bei-edis-bestellen-und-aktivieren)
+    - [Backups und Wiederherstellung](/backups-und-wiederherstellung-datenverlust-richtig-melden)
+    - [Missbrauch eines Kontaktformulars](/kontaktformular-missbraucht-website-mailversand-prufen-und-wiederherstellen)
+  </Card>
+</Columns>
+
+## Etwas funktioniert nicht?
+
+<Columns cols={2}>
+  <Card title="E-Mail kommt nicht an" icon="envelope-open-text" href="/e-mail-rucklaufer-und-weiterleitungen-gezielt-untersuchen" horizontal>
+    Rückläufer, Weiterleitungen und Zustellfehler eingrenzen.
+  </Card>
+  <Card title="Website meldet Fehler" icon="magnifying-glass" href="/webanwendungen-logs-php-umgebung-und-datenbank-prufen" horizontal>
+    Den passenden Fehlerfall finden und gezielt prüfen.
+  </Card>
+</Columns>
+
+<div className="edis-home-support">
+  <div>
+    <h2>Wir helfen Ihnen weiter.</h2>
+    <p>Sie kommen an einer Stelle nicht weiter? Unser Supportteam hilft Ihnen bei Fragen zu Domains, Webhosting und E-Mail.</p>
+  </div>
+  <div className="edis-home-actions">
+    <a className="edis-button" href="/edis-gmbh-support-telefon-e-mail-und-weitere-kontaktwege">Support kontaktieren</a>
+    <a className="edis-home-status" href="https://status.edis.at/">Systemstatus ansehen →</a>
+  </div>
+</div>
